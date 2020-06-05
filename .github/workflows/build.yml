@@ -1,0 +1,37 @@
+name: Build and publish
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+      OS: 'linux'
+    steps:
+      - name: Checkout Pull Requests
+        uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+          architecture: x64
+      - name: Install dependencies
+        run: |
+          pip install -U sphinx recommonmark
+          pip install git+https://github.com/spyder-ide/spyder-docs-sphinx-theme.git
+      - name: Build docs
+        run: |
+          make docs
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html
+          publish_branch: gh-pages
