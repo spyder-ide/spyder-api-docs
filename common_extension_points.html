@@ -207,29 +207,28 @@
 <h3>Creating a new application menu<a class="headerlink" href="#creating-a-new-application-menu" title="Permalink to this headline">¶</a></h3>
 <p>To add a new menu to the menu bar, you need to create one with the <code class="docutils literal notranslate"><span class="pre">core</span></code> plugin.</p>
 <p>You can then add actions to the menu.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
 
 
 <span class="k">class</span> <span class="nc">SomePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+
     <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">core</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">Core</span><span class="p">)</span>
         <span class="n">extras_menu</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">create_application_menu</span><span class="p">(</span>
             <span class="s2">&quot;extras_menu&quot;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Extras&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-    <span class="c1"># ...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="adding-a-new-action-to-an-existing-menu">
 <h3>Adding a new action to an existing menu<a class="headerlink" href="#adding-a-new-action-to-an-existing-menu" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
 <span class="kn">from</span> <span class="nn">spyder.plugins.core.api</span> <span class="kn">import</span> <span class="n">HelpMenuSections</span>
 
 
 <span class="k">class</span> <span class="nc">SomePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
-    <span class="c1"># ...</span>
+
     <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">core</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">Core</span><span class="p">)</span>
         <span class="n">help_menu</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">get_menu</span><span class="p">(</span><span class="s2">&quot;help_menu&quot;</span><span class="p">)</span>

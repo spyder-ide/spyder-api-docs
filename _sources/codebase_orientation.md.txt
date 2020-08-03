@@ -29,9 +29,56 @@ This specification is developer focused.
 
 ### Python package: ``spyder/``
 
-This, along with the ``setup.py``, comprises the Python code for the project.
-This includes the notebook server extension, JupyterLab's command line interface,
-entrypoints, and Python tests.
+TODO:
 
-It also contains the final built JavaScript assets which are distributed with
-the Python package.
+#### Package module: ``spyder/api``
+
+TODO:
+
+#### Package module: ``spyder/app``
+
+TODO:
+
+#### Package module : ``spyder/config``
+
+TODO:
+
+#### Package module : ``spyder/fonts``
+
+TODO:
+
+#### Package module : ``spyder/images``
+
+TODO:
+
+#### Package module : ``spyder/locale``
+
+TODO:
+
+#### Package module : ``spyder/plugins``
+
+TODO:
+
+#### Package module : ``spyder/preferences``
+
+TODO:
+
+#### Package module : ``spyder/tests``
+
+TODO:
+
+#### Package module : ``spyder/utils``
+
+TODO:
+
+#### Package module : ``spyder/widgets``
+
+TODO:
+
+#### Package module : ``spyder/windows``
+
+TODO:
+
+#### Package module : ``spyder/workers``
+
+TODO:
