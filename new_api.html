@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index &#8212; Spyder API docs 5 documentation</title>
+    <title>The new API &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link rel="stylesheet" href="_static/sphinx-bootstrap.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,8 +78,36 @@
           <div class="d-none d-xl-block col-xl-2 bd-toc">
               
 
+
+<div class="tocsection onthispage"><i class="fas fa-list"></i> On this page</div>
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#the-guiding-principles" class="nav-link">The guiding principles</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#work" class="nav-link">Work</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#remove-circular-dependencies-among-plugins" class="nav-link">Remove circular dependencies among plugins</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#only-access-configuration-for-required-and-optional-dependencies" class="nav-link">Only access configuration for REQUIRED and OPTIONAL dependencies</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#fix-mixins-that-require-custom-init-calls" class="nav-link">Fix mixins that require custom __init__ calls</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#fix-signal-names" class="nav-link">Fix signal names</a>
+        </li>
+    
+            </ul>
+        </li>
     
     </ul>
 </nav>
@@ -89,11 +117,46 @@
           <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="the-new-api">
+<h1>The new API<a class="headerlink" href="#the-new-api" title="Permalink to this headline">¶</a></h1>
+<p>This document will try to give an explanation of why Spyder 5 incurred in a
+major refactoring of the codebase and redefinition of its plugin API.</p>
+<div class="section" id="the-guiding-principles">
+<h2>The guiding principles<a class="headerlink" href="#the-guiding-principles" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Spyder should be provide a set of loosely coupled components with a clear
+hierarchy and dependency instead from a tightly coupled monolith.
+This means that some plugins have REQUIRED dependencies that must be
+present for the plugin to be able to be loaded, and there are OPTIONAL
+dependencies, that will not prevent the plugin from starting and working
+with other plugins</p></li>
+<li><p>Spyder should be written in the same way any external developer would, when
+extending or creating a Spyder Plugin.</p></li>
+<li><p>Spyder should provide 1 way and 1 way only for handling plugins, that means
+that even if plugins are providing very different functionality, the basic
+principles for creating, regustering, setting up, loading, closing and
+accessing the configuration system should be the same for all.</p></li>
+</ol>
+</div>
+<div class="section" id="work">
+<h2>Work<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="remove-circular-dependencies-among-plugins">
+<h3>Remove circular dependencies among plugins<a class="headerlink" href="#remove-circular-dependencies-among-plugins" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+<div class="section" id="only-access-configuration-for-required-and-optional-dependencies">
+<h3>Only access configuration for REQUIRED and OPTIONAL dependencies<a class="headerlink" href="#only-access-configuration-for-required-and-optional-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+<div class="section" id="fix-mixins-that-require-custom-init-calls">
+<h3>Fix mixins that require custom <code class="docutils literal notranslate"><span class="pre">__init__</span></code> calls<a class="headerlink" href="#fix-mixins-that-require-custom-init-calls" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+<div class="section" id="fix-signal-names">
+<h3>Fix signal names<a class="headerlink" href="#fix-signal-names" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+</div>
 </div>
 
 

@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design patterns &#8212; Spyder API docs 5 documentation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link rel="stylesheet" href="_static/sphinx-bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link href="_static/css/theme.css" rel="stylesheet">
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<div id="navbar-menu" class="collapse navbar-collapse">
+  <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+    </li>
+    
+    
+    <li class="nav-item ">
+        <a class="nav-link" href="introduction.html">Introduction</a>
+    </li>
+    
+    
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    
+    
+  </ul>
+</div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row flex-xl-nowrap">
+          <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+
+<div class="tocsection onthispage"><i class="fas fa-list"></i> On this page</div>
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#python-style" class="nav-link">Python style</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#pyqt-pyside-style" class="nav-link">PyQt / PySide Style</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#method-naming-conventions" class="nav-link">Method naming conventions</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#widget-structure" class="nav-link">Widget Structure</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#docstrings" class="nav-link">Docstrings</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#imports" class="nav-link">Imports</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#spyder-style" class="nav-link">Spyder style</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#internationalization-localization" class="nav-link">Internationalization / Localization</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#signals" class="nav-link">Signals</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#naming-do-s" class="nav-link">Naming Do’s</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#naming-do-not-s" class="nav-link">Naming Do not’s</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#on-mixins" class="nav-link">On mixins</a>
+        </li>
+    
+    </ul>
+</nav>
+              
+            </div>
+
+          <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+              <div>
+                
+  <div class="section" id="design-patterns">
+<h1>Design patterns<a class="headerlink" href="#design-patterns" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python-style">
+<h2>Python style<a class="headerlink" href="#python-style" title="Permalink to this headline">¶</a></h2>
+<p>Unless otherwise specified, follow
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> specifications and
+recommendations for coding style and
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a> for docstrings.</p>
+<p>Use flake8 to check for problems in this area. Remember that PEP 8 is only a
+guide, so respect the style of the surrounding code as a primary goal.</p>
+<p>Additional conventions:</p>
+<ul class="simple">
+<li><p>Always use four (4) spaces for <strong>indentation</strong>, including continuation lines
+and hanging indents, except for:</p></li>
+<li><p>Use 8 spaces for hanging indent continuations of the <code class="docutils literal notranslate"><span class="pre">def</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>,
+<code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">with</span></code> statements, to avoid confusion with their
+indented block.</p></li>
+<li><p><strong>Test-suite functions</strong> need not have a separate summary line in the
+docstring, particularly if it is only a few lines long, though this is
+suggested for longer docstrings.</p></li>
+<li><p>Put the <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> on their own lines for multi-line <strong>docstrings</strong>; keep them
+all in the same line for single-line docstrings, except for module-level
+docstrings.</p></li>
+</ul>
+</div>
+<div class="section" id="pyqt-pyside-style">
+<h2>PyQt / PySide Style<a class="headerlink" href="#pyqt-pyside-style" title="Permalink to this headline">¶</a></h2>
+<p>Spyder aims to be compatible with PySide and PyQt, so make sure code runs with
+both bindings.</p>
+<p>Qt by default has its own conventions for the definitions of methods and
+classes, and sometimes this clashes with was is suggested by
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a>.</p>
+<p>These are some suggestions to take into account when using the Qt bindings in
+Python:</p>
+<div class="section" id="method-naming-conventions">
+<h3>Method naming conventions<a class="headerlink" href="#method-naming-conventions" title="Permalink to this headline">¶</a></h3>
+<p>Qt defines methods in camelCase, and when Spyder overloads these methods, we
+cannot avoid camelCase. However, When new methods are defined in Spyder, these
+methods should follow the PEP8 convention:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpyderWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Example widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="n">QWidget</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">mousePressEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Overloaded Qt method.&quot;&quot;&quot;</span>
+        <span class="c1"># Do something with the event...</span>
+
+    <span class="k">def</span> <span class="nf">run_new_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run some new method.&quot;&quot;&quot;</span>
+        <span class="c1"># Do something interesting</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="widget-structure">
+<h3>Widget Structure<a class="headerlink" href="#widget-structure" title="Permalink to this headline">¶</a></h3>
+<p>Most Spyder widgets follow this convention (use it when creating new widgets)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variables</span>
+
+<span class="c1"># Widgets</span>
+
+<span class="c1"># Widget setup</span>
+
+<span class="c1"># Layouts</span>
+
+<span class="c1"># Signals and slots</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_some_private_variable</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">some_variable</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Widgets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awesome_widget</span> <span class="o">=</span> <span class="n">SomeAwesoemWidget</span><span class="p">()</span>
+
+        <span class="c1"># Widget setup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awesome_widget</span><span class="o">.</span><span class="n">setSomething</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Layout</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">awesome_widget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+        <span class="c1"># Signals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awesome_widget</span><span class="o">.</span><span class="n">sig_some_signal_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">some_method</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="docstrings">
+<h3>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this headline">¶</a></h3>
+<p>Docstrings are sentences in the infinitive form and ended with a dot <code class="docutils literal notranslate"><span class="pre">.</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> share (at least) the same docstring as the class.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Create some widget.&quot;&quot;&quot;</span>
+
+    <span class="n">SOME_CLASS_ATTRIBUTE</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This explanation on this attribute.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_something_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to request something.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    some_indicative_name: str</span>
+<span class="sd">        Some explanation.</span>
+<span class="sd">    some_indicative_name_2: dict</span>
+<span class="sd">        Some other explanation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create some widget.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">run_something</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_1</span><span class="p">,</span> <span class="n">param_2</span><span class="p">,</span> <span class="n">param_3</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create some widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        param_1: str</span>
+<span class="sd">            Some explanation.</span>
+<span class="sd">        param_2: int</span>
+<span class="sd">            Some explanation.</span>
+<span class="sd">        param_3: bool, optional</span>
+<span class="sd">            Some explanation. Default is True.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int:</span>
+<span class="sd">            Some explanation.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Additional information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Something runs!</span>
+
+        <span class="k">return</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+</div>
+<div class="section" id="spyder-style">
+<h2>Spyder style<a class="headerlink" href="#spyder-style" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="internationalization-localization">
+<h3>Internationalization / Localization<a class="headerlink" href="#internationalization-localization" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyderlib.baseconfig</span> <span class="kn">import</span> <span class="n">_</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="signals">
+<h3>Signals<a class="headerlink" href="#signals" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="naming-do-s">
+<h4>Naming Do’s<a class="headerlink" href="#naming-do-s" title="Permalink to this headline">¶</a></h4>
+<p>For naming new custom signals, use the <code class="docutils literal notranslate"><span class="pre">sig_</span></code> prefix and lowercase:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyderlib.qt.QtCore</span> <span class="kn">import</span> <span class="n">Signal</span>
+
+<span class="k">class</span> <span class="nc">SpyderWidget</span><span class="p">():</span>
+
+    <span class="c1"># Signals</span>
+    <span class="n">sig_something_happened</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Signals should provide a hint on what they do or what they need to request
+and they should always start with the <code class="docutils literal notranslate"><span class="pre">sig_</span></code> prefix and end with a verb in
+past (or past participle?).</p>
+<p>If a widget (Subclass of QWidget) or object (Subclass of QObject) can
+perform a given action, then that action must be indicated by the verb
+ending the signal name.</p>
+<p>If a widget has some common text functionalities and emits signals when
+these are triggered, they should look something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+
+    <span class="n">sig_text_copied</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">sig_text_pasted</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If a widget (Subclass of QWidget) or object (Subclass of QObject) cannot
+perform a given action, but needs to inform any connected widget that
+something needs to happen, then the signal must end in <code class="docutils literal notranslate"><span class="pre">_requested</span></code>.</p>
+<p>If a widget may offer the possibility of opening some file, but the widget
+itself is not an editor, then the signal can be emitted to make this request:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+
+    <span class="n">sig_open_file_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="naming-do-not-s">
+<h4>Naming Do not’s<a class="headerlink" href="#naming-do-not-s" title="Permalink to this headline">¶</a></h4>
+<p>Signals should not be named like a methods/functions. The following are examples
+of names not following the recommended convention.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+
+    <span class="n">sig_open_file</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># No verb indicating the action</span>
+    <span class="n">widget_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>   <span class="c1"># No sig prefix and no verb indicating the action</span>
+    <span class="n">doSomething</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>    <span class="c1"># Uses Qt style names, not python ones</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="on-mixins">
+<h2>On mixins<a class="headerlink" href="#on-mixins" title="Permalink to this headline">¶</a></h2>
+<p>is a class that contains methods for use by other classes without having to be
+the parent class of those other classes. How those other classes gain access
+to the mixin’s methods depends on the language. Mixins are sometimes described
+as being “included” rather than “inherited”.</p>
+<p>For this reason a common pattern with mixing is that they should not have a
+constructor as this implies that an any class using a mixin now needs to make
+sure that it follows some constructor which goes against the idea of just
+injecting some functionality.</p>
+<p>Some current examples on the Spyder code base that present this problem include:</p>
+<ul class="simple">
+<li><p>Mixing module!</p></li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+
+      </div>
+    </div>
+
+    <script src="_static/js/theme.js"></script>
+    <footer class="footer">
+  <div class="container">
+    <p>
+          &copy; Copyright 2020, Spyder Development Team.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

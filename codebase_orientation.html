@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codebase orientation &#8212; Spyder API docs 5 documentation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link rel="stylesheet" href="_static/sphinx-bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link href="_static/css/theme.css" rel="stylesheet">
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<div id="navbar-menu" class="collapse navbar-collapse">
+  <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+    </li>
+    
+    
+    <li class="nav-item ">
+        <a class="nav-link" href="introduction.html">Introduction</a>
+    </li>
+    
+    
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    
+    
+  </ul>
+</div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row flex-xl-nowrap">
+          <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+
+<div class="tocsection onthispage"><i class="fas fa-list"></i> On this page</div>
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#extension-developer-guide" class="nav-link">Extension Developer Guide</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#tutorials" class="nav-link">Tutorials</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#cookiecutters" class="nav-link">Cookiecutters</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#api-documentation" class="nav-link">API Documentation</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#plugins" class="nav-link">Plugins</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#configuration-and-preferences" class="nav-link">Configuration and preferences</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#global-api" class="nav-link">Global API</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#global-widgets" class="nav-link">Global Widgets</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#global-utilities" class="nav-link">Global utilities</a>
+        </li>
+    
+    </ul>
+</nav>
+              
+            </div>
+
+          <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+              <div>
+                
+  <div class="section" id="codebase-orientation">
+<h1>Codebase orientation<a class="headerlink" href="#codebase-orientation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="extension-developer-guide">
+<h2>Extension Developer Guide<a class="headerlink" href="#extension-developer-guide" title="Permalink to this headline">¶</a></h2>
+<p>Spyder can be extended via:</p>
+<ol class="simple">
+<li><p>Application plugins (top level): Application plugins extend the
+functionality of Spyder itself. An example of this would be a new Plugin
+that created a new Pane to provide some functionality.</p></li>
+<li><p>Plugins API extension (plugin level):  A plugin provides an API to extend
+its functionality. An example of this would be a completion provide, that
+would extend the available completion providers. Another example would be
+a new Prpoject Type, that would allow users to create specific types of
+projects with custom creation, starting, and closing logic.</p></li>
+</ol>
+<p>The Spyder application is comprised of:</p>
+<ul class="simple">
+<li><p>The spyder main window application object</p></li>
+<li><p>Plugins</p></li>
+<li><p>Some global widgets</p></li>
+<li><p>Some global utilities</p></li>
+</ul>
+<p>Plugins are distributed as python packages, so you can write plugins and
+publish them in PyPI or Conda forge.</p>
+</div>
+<div class="section" id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
+<p>We provide a set of guides to get started writing third-party plugins for Spyder:</p>
+<ul class="simple">
+<li><p>Tutorial 1</p></li>
+<li><p>Tutorial 2</p></li>
+<li><p>Tutorial 3</p></li>
+</ul>
+</div>
+<div class="section" id="cookiecutters">
+<h2>Cookiecutters<a class="headerlink" href="#cookiecutters" title="Permalink to this headline">¶</a></h2>
+<p>We provide a simple cookiecutter to create Spyder plugin:</p>
+<ul class="simple">
+<li><p>Cookiecutter.</p></li>
+</ul>
+</div>
+<div class="section" id="api-documentation">
+<h2>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h2>
+<p>If you are looking for lower level details on the spyder and Qt API:</p>
+<ul class="simple">
+<li><p>Spyder API Documentation</p></li>
+<li><p>Qt API Documentation</p></li>
+</ul>
+</div>
+<div class="section" id="plugins">
+<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<p>A plugin adds a core functionality to the application.</p>
+<ul class="simple">
+<li><p>A plugin can require other plugins for operation.</p></li>
+<li><p>A plugin is activated when it is needed by other plugins, or when explicitly
+activated.</p></li>
+<li><p>Plugins require and provide Token objects, which are used to provide a typed
+value to the plugin’s activate() method.</p></li>
+<li><p>The module providing plugin(s) must meet the JupyterLab.IPluginModule
+interface, by exporting a plugin object or array of plugin objects as the
+default export.</p></li>
+</ul>
+<p>The default plugins in the Spyder application include:</p>
+<ul class="simple">
+<li><p>Core:</p></li>
+<li><p>Appearance:</p></li>
+<li><p>Completions:</p></li>
+<li><p>Shortcuts:</p></li>
+<li><p>Editor:</p></li>
+<li><p>Outline Explorer:</p></li>
+<li><p>Projects:</p></li>
+<li><p>IPython Console:</p></li>
+<li><p>Variable Explorer:</p></li>
+<li><p>Help:</p></li>
+<li><p>Plots:</p></li>
+<li><p>History:</p></li>
+<li><p>Find:</p></li>
+<li><p>Profiler:</p></li>
+<li><p>Code analysis:</p></li>
+</ul>
+<p>Here is a dependency graph for the Spyder (internal) plugins:</p>
+</div>
+<div class="section" id="configuration-and-preferences">
+<h2>Configuration and preferences<a class="headerlink" href="#configuration-and-preferences" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="global-api">
+<h2>Global API<a class="headerlink" href="#global-api" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="global-widgets">
+<h2>Global Widgets<a class="headerlink" href="#global-widgets" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="global-utilities">
+<h2>Global utilities<a class="headerlink" href="#global-utilities" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+              </div>
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+
+      </div>
+    </div>
+
+    <script src="_static/js/theme.js"></script>
+    <footer class="footer">
+  <div class="container">
+    <p>
+          &copy; Copyright 2020, Spyder Development Team.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
