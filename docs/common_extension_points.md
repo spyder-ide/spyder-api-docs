@@ -19,29 +19,28 @@ To add a new menu to the menu bar, you need to create one with the `core` plugin
 You can then add actions to the menu.
 
 ```python
-from spyder.api.plugins import Plugins
+from spyder.api.plugins import Plugins, SpyderPluginV2
 
 
 class SomePlugin(SpyderPluginV2):
-    # ...
+
     def register(self):
         core = self.get_plugin(Plugins.Core)
         extras_menu = core.create_application_menu(
             "extras_menu",
             title="Extras",
         )
-    # ...
 ```
 
 ### Adding a new action to an existing menu
 
 ```python
-from spyder.api.plugins import Plugins
+from spyder.api.plugins import Plugins, SpyderPluginV2
 from spyder.plugins.core.api import HelpMenuSections
 
 
 class SomePlugin(SpyderPluginV2):
-    # ...
+
     def register(self):
         core = self.get_plugin(Plugins.Core)
         help_menu = core.get_menu("help_menu")
