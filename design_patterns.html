@@ -89,8 +89,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plugin_tutorials.html">
+   Tutorials
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -150,6 +160,24 @@
     
 </div>
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fdesign_patterns.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/design_patterns.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
@@ -221,11 +249,6 @@
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#on-mixins">
-   On mixins
-  </a>
  </li>
 </ul>
 
@@ -460,21 +483,6 @@ of names not following the recommended convention.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="on-mixins">
-<h2>On mixins<a class="headerlink" href="#on-mixins" title="Permalink to this headline">¶</a></h2>
-<p>is a class that contains methods for use by other classes without having to be
-the parent class of those other classes. How those other classes gain access
-to the mixin’s methods depends on the language. Mixins are sometimes described
-as being “included” rather than “inherited”.</p>
-<p>For this reason a common pattern with mixing is that they should not have a
-constructor as this implies that an any class using a mixin now needs to make
-sure that it follows some constructor which goes against the idea of just
-injecting some functionality.</p>
-<p>Some current examples on the Spyder code base that present this problem include:</p>
-<ul class="simple">
-<li><p>Mixing module!</p></li>
-</ul>
 </div>
 </div>
 

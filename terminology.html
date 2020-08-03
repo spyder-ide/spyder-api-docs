@@ -20,7 +20,7 @@
     <script src="_static/sphinx-book-theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Migrating plugins from Spyder 4.x to 5.x" href="migrating_from_4_to_5.html" />
+    <link rel="next" title="Tutorials" href="plugin_tutorials.html" />
     <link rel="prev" title="Design patterns" href="design_patterns.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,8 +89,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plugin_tutorials.html">
+   Tutorials
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -151,6 +161,24 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fterminology.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/terminology.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -169,8 +197,45 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spyder-non-graphical-elements">
+   Spyder Non Graphical elements
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#actions">
+     Actions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortcuts">
+     Shortcuts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spyder-graphical-elements">
    Spyder Graphical elements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pane">
+   Pane
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#status-bar">
+   Status bar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toolbars">
+   Toolbars
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#menus">
+   Menus
   </a>
  </li>
 </ul>
@@ -185,9 +250,40 @@
                 
   <div class="section" id="terminology">
 <h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h1>
+<p>TODO:</p>
+<div class="section" id="spyder-non-graphical-elements">
+<h2>Spyder Non Graphical elements<a class="headerlink" href="#spyder-non-graphical-elements" title="Permalink to this headline">¶</a></h2>
+<p>TODO:</p>
+<div class="section" id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderAction</span></code></p>
+</div>
+<div class="section" id="shortcuts">
+<h3>Shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+</div>
 <div class="section" id="spyder-graphical-elements">
 <h2>Spyder Graphical elements<a class="headerlink" href="#spyder-graphical-elements" title="Permalink to this headline">¶</a></h2>
 <p>TODO:</p>
+</div>
+<div class="section" id="pane">
+<h2>Pane<a class="headerlink" href="#pane" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderPluginWidget</span></code></p>
+</div>
+<div class="section" id="status-bar">
+<h2>Status bar<a class="headerlink" href="#status-bar" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderStatusWidget</span></code></p>
+</div>
+<div class="section" id="toolbars">
+<h2>Toolbars<a class="headerlink" href="#toolbars" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderApplicationToolBar</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderToolBar</span></code></p>
+</div>
+<div class="section" id="menus">
+<h2>Menus<a class="headerlink" href="#menus" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderApplicationMenu</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">SpyderMenu</span></code></p>
 </div>
 </div>
 
@@ -201,7 +297,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="design_patterns.html" title="previous page">Design patterns</a>
-    <a class='right-next' id="next-link" href="migrating_from_4_to_5.html" title="next page">Migrating plugins from Spyder 4.x to 5.x</a>
+    <a class='right-next' id="next-link" href="plugin_tutorials.html" title="next page">Tutorials</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

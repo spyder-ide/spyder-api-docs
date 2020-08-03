@@ -89,8 +89,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plugin_tutorials.html">
+   Tutorials
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -151,6 +161,24 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fnew_api.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/new_api.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -172,6 +200,43 @@
   <a class="reference internal nav-link" href="#the-guiding-principles">
    The guiding principles
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#issues-with-the-old-api">
+   Issues with the old API
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unclear-extension">
+     Unclear extension
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#circular-dependencies">
+     Circular dependencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-type-of-plugins">
+     Different type of plugins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-type-of-preferences-handling">
+     Different type of preferences handling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naming-conventions">
+     Naming conventions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuration-handling">
+     Configuration handling
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work">
@@ -257,14 +322,41 @@ hierarchy and dependency instead from a tightly coupled monolith.
 This means that some plugins have REQUIRED dependencies that must be
 present for the plugin to be able to be loaded, and there are OPTIONAL
 dependencies, that will not prevent the plugin from starting and working
-with other plugins</p></li>
+with other plugins.</p></li>
 <li><p>Spyder should be written in the same way any external developer would, when
-extending or creating a Spyder Plugin.</p></li>
+extending or creating a third party Spyder Plugin. This way anyone
+developing external plugins can help the core codebase since it will look
+and feel esencially the same.</p></li>
 <li><p>Spyder should provide 1 way and 1 way only for handling plugins, that means
 that even if plugins are providing very different functionality, the basic
-principles for creating, regustering, setting up, loading, closing and
+principles for creating, registering, setting up, loading, closing and
 accessing the configuration system should be the same for all.</p></li>
+<li><p>Spyder should provide enough tools, mixins and facilities for internal and
+external developers as to reduce the amount of work needed to create and
+extend a plugin and reduce the need for duplicating code in different
+places of the codebase.</p></li>
 </ol>
+</div>
+<div class="section" id="issues-with-the-old-api">
+<h2>Issues with the old API<a class="headerlink" href="#issues-with-the-old-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unclear-extension">
+<h3>Unclear extension<a class="headerlink" href="#unclear-extension" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="circular-dependencies">
+<h3>Circular dependencies<a class="headerlink" href="#circular-dependencies" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="different-type-of-plugins">
+<h3>Different type of plugins<a class="headerlink" href="#different-type-of-plugins" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="different-type-of-preferences-handling">
+<h3>Different type of preferences handling<a class="headerlink" href="#different-type-of-preferences-handling" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="naming-conventions">
+<h3>Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="configuration-handling">
+<h3>Configuration handling<a class="headerlink" href="#configuration-handling" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="work">
 <h2>Work<a class="headerlink" href="#work" title="Permalink to this headline">¶</a></h2>

@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;no title&gt; &#8212; Spyder API docs 5 documentation</title>
+    <title>Future work &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -20,6 +20,8 @@
     <script src="_static/sphinx-book-theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="prev" title="Migrating plugins from Spyder 4.x to 5.x" href="migrating_from_4_to_5.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -55,7 +57,7 @@
   Contents
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="new_api.html">
    New API
@@ -87,8 +89,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plugin_tutorials.html">
+   Tutorials
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -138,7 +150,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/lets_make_a_plugin_3.md.txt"><button type="button"
+        <a class="dropdown-buttons" href="_sources/future_work.md.txt"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -148,6 +160,24 @@
     
 </div>
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Ffuture_work.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/future_work.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
@@ -165,7 +195,14 @@
             <i class="fas fa-list"></i> On this page
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-mixins">
+   On mixins
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -174,7 +211,25 @@
         
               <div>
                 
-  
+  <div class="section" id="future-work">
+<h1>Future work<a class="headerlink" href="#future-work" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="on-mixins">
+<h2>On mixins<a class="headerlink" href="#on-mixins" title="Permalink to this headline">¶</a></h2>
+<p>Mixins are classes that contains methods for use by other classes without
+having to be the parent class of those other classes. How those other classes
+gain access to the mixin’s methods depends on the language. Mixins are sometimes
+described as being “included” rather than “inherited”.</p>
+<p>For this reason a common pattern with mixing is that they should not have a
+constructor as this implies that an any class using a mixin now needs to make
+sure that it follows some constructor which goes against the idea of just
+injecting some functionality.</p>
+<p>Some current examples on the Spyder code base that present this problem include:</p>
+<ul class="simple">
+<li><p>Mixing module!</p></li>
+</ul>
+</div>
+</div>
+
 
               </div>
               
@@ -184,6 +239,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="migrating_from_4_to_5.html" title="previous page">Migrating plugins from Spyder 4.x to 5.x</a>
+    <a class='right-next' id="next-link" href="faq.html" title="next page">Frequently asked questions</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

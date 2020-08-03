@@ -88,8 +88,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plugin_tutorials.html">
+   Tutorials
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -150,6 +160,24 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/index.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -177,55 +205,20 @@
                 
   <div class="section" id="welcome-to-spyder-developer-documentation">
 <h1>Welcome to Spyder Developer documentation<a class="headerlink" href="#welcome-to-spyder-developer-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Hello :-p!</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="new_api.html">New API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="new_api.html#the-guiding-principles">The guiding principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="new_api.html#work">Work</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="codebase_orientation.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codebase_orientation.html#directories">Directories</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extension_developer_guide.html">Plugins Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#developer-guide">Developer Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#tutorials">Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#cookiecutters">Cookiecutters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#api-documentation">API Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#plugins">Plugins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#configuration-and-preferences">Configuration and preferences</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#global-api">Global API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#global-widgets">Global Widgets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extension_developer_guide.html#global-utilities">Global utilities</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="common_extension_points.html">Extension Points</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="common_extension_points.html#actions">Actions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_extension_points.html#main-application-menus">Main application menus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_extension_points.html#application-toolbars">Application toolbars</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_extension_points.html#status-bar">Status bar</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_extension_points.html#project-types">Project types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common_extension_points.html#completion-providers">Completion providers</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="design_patterns.html">Design Patterns</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="design_patterns.html#python-style">Python style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_patterns.html#pyqt-pyside-style">PyQt / PySide Style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_patterns.html#on-mixins">On mixins</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="terminology.html#spyder-graphical-elements">Spyder Graphical elements</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="new_api.html">New API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codebase_orientation.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extension_developer_guide.html">Plugins Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_extension_points.html">Extension Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="migrating_from_4_to_5.html">Migrating plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="faq.html#does-the-gpl-exception-hold-for-pyqt5">Does the GPL exception hold for PyQt5?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="faq.html#how-to-debug-spyder">How to debug Spyder</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="future_work.html">Future Work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 </div>
 </div>

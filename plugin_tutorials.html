@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;no title&gt; &#8212; Spyder API docs 5 documentation</title>
+    <title>Tutorials &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -20,6 +20,8 @@
     <script src="_static/sphinx-book-theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial: Our first Spyder plugin" href="plugin_tutorial_1.html" />
+    <link rel="prev" title="Terminology" href="terminology.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -55,7 +57,7 @@
   Contents
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="new_api.html">
    New API
@@ -86,9 +88,26 @@
    Terminology
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tutorials
+  </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plugin_tutorial_1.html">
+     Simple tutorial
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -138,7 +157,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/lets_make_a_plugin_1.md.txt"><button type="button"
+        <a class="dropdown-buttons" href="_sources/plugin_tutorials.md.txt"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -148,6 +167,24 @@
     
 </div>
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fplugin_tutorials.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/plugin_tutorials.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
@@ -174,7 +211,32 @@
         
               <div>
                 
-  
+  <div class="section" id="tutorials">
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="plugin_tutorial_1.html">Simple tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#what-we-will-learn">What we will learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#set-the-development-environment">Set the development environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#create-the-plugin-basic-structure">Create the plugin basic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#creating-a-plugin-action">Creating a Plugin action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#assigning-a-shortcut">Assigning a shortcut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#adding-it-to-an-application-menu">Adding it to an application menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#creating-a-container-widget-to-store-more-widgets">Creating a container widget to store more widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#moving-the-action-from-the-plugin-into-the-container">Moving the action from the plugin into the container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#creating-a-toolbar">Creating a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#adding-an-action-to-the-toolbar">Adding an action to the toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#creating-a-status-widget">Creating a status widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#adding-the-status-widget-to-the-status-bar">Adding the status widget to the status bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#what-we-covered">What we covered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_tutorial_1.html#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 
               </div>
               
@@ -184,6 +246,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="terminology.html" title="previous page">Terminology</a>
+    <a class='right-next' id="next-link" href="plugin_tutorial_1.html" title="next page">Tutorial: Our first Spyder plugin</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

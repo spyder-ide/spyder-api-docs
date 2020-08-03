@@ -89,8 +89,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plugin_tutorials.html">
+   Tutorials
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
    Migrating plugins
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html">
+   Future Work
   </a>
  </li>
  <li class="toctree-l1">
@@ -150,6 +160,24 @@
     
 </div>
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fextension_developer_guide.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/extension_developer_guide.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
@@ -229,29 +257,44 @@
 <h2>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h2>
 <p>Spyder can be extended via:</p>
 <ol class="simple">
-<li><p>Application plugins (top level): Application plugins extend the
+<li><p><strong>Application plugins</strong> (top level): Application plugins extend the
 functionality of Spyder itself. An example of this would be a new Plugin
 that created a new Pane to provide some functionality.</p></li>
-<li><p>Plugins API extension (plugin level):  A plugin provides an API to extend
+<li><p><strong>Plugins API extension</strong> (plugin level):  A plugin provides an API to extend
 its functionality. An example of this would be a completion provide, that
 would extend the available completion providers. Another example would be
 a new Prpoject Type, that would allow users to create specific types of
 projects with custom creation, starting, and closing logic. There are two
-types of plugin in spyder:</p>
-<ul class="simple">
-<li><p>Spyder dockable plugins, which provide a new pane within Spyder and may
-provide more extensions, like menus, status bar widgets, actions and
-extensions to other plugins via their API.</p></li>
-<li><p>Spyder plugins, which only provide more extensions, like menus, status
-bar widgets, actions and extensions to other plugins via their API.</p></li>
-</ul>
-</li>
+types of plugin in spyder:</p></li>
 </ol>
-<p>The Spyder application is comprised of:</p>
+<p>Spyder is internally constructed using plugins and this is also the way a new
+plugin/extension cna be created. The Spyder Plugins can be of two types:</p>
+<ol class="simple">
+<li><p><strong>Spyder Dockable Plugins</strong> (<code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code>), which create a new
+Pane (Based on a <code class="docutils literal notranslate"><span class="pre">QDockWidget</span></code>) and (optionally) any other elements such
+as toolbars, menus, status bar widgets, curstom dialogs and a custom
+preferences page.</p></li>
+<li><p><strong>Spyder Plugins</strong> (<code class="docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code>), which do not create a new Pane
+but provide other elements such as toolbars, menus, status bar widgets,
+curstom dialogs and a custom preferences page.</p></li>
+</ol>
+<p>Plugins can provide the following widgets:</p>
 <ul class="simple">
-<li><p>The Spyder main window</p></li>
-<li><p>Spyder Plugins</p></li>
-<li><p>Spyder Dockable Plugins</p></li>
+<li><p><strong>Pane</strong> (<code class="docutils literal notranslate"><span class="pre">PluginMainWidget</span></code>): A plugin can create a new Pane.</p></li>
+<li><p><strong>Containers</strong> (<code class="docutils literal notranslate"><span class="pre">PluginMainContainers</span></code>): Plugins that do not create new
+panes but provide other graphical elements can use a container to parent
+widgets and connect them to the plugin.</p></li>
+<li><p><strong>Actions</strong> (<code class="docutils literal notranslate"><span class="pre">SpyderAction</span></code>): A plugin can create many new actions, which
+can be added to menus, toolbars, and can also be exposed so they can be
+used to create shortcuts that trigger these actions.</p></li>
+<li><p><strong>Preferences Page</strong> (<code class="docutils literal notranslate"><span class="pre">PluginConfigPage</span></code>): A page for plugin preferences.
+A plugin can only have 1 page.</p></li>
+<li><p><strong>Application menus</strong> (<code class="docutils literal notranslate"><span class="pre">SpyderApplicationMenu</span></code>): A plugin can extend or
+create new application menus</p></li>
+<li><p><strong>Application toolbars</strong> (<code class="docutils literal notranslate"><span class="pre">SpyderApplicationToolBar</span></code>): A plugin can extend
+or create new application toolbars</p></li>
+<li><p><strong>StatusBar widgets</strong> (<code class="docutils literal notranslate"><span class="pre">SpyderStatusWidget</span></code>): A plugin can extend or
+create new application status bar widgets.</p></li>
 </ul>
 <p>Plugins are distributed as python packages, so you can write plugins and
 publish them in PyPI or Conda forge.</p>
