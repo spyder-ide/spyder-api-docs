@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design patterns" href="design_patterns.html" />
-    <link rel="prev" title="Codebase" href="codebase.html" />
+    <link rel="prev" title="Codebase orientation" href="extension_developer_guide.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -47,11 +47,11 @@
     </li>
     
     <li class="nav-item ">
-        <a class="nav-link" href="codebase_orientation.html">Orientation</a>
+        <a class="nav-link" href="codebase_orientation.html">Introduction</a>
     </li>
     
     <li class="nav-item ">
-        <a class="nav-link" href="codebase.html">Codebase</a>
+        <a class="nav-link" href="extension_developer_guide.html">Plugins Guide</a>
     </li>
     
     <li class="nav-item active">
@@ -130,6 +130,36 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#actions" class="nav-link">Actions</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#main-application-menus" class="nav-link">Main application menus</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#creating-a-new-application-menu" class="nav-link">Creating a new application menu</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#adding-a-new-action-to-an-existing-menu" class="nav-link">Adding a new action to an existing menu</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#extending-an-existing-action" class="nav-link">Extending an existing action</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#application-toolbars" class="nav-link">Application toolbars</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#status-bar" class="nav-link">Status bar</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
             <a href="#project-types" class="nav-link">Project types</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
@@ -161,6 +191,80 @@
                 
   <div class="section" id="common-extension-points">
 <h1>Common extension points<a class="headerlink" href="#common-extension-points" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
+<p>TODO:</p>
+</div>
+<div class="section" id="main-application-menus">
+<h2>Main application menus<a class="headerlink" href="#main-application-menus" title="Permalink to this headline">¶</a></h2>
+<p>There are three main ways to extend Spyder’s application menu.</p>
+<ol class="simple">
+<li><p>You can add new application menu to the application menu bar.</p></li>
+<li><p>You can add new actions to the existing application menus.</p></li>
+<li><p>You can override or extend one of the existing application menu actions.</p></li>
+</ol>
+<div class="section" id="creating-a-new-application-menu">
+<h3>Creating a new application menu<a class="headerlink" href="#creating-a-new-application-menu" title="Permalink to this headline">¶</a></h3>
+<p>To add a new menu to the menu bar, you need to create one with the <code class="docutils literal notranslate"><span class="pre">core</span></code> plugin.</p>
+<p>You can then add actions to the menu.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span>
+
+
+<span class="k">class</span> <span class="nc">SomePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">core</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">Core</span><span class="p">)</span>
+        <span class="n">extras_menu</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">create_application_menu</span><span class="p">(</span>
+            <span class="s2">&quot;extras_menu&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Extras&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-new-action-to-an-existing-menu">
+<h3>Adding a new action to an existing menu<a class="headerlink" href="#adding-a-new-action-to-an-existing-menu" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span>
+<span class="kn">from</span> <span class="nn">spyder.plugins.core.api</span> <span class="kn">import</span> <span class="n">HelpMenuSections</span>
+
+
+<span class="k">class</span> <span class="nc">SomePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">core</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">Core</span><span class="p">)</span>
+        <span class="n">help_menu</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">get_menu</span><span class="p">(</span><span class="s2">&quot;help_menu&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Create a new action</span>
+        <span class="n">run_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+            <span class="s2">&quot;hello_world_action&quot;</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Print Hello World!&quot;</span><span class="p">,</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Add action to menu</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item_to_menu</span><span class="p">(</span>
+            <span class="n">run_action</span><span class="p">,</span>
+            <span class="n">menu</span><span class="o">=</span><span class="n">help_menu</span><span class="p">,</span>
+            <span class="n">section</span><span class="o">=</span><span class="n">HelpMenuSections</span><span class="o">.</span><span class="n">Documentation</span><span class="p">,</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extending-an-existing-action">
+<h3>Extending an existing action<a class="headerlink" href="#extending-an-existing-action" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="application-toolbars">
+<h2>Application toolbars<a class="headerlink" href="#application-toolbars" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="status-bar">
+<h2>Status bar<a class="headerlink" href="#status-bar" title="Permalink to this headline">¶</a></h2>
+<p>Status bar widgets!</p>
+<p>TODO:</p>
+</div>
 <div class="section" id="project-types">
 <h2>Project types<a class="headerlink" href="#project-types" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="a-new-project-type">
@@ -298,7 +402,7 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="codebase.html" title="previous page">Codebase</a>
+    <a class='left-prev' id="prev-link" href="extension_developer_guide.html" title="previous page">Codebase orientation</a>
     <a class='right-next' id="next-link" href="design_patterns.html" title="next page">Design patterns</a>
 
               </div>

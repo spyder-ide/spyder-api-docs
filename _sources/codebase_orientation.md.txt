@@ -1,90 +1,37 @@
-# Codebase orientation
+# General Codebase Orientation
 
-## Developer Guide
+The [spyder-ide/spyder](https://github.com/spyder-ide/spyder) repository contains
+code for many plugins that are versioned and published into a single package.
 
-Spyder can be extended via:
+See the [Contributing Guidelines]() for detailed developer installation instructions.
 
-1. Application plugins (top level): Application plugins extend the
-   functionality of Spyder itself. An example of this would be a new Plugin
-   that created a new Pane to provide some functionality.
-2. Plugins API extension (plugin level):  A plugin provides an API to extend
-   its functionality. An example of this would be a completion provide, that
-   would extend the available completion providers. Another example would be
-   a new Prpoject Type, that would allow users to create specific types of
-   projects with custom creation, starting, and closing logic.
+## Directories
 
-The Spyder application is comprised of:
+The repository contains a number of top-level directories, the contents of which
+are described here.
 
-* The spyder main window application object
-* Plugins
-* Some global widgets
-* Some global utilities
+### Binder setup: ``binder/``
 
-Plugins are distributed as python packages, so you can write plugins and
-publish them in PyPI or Conda forge.
+This contains an environment specification for ``repo2docker`` which allows
+the repository to be tested on [mybinder.org](https://mybinder.org>)
 
-## Tutorials
+This specification is developer focused.
 
-We provide a set of guides to get started writing third-party plugins for Spyder:
+### external-deps
 
-* Tutorial 1
-* Tutorial 2
-* Tutorial 3
+### img_src
 
-## Cookiecutters
+### requirements
 
-We provide a simple cookiecutter to create Spyder plugin:
+### rope_profiling
 
-* Cookiecutter.
+### scripts
 
-## API Documentation
+### Python package: ``spyder/``
 
-If you are looking for lower level details on the spyder and Qt API:
+This, along with the ``setup.py``, comprises the Python code for the project.
+This includes the notebook server extension, JupyterLab's command line interface,
+entrypoints, and Python tests.
 
-* Spyder API Documentation
-* Qt API Documentation
-
-## Plugins
-
-A plugin adds a core functionality to the application.
-
-* A plugin can require other plugins for operation.
-* A plugin is activated when it is needed by other plugins, or when explicitly
-  activated.
-* Plugins require and provide Token objects, which are used to provide a typed
-  value to the plugin’s activate() method.
-* The module providing plugin(s) must meet the JupyterLab.IPluginModule
-  interface, by exporting a plugin object or array of plugin objects as the
-  default export.
-
-The default plugins in the Spyder application include:
-
-* **Core**: Creates application menus and status bar widgets.
-* **Appearance**: Sets the theme of the interface and editors.
-* **Completions**: Provides code completion to editor widgets using the
-  [Language server protocol](TODO:).
-* **Shortcuts**: Provides the handling of shortcuts.
-* **Editor**: Provides a splitable multilingual Editor with introspection
-  capabilities.
-* **Outline Explorer**:
-* **Projects**:
-* **IPython Console**:
-* **Variable Explorer**:
-* **Help**:
-* **Plots**:
-* **History**:
-* **Find**:
-* **Profiler**:
-* **Code analysis**:
-
-Here is a dependency graph for the Spyder (internal) plugins:
-
-![dependency_graph.png](images/dependency_graph.png)
-
-## Configuration and preferences
-
-## Global API
-
-## Global Widgets
-
-## Global utilities
+It also contains the final built JavaScript assets which are distributed with
+the Python package.
