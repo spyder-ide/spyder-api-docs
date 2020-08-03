@@ -3,6 +3,22 @@
 This sections applies to both setting an environment for contributing to
 Spyder as well as creating third party Spyder Plugins.
 
+````{tabs}
+
+```{tab} Unix
+
+This are some instructions on Unix systems (Mac and Linux).
+* This are some instructions on Unix systems (Mac and Linux).
+* This are some instructions on Unix systems (Mac and Linux).
+```
+
+```{tab} Windows
+
+This are some instructions on Windiows systems.
+```
+
+````
+
 ### Conda (the recommended way)
 
 ```{margin} **More information**

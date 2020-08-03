@@ -24,7 +24,7 @@ jobs:
           architecture: x64
       - name: Install dependencies
         run: |
-          pip install -U sphinx myst-parser sphinx-book-theme
+          pip install -U sphinx myst-parser sphinx-book-theme sphinx-tabs
       - name: Build docs
         run: |
           make docs
