@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminology &#8212; Spyder API docs 5 documentation</title>
+    <title>Codebase &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link rel="stylesheet" href="_static/sphinx-bootstrap.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Migrating plugins from Spyder 4.x to 5.x" href="migrating_from_4_to_5.html" />
-    <link rel="prev" title="Design patterns" href="design_patterns.html" />
+    <link rel="next" title="Common extension points" href="common_extension_points.html" />
+    <link rel="prev" title="Codebase orientation" href="codebase_orientation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -54,8 +54,8 @@
         <a class="nav-link" href="codebase_orientation.html">Orientation</a>
     </li>
     
-    <li class="nav-item ">
-        <a class="nav-link" href="codebase.html">Codebase</a>
+    <li class="nav-item active">
+        <a class="nav-link" href="">Codebase</a>
     </li>
     
     <li class="nav-item ">
@@ -66,8 +66,8 @@
         <a class="nav-link" href="design_patterns.html">Design Patterns</a>
     </li>
     
-    <li class="nav-item active">
-        <a class="nav-link" href="">Terminology</a>
+    <li class="nav-item ">
+        <a class="nav-link" href="terminology.html">Terminology</a>
     </li>
     
     <li class="nav-item ">
@@ -105,13 +105,13 @@
       
       
       
-      
-      
-      
-      
-      
-      
         
+      
+      
+      
+      
+      
+      
       
       
       
@@ -128,7 +128,57 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#spyder-graphical-elements" class="nav-link">Spyder Graphical elements</a>
+            <a href="#the-directory-structure" class="nav-link">The directory structure</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#api" class="nav-link">api</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#app" class="nav-link">app</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#config" class="nav-link">config</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#fonts" class="nav-link">fonts</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#images" class="nav-link">images</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#locale" class="nav-link">locale</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#plugins" class="nav-link">plugins</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#preferences" class="nav-link">preferences</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#tests" class="nav-link">tests</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#utils" class="nav-link">utils</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#widgets" class="nav-link">widgets</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#windows" class="nav-link">windows</a>
+        </li>
+    
+            </ul>
         </li>
     
     </ul>
@@ -139,11 +189,46 @@
           <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
               <div>
                 
-  <div class="section" id="terminology">
-<h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="spyder-graphical-elements">
-<h2>Spyder Graphical elements<a class="headerlink" href="#spyder-graphical-elements" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
+  <div class="section" id="codebase">
+<h1>Codebase<a class="headerlink" href="#codebase" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-directory-structure">
+<h2>The directory structure<a class="headerlink" href="#the-directory-structure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api">
+<h3>api<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="app">
+<h3>app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="config">
+<h3>config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="fonts">
+<h3>fonts<a class="headerlink" href="#fonts" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="images">
+<h3>images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="locale">
+<h3>locale<a class="headerlink" href="#locale" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="plugins">
+<h3>plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="preferences">
+<h3>preferences<a class="headerlink" href="#preferences" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="tests">
+<h3>tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="utils">
+<h3>utils<a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="widgets">
+<h3>widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="windows">
+<h3>windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 
@@ -152,8 +237,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="design_patterns.html" title="previous page">Design patterns</a>
-    <a class='right-next' id="next-link" href="migrating_from_4_to_5.html" title="next page">Migrating plugins from Spyder 4.x to 5.x</a>
+    <a class='left-prev' id="prev-link" href="codebase_orientation.html" title="previous page">Codebase orientation</a>
+    <a class='right-next' id="next-link" href="common_extension_points.html" title="next page">Common extension points</a>
 
               </div>
               

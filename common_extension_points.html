@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;no title&gt; &#8212; Spyder API docs 5 documentation</title>
+    <title>Common extension points &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link rel="stylesheet" href="_static/sphinx-bootstrap.css" type="text/css" />
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design patterns" href="design_patterns.html" />
-    <link rel="prev" title="Codebase orientation" href="codebase_orientation.html" />
+    <link rel="prev" title="Codebase" href="codebase.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -51,7 +51,15 @@
     </li>
     
     <li class="nav-item ">
-        <a class="nav-link" href="codebase_orientation.html">Codebase</a>
+        <a class="nav-link" href="codebase_orientation.html">Orientation</a>
+    </li>
+    
+    <li class="nav-item ">
+        <a class="nav-link" href="codebase.html">Codebase</a>
+    </li>
+    
+    <li class="nav-item active">
+        <a class="nav-link" href="">Extension Points</a>
     </li>
     
     <li class="nav-item ">
@@ -99,6 +107,12 @@
       
       
       
+        
+      
+      
+      
+      
+      
       
       
       
@@ -110,8 +124,32 @@
           <div class="d-none d-xl-block col-xl-2 bd-toc">
               
 
+
+<div class="tocsection onthispage"><i class="fas fa-list"></i> On this page</div>
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#project-types" class="nav-link">Project types</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#a-new-project-type" class="nav-link">A new project type</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#a-new-project-type-from-a-cookiecutter" class="nav-link">A new project type from a cookiecutter</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#several-project-types" class="nav-link">Several project types</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#completion-providers" class="nav-link">Completion providers</a>
+        </li>
     
     </ul>
 </nav>
@@ -121,13 +159,146 @@
           <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
               <div>
                 
-  
+  <div class="section" id="common-extension-points">
+<h1>Common extension points<a class="headerlink" href="#common-extension-points" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="project-types">
+<h2>Project types<a class="headerlink" href="#project-types" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-new-project-type">
+<h3>A new project type<a class="headerlink" href="#a-new-project-type" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ./a_plugin/project_types.py</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span> <span class="nn">spyder.api.translation</span> <span class="kn">import</span> <span class="n">get_translation</span>
+<span class="kn">from</span> <span class="nn">spyder.plugins.projects.api</span> <span class="kn">import</span> <span class="n">BaseProjectType</span>
+
+
+<span class="c1"># Localization</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="s2">&quot;a_plugin&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NewProjectType</span><span class="p">(</span><span class="n">BaseProjectType</span><span class="p">):</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_path</span><span class="p">,</span> <span class="n">parent_plugin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root_path</span><span class="p">,</span> <span class="n">parent_plugin</span><span class="p">)</span>
+
+    <span class="c1"># --- Configuration</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">get_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">WORKSPACE</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get project configuration option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">WORKSPACE</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set project configuration option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># --- API</span>
+    <span class="c1"># ------------------------------------------------------------------------</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_name</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provide a human readable version of NAME.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Must implement a `get_name` method!&quot;</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">validate_name</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the project&#39;s name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            The first item (bool) indicates if the name was validated</span>
+<span class="sd">            successfully, and the second item (str) indicates the error</span>
+<span class="sd">            message, if any.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span>  <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Some usefull error message in case of problems.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a project and do any additional setup for this project type.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            The first item (bool) indicates if the project was created</span>
+<span class="sd">            successfully, and the second item (str) indicates the error</span>
+<span class="sd">            message, if any.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Some usefull error message in case of problems.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">open_project</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open a project and do any additional setup for this project type.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            The first item (bool) indicates if the project was opened</span>
+<span class="sd">            successfully, and the second item (str) indicates the error</span>
+<span class="sd">            message, if any.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span>  <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Some usefull error message in case of problems.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">close_project</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close a project and do any additional setup for this project type.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple</span>
+<span class="sd">            The first item (bool) indicates if the project was closed</span>
+<span class="sd">            successfully, and the second item (str) indicates the error</span>
+<span class="sd">            message, if any.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span>  <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Some usefull error message in case of problems.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And then register the new project type with the projects plugin.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ./a_plugin/plugin.py</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span> <span class="nn">a_plugin.project_types</span> <span class="kn">import</span> <span class="n">NewProjectType</span>
+
+
+<span class="k">class</span> <span class="nc">SomeAwesomePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">projects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">Projects</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_project_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">NewProjectType</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-new-project-type-from-a-cookiecutter">
+<h3>A new project type from a cookiecutter<a class="headerlink" href="#a-new-project-type-from-a-cookiecutter" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+<div class="section" id="several-project-types">
+<h3>Several project types<a class="headerlink" href="#several-project-types" title="Permalink to this headline">¶</a></h3>
+<p>TODO:</p>
+</div>
+</div>
+<div class="section" id="completion-providers">
+<h2>Completion providers<a class="headerlink" href="#completion-providers" title="Permalink to this headline">¶</a></h2>
+<p>TODO:</p>
+</div>
+</div>
+
 
               </div>
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="codebase_orientation.html" title="previous page">Codebase orientation</a>
+    <a class='left-prev' id="prev-link" href="codebase.html" title="previous page">Codebase</a>
     <a class='right-next' id="next-link" href="design_patterns.html" title="next page">Design patterns</a>
 
               </div>

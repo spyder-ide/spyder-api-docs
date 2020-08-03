@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Terminology" href="terminology.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="common_extension_points.html" />
+    <link rel="prev" title="Common extension points" href="common_extension_points.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -51,7 +51,15 @@
     </li>
     
     <li class="nav-item ">
-        <a class="nav-link" href="codebase_orientation.html">Codebase</a>
+        <a class="nav-link" href="codebase_orientation.html">Orientation</a>
+    </li>
+    
+    <li class="nav-item ">
+        <a class="nav-link" href="codebase.html">Codebase</a>
+    </li>
+    
+    <li class="nav-item ">
+        <a class="nav-link" href="common_extension_points.html">Extension Points</a>
     </li>
     
     <li class="nav-item active">
@@ -89,6 +97,10 @@
   
 
   <ul class="nav bd-sidenav">
+      
+      
+      
+      
       
       
       
@@ -345,9 +357,13 @@ The <code class="docutils literal notranslate"><span class="pre">__init__</span>
 <div class="section" id="naming-do-s">
 <h4>Naming Do’s<a class="headerlink" href="#naming-do-s" title="Permalink to this headline">¶</a></h4>
 <p>For naming new custom signals, use the <code class="docutils literal notranslate"><span class="pre">sig_</span></code> prefix and lowercase:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyderlib.qt.QtCore</span> <span class="kn">import</span> <span class="n">Signal</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">Signal</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtWidget</span> <span class="kn">import</span> <span class="n">Signal</span>
 
-<span class="k">class</span> <span class="nc">SpyderWidget</span><span class="p">():</span>
+
+<span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
 
     <span class="c1"># Signals</span>
     <span class="n">sig_something_happened</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -415,7 +431,7 @@ injecting some functionality.</p>
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="common_extension_points.html" title="previous page">&lt;no title&gt;</a>
+    <a class='left-prev' id="prev-link" href="common_extension_points.html" title="previous page">Common extension points</a>
     <a class='right-next' id="next-link" href="terminology.html" title="next page">Terminology</a>
 
               </div>
