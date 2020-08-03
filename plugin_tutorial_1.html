@@ -115,12 +115,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="plugin_tutorial_4.html">
-     Adding a new Projet Type
+     Adding a new Project Type
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="plugin_cookiecutter.html">
-     Adding a new Plugin from a Cookiecutter
+     Using a Cookiecutter
     </a>
    </li>
   </ul>
@@ -285,6 +285,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#adding-it-to-an-application-menu">
    Adding it to an application menu
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-result">
+   Final result
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -459,6 +464,58 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <div class="section" id="adding-it-to-an-application-menu">
 <h2>Adding it to an application menu<a class="headerlink" href="#adding-it-to-an-application-menu" title="Permalink to this headline">¶</a></h2>
 <p>TODO:</p>
+</div>
+<div class="section" id="final-result">
+<h2>Final result<a class="headerlink" href="#final-result" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
+<span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
+<span class="kn">from</span> <span class="nn">spyder.plugins.core.api</span> <span class="kn">import</span> <span class="n">ApplicationMenus</span><span class="p">,</span> <span class="n">HelpMenuSections</span>
+
+
+<span class="k">class</span> <span class="nc">MySpyderPlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
+   <span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;my_spyder_plugin&quot;</span>
+   <span class="n">REQUIRES</span> <span class="o">=</span> <span class="p">[</span><span class="n">Plugins</span><span class="o">.</span><span class="n">Core</span><span class="p">]</span>
+
+   <span class="c1"># --- SpyderPluginV2 API</span>
+   <span class="c1"># -------------------------------------------------------------------------</span>
+   <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="s2">&quot;My Awesome Spyder Plugin&quot;</span>
+
+   <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="s2">&quot;A really Awesome Spyder Plugin&quot;</span>
+
+   <span class="k">def</span> <span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">core</span><span class="p">):</span>
+      <span class="c1"># Create a plugin action</span>
+      <span class="n">print_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+         <span class="s2">&quot;print_message_name&quot;</span><span class="p">,</span>
+         <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Print a message!&quot;</span><span class="p">,</span>
+         <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s2">&quot;print&quot;</span><span class="p">),</span>
+         <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">print_hello</span><span class="p">,</span>
+         <span class="n">register_shortcut</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+      <span class="p">)</span>
+
+      <span class="c1"># Add the action to an existing menu</span>
+      <span class="n">help_menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">ApplicationMenus</span><span class="o">.</span><span class="n">Help</span><span class="p">)</span>
+      <span class="n">core</span><span class="o">.</span><span class="n">add_item_to_application_menu</span><span class="p">(</span>
+         <span class="n">print_action</span><span class="p">,</span>
+         <span class="n">menu</span><span class="o">=</span><span class="n">help_menu</span><span class="p">,</span>
+         <span class="n">section</span><span class="o">=</span><span class="n">HelpMenuSections</span><span class="o">.</span><span class="n">Documentation</span><span class="p">,</span>
+      <span class="p">)</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">print_hello</span><span class="p">()</span>
+
+   <span class="c1"># --- Public API</span>
+   <span class="c1"># -------------------------------------------------------------------------</span>
+   <span class="k">def</span> <span class="nf">print_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="what-we-covered">
 <h2>What we covered<a class="headerlink" href="#what-we-covered" title="Permalink to this headline">¶</a></h2>
