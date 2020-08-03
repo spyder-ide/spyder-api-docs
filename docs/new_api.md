@@ -37,3 +37,23 @@ TODO:
 ### Fix signal names
 
 TODO:
+
+### The Spyder main application
+
+TODO:
+
+### The plugin interface
+
+TODO:
+
+#### Plugin
+
+TODO:
+
+### Main Containers
+
+TODO:
+
+#### Main Widgets
+
+TODO:
