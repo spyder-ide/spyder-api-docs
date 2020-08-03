@@ -3,8 +3,6 @@
 ## Set up the environment
 
 ```bash
-pip install sphinx
-pip install recommonmark
-pip install git+https://github.com/spyder-ide/spyder-docs-sphinx-theme.git
+pip install -U sphinx myst-parser sphinx-book-theme
 make docs
 ```

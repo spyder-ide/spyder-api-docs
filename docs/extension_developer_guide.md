@@ -11,14 +11,19 @@ Spyder can be extended via:
    its functionality. An example of this would be a completion provide, that
    would extend the available completion providers. Another example would be
    a new Prpoject Type, that would allow users to create specific types of
-   projects with custom creation, starting, and closing logic.
+   projects with custom creation, starting, and closing logic. There are two
+   types of plugin in spyder:
+   * Spyder dockable plugins, which provide a new pane within Spyder and may
+     provide more extensions, like menus, status bar widgets, actions and
+     extensions to other plugins via their API.
+   * Spyder plugins, which only provide more extensions, like menus, status
+     bar widgets, actions and extensions to other plugins via their API.
 
 The Spyder application is comprised of:
 
-* The spyder main window application object
-* Plugins
-* Some global widgets
-* Some global utilities
+* The Spyder main window
+* Spyder Plugins
+* Spyder Dockable Plugins
 
 Plugins are distributed as python packages, so you can write plugins and
 publish them in PyPI or Conda forge.
