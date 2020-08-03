@@ -2,7 +2,7 @@
 
 ## What we will learn
 
-1. Setting teh development environment.
+1. Setting the development environment.
 2. Create the basic structure of a plugin.
 3. Create a new action to open a link in youtube.
 4. Set a shortcut for our new action.
@@ -10,9 +10,16 @@
 
 ## Set the development environment
 
+### Conda (the recommended way)
+
 ```{margin} **More information**
 (TODO: Link to conda environments.)
 (TODO: Link to python environments.)
+```
+
+```bash
+conda create --name spyder-plugin "python=3.8" "spyder=5" --channel conda-forge --yes --quiet
+conda activate spyder-plugin
 ```
 
 ```{warning} Mixing conda and pip packages
@@ -218,6 +225,8 @@ class MySpyderPlugin(SpyderPluginV2):
    def print_hello(self):
       print("Hello world!")
 ```
+
+TODO: Add screenshot or wireframe image
 
 ## What we covered
 
