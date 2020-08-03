@@ -1,5 +1,80 @@
 # Common extension points
 
+## Actions
+
+TODO:
+
+## Main application menus
+
+There are three main ways to extend Spyder's application menu.
+
+1. You can add new application menu to the application menu bar.
+2. You can add new actions to the existing application menus.
+3. You can override or extend one of the existing application menu actions.
+
+### Creating a new application menu
+
+To add a new menu to the menu bar, you need to create one with the `core` plugin.
+
+You can then add actions to the menu.
+
+```python
+from spyder.api.plugins import Plugins
+
+
+class SomePlugin(SpyderPluginV2):
+    # ...
+    def register(self):
+        core = self.get_plugin(Plugins.Core)
+        extras_menu = core.create_application_menu(
+            "extras_menu",
+            title="Extras",
+        )
+    # ...
+```
+
+### Adding a new action to an existing menu
+
+```python
+from spyder.api.plugins import Plugins
+from spyder.plugins.core.api import HelpMenuSections
+
+
+class SomePlugin(SpyderPluginV2):
+    # ...
+    def register(self):
+        core = self.get_plugin(Plugins.Core)
+        help_menu = core.get_menu("help_menu")
+
+        # Create a new action
+        run_action = self.create_action(
+            "hello_world_action"
+            text="Print Hello World!",
+            triggered=lambda: print("Hello World!"),
+        )
+
+        # Add action to menu
+        self.add_item_to_menu(
+            run_action,
+            menu=help_menu,
+            section=HelpMenuSections.Documentation,
+        )
+```
+
+### Extending an existing action
+
+```python
+# TODO:
+```
+
+## Application toolbars
+
+## Status bar
+
+Status bar widgets!
+
+TODO:
+
 ## Project types
 
 ### A new project type

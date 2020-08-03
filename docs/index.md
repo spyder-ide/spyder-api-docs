@@ -6,8 +6,8 @@ Welcome to Spyder Developer documentation
 :maxdepth: 2
 
 New API <new_api>
-Orientation <codebase_orientation>
-Codebase <codebase>
+Introduction <codebase_orientation>
+Plugins Guide <extension_developer_guide>
 Extension Points <common_extension_points>
 Design Patterns <design_patterns>
 Terminology <terminology>
