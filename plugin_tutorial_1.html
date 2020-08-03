@@ -237,6 +237,13 @@
   <a class="reference internal nav-link" href="#set-the-development-environment">
    Set the development environment
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conda-the-recommended-way">
+     Conda (the recommended way)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#create-the-plugin-basic-structure">
@@ -317,7 +324,7 @@
 <div class="section" id="what-we-will-learn">
 <h2>What we will learn<a class="headerlink" href="#what-we-will-learn" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Setting teh development environment.</p></li>
+<li><p>Setting the development environment.</p></li>
 <li><p>Create the basic structure of a plugin.</p></li>
 <li><p>Create a new action to open a link in youtube.</p></li>
 <li><p>Set a shortcut for our new action.</p></li>
@@ -326,10 +333,16 @@
 </div>
 <div class="section" id="set-the-development-environment">
 <h2>Set the development environment<a class="headerlink" href="#set-the-development-environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conda-the-recommended-way">
+<h3>Conda (the recommended way)<a class="headerlink" href="#conda-the-recommended-way" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"><strong>More information</strong></p>
 <p>(TODO: Link to conda environments.)
 (TODO: Link to python environments.)</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name spyder-plugin <span class="s2">&quot;python=3.8&quot;</span> <span class="s2">&quot;spyder=5&quot;</span> --channel conda-forge --yes --quiet
+conda activate spyder-plugin
+</pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -337,6 +350,7 @@
 Here is <a class="reference external" href="https://jupyter.org">markdown link syntax</a></p>
 </div>
 <p>Conda/Pip</p>
+</div>
 </div>
 <div class="section" id="create-the-plugin-basic-structure">
 <h2>Create the plugin basic structure<a class="headerlink" href="#create-the-plugin-basic-structure" title="Permalink to this headline">¶</a></h2>
@@ -516,6 +530,7 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 </pre></div>
 </div>
 </div>
+<p>TODO: Add screenshot or wireframe image</p>
 </div>
 <div class="section" id="what-we-covered">
 <h2>What we covered<a class="headerlink" href="#what-we-covered" title="Permalink to this headline">¶</a></h2>

@@ -200,7 +200,14 @@
             <i class="fas fa-list"></i> On this page
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conda-the-recommended-way">
+   Conda (the recommended way)
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -213,7 +220,23 @@
 <h1>Setting the development environment<a class="headerlink" href="#setting-the-development-environment" title="Permalink to this headline">¶</a></h1>
 <p>This sections applies to both setting an environment for contributing to
 Spyder as well as creating third party Spyder Plugins.</p>
-<p>TODO:</p>
+<div class="section" id="conda-the-recommended-way">
+<h2>Conda (the recommended way)<a class="headerlink" href="#conda-the-recommended-way" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"><strong>More information</strong></p>
+<p>(TODO: Link to conda environments.)
+(TODO: Link to python environments.)</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conda create --name spyder-plugin <span class="s2">&quot;python=3.8&quot;</span> <span class="s2">&quot;spyder=5&quot;</span> --channel conda-forge --yes --quiet
+$ conda activate spyder-plugin
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Mixing conda and pip packages
+Here is <a class="reference external" href="https://jupyter.org">markdown link syntax</a></p>
+</div>
+</div>
 </div>
 
 
