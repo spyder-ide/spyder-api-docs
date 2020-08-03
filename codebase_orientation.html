@@ -74,6 +74,10 @@
         <a class="nav-link" href="migrating_from_4_to_5.html">Migrating plugins</a>
     </li>
     
+    <li class="nav-item ">
+        <a class="nav-link" href="faq.html">FAQ</a>
+    </li>
+    
     
   </ul>
   <ul class="navbar-nav ml-auto">
@@ -116,6 +120,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -130,7 +136,7 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#extension-developer-guide" class="nav-link">Extension Developer Guide</a>
+            <a href="#developer-guide" class="nav-link">Developer Guide</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -175,8 +181,8 @@
                 
   <div class="section" id="codebase-orientation">
 <h1>Codebase orientation<a class="headerlink" href="#codebase-orientation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="extension-developer-guide">
-<h2>Extension Developer Guide<a class="headerlink" href="#extension-developer-guide" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="developer-guide">
+<h2>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h2>
 <p>Spyder can be extended via:</p>
 <ol class="simple">
 <li><p>Application plugins (top level): Application plugins extend the
@@ -237,25 +243,26 @@ default export.</p></li>
 </ul>
 <p>The default plugins in the Spyder application include:</p>
 <ul class="simple">
-<li><p>Core: Creates application menus and status bar widgets.</p></li>
-<li><p>Appearance: Sets the theme of the interface and editors.</p></li>
-<li><p>Completions: Provides code completion to editor widgets using the
+<li><p><strong>Core</strong>: Creates application menus and status bar widgets.</p></li>
+<li><p><strong>Appearance</strong>: Sets the theme of the interface and editors.</p></li>
+<li><p><strong>Completions</strong>: Provides code completion to editor widgets using the
 <a class="reference external" href="TODO:">Language server protocol</a>.</p></li>
-<li><p>Shortcuts: Provides the handling of shortcuts.</p></li>
-<li><p>Editor: Provides a splitable multilingual Editor with introspection
+<li><p><strong>Shortcuts</strong>: Provides the handling of shortcuts.</p></li>
+<li><p><strong>Editor</strong>: Provides a splitable multilingual Editor with introspection
 capabilities.</p></li>
-<li><p>Outline Explorer:</p></li>
-<li><p>Projects:</p></li>
-<li><p>IPython Console:</p></li>
-<li><p>Variable Explorer:</p></li>
-<li><p>Help:</p></li>
-<li><p>Plots:</p></li>
-<li><p>History:</p></li>
-<li><p>Find:</p></li>
-<li><p>Profiler:</p></li>
-<li><p>Code analysis:</p></li>
+<li><p><strong>Outline Explorer</strong>:</p></li>
+<li><p><strong>Projects</strong>:</p></li>
+<li><p><strong>IPython Console</strong>:</p></li>
+<li><p><strong>Variable Explorer</strong>:</p></li>
+<li><p><strong>Help</strong>:</p></li>
+<li><p><strong>Plots</strong>:</p></li>
+<li><p><strong>History</strong>:</p></li>
+<li><p><strong>Find</strong>:</p></li>
+<li><p><strong>Profiler</strong>:</p></li>
+<li><p><strong>Code analysis</strong>:</p></li>
 </ul>
 <p>Here is a dependency graph for the Spyder (internal) plugins:</p>
+<p><img alt="dependency_graph.png" src="_images/dependency_graph.png" /></p>
 </div>
 <div class="section" id="configuration-and-preferences">
 <h2>Configuration and preferences<a class="headerlink" href="#configuration-and-preferences" title="Permalink to this headline">¶</a></h2>

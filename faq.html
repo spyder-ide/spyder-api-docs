@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migrating plugins from Spyder 4.x to 5.x &#8212; Spyder API docs 5 documentation</title>
+    <title>Frequently asked questions &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link rel="stylesheet" href="_static/sphinx-bootstrap.css" type="text/css" />
@@ -19,8 +19,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Frequently asked questions" href="faq.html" />
-    <link rel="prev" title="Terminology" href="terminology.html" />
+    <link rel="prev" title="Migrating plugins from Spyder 4.x to 5.x" href="migrating_from_4_to_5.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -70,12 +69,12 @@
         <a class="nav-link" href="terminology.html">Terminology</a>
     </li>
     
-    <li class="nav-item active">
-        <a class="nav-link" href="">Migrating plugins</a>
+    <li class="nav-item ">
+        <a class="nav-link" href="migrating_from_4_to_5.html">Migrating plugins</a>
     </li>
     
-    <li class="nav-item ">
-        <a class="nav-link" href="faq.html">FAQ</a>
+    <li class="nav-item active">
+        <a class="nav-link" href="">FAQ</a>
     </li>
     
     
@@ -117,9 +116,9 @@
       
       
       
+      
+      
         
-      
-      
       
       
     </ul>
@@ -130,8 +129,18 @@
           <div class="d-none d-xl-block col-xl-2 bd-toc">
               
 
+
+<div class="tocsection onthispage"><i class="fas fa-list"></i> On this page</div>
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#does-the-gpl-exception-hold-for-pyqt5" class="nav-link">Does the GPL exception hold for PyQt5?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#how-to-debug-spyder" class="nav-link">How to debug Spyder</a>
+        </li>
     
     </ul>
 </nav>
@@ -141,10 +150,24 @@
           <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
               <div>
                 
-  <div class="section" id="migrating-plugins-from-spyder-4-x-to-5-x">
-<h1>Migrating plugins from Spyder 4.x to 5.x<a class="headerlink" href="#migrating-plugins-from-spyder-4-x-to-5-x" title="Permalink to this headline">¶</a></h1>
-<p>This section offers common patterns that changed in the creation and extension
-of third party Spyder plugins.</p>
+  <div class="section" id="frequently-asked-questions">
+<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<p>Please post any new questions under the Spyder tag in [[Stack Overflow|http://stackoverflow.com/questions/tagged/spyder]].</p>
+<p>This FAQ is for development-related questions. For questions about Spyder itself, see the [[Troubleshooting Guide and FAQ]].</p>
+<div class="section" id="does-the-gpl-exception-hold-for-pyqt5">
+<h2>Does the GPL exception hold for PyQt5?<a class="headerlink" href="#does-the-gpl-exception-hold-for-pyqt5" title="Permalink to this headline">¶</a></h2>
+<p>Please take a look at <a class="reference external" href="https://riverbankcomputing.com/pipermail/pyqt/2014-February/033843.html">this thread</a></p>
+</div>
+<div class="section" id="how-to-debug-spyder">
+<h2>How to debug Spyder<a class="headerlink" href="#how-to-debug-spyder" title="Permalink to this headline">¶</a></h2>
+<p>Another way you can help us to debug this is by opening a terminal and starting Spyder with this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spyder --debug-info verbose --debug-output file
+</pre></div>
+</div>
+<p>After doing that, a file called <code class="docutils literal notranslate"><span class="pre">spyder-debug.log</span></code> will be generated in the same directory where you ran that command. You can then upload this file when you issue a file report.</p>
+<p>Also, before closing Spyder, you can also go to the the menu <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">LSP</span> <span class="pre">logs</span></code> (which is only shown in debug mode):</p>
+<p>and click on the two entries shown on it to open those files in the editor, and upload their contents also to the issue you are reporting.</p>
+</div>
 </div>
 
 
@@ -152,8 +175,7 @@ of third party Spyder plugins.</p>
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="terminology.html" title="previous page">Terminology</a>
-    <a class='right-next' id="next-link" href="faq.html" title="next page">Frequently asked questions</a>
+    <a class='left-prev' id="prev-link" href="migrating_from_4_to_5.html" title="previous page">Migrating plugins from Spyder 4.x to 5.x</a>
 
               </div>
               

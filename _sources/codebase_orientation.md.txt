@@ -1,6 +1,6 @@
 # Codebase orientation
 
-## Extension Developer Guide
+## Developer Guide
 
 Spyder can be extended via:
 
@@ -59,25 +59,27 @@ A plugin adds a core functionality to the application.
 
 The default plugins in the Spyder application include:
 
-* Core: Creates application menus and status bar widgets.
-* Appearance: Sets the theme of the interface and editors.
-* Completions: Provides code completion to editor widgets using the
+* **Core**: Creates application menus and status bar widgets.
+* **Appearance**: Sets the theme of the interface and editors.
+* **Completions**: Provides code completion to editor widgets using the
   [Language server protocol](TODO:).
-* Shortcuts: Provides the handling of shortcuts.
-* Editor: Provides a splitable multilingual Editor with introspection
+* **Shortcuts**: Provides the handling of shortcuts.
+* **Editor**: Provides a splitable multilingual Editor with introspection
   capabilities.
-* Outline Explorer:
-* Projects:
-* IPython Console:
-* Variable Explorer:
-* Help:
-* Plots:
-* History:
-* Find:
-* Profiler:
-* Code analysis:
+* **Outline Explorer**:
+* **Projects**:
+* **IPython Console**:
+* **Variable Explorer**:
+* **Help**:
+* **Plots**:
+* **History**:
+* **Find**:
+* **Profiler**:
+* **Code analysis**:
 
 Here is a dependency graph for the Spyder (internal) plugins:
+
+![dependency_graph.png](images/dependency_graph.png)
 
 ## Configuration and preferences
 
