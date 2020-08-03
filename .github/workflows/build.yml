@@ -24,7 +24,7 @@ jobs:
           architecture: x64
       - name: Install dependencies
         run: |
-          pip install -U sphinx recommonmark
+          pip install -U sphinx myst-parser
           pip install git+https://github.com/spyder-ide/spyder-docs-sphinx-theme.git
       - name: Build docs
         run: |

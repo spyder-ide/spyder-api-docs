@@ -30,9 +30,9 @@ sys.path.insert(0, os.path.abspath(".."))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named "sphinx.ext.*") or your custom ones.
 extensions = [
+    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
-    "recommonmark",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -170,6 +170,10 @@ texinfo_documents = [
     ),
 ]
 
-source_parsers = {
-   ".md": "recommonmark.parser.CommonMarkParser",
-}
+# source_parsers = {
+#    ".md": "recommonmark.parser.CommonMarkParser",
+# }
+
+# --- Myst parser options
+# See: https://myst-parser.readthedocs.io/
+myst_config = {}
