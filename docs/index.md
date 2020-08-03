@@ -7,7 +7,8 @@ Welcome to Spyder Developer documentation
 
 Introduction <introduction>
 New API <new_api>
-Codebase <codebase_orientation>
+Orientation <codebase_orientation>
+Codebase <codebase>
 Extension Points <common_extension_points>
 Design Patterns <design_patterns>
 Terminology <terminology>
