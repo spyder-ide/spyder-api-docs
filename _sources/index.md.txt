@@ -7,11 +7,10 @@ Welcome to Spyder Developer documentation
 
 Introduction <introduction>
 New API <new_api>
-General Codebase Orientation <codebase_orientation>
-Extension Developer Guide <extension_developer_guide>
-Common Extension Points <common_extension_points>
+Codebase <codebase_orientation>
+Extension Points <common_extension_points>
 Design Patterns <design_patterns>
-Terminology
+Terminology <terminology>
 Tutorials
-Migrating plugins from Spyder 4.x to 5.x <migrating_from_4_to_5>
+Migrating plugins <migrating_from_4_to_5>
 ```

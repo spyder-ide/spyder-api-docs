@@ -19,7 +19,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Migrating from Spyder 4 to 5" href="migrating_from_4_to_5.html" />
+    <link rel="next" title="Terminology" href="terminology.html" />
     <link rel="prev" title="&lt;no title&gt;" href="common_extension_points.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +51,7 @@
     </li>
     
     <li class="nav-item ">
-        <a class="nav-link" href="codebase_orientation.html">General Codebase Orientation</a>
+        <a class="nav-link" href="codebase_orientation.html">Codebase</a>
     </li>
     
     <li class="nav-item active">
@@ -59,7 +59,11 @@
     </li>
     
     <li class="nav-item ">
-        <a class="nav-link" href="migrating_from_4_to_5.html">Migrating plugins from Spyder 4.x to 5.x</a>
+        <a class="nav-link" href="terminology.html">Terminology</a>
+    </li>
+    
+    <li class="nav-item ">
+        <a class="nav-link" href="migrating_from_4_to_5.html">Migrating plugins</a>
     </li>
     
     
@@ -94,6 +98,8 @@
       
       
         
+      
+      
       
       
       
@@ -134,12 +140,6 @@
             <a href="#imports" class="nav-link">Imports</a>
         </li>
     
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#spyder-style" class="nav-link">Spyder style</a><ul class="nav section-nav flex-column">
-                
         <li class="nav-item toc-entry toc-h3">
             <a href="#internationalization-localization" class="nav-link">Internationalization / Localization</a>
         </li>
@@ -214,11 +214,12 @@ cannot avoid camelCase. However, When new methods are defined in Spyder, these
 methods should follow the PEP8 convention:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpyderWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Example widget.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
-        <span class="n">QWidget</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">mousePressEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Overloaded Qt method.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Overload Qt method.&quot;&quot;&quot;</span>
         <span class="c1"># Do something with the event...</span>
 
     <span class="k">def</span> <span class="nf">run_new_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -236,16 +237,18 @@ methods should follow the PEP8 convention:</p>
 
 <span class="c1"># Widget setup</span>
 
-<span class="c1"># Layouts</span>
+<span class="c1"># Layout</span>
 
-<span class="c1"># Signals and slots</span>
+<span class="c1"># Signals</span>
 </pre></div>
 </div>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">():</span>
+<span class="k">class</span> <span class="nc">SomeWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
         <span class="c1"># Variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_some_private_variable</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">some_variable</span> <span class="o">=</span> <span class="kc">None</span>
@@ -328,14 +331,12 @@ The <code class="docutils literal notranslate"><span class="pre">__init__</span>
 <h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
 <p>TODO:</p>
 </div>
-</div>
-<div class="section" id="spyder-style">
-<h2>Spyder style<a class="headerlink" href="#spyder-style" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="internationalization-localization">
 <h3>Internationalization / Localization<a class="headerlink" href="#internationalization-localization" title="Permalink to this headline">¶</a></h3>
 <p>TODO:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyderlib.baseconfig</span> <span class="kn">import</span> <span class="n">_</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.translations</span> <span class="kn">import</span> <span class="n">get_translation</span>
 
+<span class="n">_</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="s2">&quot;spyder&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -415,7 +416,7 @@ injecting some functionality.</p>
               <div class='prev-next-bottom'>
                 
     <a class='left-prev' id="prev-link" href="common_extension_points.html" title="previous page">&lt;no title&gt;</a>
-    <a class='right-next' id="next-link" href="migrating_from_4_to_5.html" title="next page">Migrating from Spyder 4 to 5</a>
+    <a class='right-next' id="next-link" href="terminology.html" title="next page">Terminology</a>
 
               </div>
               

@@ -45,11 +45,12 @@ methods should follow the PEP8 convention:
 ```python
 class SpyderWidget(QWidget):
     """Example widget."""
+
     def __init__(self, parent):
-        QWidget.__init__(self, parent)
+        super()__init__(parent)
 
     def mousePressEvent(self, event):
-        """Overloaded Qt method."""
+        """Overload Qt method."""
         # Do something with the event...
 
     def run_new_method(self):
@@ -68,18 +69,20 @@ Most Spyder widgets follow this convention (use it when creating new widgets)
 
 # Widget setup
 
-# Layouts
+# Layout
 
-# Signals and slots
+# Signals
 ```
 
 Example:
 
 ```python
 
-class SomeWidget():
+class SomeWidget(QWidget):
 
     def __init__(self):
+        super().__init__()
+
         # Variables
         self._some_private_variable = None
         self.some_variable = None
@@ -163,15 +166,15 @@ class SomeWidget():
 
 TODO:
 
-## Spyder style
 
 ### Internationalization / Localization
 
 TODO:
 
 ```python
-from spyderlib.baseconfig import _
+from spyder.api.translations import get_translation
 
+_ = get_translation("spyder")
 ```
 
 ### Signals
