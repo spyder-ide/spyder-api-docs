@@ -4,26 +4,44 @@
 
 Spyder can be extended via:
 
-1. Application plugins (top level): Application plugins extend the
+1. **Application plugins** (top level): Application plugins extend the
    functionality of Spyder itself. An example of this would be a new Plugin
    that created a new Pane to provide some functionality.
-2. Plugins API extension (plugin level):  A plugin provides an API to extend
+2. **Plugins API extension** (plugin level):  A plugin provides an API to extend
    its functionality. An example of this would be a completion provide, that
    would extend the available completion providers. Another example would be
    a new Prpoject Type, that would allow users to create specific types of
    projects with custom creation, starting, and closing logic. There are two
    types of plugin in spyder:
-   * Spyder dockable plugins, which provide a new pane within Spyder and may
-     provide more extensions, like menus, status bar widgets, actions and
-     extensions to other plugins via their API.
-   * Spyder plugins, which only provide more extensions, like menus, status
-     bar widgets, actions and extensions to other plugins via their API.
 
-The Spyder application is comprised of:
+Spyder is internally constructed using plugins and this is also the way a new
+plugin/extension cna be created. The Spyder Plugins can be of two types:
 
-* The Spyder main window
-* Spyder Plugins
-* Spyder Dockable Plugins
+1. **Spyder Dockable Plugins** (``SpyderDockablePlugin``), which create a new
+   Pane (Based on a ``QDockWidget``) and (optionally) any other elements such
+   as toolbars, menus, status bar widgets, curstom dialogs and a custom
+   preferences page.
+2. **Spyder Plugins** (``SpyderPluginV2``), which do not create a new Pane
+   but provide other elements such as toolbars, menus, status bar widgets,
+   curstom dialogs and a custom preferences page.
+
+Plugins can provide the following widgets:
+
+* **Pane** (``PluginMainWidget``): A plugin can create a new Pane.
+* **Containers** (``PluginMainContainers``): Plugins that do not create new
+  panes but provide other graphical elements can use a container to parent
+  widgets and connect them to the plugin.
+* **Actions** (``SpyderAction``): A plugin can create many new actions, which
+  can be added to menus, toolbars, and can also be exposed so they can be
+  used to create shortcuts that trigger these actions.
+* **Preferences Page** (``PluginConfigPage``): A page for plugin preferences.
+  A plugin can only have 1 page.
+* **Application menus** (``SpyderApplicationMenu``): A plugin can extend or
+  create new application menus
+* **Application toolbars** (``SpyderApplicationToolBar``): A plugin can extend
+  or create new application toolbars
+* **StatusBar widgets** (``SpyderStatusWidget``): A plugin can extend or
+  create new application status bar widgets.
 
 Plugins are distributed as python packages, so you can write plugins and
 publish them in PyPI or Conda forge.

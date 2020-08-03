@@ -13,5 +13,6 @@ Design Patterns <design_patterns>
 Terminology <terminology>
 Tutorials
 Migrating plugins <migrating_from_4_to_5>
+Future Work <future_work>
 FAQ <faq>
 ```
