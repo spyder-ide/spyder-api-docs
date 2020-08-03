@@ -1,4 +1,4 @@
-# Tutorial: Creating a new Pane
+# Tutorial: Creating a new plugin from a cookiecutter
 
 ## What we will learn
 

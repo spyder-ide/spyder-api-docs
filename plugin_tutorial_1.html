@@ -20,7 +20,7 @@
     <script src="_static/sphinx-book-theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="plugin_tutorial_2.html" />
+    <link rel="next" title="Tutorial: Adding more widgets" href="plugin_tutorial_2.html" />
     <link rel="prev" title="Tutorials" href="plugin_tutorials.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,6 +88,11 @@
    Terminology
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="development_environment.html">
+   Development Environment
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="reference internal" href="plugin_tutorials.html">
    Tutorials
@@ -95,7 +100,27 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Simple tutorial
+     Our first Spyder plugin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plugin_tutorial_2.html">
+     Adding more widgets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plugin_tutorial_3.html">
+     Adding a new Pane
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plugin_tutorial_4.html">
+     Adding a new Projet Type
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plugin_cookiecutter.html">
+     Adding a new Plugin from a Cookiecutter
     </a>
    </li>
   </ul>
@@ -263,36 +288,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-container-widget-to-store-more-widgets">
-   Creating a container widget to store more widgets
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#moving-the-action-from-the-plugin-into-the-container">
-   Moving the action from the plugin into the container
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-toolbar">
-   Creating a toolbar
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-an-action-to-the-toolbar">
-   Adding an action to the toolbar
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-status-widget">
-   Creating a status widget
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-the-status-widget-to-the-status-bar">
-   Adding the status widget to the status bar
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-we-covered">
    What we covered
   </a>
@@ -316,7 +311,13 @@
 <h1>Tutorial: Our first Spyder plugin<a class="headerlink" href="#tutorial-our-first-spyder-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-we-will-learn">
 <h2>What we will learn<a class="headerlink" href="#what-we-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
+<ol class="simple">
+<li><p>Setting teh development environment.</p></li>
+<li><p>Create the basic structure of a plugin.</p></li>
+<li><p>Create a new action to open a link in youtube.</p></li>
+<li><p>Set a shortcut for our new action.</p></li>
+<li><p>Add the newly created action to an application menu.</p></li>
+</ol>
 </div>
 <div class="section" id="set-the-development-environment">
 <h2>Set the development environment<a class="headerlink" href="#set-the-development-environment" title="Permalink to this headline">¶</a></h2>
@@ -324,6 +325,11 @@
 <p class="sidebar-title"><strong>More information</strong></p>
 <p>(TODO: Link to conda environments.)
 (TODO: Link to python environments.)</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Mixing conda and pip packages
+Here is <a class="reference external" href="https://jupyter.org">markdown link syntax</a></p>
 </div>
 <p>Conda/Pip</p>
 </div>
@@ -357,7 +363,7 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <li><p><strong>Patch</strong>: TODO:</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">my-spyder-plugin/my_spyder_plugin/<strong>init</strong>.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/__init__.py</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
 </pre></div>
 </div>
@@ -370,7 +376,7 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <p>(On plugins and on icons)</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">my-spyder-plugin/my_spyder_plugin/plugin.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
 <span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">SpyderPluginV2</span>
 
@@ -378,6 +384,8 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <span class="k">class</span> <span class="nc">MySpyderPlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
    <span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;my_spyder_plugin&quot;</span>
 
+   <span class="c1"># --- SpyderPluginV2 API</span>
+   <span class="c1"># -------------------------------------------------------------------------</span>
    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="k">return</span> <span class="s2">&quot;My Awesome Spyder Plugin&quot;</span>
 
@@ -388,7 +396,12 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">)</span>
 
    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">print_hello</span><span class="p">()</span>
+
+   <span class="c1"># --- Public API</span>
+   <span class="c1"># -------------------------------------------------------------------------</span>
+   <span class="k">def</span> <span class="nf">print_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -400,7 +413,7 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <p>(TODO: Link to semantic python packaging for more info if interested)</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">my-spyder-plugin/setup.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/setup.py</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
 <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">find_packages</span><span class="p">,</span> <span class="n">setup</span>
 
@@ -426,30 +439,16 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <h2>Creating a Plugin action<a class="headerlink" href="#creating-a-plugin-action" title="Permalink to this headline">¶</a></h2>
 <p>TODO:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">my-spyder-plugin/my_spyder_plugin/plugin.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
-<span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">SpyderPluginV2</span>
-
-
-<span class="k">class</span> <span class="nc">MySpyderPlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
-   <span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;my_spyder_plugin&quot;</span>
-
-   <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-      <span class="k">return</span> <span class="s2">&quot;My Awesome Spyder Plugin&quot;</span>
-
-   <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-      <span class="k">return</span> <span class="s2">&quot;A really Awesome Spyder Plugin&quot;</span>
-
-   <span class="k">def</span> <span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">)</span>
-
-   <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="hll">      <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
 </span><span class="hll">         <span class="s2">&quot;print_message_name&quot;</span><span class="p">,</span>
 </span><span class="hll">         <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Print a message!&quot;</span><span class="p">,</span>
 </span><span class="hll">         <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s2">&quot;print&quot;</span><span class="p">),</span>
+</span><span class="hll">         <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">print_hello</span><span class="p">,</span>
 </span><span class="hll">      <span class="p">)</span>
-</span></pre></div>
+</span>      <span class="bp">self</span><span class="o">.</span><span class="n">print_hello</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -459,30 +458,6 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 </div>
 <div class="section" id="adding-it-to-an-application-menu">
 <h2>Adding it to an application menu<a class="headerlink" href="#adding-it-to-an-application-menu" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-</div>
-<div class="section" id="creating-a-container-widget-to-store-more-widgets">
-<h2>Creating a container widget to store more widgets<a class="headerlink" href="#creating-a-container-widget-to-store-more-widgets" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-</div>
-<div class="section" id="moving-the-action-from-the-plugin-into-the-container">
-<h2>Moving the action from the plugin into the container<a class="headerlink" href="#moving-the-action-from-the-plugin-into-the-container" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-</div>
-<div class="section" id="creating-a-toolbar">
-<h2>Creating a toolbar<a class="headerlink" href="#creating-a-toolbar" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-</div>
-<div class="section" id="adding-an-action-to-the-toolbar">
-<h2>Adding an action to the toolbar<a class="headerlink" href="#adding-an-action-to-the-toolbar" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-</div>
-<div class="section" id="creating-a-status-widget">
-<h2>Creating a status widget<a class="headerlink" href="#creating-a-status-widget" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-</div>
-<div class="section" id="adding-the-status-widget-to-the-status-bar">
-<h2>Adding the status widget to the status bar<a class="headerlink" href="#adding-the-status-widget-to-the-status-bar" title="Permalink to this headline">¶</a></h2>
 <p>TODO:</p>
 </div>
 <div class="section" id="what-we-covered">
@@ -505,7 +480,7 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="plugin_tutorials.html" title="previous page">Tutorials</a>
-    <a class='right-next' id="next-link" href="plugin_tutorial_2.html" title="next page">&lt;no title&gt;</a>
+    <a class='right-next' id="next-link" href="plugin_tutorial_2.html" title="next page">Tutorial: Adding more widgets</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

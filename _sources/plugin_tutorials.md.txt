@@ -1,10 +1,13 @@
 # Tutorials
 
-```{toctree}
-:caption: Contents
-:maxdepth: 2
+TODO:
 
-Simple tutorial <plugin_tutorial_1>
-Simple tutorial 2 <plugin_tutorial_2>
-Simple tutorial 3 <plugin_tutorial_3>
+```{toctree}
+:maxdepth: 1
+
+Our first Spyder plugin <plugin_tutorial_1>
+Adding more widgets <plugin_tutorial_2>
+Adding a new Pane <plugin_tutorial_3>
+Adding a new Projet Type <plugin_tutorial_4>
+Adding a new Plugin from a Cookiecutter <plugin_cookiecutter>
 ```
