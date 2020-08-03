@@ -1,4 +1,4 @@
-# Tutorial: Creating a new Pane
+# Tutorial: Creating a new project type
 
 ## What we will learn
 

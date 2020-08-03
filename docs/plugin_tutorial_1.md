@@ -2,13 +2,21 @@
 
 ## What we will learn
 
-TODO:
+1. Setting teh development environment.
+2. Create the basic structure of a plugin.
+3. Create a new action to open a link in youtube.
+4. Set a shortcut for our new action.
+5. Add the newly created action to an application menu.
 
 ## Set the development environment
 
 ```{margin} **More information**
 (TODO: Link to conda environments.)
 (TODO: Link to python environments.)
+```
+
+```{warning} Mixing conda and pip packages
+Here is [markdown link syntax](https://jupyter.org)
 ```
 
 Conda/Pip
@@ -46,9 +54,13 @@ divided in `"Major.Minor.Patch"` components where:
 * **Patch**: TODO:
 
 ```{code-block} python
-:caption: my-spyder-plugin/my_spyder_plugin/__init__.py
+---
+caption: |
+  `my-spyder-plugin/my_spyder_plugin/__init__.py`
+---
 
 __version__ = "0.1.0"
+
 ```
 
 ### `plugin.py`
@@ -58,7 +70,10 @@ __version__ = "0.1.0"
 ```
 
 ```{code-block} python
-:caption: my-spyder-plugin/my_spyder_plugin/plugin.py
+---
+caption: |
+  `my-spyder-plugin/my_spyder_plugin/plugin.py`
+---
 
 # Third party imports
 from spyder.api.plugins import SpyderPluginV2
@@ -67,6 +82,8 @@ from spyder.api.plugins import SpyderPluginV2
 class MySpyderPlugin(SpyderPluginV2):
    ID = "my_spyder_plugin"
 
+   # --- SpyderPluginV2 API
+   # -------------------------------------------------------------------------
    def get_name(self):
       return "My Awesome Spyder Plugin"
 
@@ -77,7 +94,13 @@ class MySpyderPlugin(SpyderPluginV2):
       return self.create_icon("settings")
 
    def register(self):
-      print("Hello!")
+      self.print_hello()
+
+   # --- Public API
+   # -------------------------------------------------------------------------
+   def print_hello(self):
+      print("Hello world!")
+
 ```
 
 ### `setup.py`
@@ -87,8 +110,11 @@ class MySpyderPlugin(SpyderPluginV2):
 ```
 
 ```{code-block} python
-:caption: my-spyder-plugin/setup.py
-:emphasize-lines: 13-15
+---
+caption: |
+  `my-spyder-plugin/setup.py`
+emphasize-lines: 13-15
+---
 
 # Third party imports
 from setuptools import find_packages, setup
@@ -113,31 +139,22 @@ setup(
 TODO:
 
 ```{code-block} python
-:caption: my-spyder-plugin/my_spyder_plugin/plugin.py
-:emphasize-lines: 18-22
-
-# Third party imports
-from spyder.api.plugins import SpyderPluginV2
-
-
-class MySpyderPlugin(SpyderPluginV2):
-   ID = "my_spyder_plugin"
-
-   def get_name(self):
-      return "My Awesome Spyder Plugin"
-
-   def get_description(self):
-      return "A really Awesome Spyder Plugin"
-
-   def get_icon(self):
-      return self.create_icon("settings")
+---
+caption: |
+  `my-spyder-plugin/my_spyder_plugin/plugin.py`
+emphasize-lines: 2-7
+---
 
    def register(self):
       self.create_action(
          "print_message_name",
          text="Print a message!",
          icon=self.create_icon("print"),
+         triggered=self.print_hello,
       )
+      self.print_hello()
+
+
 ```
 
 ## Assigning a shortcut
@@ -145,30 +162,6 @@ class MySpyderPlugin(SpyderPluginV2):
 TODO:
 
 ## Adding it to an application menu
-
-TODO:
-
-## Creating a container widget to store more widgets
-
-TODO:
-
-## Moving the action from the plugin into the container
-
-TODO:
-
-## Creating a toolbar
-
-TODO:
-
-## Adding an action to the toolbar
-
-TODO:
-
-## Creating a status widget
-
-TODO:
-
-## Adding the status widget to the status bar
 
 TODO:
 
