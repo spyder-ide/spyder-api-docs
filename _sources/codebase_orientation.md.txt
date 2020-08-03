@@ -59,11 +59,13 @@ A plugin adds a core functionality to the application.
 
 The default plugins in the Spyder application include:
 
-* Core:
-* Appearance:
-* Completions:
-* Shortcuts:
-* Editor:
+* Core: Creates application menus and status bar widgets.
+* Appearance: Sets the theme of the interface and editors.
+* Completions: Provides code completion to editor widgets using the
+  [Language server protocol](TODO:).
+* Shortcuts: Provides the handling of shortcuts.
+* Editor: Provides a splitable multilingual Editor with introspection
+  capabilities.
 * Outline Explorer:
 * Projects:
 * IPython Console:
