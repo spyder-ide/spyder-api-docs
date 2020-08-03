@@ -5,7 +5,6 @@ Welcome to Spyder Developer documentation
 :caption: Contents
 :maxdepth: 2
 
-Introduction <introduction>
 New API <new_api>
 Orientation <codebase_orientation>
 Codebase <codebase>
