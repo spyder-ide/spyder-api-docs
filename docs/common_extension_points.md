@@ -1,10 +1,19 @@
 # Common extension points
 
-## Completion Providers
+## Project types
+
+### A new project type
 
 ```python
+# ./a_plugin/project_types.py
+
+# Third party imports
 from spyder.api.translation import get_translation
 from spyder.plugins.projects.api import BaseProjectType
+
+
+# Localization
+_ = get_translation("a_plugin")
 
 
 class NewProjectType(BaseProjectType):
@@ -16,11 +25,15 @@ class NewProjectType(BaseProjectType):
     # --- Configuration
     # -------------------------------------------------------------------------
     def get_option(self, option, section=WORKSPACE, default=None):
-        """Get project configuration option."""
+        """
+        Get project configuration option.
+        """
         return self.config.get(section=section, option=option, default=default)
 
     def set_option(self, option, value, section=WORKSPACE):
-        """Set project configuration option."""
+        """
+        Set project configuration option.
+        """
         self.config.set(section=section, option=option, value=value)
 
     # --- API
@@ -44,7 +57,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return True, ""
+        return True,  _("Some usefull error message in case of problems.")
 
     def create_project(self):
         """
@@ -57,7 +70,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return False, "A ProjectType must define a `create_project` method!"
+        return False, _("Some usefull error message in case of problems.")
 
     def open_project(self):
         """
@@ -70,7 +83,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return False, "A ProjectType must define an `open_project` method!"
+        return False,  _("Some usefull error message in case of problems.")
 
     def close_project(self):
         """
@@ -83,16 +96,37 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return False, "A ProjectType must define a `close_project` method!"
+        return False,  _("Some usefull error message in case of problems.")
 ```
 
 And then register the new project type with the projects plugin.
 
 ```python
+# ./a_plugin/plugin.py
 
-class Plugin(SpyderPluginV2):
+# Third party imports
+from spyder.api.plugins import Plugins, SpyderPluginV2
 
+# Local imports
+from a_plugin.project_types import NewProjectType
+
+
+class SomeAwesomePlugin(SpyderPluginV2):
+    # ...
     def register(self):
-        projects = self.get_plugin("project_explorer")
+        projects = self.get_plugin(Plugins.Projects)
         self.register_project_type(self, NewProjectType)
+    # ...
 ```
+
+### A new project type from a cookiecutter
+
+TODO:
+
+### Several project types
+
+TODO:
+
+## Completion providers
+
+TODO:

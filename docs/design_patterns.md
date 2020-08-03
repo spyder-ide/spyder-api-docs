@@ -184,9 +184,13 @@ _ = get_translation("spyder")
 For naming new custom signals, use the `sig_` prefix and lowercase:
 
 ```python
-from spyderlib.qt.QtCore import Signal
 
-class SpyderWidget():
+# Third party imports
+from qtpy.QtCore import Signal
+from qtpy.QtWidget import Signal
+
+
+class SomeWidget(QWidget):
 
     # Signals
     sig_something_happened = Signal(str)
