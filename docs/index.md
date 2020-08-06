@@ -15,7 +15,7 @@ Design Patterns <design_patterns>
 Terminology <terminology>
 Development Environment <development_environment>
 Tutorials <plugin_tutorials>
-Migrating plugins <migrating_from_4_to_5>
+Migrating plugins 4.x to 5.x <migrating_from_4_to_5>
 Future Work <future_work>
 FAQ <faq>
 ```

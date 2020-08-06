@@ -5,29 +5,44 @@ major refactoring of the codebase and redefinition of its plugin API.
 
 ## The guiding principles
 
-1. Spyder should be provide a set of loosely coupled components with a clear
-   hierarchy and dependency instead from a tightly coupled monolith.
-   This means that some plugins have REQUIRED dependencies that must be
-   present for the plugin to be able to be loaded, and there are OPTIONAL
-   dependencies, that will not prevent the plugin from starting and working
-   with other plugins.
+### A. Loosely copupled components
 
-2. Spyder should be written in the same way any external developer would, when
-   extending or creating a third party Spyder Plugin. This way anyone
-   developing external plugins can help the core codebase since it will look
-   and feel esencially the same.
+Spyder should be provide a set of loosely coupled components with a clear
+hierarchy and dependency instead from a tightly coupled monolith.
+This means that some plugins have REQUIRED dependencies that must be
+present for the plugin to be able to be loaded, and there are OPTIONAL
+dependencies, that will not prevent the plugin from starting and working
+with other plugins.
 
-3. Spyder should provide 1 way and 1 way only for handling plugins, that means
-   that even if plugins are providing very different functionality, the basic
-   principles for creating, registering, setting up, loading, closing and
-   accessing the configuration system should be the same for all.
+### B. Same workflow for internal and external plugins
 
-4. Spyder should provide enough tools, mixins and facilities for internal and
-   external developers as to reduce the amount of work needed to create and
-   extend a plugin and reduce the need for duplicating code in different
-   places of the codebase.
+Spyder should be written in the same way any external developer would, when
+extending or creating a third party Spyder Plugin. This way anyone
+developing external plugins can help the core codebase since it will look
+and feel esencially the same.
 
-## Issues with the old API
+### C. Simple and clear API
+
+Spyder should provide 1 way and 1 way only for handling plugins, that means
+that even if plugins are providing very different functionality, the basic
+principles for creating, registering, setting up, loading, closing and
+accessing the configuration system should be the same for all.
+
+### D. Simple tooling
+
+Spyder should provide enough tools, mixins and facilities for internal and
+external developers as to reduce the amount of work needed to create and
+extend a plugin and reduce the need for duplicating code in different
+places of the codebase.
+
+## Issues solved so far
+
+* Move the collections explorer out from the variable explorer and into the
+  global `spyder.widgets.collectionseditor` module. [See #12726](https://github.com/spyder-ide/spyder/pull/12726).
+
+* Migrate the Internal Console to use the new API. [See #12438](https://github.com/spyder-ide/spyder/pull/12438).
+
+## Pending work
 
 ### Unclear extension
 
