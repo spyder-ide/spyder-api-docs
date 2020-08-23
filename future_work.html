@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Future work &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -100,12 +100,27 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
-   Migrating plugins
+   Migrating plugins 4.x to 5.x
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Future Work
+   Future work
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#general">
+   General
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#specific">
+   Specific
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#future">
+   Future
   </a>
  </li>
  <li class="toctree-l1">
@@ -197,7 +212,7 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -232,7 +247,50 @@ injecting some functionality.</p>
 <ul class="simple">
 <li><p>Mixing module!</p></li>
 </ul>
+<p>The idea of this issue is to star listing all the things we need to have in place to provide a simple api to do general things (create menus, create toolbars) and a simple api for more specific things. Please update this comment to include your suggestions</p>
 </div>
+</div>
+<div class="section" id="general">
+<h1>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>[ ] Create a new entry for a menu
+- Define where in the menu it can go? assign an space always at the end?</p></li>
+<li><p>[ ] Create a new toolbar
+- Create a new action
+- Create icons</p></li>
+<li><p>[ ] Create new shortcut for a menu or toolbar action; cf. #3254 and #7894</p></li>
+<li><p>[ ] Register file type for creating, opening and saving files, e.g. notebook files; see PR #8798 (WIP)</p></li>
+<li><p>[ ] Configuration
+- Define, read and set new config variables
+- Define, read and set project-specific config variables
+- Define tab in config dialog for setting these variables
+- Read config variables that do not belong to the plugin; get notified when they changed
+- Localization, e.g. <code class="docutils literal notranslate"><span class="pre">get_translation()</span></code></p></li>
+<li><p>[ ] Utilities. Are <code class="docutils literal notranslate"><span class="pre">spyder.py3config</span></code> and <code class="docutils literal notranslate"><span class="pre">spyder.utils</span></code> part of the API? Separate out in Spyder-specific layer that can be called from the plugin level and a generic layer that can be called from widgets?</p></li>
+</ul>
+</div>
+<div class="section" id="specific">
+<h1>Specific<a class="headerlink" href="#specific" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>[ ] Allow for users to extend the pattern search on the editor. Will require moving the logic for it to be a mode so it can be more easily extended</p></li>
+<li><p>[ ] Create a new data type or the variable explorer to handle
+- This probably requires updating the <code class="docutils literal notranslate"><span class="pre">_io</span></code> plugins to a more  “normal api”</p></li>
+<li><p>[ ] Go to file/line in editor, opening the file if necessary</p></li>
+<li><p>[ ] Get active project</p></li>
+<li><p>[ ] Signals
+- Main: <code class="docutils literal notranslate"><span class="pre">sig_pythonpath_changed</span></code>
+- Projects: <code class="docutils literal notranslate"><span class="pre">sig_project_created</span></code>, <code class="docutils literal notranslate"><span class="pre">sig_project_loaded</span></code>, <code class="docutils literal notranslate"><span class="pre">sig_project_closed</span></code>
+- Workingdirectory: <code class="docutils literal notranslate"><span class="pre">set_explorer_cwd</span></code></p></li>
+<li><p>[ ] A utility class for displaying log files and other text; currently <code class="docutils literal notranslate"><span class="pre">variableexplorer.texteditor</span></code> is used for this</p></li>
+</ul>
+</div>
+<div class="section" id="future">
+<h1>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h1>
+<p>Things to keep in mind but probably not needed for Spyder 4.</p>
+<ul class="simple">
+<li><p>[ ] Expose a kernel which can be coupled to Console, Variable Explorer, Debugger; e.g. for notebook kernels or post-mortem debugging in unit tests</p></li>
+<li><p>[ ] Colour lines in editor, e.g. for profiling information or for coverage</p></li>
+</ul>
 </div>
 
 

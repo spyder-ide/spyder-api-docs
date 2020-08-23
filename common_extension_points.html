@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Common extension points &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -100,12 +100,27 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
-   Migrating plugins
+   Migrating plugins 4.x to 5.x
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="future_work.html">
-   Future Work
+   Future work
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html#general">
+   General
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html#specific">
+   Specific
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html#future">
+   Future
   </a>
  </li>
  <li class="toctree-l1">
@@ -197,73 +212,97 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#actions">
-   Actions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#main-application-menus">
-   Main application menus
+  <a class="reference internal nav-link" href="#application-extension-points">
+   Application extension points
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-a-new-application-menu">
-     Creating a new application menu
+    <a class="reference internal nav-link" href="#creating-actions-and-shortcuts">
+     Creating actions and shortcuts
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-a-new-action-to-an-existing-menu">
-     Adding a new action to an existing menu
+    <a class="reference internal nav-link" href="#main-application-menus">
+     Main application menus
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-a-new-application-menu">
+       Creating a new application menu
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-a-new-action-to-an-existing-menu">
+       Adding a new action to an existing menu
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#extending-an-existing-action">
+       Extending an existing action
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-toolbars">
+     Application toolbars
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extending-an-existing-action">
-     Extending an existing action
+    <a class="reference internal nav-link" href="#status-bar">
+     Status bar
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-toolbars">
-   Application toolbars
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#status-bar">
-   Status bar
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#project-types">
-   Project types
+  <a class="reference internal nav-link" href="#plugin-extension-points">
+   Plugin extension points
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-new-project-type">
-     A new project type
+    <a class="reference internal nav-link" href="#appearance">
+     Appearance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-new-project-type-from-a-cookiecutter">
-     A new project type from a cookiecutter
+    <a class="reference internal nav-link" href="#layouts">
+     Layouts
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#several-project-types">
-     Several project types
+    <a class="reference internal nav-link" href="#projects">
+     Projects
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-new-project-type">
+       A new project type
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-new-project-type-from-a-cookiecutter">
+       A new project type from a cookiecutter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#several-project-types">
+       Several project types
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#completion-providers">
+     Completion providers
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#completion-providers">
-   Completion providers
-  </a>
  </li>
 </ul>
 
@@ -277,12 +316,15 @@
                 
   <div class="section" id="common-extension-points">
 <h1>Common extension points<a class="headerlink" href="#common-extension-points" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="actions">
-<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
+<p>Spyder offers different way of extending the global application and extending
+the functionality of plugins tehmeselves.</p>
+<div class="section" id="application-extension-points">
+<h2>Application extension points<a class="headerlink" href="#application-extension-points" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-actions-and-shortcuts">
+<h3>Creating actions and shortcuts<a class="headerlink" href="#creating-actions-and-shortcuts" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="main-application-menus">
-<h2>Main application menus<a class="headerlink" href="#main-application-menus" title="Permalink to this headline">¶</a></h2>
+<h3>Main application menus<a class="headerlink" href="#main-application-menus" title="Permalink to this headline">¶</a></h3>
 <p>There are three main ways to extend Spyder’s application menu.</p>
 <ol class="simple">
 <li><p>You can add new application menu to the application menu bar.</p></li>
@@ -290,7 +332,7 @@
 <li><p>You can override or extend one of the existing application menu actions.</p></li>
 </ol>
 <div class="section" id="creating-a-new-application-menu">
-<h3>Creating a new application menu<a class="headerlink" href="#creating-a-new-application-menu" title="Permalink to this headline">¶</a></h3>
+<h4>Creating a new application menu<a class="headerlink" href="#creating-a-new-application-menu" title="Permalink to this headline">¶</a></h4>
 <p>To add a new menu to the menu bar, you need to create one with the <code class="docutils literal notranslate"><span class="pre">core</span></code> plugin.</p>
 <p>You can then add actions to the menu.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
@@ -308,7 +350,7 @@
 </div>
 </div>
 <div class="section" id="adding-a-new-action-to-an-existing-menu">
-<h3>Adding a new action to an existing menu<a class="headerlink" href="#adding-a-new-action-to-an-existing-menu" title="Permalink to this headline">¶</a></h3>
+<h4>Adding a new action to an existing menu<a class="headerlink" href="#adding-a-new-action-to-an-existing-menu" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
 <span class="kn">from</span> <span class="nn">spyder.plugins.core.api</span> <span class="kn">import</span> <span class="n">HelpMenuSections</span>
 
@@ -336,24 +378,35 @@
 </div>
 </div>
 <div class="section" id="extending-an-existing-action">
-<h3>Extending an existing action<a class="headerlink" href="#extending-an-existing-action" title="Permalink to this headline">¶</a></h3>
+<h4>Extending an existing action<a class="headerlink" href="#extending-an-existing-action" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO:</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="application-toolbars">
-<h2>Application toolbars<a class="headerlink" href="#application-toolbars" title="Permalink to this headline">¶</a></h2>
+<h3>Application toolbars<a class="headerlink" href="#application-toolbars" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="status-bar">
-<h2>Status bar<a class="headerlink" href="#status-bar" title="Permalink to this headline">¶</a></h2>
+<h3>Status bar<a class="headerlink" href="#status-bar" title="Permalink to this headline">¶</a></h3>
 <p>Status bar widgets!</p>
 <p>TODO:</p>
 </div>
-<div class="section" id="project-types">
-<h2>Project types<a class="headerlink" href="#project-types" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="plugin-extension-points">
+<h2>Plugin extension points<a class="headerlink" href="#plugin-extension-points" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="appearance">
+<h3>Appearance<a class="headerlink" href="#appearance" title="Permalink to this headline">¶</a></h3>
+<p>Themes etc..</p>
+</div>
+<div class="section" id="layouts">
+<h3>Layouts<a class="headerlink" href="#layouts" title="Permalink to this headline">¶</a></h3>
+<p>Custom layouts</p>
+</div>
+<div class="section" id="projects">
+<h3>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="a-new-project-type">
-<h3>A new project type<a class="headerlink" href="#a-new-project-type" title="Permalink to this headline">¶</a></h3>
+<h4>A new project type<a class="headerlink" href="#a-new-project-type" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ./a_plugin/project_types.py</span>
 
 <span class="c1"># Third party imports</span>
@@ -468,17 +521,18 @@
 </div>
 </div>
 <div class="section" id="a-new-project-type-from-a-cookiecutter">
-<h3>A new project type from a cookiecutter<a class="headerlink" href="#a-new-project-type-from-a-cookiecutter" title="Permalink to this headline">¶</a></h3>
+<h4>A new project type from a cookiecutter<a class="headerlink" href="#a-new-project-type-from-a-cookiecutter" title="Permalink to this headline">¶</a></h4>
 <p>TODO:</p>
 </div>
 <div class="section" id="several-project-types">
-<h3>Several project types<a class="headerlink" href="#several-project-types" title="Permalink to this headline">¶</a></h3>
+<h4>Several project types<a class="headerlink" href="#several-project-types" title="Permalink to this headline">¶</a></h4>
 <p>TODO:</p>
 </div>
 </div>
 <div class="section" id="completion-providers">
-<h2>Completion providers<a class="headerlink" href="#completion-providers" title="Permalink to this headline">¶</a></h2>
+<h3>Completion providers<a class="headerlink" href="#completion-providers" title="Permalink to this headline">¶</a></h3>
 <p>TODO:</p>
+</div>
 </div>
 </div>
 

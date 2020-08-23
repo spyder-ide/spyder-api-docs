@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The new API &#8212; Spyder API docs 5 documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -100,12 +100,27 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="migrating_from_4_to_5.html">
-   Migrating plugins
+   Migrating plugins 4.x to 5.x
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="future_work.html">
-   Future Work
+   Future work
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html#general">
+   General
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html#specific">
+   Specific
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_work.html#future">
+   Future
   </a>
  </li>
  <li class="toctree-l1">
@@ -197,7 +212,7 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -205,10 +220,47 @@
   <a class="reference internal nav-link" href="#the-guiding-principles">
    The guiding principles
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-loosely-copupled-components">
+     A. Loosely copupled components
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-same-workflow-for-internal-and-external-plugins">
+     B. Same workflow for internal and external plugins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-simple-and-clear-api">
+     C. Simple and clear API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-simple-tooling">
+     D. Simple tooling
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#issues-with-the-old-api">
-   Issues with the old API
+  <a class="reference internal nav-link" href="#x-dependency-graph">
+   4.x dependency graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   5.x dependency graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#issues-solved-so-far">
+   Issues solved so far
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pending-work">
+   Pending work
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -321,29 +373,68 @@
 major refactoring of the codebase and redefinition of its plugin API.</p>
 <div class="section" id="the-guiding-principles">
 <h2>The guiding principles<a class="headerlink" href="#the-guiding-principles" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Spyder should be provide a set of loosely coupled components with a clear
+<div class="section" id="a-loosely-copupled-components">
+<h3>A. Loosely copupled components<a class="headerlink" href="#a-loosely-copupled-components" title="Permalink to this headline">¶</a></h3>
+<p>Spyder should be provide a set of loosely coupled components with a clear
 hierarchy and dependency instead from a tightly coupled monolith.
 This means that some plugins have REQUIRED dependencies that must be
 present for the plugin to be able to be loaded, and there are OPTIONAL
 dependencies, that will not prevent the plugin from starting and working
-with other plugins.</p></li>
-<li><p>Spyder should be written in the same way any external developer would, when
+with other plugins.</p>
+</div>
+<div class="section" id="b-same-workflow-for-internal-and-external-plugins">
+<h3>B. Same workflow for internal and external plugins<a class="headerlink" href="#b-same-workflow-for-internal-and-external-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Spyder should be written in the same way any external developer would, when
 extending or creating a third party Spyder Plugin. This way anyone
 developing external plugins can help the core codebase since it will look
-and feel esencially the same.</p></li>
-<li><p>Spyder should provide 1 way and 1 way only for handling plugins, that means
+and feel esencially the same.</p>
+</div>
+<div class="section" id="c-simple-and-clear-api">
+<h3>C. Simple and clear API<a class="headerlink" href="#c-simple-and-clear-api" title="Permalink to this headline">¶</a></h3>
+<p>Spyder should provide 1 way and 1 way only for handling plugins, that means
 that even if plugins are providing very different functionality, the basic
 principles for creating, registering, setting up, loading, closing and
-accessing the configuration system should be the same for all.</p></li>
-<li><p>Spyder should provide enough tools, mixins and facilities for internal and
+accessing the configuration system should be the same for all.</p>
+</div>
+<div class="section" id="d-simple-tooling">
+<h3>D. Simple tooling<a class="headerlink" href="#d-simple-tooling" title="Permalink to this headline">¶</a></h3>
+<p>Spyder should provide enough tools, mixins and facilities for internal and
 external developers as to reduce the amount of work needed to create and
 extend a plugin and reduce the need for duplicating code in different
-places of the codebase.</p></li>
-</ol>
+places of the codebase.</p>
 </div>
-<div class="section" id="issues-with-the-old-api">
-<h2>Issues with the old API<a class="headerlink" href="#issues-with-the-old-api" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="x-dependency-graph">
+<h2>4.x dependency graph<a class="headerlink" href="#x-dependency-graph" title="Permalink to this headline">¶</a></h2>
+<p><img alt="dependency_graph.png" src="_images/api-4.x.png" /></p>
+<ul class="simple">
+<li><p><strong>Red lines</strong>: represent hard dependencies, if the plugin is not available Spyder fails to start.</p></li>
+<li><p><strong>Purple lines</strong>: represent circular dependencies, plugins that depend on each other.</p></li>
+<li><p><strong>Green nodes</strong>: represent pseudo plugins, using special cases handling.</p></li>
+<li><p><strong>Blue nodes</strong>: represent a diferent type of plugin, not following the API.</p></li>
+<li><p><strong>Black nodes</strong>: Current plugins.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>5.x dependency graph<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><img alt="dependency_graph.png" src="_images/api-5.x.png" /></p>
+<ul class="simple">
+<li><p><strong>Red lines</strong>: represent hard dependencies, if the plugin is not available the plugin will not load (but spyder can start).</p></li>
+<li><p><strong>Purple lines</strong>: There are no circular dependencies.</p></li>
+<li><p><strong>Green nodes</strong>: represent NEW plugins, which come from the pseudo plugins or splitting functionality living in the mainwindow.</p></li>
+<li><p><strong>Blue dashed lines</strong>: represent optional dependencies. Some functionality of the loaded plugin will not be available, but Spyder still starts.</p></li>
+</ul>
+</div>
+<div class="section" id="issues-solved-so-far">
+<h2>Issues solved so far<a class="headerlink" href="#issues-solved-so-far" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Move the collections explorer out from the variable explorer and into the
+global <code class="docutils literal notranslate"><span class="pre">spyder.widgets.collectionseditor</span></code> module. <a class="reference external" href="https://github.com/spyder-ide/spyder/pull/12726">See #12726</a>.</p></li>
+<li><p>Migrate the Internal Console to use the new API. <a class="reference external" href="https://github.com/spyder-ide/spyder/pull/12438">See #12438</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="pending-work">
+<h2>Pending work<a class="headerlink" href="#pending-work" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="unclear-extension">
 <h3>Unclear extension<a class="headerlink" href="#unclear-extension" title="Permalink to this headline">¶</a></h3>
 </div>

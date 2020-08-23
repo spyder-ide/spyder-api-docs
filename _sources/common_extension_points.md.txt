@@ -1,10 +1,13 @@
 # Common extension points
 
-## Actions
+Spyder offers different way of extending the global application and extending
+the functionality of plugins tehmeselves.
 
-TODO:
+## Application extension points
 
-## Main application menus
+### Creating actions and shortcuts
+
+### Main application menus
 
 There are three main ways to extend Spyder's application menu.
 
@@ -12,7 +15,7 @@ There are three main ways to extend Spyder's application menu.
 2. You can add new actions to the existing application menus.
 3. You can override or extend one of the existing application menu actions.
 
-### Creating a new application menu
+#### Creating a new application menu
 
 To add a new menu to the menu bar, you need to create one with the `core` plugin.
 
@@ -32,7 +35,7 @@ class SomePlugin(SpyderPluginV2):
         )
 ```
 
-### Adding a new action to an existing menu
+#### Adding a new action to an existing menu
 
 ```python
 from spyder.api.plugins import Plugins, SpyderPluginV2
@@ -60,23 +63,33 @@ class SomePlugin(SpyderPluginV2):
         )
 ```
 
-### Extending an existing action
+#### Extending an existing action
 
 ```python
 # TODO:
 ```
 
-## Application toolbars
+### Application toolbars
 
-## Status bar
+### Status bar
 
 Status bar widgets!
 
 TODO:
 
-## Project types
+## Plugin extension points
 
-### A new project type
+### Appearance
+
+Themes etc..
+
+### Layouts
+
+Custom layouts
+
+### Projects
+
+#### A new project type
 
 ```python
 # ./a_plugin/project_types.py
@@ -193,14 +206,14 @@ class SomeAwesomePlugin(SpyderPluginV2):
     # ...
 ```
 
-### A new project type from a cookiecutter
+#### A new project type from a cookiecutter
 
 TODO:
 
-### Several project types
+#### Several project types
 
 TODO:
 
-## Completion providers
+### Completion providers
 
 TODO:
