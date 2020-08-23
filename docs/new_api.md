@@ -35,12 +35,32 @@ external developers as to reduce the amount of work needed to create and
 extend a plugin and reduce the need for duplicating code in different
 places of the codebase.
 
+## 4.x dependency graph
+
+![dependency_graph.png](images/api-4.x.png)
+
+- **Red lines**: represent hard dependencies, if the plugin is not available Spyder fails to start.
+- **Purple lines**: represent circular dependencies, plugins that depend on each other.
+- **Green nodes**: represent pseudo plugins, using special cases handling.
+- **Blue nodes**: represent a diferent type of plugin, not following the API.
+- **Black nodes**: Current plugins.
+
+## 5.x dependency graph
+
+![dependency_graph.png](images/api-5.x.png)
+
+- **Red lines**: represent hard dependencies, if the plugin is not available the plugin will not load (but spyder can start).
+- **Purple lines**: There are no circular dependencies.
+- **Green nodes**: represent NEW plugins, which come from the pseudo plugins or splitting functionality living in the mainwindow.
+- **Blue dashed lines**: represent optional dependencies. Some functionality of the loaded plugin will not be available, but Spyder still starts.
+
 ## Issues solved so far
 
 * Move the collections explorer out from the variable explorer and into the
   global `spyder.widgets.collectionseditor` module. [See #12726](https://github.com/spyder-ide/spyder/pull/12726).
 
 * Migrate the Internal Console to use the new API. [See #12438](https://github.com/spyder-ide/spyder/pull/12438).
+
 
 ## Pending work
 
