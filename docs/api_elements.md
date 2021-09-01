@@ -1,21 +1,21 @@
-# Codebase orientation
+# API elements
 
-## Developer Guide
+Spyder works like a set of loosely coupled components. Here you will find a description of the main elements that compose Spyder's API.
 
-Spyder can be extended via:
+## Plugins
 
-1. **Application plugins** (top level): Application plugins extend the
-   functionality of Spyder itself. An example of this would be a new Plugin
-   that created a new Pane to provide some functionality.
-2. **Plugins API extension** (plugin level):  A plugin provides an API to extend
-   its functionality. An example of this would be a completion provide, that
-   would extend the available completion providers. Another example would be
-   a new Prpoject Type, that would allow users to create specific types of
-   projects with custom creation, starting, and closing logic. There are two
-   types of plugin in spyder:
+A plugin adds a core functionality to the application.
 
-Spyder is internally constructed using plugins and this is also the way a new
-plugin/extension cna be created. The Spyder Plugins can be of two types:
+* A plugin can require other plugins for operation.
+* A plugin is activated when it is needed by other plugins, or when explicitly
+  activated.
+* Plugins require and provide Token objects, which are used to provide a typed
+  value to the plugin’s activate() method.
+* The module providing plugin(s) must meet the JupyterLab.IPluginModule
+  interface, by exporting a plugin object or array of plugin objects as the
+  default export.
+
+There two types of plugins in Spyder's API:
 
 1. **Spyder Dockable Plugins** (``SpyderDockablePlugin``), which create a new
    Pane (Based on a ``QDockWidget``) and (optionally) any other elements such
@@ -43,42 +43,7 @@ Plugins can provide the following widgets:
 * **StatusBar widgets** (``SpyderStatusWidget``): A plugin can extend or
   create new application status bar widgets.
 
-Plugins are distributed as python packages, so you can write plugins and
-publish them in PyPI or Conda forge.
-
-## Tutorials
-
-We provide a set of guides to get started writing third-party plugins for Spyder:
-
-* Tutorial 1
-* Tutorial 2
-* Tutorial 3
-
-## Cookiecutters
-
-We provide a simple cookiecutter to create Spyder plugin:
-
-* Cookiecutter.
-
-## API Documentation
-
-If you are looking for lower level details on the spyder and Qt API:
-
-* Spyder API Documentation
-* Qt API Documentation
-
-## Plugins
-
-A plugin adds a core functionality to the application.
-
-* A plugin can require other plugins for operation.
-* A plugin is activated when it is needed by other plugins, or when explicitly
-  activated.
-* Plugins require and provide Token objects, which are used to provide a typed
-  value to the plugin’s activate() method.
-* The module providing plugin(s) must meet the JupyterLab.IPluginModule
-  interface, by exporting a plugin object or array of plugin objects as the
-  default export.
+### Spyder's Plugins
 
 The default plugins in the Spyder application include:
 
@@ -100,14 +65,24 @@ The default plugins in the Spyder application include:
 * **Profiler**:
 * **Code analysis**:
 
-Here is a dependency graph for the Spyder (internal) plugins:
+## Configuration
 
-![dependency_graph.png](images/dependency_graph.png)
-
-## Configuration and preferences
+Default configuration settings
 
 ## Global API
 
-## Global Widgets
+General elements in Spyder's API. (Creation of classes)
 
-## Global utilities
+## Global Widgets: 
+Auxiliar graphical elements used throughout several plugins.
+
+## Global utilities:
+
+## Global APP:
+
+Related to Qt Application and Main Window.
+
+## Grafical elements
+
+Images + Fonts
+

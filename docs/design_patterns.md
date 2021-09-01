@@ -1,5 +1,7 @@
 # Design patterns
 
+Here we will explain some useful guidelines that you should take into accound to write your code.
+
 ## Python style
 
 Unless otherwise specified, follow

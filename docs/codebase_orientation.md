@@ -3,7 +3,7 @@
 The [spyder-ide/spyder](https://github.com/spyder-ide/spyder) repository contains
 code for many plugins that are versioned and published into a single package.
 
-See the [Contributing Guidelines]() for detailed developer installation instructions.
+Here we provide an overview of how Spyder's codebase is structured in order for you to understand its API.
 
 ## Directories
 
