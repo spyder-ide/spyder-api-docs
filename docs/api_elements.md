@@ -86,3 +86,24 @@ Related to Qt Application and Main Window.
 
 Images + Fonts
 
+
+
+### CLASS NAMES
+
+``SpyderAction``
+
+
+``SpyderApplicationToolBar``
+
+``SpyderToolBar``
+
+### Status bar:
+
+``SpyderStatusWidget``
+
+### Menus:
+
+``SpyderApplicationMenu``
+
+``SpyderMenu``
+

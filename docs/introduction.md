@@ -7,7 +7,7 @@ This section will help you to set up an environment for contributing to Spyder a
 If this is your first time contributing to Spyder or in general to open source we invite you to watch the video below which will guide you with the main steps with doing your first contribution.
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/GizipMT1LvQ" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://www.youtube.com/embed/GizipMT1LvQ" frameborder="0" allowfullscreen="true" width="640" height="390"> </iframe>
 </figure>
 
 For a detailed explanation, follow the instructions below.
@@ -144,30 +144,40 @@ Go to the Spyder repository on Github, and you will see the option to open a Pul
 ![fork.png](images/PR.png) 
 
 Make sure that you select the correct branch to merge your changes.
- 
-## Issue tracker 
 
-Labels issue tracker ?
 
 
 ## Other ways to contribute
 
-1. Issue testing and triaging: 
--check if older bugs are still present
--find duplicate issues and link related ones
--add good self-contained reproducers to issues
--label issues correctly (this requires triage rights – just ask)
-2. Reviewing PRs
-3. Translations: Crowdin 
-4. Improving documentation:  
--Reading tutorials and reporting confusing parts, 
--finding type-os and minor errors in docs
--writing your own guides and tutorials
--improving docstrings within the code, and -improving documentation style and design.
-5. Participating in the community
--help
--sharing 
-6. Developing educational materials
-7. Community outreach
+If you don't feel comfortable with starting with a code contribution, there are other ways in which you can help. Here are some of them:
+
+### Issue testing and triaging: 
+Go to our [issue tracker](https://github.com/spyder-ide/spyder/issues) and do one of the following: 
+- Check if older bugs are still present 
+- Find duplicate issues and link related ones
+- Label issues correctly
+
+### Reviewing PRs
+Visit our [Pull Requests](https://github.com/spyder-ide/spyder/pulls) and:
+- Test the changes proposed in the PR
+- Review the style and content of the PR
+
+
+### Translations: Crowdin 
+We welcome your help translating Spyder's interface into different languages. For this purpose we use [Crowdin](https://crowdin.com/project/spyder), which provides a simple web based interface for translators, proofreaders and managers, so everyone can help us translate Spyder into any language.
+
+
+### Improving documentation:
+We also have a [docs repository](https://github.com/spyder-ide/spyder-docs) to which you can also contribute in several ways:
+
+- Read tutorials and report confusing parts or missing parts. 
+- Finding type-os or minor errors and report them as issues.
+- Write your own content if you see something missing.
+
+### Participating in the community:
+We invite you to be an active member of our community by:
+- Following our social media
+- Sharing relevant content
+- Participating in discussions
 
 
