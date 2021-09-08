@@ -2,21 +2,19 @@
 
 We provide a glossary of elements that you will find around Spyder's interface in order for you to get familiar with terminology around documentation.
 
-
-
 ### Application:
 
-Reunion plugins, widgets, toolbars.
+User program which comprehends plugins, widgets, toolbars and other UI elements. 
 
 ### Main Window:
 
-Graphic representation of the application. 
+Graphic representation of the application. It is what users see by default when the application is launched.  
 
 ### Panes:
 
 Rectangular sections in which the Spyder's interface is divided. These include the Editor, IPython Console, Help, etc...
 
-[Screenshot]
+![Panes.png](images/Panes.png) 
 
 ### Toolbars:
 
@@ -24,25 +22,25 @@ Graphical control with buttons that allow several actions throughout the interfa
 
 In Spyder, there is main toolbar at the top of the application and several toolbars in each pane. 
 
-[Screenshot]
+![Toolbars.png](images/Toolbars.png) 
 
-#### Status bar:
+### Status bar:
 
 One of Spyder's toolbars, located at the bottom of the application which displays information about current Python environment, git branch, memory usage and various attributes of the currently active file.
 
-[Screenshot]
+![Statusbar.png](images/Statusbar.png) 
 
 ### Options Menu:
 
 Dropdown menu in each Spyder pane that is shown when clicking the top left button. It contains useful settings and actions relevant to the pane.
 
-[Screenshot]
+![OptionsMenu.png](images/OptionsMenu.png) 
 
 ### Context Menu:
 
 Dropdown menu in each Spyder pane that is shown when right clicking anywhere over the pane. It shows actions relevant to the element under your cursor.  
 
-[Screenshot]
+![ContextMenu.png](images/ContextMenu.png) 
 
 ### Plugin: 
 
@@ -54,11 +52,21 @@ Separated graphical elements that are handled by plugins to extend its functiona
 
 ### Preferences (config options):
 
+Options provided by the application to customize several functions or panes. 
+
+![Preferences.png](images/Preferences.png) 
+
 ### Tests:
+
+Program that allows finding errors within an application.
 
 ### Dependencies:
 
-### Utils: Functions to run process of non graphical stuff.
+Specific library that perform specific tasks within an application.
+
+### Utils: 
+
+Functions that allow the application to run processes that don't require graphical elements. 
 
 
 
