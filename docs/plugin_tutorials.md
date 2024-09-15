@@ -10,4 +10,6 @@ Adding more widgets <plugin_tutorial_2>
 Adding a new Pane <plugin_tutorial_3>
 Adding a new Project Type <plugin_tutorial_4>
 Using a Cookiecutter <plugin_cookiecutter>
+Plugin Development with Spyder <plugin_development>
+Qt Fundamentals <qt_fundamentals>
 ```
