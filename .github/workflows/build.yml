@@ -11,26 +11,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      CI: 'true'
-      OS: 'linux'
     steps:
-      - name: Checkout Pull Requests
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.6
-          architecture: x64
+          python-version: 3.11
       - name: Install dependencies
         run: |
-          pip install -U sphinx myst-parser sphinx-book-theme sphinx-tabs
+          pip install -U sphinx myst-parser sphinx-book-theme
       - name: Build docs
         run: |
           make docs
       - name: Deploy
         if: github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/_build/html
