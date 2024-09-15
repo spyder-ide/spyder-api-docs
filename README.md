@@ -3,6 +3,6 @@
 ## Set up the environment
 
 ```bash
-pip install -U sphinx myst-parser sphinx-book-theme sphinx-tabs
+pip install -U sphinx myst-parser sphinx-book-theme
 make docs
 ```

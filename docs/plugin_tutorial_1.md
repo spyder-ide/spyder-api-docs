@@ -1,4 +1,4 @@
-# Tutorial: Our first Spyder plugin
+# Our first Spyder plugin
 
 ## What we will learn
 

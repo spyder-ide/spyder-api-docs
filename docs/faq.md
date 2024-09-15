@@ -1,5 +1,7 @@
 # Frequently asked questions
 
+This is the FAQ section: (Should be the same as in the docs)
+
 Please post any new questions under the Spyder tag in [[Stack Overflow|http://stackoverflow.com/questions/tagged/spyder]].
 
 This FAQ is for development-related questions. For questions about Spyder itself, see the [[Troubleshooting Guide and FAQ]].
