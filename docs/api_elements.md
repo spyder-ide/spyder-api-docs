@@ -50,7 +50,7 @@ The default plugins in the Spyder application include:
 * **Core**: Creates application menus and status bar widgets.
 * **Appearance**: Sets the theme of the interface and editors.
 * **Completions**: Provides code completion to editor widgets using the
-  [Language server protocol](TODO:).
+  [Language Server Protocol](https://microsoft.github.io/language-server-protocol/).
 * **Shortcuts**: Provides the handling of shortcuts.
 * **Editor**: Provides a splitable multilingual Editor with introspection
   capabilities.
@@ -73,7 +73,7 @@ Default configuration settings
 
 General elements in Spyder's API. (Creation of classes)
 
-## Global Widgets: 
+## Global Widgets:
 Auxiliar graphical elements used throughout several plugins.
 
 ## Global utilities:
