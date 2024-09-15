@@ -1,4 +1,4 @@
-# Common extension points
+# Extending Spyder
 
 Spyder offers different way of extending the global application and extending
 the functionality of plugins tehmeselves.
