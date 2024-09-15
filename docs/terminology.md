@@ -2,71 +2,71 @@
 
 We provide a glossary of elements that you will find around Spyder's interface in order for you to get familiar with terminology around documentation.
 
-### Application:
+## Application
 
-User program which comprehends plugins, widgets, toolbars and other UI elements. 
+User program which comprehends plugins, widgets, toolbars and other UI elements.
 
-### Main Window:
+## Main Window
 
-Graphic representation of the application. It is what users see by default when the application is launched.  
+Graphic representation of the application. It is what users see by default when the application is launched.
 
-### Panes:
+## Panes
 
 Rectangular sections in which the Spyder's interface is divided. These include the Editor, IPython Console, Help, etc...
 
-![Panes.png](images/Panes.png) 
+![Panes.png](images/Panes.png)
 
-### Toolbars:
+## Toolbars
 
-Graphical control with buttons that allow several actions throughout the interface. 
+Graphical control with buttons that allow several actions throughout the interface.
 
-In Spyder, there is main toolbar at the top of the application and several toolbars in each pane. 
+In Spyder, there is main toolbar at the top of the application and several toolbars in each pane.
 
-![Toolbars.png](images/Toolbars.png) 
+![Toolbars.png](images/Toolbars.png)
 
-### Status bar:
+## Status bar
 
 One of Spyder's toolbars, located at the bottom of the application which displays information about current Python environment, git branch, memory usage and various attributes of the currently active file.
 
-![Statusbar.png](images/Statusbar.png) 
+![Statusbar.png](images/Statusbar.png)
 
-### Options Menu:
+## Options Menu
 
 Dropdown menu in each Spyder pane that is shown when clicking the top left button. It contains useful settings and actions relevant to the pane.
 
-![OptionsMenu.png](images/OptionsMenu.png) 
+![OptionsMenu.png](images/OptionsMenu.png)
 
-### Context Menu:
+## Context Menu
 
-Dropdown menu in each Spyder pane that is shown when right clicking anywhere over the pane. It shows actions relevant to the element under your cursor.  
+Dropdown menu in each Spyder pane that is shown when right clicking anywhere over the pane. It shows actions relevant to the element under your cursor.
 
-![ContextMenu.png](images/ContextMenu.png) 
+![ContextMenu.png](images/ContextMenu.png)
 
-### Plugin: 
+## Plugin
 
 A piece of software code that enables an application to perform an specific function. In Spyder, plugins are toolbars, menus, status bar widgets, custom and preferences dialogs.
 
-### Widget:
+## Widget
 
-Separated graphical elements that are handled by plugins to extend its functionality. 
+Separated graphical elements that are handled by plugins to extend its functionality.
 
-### Preferences (config options):
+## Preferences
 
-Options provided by the application to customize several functions or panes. 
+Options provided by the application to customize several functions or panes.
 
-![Preferences.png](images/Preferences.png) 
+![Preferences.png](images/Preferences.png)
 
-### Tests:
+## Tests
 
 Program that allows finding errors within an application.
 
-### Dependencies:
+## Dependencies
 
 Specific library that perform specific tasks within an application.
 
-### Utils: 
+## Utils
 
-Functions that allow the application to run processes that don't require graphical elements. 
+Functions that allow the application to run processes that don't require graphical elements.
 
 
 
