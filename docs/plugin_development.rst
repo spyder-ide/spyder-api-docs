@@ -18,7 +18,7 @@ You will need to have Spyder installed. Visit our :doc:`installation guide<../in
 
 .. important::
 
-   Spyder now offers :ref:`install-standalone` for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
+   Spyder now offers `installation guide`_ for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
    However, readers of this workshop should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow to add extra packages like the plugin we are going to develop in this workshop.
 
 It is also desirable to have the following prior knowledge:
@@ -747,7 +747,7 @@ Enhancing our plugin
 ====================
 
 From now on we are going to go into details of how things are implemented in Qt. So in case you have any doubts, the Qt documentation will be your best guide.
-We created an annex to this workshop that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt-fundamentals`
+We created an annex to this workshop that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt_introduction`
 
 
 Timer updates
