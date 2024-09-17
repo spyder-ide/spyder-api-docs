@@ -14,11 +14,11 @@ As a practical exercise, we will develop a simple plugin that incorporates a con
 Prerequisites
 =============
 
-You will need to have Spyder installed. Visit our :doc:`installation guide<../installation>` for more information.
+You will need to have Spyder installed. Visit our :ref:`spyder:install-guide` for more information.
 
 .. important::
 
-   Spyder now offers `installation guide`_ for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
+   Spyder now offers :ref:`spyder:install-standalone` for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
    However, readers of this workshop should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow to add extra packages like the plugin we are going to develop in this workshop.
 
 It is also desirable to have the following prior knowledge:
@@ -747,7 +747,7 @@ Enhancing our plugin
 ====================
 
 From now on we are going to go into details of how things are implemented in Qt. So in case you have any doubts, the Qt documentation will be your best guide.
-We created an annex to this workshop that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt_introduction`
+We created an annex to this workshop that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt-fundamentals`
 
 
 Timer updates
@@ -1419,11 +1419,8 @@ With these skills we hope to ease the way for you to develop your own Spyder plu
 
 If you have ideas for plugin development feel free to contact us through the `Spyder-IDE`_ Github organization space.
 
-If you are interested in an introduction to scientific computing with Spyder, you can visit the workshop :doc:`Scientific Computing and Visualization with Spyder <../workshops/scientific-computing>`.
-
-If you are interested in an introduction to financial analysis with Spyder, you can visit the workshop :doc:`Financial Data Analysis with Spyder<../workshops/financial>`.
-
 .. _Spyder-IDE: https://github.com/spyder-ide
+
 
 Homework
 ~~~~~~~~

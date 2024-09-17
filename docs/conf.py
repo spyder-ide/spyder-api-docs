@@ -32,6 +32,7 @@ sys.path.insert(0, os.path.abspath(".."))
 extensions = [
     "myst_parser",
     "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
     "sphinx.ext.viewcode",
 ]
 
@@ -81,6 +82,10 @@ pygments_style = "sphinx"
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+# Intersphinx configuration
+intersphinx_mapping = {
+    'spyder': ('https://docs.spyder-ide.org/current/', None),
+}
 
 # -- Options for HTML output -------------------------------------------
 
