@@ -36,6 +36,7 @@ API Elements <api_elements>
 Qt Introduction <qt_introduction>
 Cookiecutter <plugin_cookiecutter>
 The first plugin <plugin_tutorial_1>
+Plugin Development with Spyder <plugin_development>
 Extending Spyder <common_extension_points>
 Design Patterns <design_patterns>
 FAQ <faq>
