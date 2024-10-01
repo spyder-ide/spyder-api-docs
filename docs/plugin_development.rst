@@ -1,14 +1,10 @@
-##############################
-Plugin Development with Spyder
-##############################
+########################################
+Tutorial to develop a plugin with Spyder
+########################################
 
-This workshop reviews the features and possibilities of the API offered by `Spyder`_ 5—the recently released version of our favorite IDE for scientific Python—for plugin development and to extend its functionality.
-
-As a practical exercise, we will develop a simple plugin that incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it.
+This tutorial aims to describe the features and possibilities of the API offered by `Spyder`_ to develop plugins and extend their functionality. First, the tutorial lists the prerequisites to implement a plugin in Spyder. Second, it includes a brief explanation about the type of plugins in Spyder and their benefits. Third, it defines how to setup the environment for a plugin development. Fourth, it explains the steps to build and publish a simple plugin. This plugin incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it. Finally, the tutorial concludes highlighting the key points of developing plugins with Spyder to improve its maintenance and adaptability.
 
 .. _Spyder: https://www.spyder-ide.org
-
-
 
 =============
 Prerequisites
