@@ -2,7 +2,7 @@
 Tutorial to develop a plugin with Spyder
 ########################################
 
-This tutorial aims to describe the features and possibilities of the API offered by `Spyder`_ to develop plugins and extend their functionality. First, the tutorial lists the prerequisites to implement a plugin in Spyder. Second, it includes a brief explanation about the type of plugins in Spyder and their benefits. Third, it defines how to setup the environment for a plugin development. Fourth, it explains the steps to build and publish a simple plugin. This plugin incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it. Finally, the tutorial concludes highlighting the key points of developing plugins with Spyder to improve its maintenance and adaptability.
+This tutorial aims to describe the features and possibilities of the API offered by `Spyder`_ to develop plugins and extend their functionality. First, the tutorial lists the prerequisites to implement a plugin in Spyder. Second, it describes the learning goals that a participant can achieved. Third, it includes a brief explanation about the type of plugins in Spyder and their benefits. Fourth, it defines how to setup the environment for a plugin development. Fifth, it explains the steps to build and publish a simple plugin. This plugin incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it. Finally, the tutorial concludes highlighting the key points of developing plugins with Spyder to improve its maintenance and adaptability.
 
 .. _Spyder: https://www.spyder-ide.org
 
@@ -41,13 +41,12 @@ To quickly get started in desktop application development with Qt and Python her
 Learning Goals
 ==============
 
-By the end of this workshop participants will know:
+By the end of this tutorial, participants will know:
 
 * The basics to develop plugins for Spyder, and get a general idea of its inner workings.
-* What types of plugins can be developed with Spyder.
-* The structure of a plugin and the functionality of each component and how it connects to Spyder to extend its features.
-* How to package and publish our plugin so that it can be easily installed and used by others.
-
+* The types of plugins that can be developed for Spyder. 
+* The structure of a plugin, the functionality of their components, and how to extend its features.
+* The way to package and publish a plugin so that it can be installed and used by others. 
 
 
 =====================
