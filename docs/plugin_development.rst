@@ -50,25 +50,20 @@ By the end of this tutorial, participants will know:
 
 
 =====================
-Spyder for developers
+Spyder fundamentals
 =====================
 
-The best place to find information about contributing to Spyder or developing for Spyder is its Github repository, in particular the `contribution guide`_.
+Spyder is a powerful scientific desktop application written in Python that has specific features for data exploration, interactive execution, deep inspection, and graphical visualization. Spyder was developed in *Qt*, which requires for its operation two packages with which it is closely related (and without which it cannot work): `spyder-kernels`_ and `python-lsp-server`_. 
 
-.. image:: images/workshop-3/pd_spyder_ide.png
-   :alt: Spyder IDE components.
+* `Qt`_ is an open source multiplatform widget toolkit for creating native graphical user interfaces. Qt is a very complete development framework that offers utilities for building applications and has extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
 
-* The core of **Spyder** is `Spyder-IDE`_ , a desktop application developed in *Qt*, which requires for its operation two packages with it is closely related (and without which it cannot work): *spyder-kernels* and *python-lsp-server*.
-
-* `Qt`_ is an open source multiplatform widget toolkit for creating native graphical user interfaces. Qt is a very complete development framework that offers utilities for building applications, and has extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
-
-* Spyder uses `qtpy`_ which is an abstraction layer that allows you to work with Qt from Python regardless of whether you use either of the two reference libraries: PyQt or PySide.
-
-* `spyder-kernels`_ provide Jupyter kernels to Spyder, for use within its consoles.
+* Spyder uses `qtpy`_ which is an abstraction layer that allows you to work with Qt from Python regardless of whether you use one of the two reference libraries: PyQt or PySide.
 
 .. important::
 
-   Spyder is currently developed in such a way that most of its features are implemented as plugins.
+   Spyder is currently being developed in such a way that most of its features are implemented as plugins.
+
+If you are interested in learning more about Spyder's features, you can read about the project on `Spyder`_'s website. If you are interested in contributing to Spyder, please visit the `contribution guide`_.
 
 .. _contribution guide: https://github.com/spyder-ide/spyder/blob/master/CONTRIBUTING.md
 .. _Qt: https://www.qt.io/
@@ -76,7 +71,6 @@ The best place to find information about contributing to Spyder or developing fo
 .. _spyder-kernels: https://github.com/spyder-ide/spyder-kernels
 .. _pyls-spyder: https://github.com/spyder-ide/pyls-spyder
 .. _python-lsp-server: https://github.com/python-lsp/python-lsp-server
-
 
 
 =========================================
