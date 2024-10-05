@@ -7,9 +7,11 @@ This section will help you to set up an environment for contributing to Spyder a
 
 If this is your first time contributing to Spyder or in general to open source we invite you to watch the video below which will guide you with the main steps with doing your first contribution.
 
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/GizipMT1LvQ" frameborder="0" allowfullscreen="true" width="640" height="390"> </iframe>
-</figure>
+```{youtube} GizipMT1LvQ
+:width: 640
+:height: 360
+:align: left
+```
 
 For a detailed explanation, follow the instructions below.
 
