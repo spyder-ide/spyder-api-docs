@@ -1,6 +1,7 @@
 # Design patterns
 
-Here we will explain some useful guidelines that you should take into accound to write your code.
+Here we will explain some useful guidelines that you should take into account to write your code.
+
 
 ## Python style
 
@@ -26,6 +27,7 @@ Additional conventions:
   all in the same line for single-line docstrings, except for module-level
   docstrings.
 
+
 ## PyQt / PySide Style
 
 Spyder aims to be compatible with PySide and PyQt, so make sure code runs with
@@ -37,6 +39,7 @@ classes, and sometimes this clashes with was is suggested by
 
 These are some suggestions to take into account when using the Qt bindings in
 Python:
+
 
 ### Method naming conventions
 
@@ -59,6 +62,7 @@ class SpyderWidget(QWidget):
         """Run some new method."""
         # Do something interesting
 ```
+
 
 ### Widget Structure
 
@@ -104,6 +108,7 @@ class SomeWidget(QWidget):
         self.awesome_widget.sig_some_signal_requested.connect(
             self.some_method)
 ```
+
 
 ### Docstrings
 
@@ -164,6 +169,7 @@ class SomeWidget():
         return 10
 ```
 
+
 ### Imports
 
 TODO:
@@ -179,7 +185,9 @@ from spyder.api.translations import get_translation
 _ = get_translation("spyder")
 ```
 
+
 ### Signals
+
 
 #### Naming Do's
 
@@ -228,6 +236,7 @@ class SomeWidget(QWidget):
 
     sig_open_file_requested = Signal(str)
 ```
+
 
 #### Naming Do not's
 

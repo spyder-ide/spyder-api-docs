@@ -2,6 +2,7 @@
 
 Spyder works like a set of loosely coupled components. Here you will find a description of the main elements that compose Spyder's API.
 
+
 ## Plugins
 
 A plugin adds a core functionality to the application.
@@ -43,6 +44,7 @@ Plugins can provide the following widgets:
 * **StatusBar widgets** (``SpyderStatusWidget``): A plugin can extend or
   create new application status bar widgets.
 
+
 ### Spyder's Plugins
 
 The default plugins in the Spyder application include:
@@ -65,24 +67,31 @@ The default plugins in the Spyder application include:
 * **Profiler**:
 * **Code analysis**:
 
+
 ## Configuration
 
 Default configuration settings
+
 
 ## Global API
 
 General elements in Spyder's API. (Creation of classes)
 
-## Global Widgets:
-Auxiliar graphical elements used throughout several plugins.
 
-## Global utilities:
+## Global Widgets
 
-## Global APP:
+Auxiliary graphical elements used throughout several plugins.
+
+
+## Global utilities
+
+
+## Global APP
 
 Related to Qt Application and Main Window.
 
-## Grafical elements
+
+## Graphical elements
 
 Images + Fonts
 
@@ -97,13 +106,14 @@ Images + Fonts
 
 ``SpyderToolBar``
 
-### Status bar:
+
+### Status bar
 
 ``SpyderStatusWidget``
 
-### Menus:
+
+### Menus
 
 ``SpyderApplicationMenu``
 
 ``SpyderMenu``
-

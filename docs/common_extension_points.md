@@ -3,9 +3,12 @@
 Spyder offers different way of extending the global application and extending
 the functionality of plugins tehmeselves.
 
+
 ## Application extension points
 
+
 ### Creating actions and shortcuts
+
 
 ### Main application menus
 
@@ -14,6 +17,7 @@ There are three main ways to extend Spyder's application menu.
 1. You can add new application menu to the application menu bar.
 2. You can add new actions to the existing application menus.
 3. You can override or extend one of the existing application menu actions.
+
 
 #### Creating a new application menu
 
@@ -34,6 +38,7 @@ class SomePlugin(SpyderPluginV2):
             title="Extras",
         )
 ```
+
 
 #### Adding a new action to an existing menu
 
@@ -63,13 +68,16 @@ class SomePlugin(SpyderPluginV2):
         )
 ```
 
+
 #### Extending an existing action
 
 ```python
 # TODO:
 ```
 
+
 ### Application toolbars
+
 
 ### Status bar
 
@@ -77,17 +85,22 @@ Status bar widgets!
 
 TODO:
 
+
 ## Plugin extension points
+
 
 ### Appearance
 
 Themes etc..
 
+
 ### Layouts
 
 Custom layouts
 
+
 ### Projects
+
 
 #### A new project type
 
@@ -144,7 +157,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return True,  _("Some usefull error message in case of problems.")
+        return True,  _("Some useful error message in case of problems.")
 
     def create_project(self):
         """
@@ -157,7 +170,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return False, _("Some usefull error message in case of problems.")
+        return False, _("Some useful error message in case of problems.")
 
     def open_project(self):
         """
@@ -170,7 +183,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return False,  _("Some usefull error message in case of problems.")
+        return False,  _("Some useful error message in case of problems.")
 
     def close_project(self):
         """
@@ -183,7 +196,7 @@ class NewProjectType(BaseProjectType):
             successfully, and the second item (str) indicates the error
             message, if any.
         """
-        return False,  _("Some usefull error message in case of problems.")
+        return False,  _("Some useful error message in case of problems.")
 ```
 
 And then register the new project type with the projects plugin.
@@ -206,13 +219,16 @@ class SomeAwesomePlugin(SpyderPluginV2):
     # ...
 ```
 
+
 #### A new project type from a cookiecutter
 
 TODO:
 
+
 #### Several project types
 
 TODO:
+
 
 ### Completion providers
 

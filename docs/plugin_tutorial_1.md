@@ -1,5 +1,6 @@
 # Our first Spyder plugin
 
+
 ## What we will learn
 
 1. Setting the development environment.
@@ -8,7 +9,9 @@
 4. Set a shortcut for our new action.
 5. Add the newly created action to an application menu.
 
+
 ## Set the development environment
+
 
 ### Conda (the recommended way)
 
@@ -28,6 +31,7 @@ Here is [markdown link syntax](https://jupyter.org)
 
 Conda/Pip
 
+
 ## Create the plugin basic structure
 
 Let's create a new folder where the code for our plugin will live.
@@ -43,6 +47,7 @@ my-spyder-plugin
 │
 └── setup.py
 ```
+
 
 ### `__init__.py`
 
@@ -69,6 +74,7 @@ caption: |
 __version__ = "0.1.0"
 
 ```
+
 
 ### `plugin.py`
 
@@ -110,6 +116,7 @@ class MySpyderPlugin(SpyderPluginV2):
 
 ```
 
+
 ### `setup.py`
 
 ```{note} **More information**
@@ -141,6 +148,7 @@ setup(
 )
 ```
 
+
 ## Creating a Plugin action
 
 TODO:
@@ -164,13 +172,16 @@ emphasize-lines: 2-7
 
 ```
 
+
 ## Assigning a shortcut
 
 TODO:
 
+
 ## Adding it to an application menu
 
 TODO:
+
 
 ## Final result
 
@@ -228,9 +239,11 @@ class MySpyderPlugin(SpyderPluginV2):
 
 TODO: Add screenshot or wireframe image
 
+
 ## What we covered
 
 TODO:
+
 
 ## Next steps
 
