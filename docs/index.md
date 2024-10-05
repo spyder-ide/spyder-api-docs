@@ -1,5 +1,4 @@
-Welcome to Spyder's Developer documentation
-===========================================
+# Welcome to Spyder's Developer Documentation
 
 ![spyder5.png](images/spyder5.png)
 

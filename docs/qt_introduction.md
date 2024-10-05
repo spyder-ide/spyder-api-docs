@@ -17,10 +17,10 @@ Each type of Qt component is a class starting with the letter ``Q`` followed by 
 The core component of Qt is the ``QApplication`` class. Every Qt application needs a single instance of this class as the base, from where the Qt *event loop* is controlled.
 Spyder itself is an instance of ``QApplication``, its starting point is in the following two lines of code (Spyder/Spyder/app/mainwindow.py):
 
- .. code-block:: Python
-
-    QMainWindow.__init__(self)
-    qapp = QApplication.instance()
+ ```python
+ QMainWindow.__init__(self)
+ qapp = QApplication.instance()
+ ```
 
 ``QMainWindow`` is a pre-built widget that provides many standard window features as toolbars, menus, a status bar, dockable widgets and more, which serves as the basis for the application.
 
