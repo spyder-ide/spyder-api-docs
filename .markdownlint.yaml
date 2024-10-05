@@ -63,7 +63,7 @@ no-duplicate-heading:
 # MD029/ol-prefix : Ordered list item prefix : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md029.md
 ol-prefix:
   # List style
-  style: 'one'
+  style: 'one_or_ordered'
 
 # MD031/blanks-around-fences : Fenced code blocks should be surrounded by blank lines : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md031.md
 blanks-around-fences:
@@ -80,7 +80,10 @@ fenced-code-language:
   # List of languages
   allowed_languages: []
   # Require language only
-  language_only: true
+  language_only: false
+
+# MD041/first-line-heading/first-line-h1 : First line in a file should be a top-level heading : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md041.md
+first-line-heading: false  # Disabled due to FP on files with ref target labels
 
 # MD044/proper-names : Proper names should have the correct capitalization : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md044.md
 MD044:
