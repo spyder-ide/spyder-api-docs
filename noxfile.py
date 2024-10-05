@@ -1,4 +1,4 @@
-"""Common tasks to build, check and publish Spyder-Infra."""
+"""Common tasks to build, check and publish Spyder-API-Docs."""
 
 # Standard library imports
 import contextlib
@@ -24,7 +24,7 @@ nox.options.default_venv_backend = "none"
 
 # GitHub config
 ORG_NAME = "spyder-ide"
-REPO_NAME = "spyder-infra"
+REPO_NAME = "spyder-api-docs"
 REPO_URL_HTTPS = "https://github.com/{user}/{repo}.git"
 REPO_URL_SSH = "git@github.com:{user}/{repo}.git"
 

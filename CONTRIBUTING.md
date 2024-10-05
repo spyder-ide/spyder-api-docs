@@ -1,11 +1,11 @@
-# Contributing to Spyder-Infra
+# Contributing to Spyder-API-Docs
 
-First off, thanks for your interest in helping out with Spyder-Infra!
+First off, thanks for your interest in helping out with Spyder-API-Docs!
 
-**Important Note:** This is the repository for the Spyder-Infra project—not the Spyder IDE itself.
+**Important Note:** This is the repository for the Spyder-API-Docs project—not the Spyder IDE itself.
 For more information about Spyder, please see the [website](https://www.spyder-ide.org/), and for the core Spyder codebase, visit the [main repo](https://github.com/spyder-ide/spyder).
 
-Spyder-Infra is part of the Spyder IDE GitHub organization, and is developed with standard GitHub flow.
+Spyder-API-Docs is part of the Spyder IDE GitHub organization, and is developed with standard GitHub flow.
 If you're not comfortable with at least the basics of ``git`` and GitHub, we recommend reading beginner tutorials such as [GitHub's Git Guide](https://github.com/git-guides/), its [introduction to basic Git commands](https://docs.github.com/en/get-started/using-git/about-git#basic-git) and its [guide to the fork workflow](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
 However, this contributing guide should fill you in on most of the basics you need to know.
 
@@ -43,8 +43,8 @@ Let us know if you have any further questions, and we look forward to your contr
 
 ## Reporting Issues
 
-Find an issue with Spyder-Infra?
-Please [open](https://github.com/spyder-ide/spyder-infra/issues/new/choose) an [issue](https://github.com/spyder-ide/spyder-infra/issues) documenting the bug, enhancement or new content following the guidance in our issue template.
+Find an issue with Spyder-API-Docs?
+Please [open](https://github.com/spyder-ide/spyder-api-docs/issues/new/choose) an [issue](https://github.com/spyder-ide/spyder-api-docs/issues) documenting the bug, enhancement or new content following the guidance in our issue template.
 
 If referring to a specific line or file, please be sure to provide a snippet of context and/or the file and line number to allow us to find and fix it, and if pointing out a problem, please be as specific as you can in suggesting a revised wording that would solve it.
 
@@ -52,7 +52,7 @@ If referring to a specific line or file, please be sure to provide a snippet of 
 
 ## Cloning the Repository
 
-First, navigate to the [project repository](https://github.com/spyder-ide/spyder-infra) in your web browser and press the ``Fork`` button to make a personal copy of the repository on your own GitHub account.
+First, navigate to the [project repository](https://github.com/spyder-ide/spyder-api-docs) in your web browser and press the ``Fork`` button to make a personal copy of the repository on your own GitHub account.
 Then, click the ``Clone or Download`` button on your repository, copy the link and run the following on the command line to clone the repo:
 
 ```shell
@@ -62,14 +62,14 @@ git clone <LINK-TO-YOUR-REPO>
 After cloning the repository, navigate to its new directory using the `cd` command:
 
 ```shell
-cd spyder-infra
+cd spyder-api-docs
 ```
 
 
 
 ## Setting Up a Development Environment with Nox (Recommended)
 
-Our [Nox](https://nox.thea.codes/) configuration makes it easy to get set up and building Spyder-Infra in just one or two steps!
+Our [Nox](https://nox.thea.codes/) configuration makes it easy to get set up and building Spyder-API-Docs in just one or two steps!
 
 If you already have Nox installed, you're already done!
 Otherwise, you can easily install it as a standalone tool with [pipx](https://pipx.pypa.io/) (if you don't have that either, you'll need to install it first if you go that route):
@@ -126,13 +126,13 @@ Regardless of the tool you use, make sure to remember to always activate your en
 To create an environment with Conda (recommended), simply execute the following:
 
 ```shell
-conda create -c conda-forge -n spyder-infra-env python
+conda create -c conda-forge -n spyder-api-docs-env python
 ```
 
 Then, activate it with
 
 ```shell
-conda activate spyder-infra-env
+conda activate spyder-api-docs-env
 ```
 
 
@@ -141,19 +141,19 @@ conda activate spyder-infra-env
 With pip/venv, you can create a virtual environment with
 
 ```shell
-python -m venv spyder-infra-env
+python -m venv spyder-api-docs-env
 ```
 
 And activate it with the following on Linux and macOS,
 
 ```bash
-source spyder-infra-env/bin/activate
+source spyder-api-docs-env/bin/activate
 ```
 
 or on Windows (``cmd.exe``),
 
 ```cmd
-.\spyder-infra-env\Scripts\activate.bat
+.\spyder-api-docs-env\Scripts\activate.bat
 ```
 
 
@@ -175,10 +175,10 @@ python -m pip install -r requirements.txt
 
 ### Add the upstream remote
 
-Make sure to set the upstream Git remote to the official Spyder-Infra repo with:
+Make sure to set the upstream Git remote to the official Spyder-API-Docs repo with:
 
 ```shell
-git remote add upstream https://github.com/spyder-ide/spyder-infra.git
+git remote add upstream https://github.com/spyder-ide/spyder-api-docs.git
 ```
 
 
@@ -260,7 +260,7 @@ For manual installations, you can invoke _FIXME_BUILD_TOOL yourself with the app
 _FIXME_BUILD_COMMAND
 ```
 
-Then, navigate to the ``_FIXME_BUILD_DIRECTORY`` directory inside the ``spyder-infra`` repository and _FIXME_HOW_TO_RUN.
+Then, navigate to the ``_FIXME_BUILD_DIRECTORY`` directory inside the ``spyder-api-docs`` repository and _FIXME_HOW_TO_RUN.
 
 
 ## Contributing Changes
@@ -327,10 +327,10 @@ Where ``<TOPIC-BRANCH>`` is the name of your topic branch, e.g. ``fix-docs-typo`
 
 ### Submit a Pull Request
 
-Finally, create a pull request to the [``spyder-ide/spyder-infra`` repository](https://github.com/spyder-ide/spyder-infra/) on GitHub.
+Finally, create a pull request to the [``spyder-ide/spyder-api-docs`` repository](https://github.com/spyder-ide/spyder-api-docs/) on GitHub.
 Make sure to set the target branch to the one you based your PR off of (e.g. ``_FIXME_MAIN_BRANCH`` or ``X.x``).
 
-We'll then review your changes, and after they're ready to go, your work will become an official part of Spyder-Infra.
+We'll then review your changes, and after they're ready to go, your work will become an official part of Spyder-API-Docs.
 
 Thanks for taking the time to read and follow this guide, and we look forward to your contributions!
 

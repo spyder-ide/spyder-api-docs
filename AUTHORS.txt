@@ -1,6 +1,6 @@
-The Spyder-Infra Contributors are composed of:
+The Spyder-API-Docs Contributors are composed of:
 
-* _FIXME_AUTHOR_NAME <_FIXME_AUTHOR_EMAIL> (Original Spyder-Infra author)
-* _FIXME_MAINTAINER_NAME <_FIXME_MAINTAINER_EMAIL> (Current Spyder-Infra maintainer)
-* All other developers who have committed to the Spyder-Infra repository:
-  <https://github.com/spyder-ide/spyder-infra/graphs/contributors>
+* _FIXME_AUTHOR_NAME <_FIXME_AUTHOR_EMAIL> (Original Spyder-API-Docs author)
+* _FIXME_MAINTAINER_NAME <_FIXME_MAINTAINER_EMAIL> (Current Spyder-API-Docs maintainer)
+* All other developers who have committed to the Spyder-API-Docs repository:
+  <https://github.com/spyder-ide/spyder-api-docs/graphs/contributors>

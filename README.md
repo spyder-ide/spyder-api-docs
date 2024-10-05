@@ -1,15 +1,15 @@
-# Spyder Infra
+# Spyder API Docs
 
 ![Banner image with the Spyder wordmark and full name, the Scientific Python Development Environment](spyder_readme_banner.png)
 
-*Copyright (c) _FIXME_COPYRIGHT_START_DATE- Spyder-Infra Contributors and others (see [AUTHORS.txt](https://github.com/spyder-ide/spyder-infra/blob/_FIXME_MAIN_BRANCH/AUTHORS.txt))*
+*Copyright (c) _FIXME_COPYRIGHT_START_DATE- Spyder-API-Docs Contributors and others (see [AUTHORS.txt](https://github.com/spyder-ide/spyder-api-docs/blob/_FIXME_MAIN_BRANCH/AUTHORS.txt))*
 
 
 [![License](https://img.shields.io/pypi/l/spyder.svg)](./LICENSE.txt)
-[![Build](https://github.com/spyder-ide/spyder-infra/actions/workflows/build.yaml/badge.svg)](https://github.com/spyder-ide/spyder-infra/actions/workflows/build.yaml)
-[![Check](https://github.com/spyder-ide/spyder-infra/actions/workflows/check.yaml/badge.svg)](https://github.com/spyder-ide/spyder-infra/actions/workflows/check.yaml)
-[![Lint](https://github.com/spyder-ide/spyder-infra/actions/workflows/lint.yaml/badge.svg)](https://github.com/spyder-ide/spyder-infra/actions/workflows/lint.yaml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/_FIXME_NETLIFY_PROJECT_ID/deploy-status)](https://app.netlify.com/sites/spyder-infra-preview/deploys)
+[![Build](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/build.yaml/badge.svg)](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/build.yaml)
+[![Check](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/check.yaml/badge.svg)](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/check.yaml)
+[![Lint](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/lint.yaml/badge.svg)](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/lint.yaml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/_FIXME_NETLIFY_PROJECT_ID/deploy-status)](https://app.netlify.com/sites/spyder-api-docs-preview/deploys)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Nox](https://img.shields.io/badge/%F0%9F%A6%8A-Nox-D85E00.svg)](https://github.com/wntrblm/nox)
 [![OpenCollective Backers](https://opencollective.com/spyder/backers/badge.svg?color=blue)](https://opencollective.com/spyder)
@@ -52,11 +52,11 @@ For more details and step by step instructions, see our [Contributing Guide](./C
 
 ## Contributing
 
-We welcome your contributions of issue reports, fixes and enhancements to Spyder-Infra, as it is by and for the community, and we appreciate others getting involved.
+We welcome your contributions of issue reports, fixes and enhancements to Spyder-API-Docs, as it is by and for the community, and we appreciate others getting involved.
 Its easy to build a local copy in one or two steps with Nox, or you can also just check your changes with our automated CI jobs on PRs.
 Just submit a PR with your changes and we'll be happy to review it; make sure to read our [Contributing Guide](./CONTRIBUTING.md) first to ensure the process of getting your revisions integrated goes smoothly.
 
-Thanks for your interest in Spyder-Infra, and we appreciate your support of the project!
+Thanks for your interest in Spyder-API-Docs, and we appreciate your support of the project!
 
 
 ## More Information
