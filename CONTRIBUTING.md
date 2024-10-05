@@ -2,12 +2,17 @@
 
 First off, thanks for your interest in helping out with Spyder-API-Docs!
 
-**Important Note:** This is the repository for the Spyder-API-Docs project—not the Spyder IDE itself.
+**Important Note:** This is the repository for Spyder's *developer* documentation—not the Spyder IDE itself, nor its *user* docs.
 For more information about Spyder, please see the [website](https://www.spyder-ide.org/), and for the core Spyder codebase, visit the [main repo](https://github.com/spyder-ide/spyder).
+For Spyder's *user* documentation, visit the [``spyder-ide/spyder-docs`` repository](https://github.com/spyder-ide/spyder-docs) or the deployed documentation at [docs.spyder-ide.org](https://docs.spyder-ide.org/).
 
 Spyder-API-Docs is part of the Spyder IDE GitHub organization, and is developed with standard GitHub flow.
 If you're not comfortable with at least the basics of ``git`` and GitHub, we recommend reading beginner tutorials such as [GitHub's Git Guide](https://github.com/git-guides/), its [introduction to basic Git commands](https://docs.github.com/en/get-started/using-git/about-git#basic-git) and its [guide to the fork workflow](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
 However, this contributing guide should fill you in on most of the basics you need to know.
+
+For an introduction to the basics of reST syntax, the source format in which most of the new Spyder developer documentation is written, see the [Sphinx reStructuredText Primer](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html).
+For more on the [MyST language](https://myst-parser.readthedocs.io/), which extends standard Markdown to support the capabilities of Sphinx, see the [MyST Documentation](https://myst-parser.readthedocs.io/en/latest/syntax/typography.html).
+
 
 Let us know if you have any further questions, and we look forward to your contributions!
 
