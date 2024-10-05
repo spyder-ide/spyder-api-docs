@@ -2,7 +2,7 @@
 
 ![Banner image with the Spyder wordmark and full name, the Scientific Python Development Environment](spyder_readme_banner.png)
 
-*Copyright (c) _FIXME_COPYRIGHT_START_DATE- Spyder-API-Docs Contributors and others (see [AUTHORS.txt](https://github.com/spyder-ide/spyder-api-docs/blob/_FIXME_MAIN_BRANCH/AUTHORS.txt))*
+*Copyright (c) 2020- Spyder-API-Docs Contributors and others (see [AUTHORS.txt](https://github.com/spyder-ide/spyder-api-docs/blob/master/AUTHORS.txt))*
 
 
 [![License](https://img.shields.io/pypi/l/spyder.svg)](./LICENSE.txt)
@@ -13,9 +13,6 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Nox](https://img.shields.io/badge/%F0%9F%A6%8A-Nox-D85E00.svg)](https://github.com/wntrblm/nox)
 [![OpenCollective Backers](https://opencollective.com/spyder/backers/badge.svg?color=blue)](https://opencollective.com/spyder)
-
-
-![Hero screenshot](_FIXME_HERO_IMAGE)
 
 
 <!-- markdownlint-disable -->
@@ -33,8 +30,10 @@
 
 ## Overview
 
-_FIXME_OVERVIEW
+This repository contains the *developer and API* documentation for Spyder, the Scientific Python Development Environment.
+You can view the live dev docs for current and past Spyder versions at [Spyder-IDE.GitHub.io/Spyder-API-Docs](https://spyder-ide.github.io/spyder-api-docs/).
 
+For Spyder's *user* documentation, visit the [``spyder-ide/spyder-docs`` repository](https://github.com/spyder-ide/spyder-docs) or the deployed documentation at [docs.spyder-ide.org](https://docs.spyder-ide.org/).
 For more information about Spyder itself, please see our [website](https://www.spyder-ide.org/) and the [main repo](https://github.com/spyder-ide/spyder).
 
 

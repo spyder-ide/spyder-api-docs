@@ -1,6 +1,6 @@
 The Spyder-API-Docs Contributors are composed of:
 
-* _FIXME_AUTHOR_NAME <_FIXME_AUTHOR_EMAIL> (Original Spyder-API-Docs author)
-* _FIXME_MAINTAINER_NAME <_FIXME_MAINTAINER_EMAIL> (Current Spyder-API-Docs maintainer)
+* Gonzalo Peña-Castellanos <goanpeca@gmail.com> (Original Spyder-API-Docs author)
+* C.A.M. Gerlach <CAM.Gerlach@Gerlach.CAM> (Current Spyder-API-Docs maintainer)
 * All other developers who have committed to the Spyder-API-Docs repository:
   <https://github.com/spyder-ide/spyder-api-docs/graphs/contributors>

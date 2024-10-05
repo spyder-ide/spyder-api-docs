@@ -6,7 +6,7 @@
 
 ## Pull Request Checklist
 
-* [ ] Read and followed this repo's [Contributing Guidelines](https://github.com/spyder-ide/spyder-api-docs/blob/_FIXME_MAIN_BRANCH/CONTRIBUTING.md)
+* [ ] Read and followed this repo's [Contributing Guidelines](https://github.com/spyder-ide/spyder-api-docs/blob/master/CONTRIBUTING.md)
 * [ ] Based your PR on the latest version of the correct branch
 * [ ] Checked your code and writing carefully
 * [ ] Described your changes and the motivation for them below

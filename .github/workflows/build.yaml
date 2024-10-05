@@ -53,6 +53,6 @@ jobs:
       if: env.IS_DEPLOY == '1'
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: _FIXME_BUILD_DIRECTORY
+        folder: docs/_build/html
         clean: true
         dry-run: ${{ (env.IS_STAGING == '1' && 'true') || 'false' }}

@@ -224,7 +224,7 @@ Once you're satisfied, ``git add .`` and commit again.
 
 ## Building the Project
 
-The project is built with _FIXME_BUILD_TOOL, which you can invoke either using [Nox](https://nox.thea.codes/) or manually.
+The project is built with Sphinx, which you can invoke either using [Nox](https://nox.thea.codes/) or manually.
 
 
 ### Build with Nox
@@ -247,20 +247,24 @@ Alternatively, to automatically rebuild the project when changes occur, you can 
 nox -s autobuild
 ```
 
-You can also pass your own custom [_FIXME_BUILD_TOOL build options](_FIXME_BUILD_OPTIONS_URL) after a ``--`` separator which are added to the default set.
+You can also pass your own custom [Sphinx build options](https://www.sphinx-doc.org/en/master/man/sphinx-build.html) after a ``--`` separator, which are added to the default set.
+For example, to rebuild just the install guide and FAQ in verbose mode with the ``dirhtml`` builder (our noxfile automatically prepends the source directory for you, so typing the full relative path is optional):
 
-_FIXME_BUILD_OPTIONS_EXAMPLE
+```shell
+nox -s build -- --verbose --builder dirhtml -- index.rst
+```
 
 
 ### Build manually
 
-For manual installations, you can invoke _FIXME_BUILD_TOOL yourself with the appropriate options:
+For manual installations, you can invoke Sphinx yourself with the appropriate options:
 
 ```shell
-_FIXME_BUILD_COMMAND
+python -m sphinx -n -W --keep-going docs docs/_build/html
 ```
 
-Then, navigate to the ``_FIXME_BUILD_DIRECTORY`` directory inside the ``spyder-api-docs`` repository and _FIXME_HOW_TO_RUN.
+Then, navigate to the ``_build/html`` directory inside the ``spyder-docs`` repository and open ``index.html`` (the main page of the docs) in your preferred browser.
+
 
 
 ## Contributing Changes
@@ -271,13 +275,13 @@ Then, navigate to the ``_FIXME_BUILD_DIRECTORY`` directory inside the ``spyder-a
 When you start to work on a new pull request (PR), you need to be sure that your work is done on top of the correct branch, and that you base your PR on GitHub against it.
 
 To guide you, issues on GitHub are usually marked with a label or milestone that indicates the correct branch to use.
-If not, base your PR against the ``_FIXME_MAIN_BRANCH`` unless it addresses an issue specific to another branch.
+If not, base your PR against the ``master`` unless it addresses an issue specific to another branch.
 You're always welcome to ask if you're unsure!
 
 
 ### Prepare your topic branch
 
-To start working on a new PR, you need to execute these commands, filling in the branch names where appropriate (``<BASE-BRANCH>`` is the branch you're basing your work against, e.g. ``_FIXME_MAIN_BRANCH``, while ``<TOPIC-BRANCH>`` is the branch you'll be creating to store your changes, e.g. ``fix-doc-typo`` or ``add-new-plugin``:
+To start working on a new PR, you need to execute these commands, filling in the branch names where appropriate (``<BASE-BRANCH>`` is the branch you're basing your work against, e.g. ``master``, while ``<TOPIC-BRANCH>`` is the branch you'll be creating to store your changes, e.g. ``fix-doc-typo`` or ``add-new-plugin``:
 
 ```shell
 git switch <BASE-BRANCH>
@@ -328,7 +332,7 @@ Where ``<TOPIC-BRANCH>`` is the name of your topic branch, e.g. ``fix-docs-typo`
 ### Submit a Pull Request
 
 Finally, create a pull request to the [``spyder-ide/spyder-api-docs`` repository](https://github.com/spyder-ide/spyder-api-docs/) on GitHub.
-Make sure to set the target branch to the one you based your PR off of (e.g. ``_FIXME_MAIN_BRANCH`` or ``X.x``).
+Make sure to set the target branch to the one you based your PR off of (e.g. ``master`` or ``X.x``).
 
 We'll then review your changes, and after they're ready to go, your work will become an official part of Spyder-API-Docs.
 
