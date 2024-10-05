@@ -1,0 +1,58 @@
+# Build the project and deploy it to GitHub pages
+name: Build
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+    - master
+    - main
+    - '*.*'
+    - 'staging*'
+  pull_request:
+    branches:
+    - master
+    - main
+    - '*.*'
+    - 'staging*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and Deploy
+
+    runs-on: ubuntu-latest
+
+    env:
+      IS_DEPLOY: ${{ (github.event_name == 'push' && '1') || '0' }}
+      IS_STAGING: ${{ (github.ref == 'refs/heads/staging' && '1') || '0' }}
+      IS_MAIN: ${{ ((github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && '1') || '0' }}
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      shell: bash
+      run: ./ci/install.sh
+    - name: List dependencies
+      shell: bash
+      run: |
+        echo Deploy: $IS_DEPLOY
+        echo Prod: $IS_PROD
+        echo Main: $IS_MAIN
+        pip list
+    - name: Build project
+      shell: bash
+      run: ./ci/build.sh
+    - name: Deploy to GitHub Pages
+      if: env.IS_DEPLOY == '1'
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: _FIXME_BUILD_DIRECTORY
+        clean: true
+        dry-run: ${{ (env.IS_STAGING == '1' && 'true') || 'false' }}
