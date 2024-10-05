@@ -57,7 +57,7 @@ BASE_URL = "https://spyder-ide.github.io/spyder-api-docs/"
 
 # Other config
 CANARY_COMMAND = ("pre-commit", "--version")
-IGNORE_REVS_FILE = None
+IGNORE_REVS_FILE = ".git-blame-ignore-revs"
 PRE_COMMIT_VERSION_SPEC = ">=2.10.0,<4"
 
 # Custom config
