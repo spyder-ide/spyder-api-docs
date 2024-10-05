@@ -30,8 +30,8 @@ REPO_URL_SSH = "git@github.com:{user}/{repo}.git"
 
 # Build config
 BUILD_INVOCATION = ("python", "-m", "sphinx")
-SOURCE_DIR = Path("doc").resolve()
-BUILD_DIR = Path("doc/_build").resolve()
+SOURCE_DIR = Path("docs").resolve()
+BUILD_DIR = Path("docs/_build").resolve()
 BUILD_OPTIONS = ("-n", "-W", "--keep-going")
 
 # Builder-specific config
@@ -51,13 +51,13 @@ POT_DIR = LOCALE_DIR / "pot"
 PO_LINE_WIDTH = 0
 
 # Deploy config
-LATEST_VERSION = 5
+LATEST_VERSION = 6
 DEFAULT_VERSION_NAME = "current"
-BASE_URL = "https://docs.spyder-ide.org"
+BASE_URL = "https://spyder-ide.github.io/spyder-api-docs/"
 
 # Other config
 CANARY_COMMAND = ("pre-commit", "--version")
-IGNORE_REVS_FILE = ".git-blame-ignore-revs"
+IGNORE_REVS_FILE = None
 PRE_COMMIT_VERSION_SPEC = ">=2.10.0,<4"
 
 # Custom config
