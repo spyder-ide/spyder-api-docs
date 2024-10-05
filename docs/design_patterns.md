@@ -5,9 +5,9 @@ Here we will explain some useful guidelines that you should take into accound to
 ## Python style
 
 Unless otherwise specified, follow
-[PEP 8](https://www.python.org/dev/peps/pep-0008/) specifications and
+[PEP 8](https://peps.python.org/pep-0008/) specifications and
 recommendations for coding style and
-[PEP 257](https://www.python.org/dev/peps/pep-0257/) for docstrings.
+[PEP 257](https://peps.python.org/pep-0257/) for docstrings.
 
 Use flake8 to check for problems in this area. Remember that PEP 8 is only a
 guide, so respect the style of the surrounding code as a primary goal.
@@ -33,7 +33,7 @@ both bindings.
 
 Qt by default has its own conventions for the definitions of methods and
 classes, and sometimes this clashes with was is suggested by
-[PEP 8](https://www.python.org/dev/peps/pep-0008/).
+[PEP 8](https://peps.python.org/pep-0008/).
 
 These are some suggestions to take into account when using the Qt bindings in
 Python:

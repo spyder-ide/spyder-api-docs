@@ -242,9 +242,9 @@ We can install it in the following way:
    * Conda can work with *channels* that allow the use of packages that are not part of the official distribution. The most important channel is `conda-forge`_, where a more extensive and updated list of packages than those offered by Anaconda Individual Edition are maintained.
    * Finally, `mamba`_, is an optimized implementation of conda's package management features, that resolves dependencies and installs packages much faster than conda.
 
-.. _conda environment: https://conda.io/projects/conda/en/latest/user-guide/concepts/environments.html#virtual-environments
+.. _conda environment: https://conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
 .. _installation guide: https://docs.spyder-ide.org/5/installation.html
-.. _Anaconda Individual Edition: https://www.anaconda.com/products/individual
+.. _Anaconda Individual Edition: https://www.anaconda.com/download
 .. _Conda: https://docs.conda.io/en/latest/
 .. _conda-forge: https://conda-forge.org/
 .. _mamba: https://github.com/mamba-org/mamba
@@ -272,8 +272,8 @@ To create a git repository on Github, we need to follow these steps:
 A detailed description of `repository creation`_ could be found in the official Github documentation, and a `hello world`_ tutorial with basic git operations from the Github interface.
 
 .. _Version control with git: https://swcarpentry.github.io/git-novice/
-.. _repository creation: https://docs.github.com/en/get-started/quickstart/create-a-repo
-.. _hello world: https://docs.github.com/en/get-started/quickstart/hello-world
+.. _repository creation: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
+.. _hello world: https://docs.github.com/en/get-started/start-your-journey/hello-world
 
 
 

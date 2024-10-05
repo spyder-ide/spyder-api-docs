@@ -353,7 +353,7 @@ Thanks for taking the time to read and follow this guide, and we look forward to
 Make sure you follow these to ensure clarity, consistency and correctness throughout the our organization.
 
 * **[reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)** (reST/rst) for documentation format
-* **[PEP 8](https://www.python.org/dev/peps/pep-0008/)** style for any Python code
+* **[PEP 8](https://peps.python.org/pep-0008/)** style for any Python code
 * **[UTF-8](https://en.wikipedia.org/wiki/UTF-8)** (no BOM) for character encoding
 * **[LF](https://en.wikipedia.org/wiki/Newline)** for newlines
 * **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** (YYYY-MM-DD HH:MM:SS) for dates/times

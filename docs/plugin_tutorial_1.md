@@ -12,7 +12,7 @@
 
 ### Conda (the recommended way)
 
-```{margin} **More information**
+```{note} **More information**
 (TODO: Link to conda environments.)
 (TODO: Link to python environments.)
 ```
@@ -49,7 +49,7 @@ my-spyder-plugin
 Spyder plugins are Python installable packages, so we need to define some
 information. For now we just need to add a version string for our package.
 
-```{margin} **More information**
+```{note} **More information**
 (TODO: Link to semantic versioning.
 ```
 
@@ -72,7 +72,7 @@ __version__ = "0.1.0"
 
 ### `plugin.py`
 
-```{margin} **More information**
+```{note} **More information**
 (On plugins and on icons)
 ```
 
@@ -112,7 +112,7 @@ class MySpyderPlugin(SpyderPluginV2):
 
 ### `setup.py`
 
-```{margin} **More information**
+```{note} **More information**
 (TODO: Link to semantic python packaging for more info if interested)
 ```
 

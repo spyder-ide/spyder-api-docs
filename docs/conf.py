@@ -205,6 +205,24 @@ texinfo_documents = [
 #    ".md": "recommonmark.parser.CommonMarkParser",
 # }
 
+
+# -- Options for Linkcheck --------------------------------------------------
+
+linkcheck_ignore = [
+    # Virtual fragment ids
+    r"https://(www\.)?github\.com/.+/compare/.+#diff-.+",
+    # Flaky
+    r"https://(www\.)?packages\.gentoo\.org/?.*",
+    r"https://(www\.)?software\.opensuse\.org/?.*",
+    r"https://(www\.)?packages\.ubuntu\.com/?.*",
+    r"https://(www\.)?github\.com/.+/commit/.+",
+    r"https://(www\.)?figshare\.com/?.*",
+    # Blocks GitHub Actions
+    r"https://(www\.)?(\w+\.)?reddit\.com/?.*",
+    r"https://(www\.)?(\w+\.)?(stackoverflow|stackexchange)\.com/?.*",
+]
+
+
 # --- Myst parser options
 # See: https://myst-parser.readthedocs.io/
 myst_config = {}

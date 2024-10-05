@@ -13,7 +13,7 @@ are described here.
 ### Binder setup: ``binder/``
 
 This contains an environment specification for ``repo2docker`` which allows
-the repository to be tested on [mybinder.org](https://mybinder.org>)
+the repository to be tested on [mybinder.org](https://mybinder.org)
 
 This specification is developer focused.
 
