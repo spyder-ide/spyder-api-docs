@@ -1,0 +1,34 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "reportDescriptionlessDisables": true,
+  "reportInvalidScopeDisables": true,
+  "reportNeedlessDisables": true,
+  "plugins": [
+    "@carlosjeurissen/stylelint-csstree-validator",
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-order"
+  ],
+  "rules": {
+    "color-named": "never",
+    "declaration-property-value-no-unknown": true,
+    "font-weight-notation": "named-where-possible",
+    "function-url-no-scheme-relative": true,
+    "media-feature-name-value-no-unknown": true,
+    "media-feature-range-notation": "prefix",
+    "no-descending-specificity": null,
+    "no-unknown-animations": true,
+    "no-unknown-custom-properties": true,
+    "number-max-precision": 5,
+    "property-no-unknown": [true, {"checkPrefixed": true}],
+    "time-min-milliseconds": 100,
+    "csstree/validator": true,
+    "order/properties-alphabetical-order": true,
+    "plugin/declaration-block-no-ignored-properties": true,
+    "plugin/no-unsupported-browser-features": [true, {
+      "ignore": [
+        "css-overflow"
+      ]
+    }]
+  }
+}

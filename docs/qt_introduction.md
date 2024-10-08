@@ -1,7 +1,10 @@
 (qt-fundamentals)=
+
+
 # Qt Fundamentals
 
 **Qt** is a multiplatform widget toolkit for creating native graphical user interfaces. Qt is also a very complete development framework that offers utilities for building applications, and libraries of extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
+
 
 ## Basic Qt Components
 
@@ -12,14 +15,15 @@ To develop a GUI we will add graphical elements of interaction known as widgets,
 Each type of Qt component is a class starting with the letter ``Q`` followed by a name related to its functionality.
 
 The core component of Qt is the ``QApplication`` class. Every Qt application needs a single instance of this class as the base, from where the Qt *event loop* is controlled.
-Spyder itself is an instance of ``QApplication``, its starting point is in the following two lines of code (spyder/spyder/app/mainwindow.py):
+Spyder itself is an instance of ``QApplication``, its starting point is in the following two lines of code (Spyder/Spyder/app/mainwindow.py):
 
- .. code-block:: python
-
-    QMainWindow.__init__(self)
-    qapp = QApplication.instance()
+ ```python
+ QMainWindow.__init__(self)
+ qapp = QApplication.instance()
+ ```
 
 ``QMainWindow`` is a pre-built widget that provides many standard window features as toolbars, menus, a status bar, dockable widgets and more, which serves as the basis for the application.
+
 
 ### Signals & Slots
 
@@ -49,6 +53,7 @@ Those are the 4 basic layouts available in Qt: ``QHBoxLayout``, ``QVBoxLayout``,
 
 User interfaces of desktop applications usually use ``QToolbar`` and ``QMenu``. Since these are alternative ways to access the same functionality, Qt provides ``QAction`` as a way to avoid duplication of functions.
 Thus, each time a menu option or a toolbar button gives access to the same function, they point to the same action.
+
 
 ### Dialogs
 

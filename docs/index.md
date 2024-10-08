@@ -1,29 +1,29 @@
-Welcome to Spyder's Developer documentation
-===========================================
+# Welcome to Spyder's Developer Documentation
 
 ![spyder5.png](images/spyder5.png)
 
 Spyder is a powerful scientific environment written in Python, for Python, and designed by and for scientists, engineers and data analysts. It works as a Desktop application developed in Qt and thanks to its new API it is composed of semi-independent plugins.
 
+
 ## Where to go now
 
-Spyder's developers documentation offers a wide variety of resources that will guide you from the very basic steps of contributing to Spyder, to Plugin creation. 
+Spyder's developers documentation offers a wide variety of resources that will guide you from the very basic steps of contributing to Spyder, to Plugin creation.
 
 1) Learn how to contribute to Spyder
-	-Introduction (development environment)
+  -Introduction (development environment)
 2) Learn how Spyder's API works
-	-Terminology-Dictionary (terminology)
-	-Codebase Introduction: How is Spyder's code structured? (codebase_orientation)
-	-Plugins and widgets in Spyder (extension_developer-guide)
-	-??Dependency graphs? (new_api)
+  -Terminology-Dictionary (terminology)
+  -Codebase Introduction: How is Spyder's code structured? (codebase_orientation)
+  -Plugins and widgets in Spyder (extension_developer-guide)
+  -??Dependency graphs? (new_api)
 3) Learn how to write a plugin for Spyder
-	-Introduction to Qt
-	-Using cookiecutter
-	-Plugin tutorial (plugin_tutorial_1)
-	-Design patterns
+  -Introduction to Qt
+  -Using cookiecutter
+  -Plugin tutorial (plugin_tutorial_1)
+  -Design patterns
 4) Sample plugins
-	-Workshop 1
-	-Plugins examples
+  -Workshop 1
+  -Plugins examples
 5) FAQ
 
 ```{toctree}

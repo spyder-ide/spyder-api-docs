@@ -6,9 +6,11 @@ Please post any new questions under the Spyder tag in [[Stack Overflow|http://st
 
 This FAQ is for development-related questions. For questions about Spyder itself, see the [[Troubleshooting Guide and FAQ]].
 
+
 ## Does the GPL exception hold for PyQt5?
 
 Please take a look at [this thread](https://riverbankcomputing.com/pipermail/pyqt/2014-February/033843.html)
+
 
 ## How to debug Spyder
 
