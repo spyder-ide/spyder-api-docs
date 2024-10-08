@@ -1,14 +1,10 @@
-##############################
-Plugin Development with Spyder
-##############################
+########################################
+Tutorial to develop a Spyder plugin
+########################################
 
-This workshop reviews the features and possibilities of the API offered by `Spyder`_ 5—the recently released version of our favorite IDE for scientific Python—for plugin development and to extend its functionality.
-
-As a practical exercise, we will develop a simple plugin that incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it.
+This tutorial aims to describe the features and possibilities of the API offered by `Spyder`_ to develop plugins and extend their functionality. First, the tutorial lists the prerequisites to implement a plugin in Spyder. Second, it describes the learning goals that a participant can achieved. Third, it includes a brief explanation about the type of plugins in Spyder and their benefits. Fourth, it defines how to setup the environment for a plugin development. Fifth, it explains the steps to build and publish a simple plugin. This plugin incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it. Finally, the tutorial concludes highlighting the key points of developing plugins with Spyder to improve its maintenance and adaptability.
 
 .. _Spyder: https://www.spyder-ide.org
-
-
 
 =============
 Prerequisites
@@ -19,7 +15,7 @@ You will need to have Spyder installed. Visit our :ref:`spyder:install-guide` fo
 .. important::
 
    Spyder now offers :ref:`spyder:install-standalone` for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
-   However, readers of this workshop should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow to add extra packages like the plugin we are going to develop in this workshop.
+   However, readers of this tutorial should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow to add extra packages like the plugin we are going to develop in this tutorial.
 
 It is also desirable to have the following prior knowledge:
 
@@ -45,35 +41,29 @@ To quickly get started in desktop application development with Qt and Python her
 Learning Goals
 ==============
 
-By the end of this workshop participants will know:
+By the end of this tutorial, participants will know:
 
 * The basics to develop plugins for Spyder, and get a general idea of its inner workings.
-* What types of plugins can be developed with Spyder.
-* The structure of a plugin and the functionality of each component and how it connects to Spyder to extend its features.
-* How to package and publish our plugin so that it can be easily installed and used by others.
-
+* The types of plugins that can be developed for Spyder.
+* The structure of a plugin, the functionality of their components, and how to extend its features.
+* The way to package and publish a plugin so that it can be installed and used by others.
 
 
 =====================
-Spyder for developers
+Spyder fundamentals
 =====================
 
-The best place to find information about contributing to Spyder or developing for Spyder is its Github repository, in particular the `contribution guide`_.
+Before we dive into the formal explanation of Spyder plugins, let's briefly explain some Spyder basics. Spyder is a powerful scientific desktop application written in Python that has specific features for data exploration, interactive execution, deep inspection, and graphical visualization. Spyder was developed in *Qt*, which requires for its operation two packages with which it is closely related (and without which it cannot work): `spyder-kernels`_ and `python-lsp-server`_.
 
-.. image:: images/workshop-3/pd_spyder_ide.png
-   :alt: Spyder IDE components.
+* `Qt`_ is an open source multiplatform widget toolkit for creating native graphical user interfaces. Qt is a very complete development framework that offers utilities for building applications and has extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
 
-* The core of **Spyder** is `Spyder-IDE`_ , a desktop application developed in *Qt*, which requires for its operation two packages with it is closely related (and without which it cannot work): *spyder-kernels* and *python-lsp-server*.
-
-* `Qt`_ is an open source multiplatform widget toolkit for creating native graphical user interfaces. Qt is a very complete development framework that offers utilities for building applications, and has extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
-
-* Spyder uses `qtpy`_ which is an abstraction layer that allows you to work with Qt from Python regardless of whether you use either of the two reference libraries: PyQt or PySide.
-
-* `spyder-kernels`_ provide Jupyter kernels to Spyder, for use within its consoles.
+* Spyder uses `qtpy`_ which is an abstraction layer that allows you to work with Qt from Python regardless of whether you use one of the two reference libraries: PyQt or PySide.
 
 .. important::
 
-   Spyder is currently developed in such a way that most of its features are implemented as plugins.
+   Spyder is currently being developed in such a way that most of its features are implemented as plugins.
+
+If you are interested in learning more about Spyder's features, you can read about the project on `Spyder`_'s website. If you are interested in contributing to Spyder, please visit the `contribution guide`_.
 
 .. _contribution guide: https://github.com/spyder-ide/spyder/blob/master/CONTRIBUTING.md
 .. _Qt: https://www.qt.io/
@@ -83,41 +73,21 @@ The best place to find information about contributing to Spyder or developing fo
 .. _python-lsp-server: https://github.com/python-lsp/python-lsp-server
 
 
+==========================
+Developing Spyder plugins
+==========================
 
-=========================================
-Types of plugins we can develop in Spyder
-=========================================
-
+Now that we know a little bit about the basics of Spyder, it's time to dive into the heart of this tutorial: the plugins that can be developed in Spyder.
 
 .. image:: images/workshop-3/pd_spyder_plugins.png
    :alt: Types of Spyder plugins.
 
-.. note::
-
-    A plugin is a component that adds functionality to an application, it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax coloring schemes.
-
-Formally, plugins are instances of Qt classes that modify the behavior of Spyder.
-Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types:
-
+First, let's define what a plugin is. *A plugin is a component that adds functionality to an application, it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax coloring schemes*. In the case of Spyder, plugins are instances of Qt classes that modify Spyder's behavior. Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types: SpyderDockablePlugin and SpyderPluginV2.
 
 SpyderDockablePlugin
 ~~~~~~~~~~~~~~~~~~~~
 
-It is a plugin that works as a `QDockWidget`_, this is a Qt class that provides a graphical control that can be docked inside a `QMainWindow`_ or floated as a top-level window on the desktop.
-
-.. _QDockWidget: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QDockWidget.html
-.. _QMainWindow: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMainWindow.html
-
-
-SpyderPluginV2
-~~~~~~~~~~~~~~
-
-``SpyderPluginV2`` is a plugin that does not create a new dock widget on Spyder's main window. In fact, ``SpyderPluginV2`` is the parent class of ``SpyderDockablePlugin``.
-
-
-
-Discovering Spyder plugins
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+It is a plugin that works as a `QDockWidget`_. This is a Qt class that provides a graphical control that can be docked inside a `QMainWindow`_ or floated as a top-level window on the desktop.
 
 .. topic:: ``SpyderDockablePlugin``
 
@@ -127,6 +97,14 @@ Discovering Spyder plugins
 
    * These plugins can also be hidden or shown via their entry in the *View > Panes* menu, or using its corresponding keyboard shortcut displayed there.
 
+.. _QDockWidget: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QDockWidget.html
+.. _QMainWindow: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMainWindow.html
+
+SpyderPluginV2
+~~~~~~~~~~~~~~
+
+It is a plugin that does not create a new dock widget on Spyder's main window. In fact, ``SpyderPluginV2`` is the parent class of ``SpyderDockablePlugin``.
+
 .. topic:: ``SpyderPluginV2``
 
    High-level interface elements that do not offer an undocking option are basically instances of ``SpyderPluginV2``. These are typically used to handle more abstract functionality.
@@ -135,44 +113,45 @@ Discovering Spyder plugins
 
    * Other examples of this type of plugins are the *main menu* and keyboard *shortcuts*. Some graphical elements, such as the main toolbar and the status bar are also instances of the ``SpyderPluginV2`` class.
 
-
-
 ================
 What will we do?
 ================
 
-Our practical work will consist in the implementation of the Pomodoro technique for time management in the Spyder interface.
+So far, we have reviewed the concepts necessary to create your first plugin. In this section, first, we explain the Pomodoro technique that will be implemented for time management in the plugin. Second, we describe the steps to develop the plugin. Finally, we present the main features that will be display in Spyder once the plugin is developed and published.
+
+Pomodoro Technique
+~~~~~~~~~~~~~~~~~~
+
+The `Pomodoro Technique`_, designed by Francesco Cirillo, is a time management practice used to increase concentration and productivity when completing tasks or meeting deadlines. Using a Pomodoro timer can help you pay attention to a task.
 
 .. image:: images/workshop-3/pd_pomodoro_timer.png
    :alt: Description of the pomodoro technique.
 
-.. note::
-
-   The `Pomodoro Technique`_, designed by Francesco Cirillo, is a time management practice used to increase your focus and productivity when trying to complete assignments or meet deadlines.
-   Choosing to use a Pomodoro Timer can help to give a task your full, undivided attention.
-
-The typical process of the Pomodoro Technique consists of the following six
-steps:
+The typical process of the Pomodoro technique consists of the following six steps:
 
 1. Choose a task to be done.
-2. Set the Pomodoro Timer (default is 25 minutes).
+2. Set the Pomodoro timer (default is 25 minutes).
 3. Work only on that task until the timer ends.
-4. When the timer rings, put a checkmark on a piece of paper, this is called "a pomodoro".
-5. If you have less than 3 checkmarks take a short break (by default, 5 minutes), and return to step 2.
-6. When you have completed four Pomodoro cycles, you deserve a longer break (our default is 15 minutes). Checkmarks are reset to zero, go back to step 1.
+4. Put a check mark on a piece of paper when the timer rings, this is called "a pomodoro".
+5. If you have less than 3 check marks, take a short break (by default, 5 minutes), and go back to step 2.
+6. When you have completed four Pomodoro cycles, you deserve a longer break (our default is 15 minutes). The check marks are reset to zero, return to step 1.
 
 .. _Pomodoro Technique: https://www.pomodorotechnique.com/
 
+Steps to develop a plugin
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Steps
-~~~~~
-
-These are the general steps that we will be following throughout this workshop:
+These are the general steps that we will follow throughout this tutorial:
 
 * Select the most suitable plugin type and create its initial structure using `cookiecutter`_.
 * Install the plugin in development mode in the virtual environment from which we run Spyder.
 * Implement the functionality of our plugin using the Spyder classes and following the guidelines indicated in the plugin structure.
 * Build a configuration page for our plugin, which would appear in Tools > Preferences.
+
+Features
+~~~~~~~~
+
+Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin. Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented. As figures XX and YY show, there will be features in the toolbar, status bar, and in the preferences window. An explanation of each feature is provided below.
 
 .. figure:: images/workshop-3/pd_spyder_wireframe.png
    :alt: Location of Spyder Pomodoro Timer widgets in Spyder.
@@ -184,24 +163,18 @@ These are the general steps that we will be following throughout this workshop:
 
    Spyder Pomodoro Timer in the preferences window.
 
-
-Features
-~~~~~~~~
-
-A minimal planning to organize ideas.
-
 * Pomodoro Timer
 
-  - Status bar widget: to display the time for the current pomodoro interval.
-  - State: we have three activity states: *pomodoro*, *short-break* and *long-break*. We can show a message (with `QMessageBox`_) to tell users that the time to take a break has arrived.
-  - Interactions: the user could use Start, Stop and Reset buttons to handle the Pomodoro Timer. This can be implemented adding `QAction`_ instances in a menu on the toolbar.
+  - Status bar widget: to display the time of the current pomodoro interval.
+  - State: we have three activity states: *pomodoro*, *short-break* and *long-break*. We can show a message (with `QMessageBox`_) to indicate to users that it is time to take a break.
+  - Interactions: the user could use Start, Stop and Reset buttons to handle the Pomodoro Timer. This can be implemented by adding instances of `QAction`_ in a toolbar menu.
 
 * Tasks Logger
-  - Counter: We need a variable to count the number of pomodoros completed.
+  - Counter: We need a variable to count the number of completed pomodoros.
 
 * Notifications
 
-  - Dialog: Each time a pomodoro or break interval is completed, a message should appear to prompt the user to start working on a task or take a break.
+  - Dialog: Every time a pomodoro or break interval is completed, a message should appear to tell the user to start working on a task or take a break.
 
   When working on a plugin for any system, we must check the data structures and functions available in that system that can facilitate our development.
   This involves spending considerable time understanding its inner workings.
@@ -747,7 +720,7 @@ Enhancing our plugin
 ====================
 
 From now on we are going to go into details of how things are implemented in Qt. So in case you have any doubts, the Qt documentation will be your best guide.
-We created an annex to this workshop that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt-fundamentals`
+We created an annex to this tutorial that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt-fundamentals`
 
 
 Timer updates
@@ -1281,7 +1254,7 @@ Now your plugin is in an initial version ready to publish...
 Publishing your plugin
 ======================
 
-Since the recommended way to install Spyder is through conda, the obvious choice would be to publish our plugin through a channel like conda-forge, but this is a task that is beyond the scope of this workshop due to its complexity.
+Since the recommended way to install Spyder is through conda, the obvious choice would be to publish our plugin through a channel like conda-forge, but this is a task that is beyond the scope of this tutorial due to its complexity.
 
 However, the tools used to publish packages in conda are usually based on the packages published in PyPI. So let's see how to publish our plugin there.
 
@@ -1399,7 +1372,7 @@ Similarly, a plugin-based system makes the application much easier to maintain. 
 
 In Spyder we have put special interest in consolidating an API that allows the development of plugins in a consistent way. The main focus of the development effort between versions 4 and 5 was in this direction and we are at a key moment where we expect to capitalize on all this work.
 
-In this workshop you have learned how to:
+In this tutorial you have learned how to:
 
 - Identify the basic building blocks in Spyder development.
 - Identify the different types of plugins that can be implemented in Spyder.
