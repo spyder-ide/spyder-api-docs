@@ -1,534 +1,632 @@
 
-
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>General Codebase Orientation &#8212; Spyder API docs 5 documentation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>General Codebase Orientation &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=47b62374"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'codebase_orientation';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Codebase orientation" href="extension_developer_guide.html" />
-    <link rel="prev" title="The new API" href="new_api.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <link rel="next" title="API elements" href="api_elements.html" />
+    <link rel="prev" title="Terminology" href="terminology.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
   
   
-  <h1 class="site-logo" id="site-title">Spyder API docs 5 documentation</h1>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
-</a>
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
 
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <p class="caption">
- <span class="caption-text">
-  Contents
- </span>
-</p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="new_api.html">
-   New API
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extension_developer_guide.html">
-   Plugins Guide
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="common_extension_points.html">
-   Extension Points
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="design_patterns.html">
-   Design Patterns
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="development_environment.html">
-   Development Environment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="plugin_tutorials.html">
-   Tutorials
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="migrating_from_4_to_5.html">
-   Migrating plugins 4.x to 5.x
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html">
-   Future work
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html#general">
-   General
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html#specific">
-   Specific
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html#future">
-   Future
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="faq.html">
-   FAQ
-  </a>
- </li>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
     </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/codebase_orientation.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-    
-</div>
-        <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fcodebase_orientation.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/codebase_orientation.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
-
-        <!-- Launch buttons -->
-
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#directories">
-   Directories
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binder-setup-binder">
-     Binder setup:
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       binder/
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#external-deps">
-     external-deps
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#img-src">
-     img_src
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#requirements">
-     requirements
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rope-profiling">
-     rope_profiling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scripts">
-     scripts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-spyder">
-     Python package:
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       spyder/
-      </span>
-     </code>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-api">
-       Package module:
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/api
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-app">
-       Package module:
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/app
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-config">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/config
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-fonts">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/fonts
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-images">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/images
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-locale">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/locale
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-plugins">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/plugins
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-preferences">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/preferences
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-tests">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/tests
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-utils">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/utils
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-widgets">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/widgets
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-windows">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/windows
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#package-module-spyder-workers">
-       Package module :
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         spyder/workers
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-        </nav>
-    </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <div class="section" id="general-codebase-orientation">
-<h1>General Codebase Orientation<a class="headerlink" href="#general-codebase-orientation" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference external" href="https://github.com/spyder-ide/spyder">spyder-ide/spyder</a> repository contains
-code for many plugins that are versioned and published into a single package.</p>
-<p>See the <span class="xref myst">Contributing Guidelines</span> for detailed developer installation instructions.</p>
-<div class="section" id="directories">
-<h2>Directories<a class="headerlink" href="#directories" title="Permalink to this headline">¶</a></h2>
-<p>The repository contains a number of top-level directories, the contents of which
-are described here.</p>
-<div class="section" id="binder-setup-binder">
-<h3>Binder setup: <code class="docutils literal notranslate"><span class="pre">binder/</span></code><a class="headerlink" href="#binder-setup-binder" title="Permalink to this headline">¶</a></h3>
-<p>This contains an environment specification for <code class="docutils literal notranslate"><span class="pre">repo2docker</span></code> which allows
-the repository to be tested on <a class="reference external" href="https://mybinder.org%3E">mybinder.org</a></p>
-<p>This specification is developer focused.</p>
-</div>
-<div class="section" id="external-deps">
-<h3>external-deps<a class="headerlink" href="#external-deps" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="img-src">
-<h3>img_src<a class="headerlink" href="#img-src" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="requirements">
-<h3>requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="rope-profiling">
-<h3>rope_profiling<a class="headerlink" href="#rope-profiling" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="scripts">
-<h3>scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="python-package-spyder">
-<h3>Python package: <code class="docutils literal notranslate"><span class="pre">spyder/</span></code><a class="headerlink" href="#python-package-spyder" title="Permalink to this headline">¶</a></h3>
-<p>TODO:</p>
-<div class="section" id="package-module-spyder-api">
-<h4>Package module: <code class="docutils literal notranslate"><span class="pre">spyder/api</span></code><a class="headerlink" href="#package-module-spyder-api" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-app">
-<h4>Package module: <code class="docutils literal notranslate"><span class="pre">spyder/app</span></code><a class="headerlink" href="#package-module-spyder-app" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-config">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/config</span></code><a class="headerlink" href="#package-module-spyder-config" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-fonts">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/fonts</span></code><a class="headerlink" href="#package-module-spyder-fonts" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-images">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/images</span></code><a class="headerlink" href="#package-module-spyder-images" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-locale">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/locale</span></code><a class="headerlink" href="#package-module-spyder-locale" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-plugins">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/plugins</span></code><a class="headerlink" href="#package-module-spyder-plugins" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-preferences">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/preferences</span></code><a class="headerlink" href="#package-module-spyder-preferences" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-tests">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/tests</span></code><a class="headerlink" href="#package-module-spyder-tests" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-utils">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/utils</span></code><a class="headerlink" href="#package-module-spyder-utils" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-widgets">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/widgets</span></code><a class="headerlink" href="#package-module-spyder-widgets" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-windows">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/windows</span></code><a class="headerlink" href="#package-module-spyder-windows" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-<div class="section" id="package-module-spyder-workers">
-<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/workers</span></code><a class="headerlink" href="#package-module-spyder-workers" title="Permalink to this headline">¶</a></h4>
-<p>TODO:</p>
-</div>
-</div>
-</div>
-</div>
-
-
-              </div>
-              
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="new_api.html" title="previous page">The new API</a>
-    <a class='right-next' id="next-link" href="extension_developer_guide.html" title="next page">Codebase orientation</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Spyder Development Team<br/>
-        
-            &copy; Copyright 2020, Spyder Development Team.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
-    </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
 
-    <script src="_static/js/index.js"></script>
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/edit/main/codebase_orientation.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fcodebase_orientation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/codebase_orientation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>General Codebase Orientation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directories">Directories</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binder-setup-binder">Binder setup: <code class="docutils literal notranslate"><span class="pre">binder/</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-deps">external-deps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#img-src">img_src</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rope-profiling">rope_profiling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripts">scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-spyder">Python package: <code class="docutils literal notranslate"><span class="pre">spyder/</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-api">Package module: <code class="docutils literal notranslate"><span class="pre">spyder/api</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-app">Package module: <code class="docutils literal notranslate"><span class="pre">spyder/app</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-config">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-fonts">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/fonts</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-images">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/images</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-locale">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/locale</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-plugins">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/plugins</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-preferences">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/preferences</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-tests">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/tests</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-utils">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/utils</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-widgets">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/widgets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-windows">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/windows</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-workers">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/workers</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="general-codebase-orientation">
+<h1>General Codebase Orientation<a class="headerlink" href="#general-codebase-orientation" title="Link to this heading">#</a></h1>
+<p>The <a class="reference external" href="https://github.com/spyder-ide/spyder">Spyder-IDE/Spyder</a> repository contains
+code for many plugins that are versioned and published into a single package.</p>
+<p>Here we provide an overview of how Spyder’s codebase is structured in order for you to understand its API.</p>
+<section id="directories">
+<h2>Directories<a class="headerlink" href="#directories" title="Link to this heading">#</a></h2>
+<p>The repository contains a number of top-level directories, the contents of which
+are described here.</p>
+<section id="binder-setup-binder">
+<h3>Binder setup: <code class="docutils literal notranslate"><span class="pre">binder/</span></code><a class="headerlink" href="#binder-setup-binder" title="Link to this heading">#</a></h3>
+<p>This contains an environment specification for <code class="docutils literal notranslate"><span class="pre">repo2docker</span></code> which allows
+the repository to be tested on <a class="reference external" href="https://mybinder.org">mybinder.org</a></p>
+<p>This specification is developer focused.</p>
+</section>
+<section id="external-deps">
+<h3>external-deps<a class="headerlink" href="#external-deps" title="Link to this heading">#</a></h3>
+</section>
+<section id="img-src">
+<h3>img_src<a class="headerlink" href="#img-src" title="Link to this heading">#</a></h3>
+</section>
+<section id="requirements">
+<h3>requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h3>
+</section>
+<section id="rope-profiling">
+<h3>rope_profiling<a class="headerlink" href="#rope-profiling" title="Link to this heading">#</a></h3>
+</section>
+<section id="scripts">
+<h3>scripts<a class="headerlink" href="#scripts" title="Link to this heading">#</a></h3>
+</section>
+<section id="python-package-spyder">
+<h3>Python package: <code class="docutils literal notranslate"><span class="pre">spyder/</span></code><a class="headerlink" href="#python-package-spyder" title="Link to this heading">#</a></h3>
+<p>TODO:</p>
+<section id="package-module-spyder-api">
+<h4>Package module: <code class="docutils literal notranslate"><span class="pre">spyder/api</span></code><a class="headerlink" href="#package-module-spyder-api" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-app">
+<h4>Package module: <code class="docutils literal notranslate"><span class="pre">spyder/app</span></code><a class="headerlink" href="#package-module-spyder-app" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-config">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/config</span></code><a class="headerlink" href="#package-module-spyder-config" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-fonts">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/fonts</span></code><a class="headerlink" href="#package-module-spyder-fonts" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-images">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/images</span></code><a class="headerlink" href="#package-module-spyder-images" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-locale">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/locale</span></code><a class="headerlink" href="#package-module-spyder-locale" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-plugins">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/plugins</span></code><a class="headerlink" href="#package-module-spyder-plugins" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-preferences">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/preferences</span></code><a class="headerlink" href="#package-module-spyder-preferences" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-tests">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/tests</span></code><a class="headerlink" href="#package-module-spyder-tests" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-utils">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/utils</span></code><a class="headerlink" href="#package-module-spyder-utils" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-widgets">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/widgets</span></code><a class="headerlink" href="#package-module-spyder-widgets" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-windows">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/windows</span></code><a class="headerlink" href="#package-module-spyder-windows" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+<section id="package-module-spyder-workers">
+<h4>Package module : <code class="docutils literal notranslate"><span class="pre">spyder/workers</span></code><a class="headerlink" href="#package-module-spyder-workers" title="Link to this heading">#</a></h4>
+<p>TODO:</p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="terminology.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Terminology</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="api_elements.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API elements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directories">Directories</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binder-setup-binder">Binder setup: <code class="docutils literal notranslate"><span class="pre">binder/</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-deps">external-deps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#img-src">img_src</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rope-profiling">rope_profiling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripts">scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-spyder">Python package: <code class="docutils literal notranslate"><span class="pre">spyder/</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-api">Package module: <code class="docutils literal notranslate"><span class="pre">spyder/api</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-app">Package module: <code class="docutils literal notranslate"><span class="pre">spyder/app</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-config">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-fonts">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/fonts</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-images">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/images</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-locale">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/locale</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-plugins">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/plugins</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-preferences">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/preferences</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-tests">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/tests</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-utils">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/utils</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-widgets">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/widgets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-windows">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/windows</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#package-module-spyder-workers">Package module : <code class="docutils literal notranslate"><span class="pre">spyder/workers</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2024 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

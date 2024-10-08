@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contributing to Spyder &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=47b62374"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'introduction';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Terminology" href="terminology.html" />
+    <link rel="prev" title="Welcome to Spyder’s Developer Documentation" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/edit/main/introduction.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fintroduction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/introduction.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contributing to Spyder</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-contribution">First contribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-and-fork-the-repository">Clone and Fork the repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-conda-environment-or-virtualenv">Create a conda environment or virtualenv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-dependencies">Installing dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-spyder">Running Spyder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-your-changes">Commit your changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-pr">Opening a PR</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-to-contribute">Other ways to contribute</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-testing-and-triaging">Issue testing and triaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-prs">Reviewing PRs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#translations-crowdin">Translations: Crowdin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-documentation">Improving documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#participating-in-the-community">Participating in the community</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="contributing-to-spyder">
+<h1>Contributing to Spyder<a class="headerlink" href="#contributing-to-spyder" title="Link to this heading">#</a></h1>
+<p>This section will help you to set up an environment for contributing to Spyder as well as creating third party Spyder Plugins.</p>
+<section id="first-contribution">
+<h2>First contribution<a class="headerlink" href="#first-contribution" title="Link to this heading">#</a></h2>
+<p>If this is your first time contributing to Spyder or in general to open source we invite you to watch the video below which will guide you with the main steps with doing your first contribution.</p>
+<div class="video-container-container"><div class="video-container"><iframe src="https://www.youtube.com/embed/GizipMT1LvQ?start=0" width="640" height="360" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen class="align-left"></iframe></div></div><p>For a detailed explanation, follow the instructions below.</p>
+<section id="clone-and-fork-the-repository">
+<h3>Clone and Fork the repository<a class="headerlink" href="#clone-and-fork-the-repository" title="Link to this heading">#</a></h3>
+<p>The first thing you need to do fork Spyder’s repository. To do this, log into your account on GitHub and click the “Fork” button at the top left of the project’s page. This will create a copy of the repository in your own account.</p>
+<p><img alt="fork.png" src="_images/fork.png" /></p>
+<p>Then, click the <code class="docutils literal notranslate"><span class="pre">Clone</span> <span class="pre">or</span> <span class="pre">Download</span></code> button on your repository and copy the link.</p>
+<p><img alt="fork.png" src="_images/fork.png" /></p>
+<p>After that, run the following on the command line (or Git Bash, if you’ve installed Git for Windows) to clone the repo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;LINK-TO-YOUR-REPO&gt;
+</pre></div>
+</div>
+<p>Set the upstream remote to the official Spyder repo with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/spyder-ide/spyder.git
+</pre></div>
+</div>
+<p>This will allow you to keep your local repo up to date with the latest changes in Spyder.</p>
+<p>For a beginner guide on using Git, check the link below:</p>
+<p><a class="reference external" href="https://rogerdudler.github.io/git-guide">https://rogerdudler.github.io/git-guide</a></p>
+</section>
+<section id="create-a-conda-environment-or-virtualenv">
+<h3>Create a conda environment or virtualenv<a class="headerlink" href="#create-a-conda-environment-or-virtualenv" title="Link to this heading">#</a></h3>
+<p>If you use Anaconda you can create a conda environment with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>spyder-dev<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>
+conda<span class="w"> </span>activate<span class="w"> </span>spyder-dev
+</pre></div>
+</div>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> on Linux, but <code class="docutils literal notranslate"><span class="pre">conda</span></code> is <strong>strongly</strong> recommended:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkvirtualenv<span class="w"> </span>spyder-dev
+workon<span class="w"> </span>spyder-dev
+</pre></div>
+</div>
+</section>
+<section id="installing-dependencies">
+<h3>Installing dependencies<a class="headerlink" href="#installing-dependencies" title="Link to this heading">#</a></h3>
+<p>After you have created your development environment, you need to install Spyder’s necessary dependencies. The easiest way to do so (with Anaconda) is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>spyder-ide/label/dev<span class="w"> </span>--file<span class="w"> </span>requirements/conda.txt
+</pre></div>
+</div>
+<p>This installs all Spyder’s dependencies into the environment.
+If you are running on macOS, you will also need to install <code class="docutils literal notranslate"><span class="pre">python.app</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>python.app
+</pre></div>
+</div>
+<p>If using <code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> (not recommended), you need to <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where your git clone is stored and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="running-spyder">
+<h3>Running Spyder<a class="headerlink" href="#running-spyder" title="Link to this heading">#</a></h3>
+<p>To start Spyder directly from your clone, i.e. without installing it into your environment, you need to run (from the directory you cloned it to e.g. <code class="docutils literal notranslate"><span class="pre">spyder</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bootstrap.py
+</pre></div>
+</div>
+<p>Note that if you are running on macOS, you will need to call <code class="docutils literal notranslate"><span class="pre">pythonw</span></code> instead of <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p>
+<p>To start Spyder in debug mode, useful for tracking down an issue, you can run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bootstrap.py<span class="w"> </span>--debug
+</pre></div>
+</div>
+</section>
+<section id="commit-your-changes">
+<h3>Commit your changes<a class="headerlink" href="#commit-your-changes" title="Link to this heading">#</a></h3>
+<p>Once you make your changes to the repository,
+you have to create a branch for your work.</p>
+<p><strong>NOTE</strong>
+If your change is small, like a bug fix or minor UI improvement, you should make it to the branch for the current version of Spyder, in this case “5.x”, instead of master. You need to base your new branch on the correct Spyder branch in order to avoid conflicts.</p>
+<p>Here, we will explain how to do it with 5.x.</p>
+<p>Run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span><span class="m">5</span>.x
+</pre></div>
+</div>
+<p>Make sure to reset the Spyder configuration file when switching between master and 5.x by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bootstrap.py<span class="w"> </span>--<span class="w"> </span>--reset
+</pre></div>
+</div>
+<p>Next, create your branch from this one. Remember to give your branch a name that is related to your fix. For this, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="o">[</span>BRANCH-NAME<span class="o">]</span>
+</pre></div>
+</div>
+<p>Add and commit your changes with a descriptive message.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span>“<span class="o">[</span>MESSAGE<span class="o">]</span>”
+</pre></div>
+</div>
+<p>Finally, push your new branch with your changes to your fork on GitHub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>pythonpath-tooltip
+</pre></div>
+</div>
+<p>Enter your GitHub username and password if requested.</p>
+</section>
+<section id="opening-a-pr">
+<h3>Opening a PR<a class="headerlink" href="#opening-a-pr" title="Link to this heading">#</a></h3>
+<p>Now, you can submit your changes to Spyder’s repo.</p>
+<p>Go to the Spyder repository on GitHub, and you will see the option to open a Pull Request. Before submitting it, make sure that you read the template.</p>
+<p><img alt="fork.png" src="_images/PR.png" /></p>
+<p>Make sure that you select the correct branch to merge your changes.</p>
+</section>
+</section>
+<section id="other-ways-to-contribute">
+<h2>Other ways to contribute<a class="headerlink" href="#other-ways-to-contribute" title="Link to this heading">#</a></h2>
+<p>If you don’t feel comfortable with starting with a code contribution, there are other ways in which you can help. Here are some of them:</p>
+<section id="issue-testing-and-triaging">
+<h3>Issue testing and triaging<a class="headerlink" href="#issue-testing-and-triaging" title="Link to this heading">#</a></h3>
+<p>Go to our <a class="reference external" href="https://github.com/spyder-ide/spyder/issues">issue tracker</a> and do one of the following:</p>
+<ul class="simple">
+<li><p>Check if older bugs are still present</p></li>
+<li><p>Find duplicate issues and link related ones</p></li>
+<li><p>Label issues correctly</p></li>
+</ul>
+</section>
+<section id="reviewing-prs">
+<h3>Reviewing PRs<a class="headerlink" href="#reviewing-prs" title="Link to this heading">#</a></h3>
+<p>Visit our <a class="reference external" href="https://github.com/spyder-ide/spyder/pulls">Pull Requests</a> and:</p>
+<ul class="simple">
+<li><p>Test the changes proposed in the PR</p></li>
+<li><p>Review the style and content of the PR</p></li>
+</ul>
+</section>
+<section id="translations-crowdin">
+<h3>Translations: Crowdin<a class="headerlink" href="#translations-crowdin" title="Link to this heading">#</a></h3>
+<p>We welcome your help translating Spyder’s interface into different languages. For this purpose we use <a class="reference external" href="https://crowdin.com/project/spyder">Crowdin</a>, which provides a simple web based interface for translators, proofreaders and managers, so everyone can help us translate Spyder into any language.</p>
+</section>
+<section id="improving-documentation">
+<h3>Improving documentation<a class="headerlink" href="#improving-documentation" title="Link to this heading">#</a></h3>
+<p>We also have a <a class="reference external" href="https://github.com/spyder-ide/spyder-docs">docs repository</a> to which you can also contribute in several ways:</p>
+<ul class="simple">
+<li><p>Read tutorials and report confusing parts or missing parts.</p></li>
+<li><p>Finding type-os or minor errors and report them as issues.</p></li>
+<li><p>Write your own content if you see something missing.</p></li>
+</ul>
+</section>
+<section id="participating-in-the-community">
+<h3>Participating in the community<a class="headerlink" href="#participating-in-the-community" title="Link to this heading">#</a></h3>
+<p>We invite you to be an active member of our community by:</p>
+<ul class="simple">
+<li><p>Following our social media</p></li>
+<li><p>Sharing relevant content</p></li>
+<li><p>Participating in discussions</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Spyder’s Developer Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="terminology.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Terminology</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-contribution">First contribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-and-fork-the-repository">Clone and Fork the repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-conda-environment-or-virtualenv">Create a conda environment or virtualenv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-dependencies">Installing dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-spyder">Running Spyder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-your-changes">Commit your changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-pr">Opening a PR</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-to-contribute">Other ways to contribute</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-testing-and-triaging">Issue testing and triaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-prs">Reviewing PRs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#translations-crowdin">Translations: Crowdin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-documentation">Improving documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#participating-in-the-community">Participating in the community</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2024 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

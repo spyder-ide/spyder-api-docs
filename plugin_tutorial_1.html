@@ -1,362 +1,437 @@
 
-
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tutorial: Our first Spyder plugin &#8212; Spyder API docs 5 documentation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Our first Spyder plugin &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=47b62374"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'plugin_tutorial_1';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial: Adding more widgets" href="plugin_tutorial_2.html" />
-    <link rel="prev" title="Tutorials" href="plugin_tutorials.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <link rel="next" title="Plugin Development with Spyder" href="plugin_development.html" />
+    <link rel="prev" title="Using Cookiecutter" href="plugin_cookiecutter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
   
   
-  <h1 class="site-logo" id="site-title">Spyder API docs 5 documentation</h1>
   
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
 </a>
-</div>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/edit/main/plugin_tutorial_1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form>
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fplugin_tutorial_1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <p class="caption">
- <span class="caption-text">
-  Contents
- </span>
-</p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="new_api.html">
-   New API
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="codebase_orientation.html">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extension_developer_guide.html">
-   Plugins Guide
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="common_extension_points.html">
-   Extension Points
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="design_patterns.html">
-   Design Patterns
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="terminology.html">
-   Terminology
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="development_environment.html">
-   Development Environment
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="plugin_tutorials.html">
-   Tutorials
-  </a>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Our first Spyder plugin
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plugin_tutorial_2.html">
-     Adding more widgets
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plugin_tutorial_3.html">
-     Adding a new Pane
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plugin_tutorial_4.html">
-     Adding a new Project Type
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plugin_cookiecutter.html">
-     Using a Cookiecutter
-    </a>
-   </li>
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="migrating_from_4_to_5.html">
-   Migrating plugins 4.x to 5.x
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html">
-   Future work
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html#general">
-   General
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html#specific">
-   Specific
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="future_work.html#future">
-   Future
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="faq.html">
-   FAQ
-  </a>
- </li>
-</ul>
-
-</nav>
-
- <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
 
-    
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/plugin_tutorial_1.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-    
-</div>
-        <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/spyder-ide/spyder-api-docs"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2Fplugin_tutorial_1.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/spyder-ide/spyder-api-docs/edit/master/plugin_tutorial_1.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/plugin_tutorial_1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
 
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
+</div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Our first Spyder plugin</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-we-will-learn">
-   What we will learn
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#set-the-development-environment">
-   Set the development environment
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conda-the-recommended-way">
-     Conda (the recommended way)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-the-plugin-basic-structure">
-   Create the plugin basic structure
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#init-py">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       __init__.py
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plugin-py">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       plugin.py
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup-py">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       setup.py
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-plugin-action">
-   Creating a Plugin action
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assigning-a-shortcut">
-   Assigning a shortcut
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-it-to-an-application-menu">
-   Adding it to an application menu
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#final-result">
-   Final result
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-we-covered">
-   What we covered
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#next-steps">
-   Next steps
-  </a>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-will-learn">What we will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-development-environment">Set the development environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-the-recommended-way">Conda (the recommended way)</a></li>
 </ul>
-
-        </nav>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-plugin-basic-structure">Create the plugin basic structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init-py"><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-py"><code class="docutils literal notranslate"><span class="pre">plugin.py</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-plugin-action">Creating a Plugin action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-a-shortcut">Assigning a shortcut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-it-to-an-application-menu">Adding it to an application menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-result">Final result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-covered">What we covered</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="tutorial-our-first-spyder-plugin">
-<h1>Tutorial: Our first Spyder plugin<a class="headerlink" href="#tutorial-our-first-spyder-plugin" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="what-we-will-learn">
-<h2>What we will learn<a class="headerlink" href="#what-we-will-learn" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="our-first-spyder-plugin">
+<h1>Our first Spyder plugin<a class="headerlink" href="#our-first-spyder-plugin" title="Link to this heading">#</a></h1>
+<section id="what-we-will-learn">
+<h2>What we will learn<a class="headerlink" href="#what-we-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Setting the development environment.</p></li>
 <li><p>Create the basic structure of a plugin.</p></li>
 <li><p>Create a new action to open a link in youtube.</p></li>
 <li><p>Set a shortcut for our new action.</p></li>
 <li><p>Add the newly created action to an application menu.</p></li>
 </ol>
-</div>
-<div class="section" id="set-the-development-environment">
-<h2>Set the development environment<a class="headerlink" href="#set-the-development-environment" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="conda-the-recommended-way">
-<h3>Conda (the recommended way)<a class="headerlink" href="#conda-the-recommended-way" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
-<p class="sidebar-title"><strong>More information</strong></p>
-<p>(TODO: Link to conda environments.)
+</section>
+<section id="set-the-development-environment">
+<h2>Set the development environment<a class="headerlink" href="#set-the-development-environment" title="Link to this heading">#</a></h2>
+<section id="conda-the-recommended-way">
+<h3>Conda (the recommended way)<a class="headerlink" href="#conda-the-recommended-way" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>More information</strong>
+(TODO: Link to conda environments.)
 (TODO: Link to python environments.)</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name spyder-plugin <span class="s2">&quot;python=3.8&quot;</span> <span class="s2">&quot;spyder=5&quot;</span> --channel conda-forge --yes --quiet
-conda activate spyder-plugin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>spyder-plugin<span class="w"> </span><span class="s2">&quot;python=3.8&quot;</span><span class="w"> </span><span class="s2">&quot;spyder=5&quot;</span><span class="w"> </span>--channel<span class="w"> </span>conda-forge<span class="w"> </span>--yes<span class="w"> </span>--quiet
+conda<span class="w"> </span>activate<span class="w"> </span>spyder-plugin
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -365,29 +440,30 @@ conda activate spyder-plugin
 Here is <a class="reference external" href="https://jupyter.org">markdown link syntax</a></p>
 </div>
 <p>Conda/Pip</p>
-</div>
-</div>
-<div class="section" id="create-the-plugin-basic-structure">
-<h2>Create the plugin basic structure<a class="headerlink" href="#create-the-plugin-basic-structure" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="create-the-plugin-basic-structure">
+<h2>Create the plugin basic structure<a class="headerlink" href="#create-the-plugin-basic-structure" title="Link to this heading">#</a></h2>
 <p>Let’s create a new folder where the code for our plugin will live.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>my-spyder-plugin
 │
-├── my_spyder_plugin
-│   │
-│   ├── __init__.py
-│   │
-│   └── plugin.py
+├──<span class="w"> </span>my_spyder_plugin
+│<span class="w">   </span>│
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>│
+│<span class="w">   </span>└──<span class="w"> </span>plugin.py
 │
-└── setup.py
+└──<span class="w"> </span>setup.py
 </pre></div>
 </div>
-<div class="section" id="init-py">
-<h3><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code><a class="headerlink" href="#init-py" title="Permalink to this headline">¶</a></h3>
+<section id="init-py">
+<h3><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code><a class="headerlink" href="#init-py" title="Link to this heading">#</a></h3>
 <p>Spyder plugins are Python installable packages, so we need to define some
 information. For now we just need to add a version string for our package.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"><strong>More information</strong></p>
-<p>(TODO: Link to semantic versioning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>More information</strong>
+(TODO: Link to semantic versioning.</p>
 </div>
 <p>We recommend using semantic versioning. This basically means a version is
 divided in <code class="docutils literal notranslate"><span class="pre">&quot;Major.Minor.Patch&quot;</span></code> components where:</p>
@@ -397,20 +473,21 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 <li><p><strong>Patch</strong>: TODO:</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/__init__.py</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/__init__.py</span></code></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="plugin-py">
-<h3><code class="docutils literal notranslate"><span class="pre">plugin.py</span></code><a class="headerlink" href="#plugin-py" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
-<p class="sidebar-title"><strong>More information</strong></p>
-<p>(On plugins and on icons)</p>
+</section>
+<section id="plugin-py">
+<h3><code class="docutils literal notranslate"><span class="pre">plugin.py</span></code><a class="headerlink" href="#plugin-py" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>More information</strong>
+(On plugins and on icons)</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
 <span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">SpyderPluginV2</span>
 
@@ -439,15 +516,16 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="setup-py">
-<h3><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
-<p class="sidebar-title"><strong>More information</strong></p>
-<p>(TODO: Link to semantic python packaging for more info if interested)</p>
+</section>
+<section id="setup-py">
+<h3><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#setup-py" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>More information</strong>
+(TODO: Link to semantic python packaging for more info if interested)</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/setup.py</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/setup.py</span></code></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
 <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">find_packages</span><span class="p">,</span> <span class="n">setup</span>
 
@@ -467,13 +545,13 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="creating-a-plugin-action">
-<h2>Creating a Plugin action<a class="headerlink" href="#creating-a-plugin-action" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="creating-a-plugin-action">
+<h2>Creating a Plugin action<a class="headerlink" href="#creating-a-plugin-action" title="Link to this heading">#</a></h2>
 <p>TODO:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="hll">      <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
 </span><span class="hll">         <span class="s2">&quot;print_message_name&quot;</span><span class="p">,</span>
@@ -485,19 +563,19 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="assigning-a-shortcut">
-<h2>Assigning a shortcut<a class="headerlink" href="#assigning-a-shortcut" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="assigning-a-shortcut">
+<h2>Assigning a shortcut<a class="headerlink" href="#assigning-a-shortcut" title="Link to this heading">#</a></h2>
 <p>TODO:</p>
-</div>
-<div class="section" id="adding-it-to-an-application-menu">
-<h2>Adding it to an application menu<a class="headerlink" href="#adding-it-to-an-application-menu" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="adding-it-to-an-application-menu">
+<h2>Adding it to an application menu<a class="headerlink" href="#adding-it-to-an-application-menu" title="Link to this heading">#</a></h2>
 <p>TODO:</p>
-</div>
-<div class="section" id="final-result">
-<h2>Final result<a class="headerlink" href="#final-result" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="final-result">
+<h2>Final result<a class="headerlink" href="#final-result" title="Link to this heading">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">my-spyder-plugin/my_spyder_plugin/plugin.py</span></code></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third party imports</span>
 <span class="kn">from</span> <span class="nn">spyder.api.plugins</span> <span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
 <span class="kn">from</span> <span class="nn">spyder.plugins.core.api</span> <span class="kn">import</span> <span class="n">ApplicationMenus</span><span class="p">,</span> <span class="n">HelpMenuSections</span>
@@ -546,47 +624,131 @@ divided in <code class="docutils literal notranslate"><span class="pre">&quot;Ma
 </div>
 </div>
 <p>TODO: Add screenshot or wireframe image</p>
-</div>
-<div class="section" id="what-we-covered">
-<h2>What we covered<a class="headerlink" href="#what-we-covered" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-we-covered">
+<h2>What we covered<a class="headerlink" href="#what-we-covered" title="Link to this heading">#</a></h2>
 <p>TODO:</p>
-</div>
-<div class="section" id="next-steps">
-<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <p>TODO:</p>
-</div>
-</div>
+</section>
+</section>
 
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="plugin_tutorials.html" title="previous page">Tutorials</a>
-    <a class='right-next' id="next-link" href="plugin_tutorial_2.html" title="next page">Tutorial: Adding more widgets</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Spyder Development Team<br/>
-        
-            &copy; Copyright 2020, Spyder Development Team.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plugin_cookiecutter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Cookiecutter</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="plugin_development.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Plugin Development with Spyder</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-    <script src="_static/js/index.js"></script>
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-will-learn">What we will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-development-environment">Set the development environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-the-recommended-way">Conda (the recommended way)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-plugin-basic-structure">Create the plugin basic structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init-py"><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-py"><code class="docutils literal notranslate"><span class="pre">plugin.py</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-plugin-action">Creating a Plugin action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-a-shortcut">Assigning a shortcut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-it-to-an-application-menu">Adding it to an application menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-result">Final result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-covered">What we covered</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2024 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
