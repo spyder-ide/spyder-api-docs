@@ -117,7 +117,7 @@ It is a plugin that does not create a new dock widget on Spyder's main window. I
 What will we do?
 ================
 
-So far, we have reviewed the concepts necessary to create your first plugin. In this section, first, we explain the Pomodoro technique that will be implemented for time management in the plugin. Second, we describe the steps to develop the plugin. Finally, we present the main features that will be display in Spyder once the plugin is developed and published.
+So far, we have reviewed the concepts necessary to create your first plugin. In this section, first, we explain the Pomodoro technique that will be implemented for time management in the plugin. Second, we describe the steps to develop the plugin. Finally, we present the main features that will be displayed in Spyder once the plugin is developed and published.
 
 Pomodoro Technique
 ~~~~~~~~~~~~~~~~~~
@@ -151,30 +151,31 @@ These are the general steps that we will follow throughout this tutorial:
 Features
 ~~~~~~~~
 
-Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin. Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented. As figures XX and YY show, there will be features in the toolbar, status bar, and in the preferences window. An explanation of each feature is provided below.
+Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin. Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented. As figures 1 and 2 show, there will be features in the toolbar, status bar, and the preferences window. An explanation of each feature is provided below. 
 
 .. figure:: images/workshop-3/pd_spyder_wireframe.png
-   :alt: Location of Spyder Pomodoro Timer widgets in Spyder.
+   :alt: figure1
 
-   Location of Spyder Pomodoro Timer widgets in Spyder.
+   Fig.1 Location of Spyder Pomodoro Timer widgets in Spyder.
 
 .. figure:: images/workshop-3/pd_preferences_wireframe.png
-   :alt: Spyder Pomodoro Timer in the preferences window.
+   :alt: figure2
 
-   Spyder Pomodoro Timer in the preferences window.
+   Fig.2 Spyder Pomodoro Timer in the preferences window.
 
 * Pomodoro Timer
 
-  - Status bar widget: to display the time of the current pomodoro interval.
-  - State: we have three activity states: *pomodoro*, *short-break* and *long-break*. We can show a message (with `QMessageBox`_) to indicate to users that it is time to take a break.
-  - Interactions: the user could use Start, Stop and Reset buttons to handle the Pomodoro Timer. This can be implemented by adding instances of `QAction`_ in a toolbar menu.
+  - Status bar widget. Used to display the time of the current pomodoro interval.
+  - State. We have three activity states: *pomodoro*, *short-break* and *long-break*. We can show a message (with `QMessageBox`_) to indicate to users that it is time to take a break.
+  - Interactions. The user could use Start, Stop and Reset buttons to operate the Pomodoro Timer. This could be implemented by adding instances of `QAction`_ in a toolbar menu.
+  - Preferences. An option will be implemented in the preferences windows to set the time limits of the pomodoro timer.
 
 * Tasks Logger
-  - Counter: We need a variable to count the number of completed pomodoros.
+  - Counter. A variable is needed to count the number of completed pomodoros.
 
 * Notifications
 
-  - Dialog: Every time a pomodoro or break interval is completed, a message should appear to tell the user to start working on a task or take a break.
+  - Dialog. Each time a pomodoro or break interval is completed, a message should appear to tell the user to start working on a task or take a break.
 
   When working on a plugin for any system, we must check the data structures and functions available in that system that can facilitate our development.
   This involves spending considerable time understanding its inner workings.
@@ -187,18 +188,22 @@ Up to this point, we are clear on the concepts related to the Pomodoro Technique
 .. _QMessageBox: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMessageBox.html
 
 
-================================
-Set up a development environment
-================================
+=======================
+Development environment
+=======================
 
-In principle, we could use any Spyder installed within a `conda environment`_ according to the instructions given in the `installation guide`_.
+This section describes two main tasks for plugin development: setting up the development environment and creating a repository to manage code changes and its versions.
 
-However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, it is recommended to create a new environment which only has Spyder with the minimum dependencies needed for your plugin.
+Setting up the development environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In principle, we could use any Spyder installed within a `conda environment`_ according to the instructions given in the `installation guide`_. However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, it is recommended to create a new virtual environment that only has Spyder with the minimum dependencies needed for your plugin.
 
 .. image:: images/workshop-3/pd_dev_environment.png
    :alt: Spyder development environment.
 
-We can install it in the following way:
+
+We can install it in the following way.
 
 .. code-block:: bash
 
@@ -212,8 +217,8 @@ We can install it in the following way:
 
    * `Anaconda Individual Edition`_ is a Python distribution for data science and machine learning to be used in a single machine.
    * `Conda`_ is an Anaconda tool that manages virtual environments and their packages.
-   * Conda can work with *channels* that allow the use of packages that are not part of the official distribution. The most important channel is `conda-forge`_, where a more extensive and updated list of packages than those offered by Anaconda Individual Edition are maintained.
-   * Finally, `mamba`_, is an optimized implementation of conda's package management features, that resolves dependencies and installs packages much faster than conda.
+   * Conda can work with *channels* that allow the use of packages that are not part of the official distribution. The most important channel is `conda-forge`_, where a more extensive and updated list of packages is maintained than those offered by Anaconda Individual Edition.
+   * Finally, `mamba`_, is an optimized implementation of conda's package management features, which resolves dependencies and installs packages much faster than conda.
 
 .. _conda environment: https://conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
 .. _installation guide: https://docs.spyder-ide.org/5/installation.html
@@ -223,10 +228,8 @@ We can install it in the following way:
 .. _mamba: https://github.com/mamba-org/mamba
 
 
-
-===================
-Create a repository
-===================
+Creating a repository
+~~~~~~~~~~~~~~~~~~~~~~
 
 Now that we have our local virtual environment, it is good practice to manage our source code with a version control system, and the most widely used web service for this purpose is currently Github. Here you can find, for example, the Spyder and Python repositories.
 
@@ -239,16 +242,14 @@ To create a git repository on Github, we need to follow these steps:
 #. Click on the "New repository" option in the "+" menu at the top right next to your profile picture.
 #. A dialog will appear where you can insert the repository name and some basic options, e.g. to initialize the repository with a README or license files.
 #. Click the “Create repository” button.
-#. In the main window of the recently created repository, click on the green "Code" button an copy the clone link.
-#. In your local command line run ``$ git clone [repo-link]``. You must have git installed and configured on your computer. If you don't have experience using git we recommend The Carpentries workshop `Version control with git`_.
+#. In the main window of the newly created repository, click on the green "Code" button an copy the clone link.
+#. On your local command line run ``$ git clone [repo-link]``. You must have git installed and configured on your computer. If you have no experience using git we recommend The Carpentries workshop `Version control with git`_.
 
-A detailed description of `repository creation`_ could be found in the official Github documentation, and a `hello world`_ tutorial with basic git operations from the Github interface.
+You can find a detailed description of `creating repositories`_ in the official Github documentation, and a `hello world`_ tutorial with basic git operations from the Github interface.
 
 .. _Version control with git: https://swcarpentry.github.io/git-novice/
-.. _repository creation: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
+.. _creating repositories: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
 .. _hello world: https://docs.github.com/en/get-started/start-your-journey/hello-world
-
-
 
 =================
 Let's get started
