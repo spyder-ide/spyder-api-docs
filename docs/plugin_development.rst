@@ -10,7 +10,7 @@ This tutorial aims to describe the features and possibilities of the API offered
 Prerequisites
 =============
 
-You will need to have Spyder installed. Visit our :ref:`spyder:install-guide` for more information.
+You will need to have Spyder 5 installed. Visit our :ref:`spyder:install-guide` for more information.
 
 .. important::
 
@@ -251,28 +251,25 @@ You can find a detailed description of `creating repositories`_ in the official 
 .. _creating repositories: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
 .. _hello world: https://docs.github.com/en/get-started/start-your-journey/hello-world
 
-=================
-Let's get started
-=================
+=============================
+Defining the plugin structure
+=============================
 
-We already have a git repository and a virtual environment where Spyder 5 is installed.
-
-Let's activate our environment and go into the local folder of our repository.
+We already have a git repository and a virtual environment where Spyder 5 is installed. Let's activate our environment and go into the local folder of our repository.
 
 .. code-block:: shell
 
    mamba activate spyder-dev
    cd /path/to/your/repository
 
-Then we need to use ``cookiecutter`` to create the initial structure of our plugin. `cookiecutter`_ is a tool made in Python specifically designed to create project templates.
-We have developed one of these templates to generate the basic structure of a plugin, it can be found at: https://github.com/spyder-ide/spyder5-plugin-cookiecutter
+Then we need to use ``cookiecutter`` to create the initial structure of our plugin. `cookiecutter`_ is a tool made in Python specifically designed to create project templates. We have developed one of these templates to generate the basic structure of a plugin, it can be found at: https://github.com/spyder-ide/spyder5-plugin-cookiecutter.
 
 .. _cookiecutter: https://cookiecutter.readthedocs.io
 
 .. image:: images/workshop-3/pd_plugin_structure.png
    :alt: Folder structure of our plugin.
 
-Let's run cookiecutter to generate our
+Let's run cookiecutter to generate our plugin structure.
 
 .. code-block:: shell
 
@@ -300,14 +297,9 @@ Let's run cookiecutter to generate our
    6 - Not open source
    Choose from 1, 2, 3, 4, 5, 6 [1]: 1
 
+After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository.
 
-The plugin structure
-~~~~~~~~~~~~~~~~~~~~
-
-
-After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository
-
-.. code-block:: bash
+.. code-block:: text
 
    .
    ├── [Some info files]
@@ -331,8 +323,8 @@ In the root folder you'll find two important files:
 
 * The Makefile, which has several useful commands:
 
-.. code-block:: bash
-
+.. code-block:: text
+   
    clean                remove all build, test, coverage and Python artifacts
    clean-build          remove build artifacts
    clean-pyc            remove Python file artifacts
@@ -344,31 +336,27 @@ In the root folder you'll find two important files:
    dist                 builds source and wheel package
    install              install the package to the active Python's site-packages
    develop              install the package to the active Python's site-packages
+   
 
+* ``setup.py``. It helps you install, package and distribute your plugin with ``setuptools``, the standard for distributing Python Modules.
+  In this file the ``entry_points`` parameter of ``setup`` is quite important, as it is what allows Spyder to identify this package as a plugin, and know how to access its functionalities.
 
-* ``setup.py``, which helps you to install, package and distribute your plugin with ``setuptools``, the standard for distributing Python Modules.
-  On this file the ``entry_points`` parameter of ``setup`` is quite important, as it is the one that allows Spyder to identify this package as a plugin, and to know how to access its functionalities.
+The ``spyder-pomodoro-timer`` folder has the same name you entered when you ran ``cookiecutter``. Inside it you will see a folder called ``spyder``, where we will place the code of our plugin.
 
+In the ``spyder`` directory you'll find the following files.
 
+* ``api.py``. Exposes the functionality of the plugin to the rest of Spyder. That would allow adding additional functionality from other plugins.
 
-The ``spyder-pomodoro-timer`` folder has the name you introduced when running ``cookiecutter``. Inside this you'll see a folder called ``spyder``, where we will place the code of our plugin.
-
-In the ``spyder`` directory you'll find the following files:
-
-* ``api.py``: where the functionality of the plugin is exposed to the rest of Spyder. That would allow additional functionality to be added from other plugins.
-
-* ``plugin.py``: is the core of the plugin. Depending on the type of plugin we created, here you'll see an instance of ``SpyderDockablePlugin`` or ``SpyderPluginV2``.
+* ``plugin.py``. This is the core of the plugin. Depending on the type of plugin created, you will see an instance of either ``SpyderDockablePlugin`` or ``SpyderPluginV2``.
 
   * If it is a ``SpyderPluginV2`` you should set a constant class named ``CONTAINER_CLASS`` with an instance of ``PluginMainContainer``.
   * If it is a ``SpyderDockablePlugin`` you should set a constant class named ``WIDGET_CLASS`` with an instance of ``PluginMainWidget``.
 
-* ``container.py``: only used for ``SpyderPluginV2`` plugins. This file contains an instance of ``PluginMainContainer`` that holds a reference to all graphical elements (or widgets) that the plugin is going to add to the interface. This is necessary because Qt requires widgets to be children of other widgets before using them (otherwise they appear as floating windows). Since ``SpyderPluginV2`` is not a widget, we need a data structure (i.e. the container) that is a widget for that.
+* ``container.py``. It is only used for ``SpyderPluginV2`` plugins. This file contains an instance of ``PluginMainContainer`` which contains a reference to all graphical elements (or widgets) that the plugin will add to the interface. This is necessary because Qt requires widgets to be children of other widgets before using them (otherwise they appear as floating windows). Since ``SpyderPluginV2`` is not a widget, we need a data structure (i.e. the container) that is a widget for it.
 
-* ``widgets.py``: in this file we will add the graphical components of our plugin. If it is of type ``SpyderPluginV2`` and it does not have widgets, then it is not necessary.
-  We can also place here the instance of ``PluginMainWidget`` necessary for ``SpyderDockablePlugin``, if we are developing that kind of plugin.
+* ``widgets.py``. Contains the graphical components of our plugin. If the plugin is of type ``SpyderPluginV2`` and it does not have widgets, then it is not needed. If the plugin is of type ``SpyderDockablePlugin``, we can  place here the instance of ``PluginMainWidget`` needed for it.
 
-* ``confpage.py``: this is where you specify the configuration page that will be displayed in ``Preferences``, so that the user can adjust the options of our plugin.
-
+* ``confpage.py``. It includes the specific configuration page that will be displayed in ``Preferences``, so that the user can adjust the options of our plugin.
 
 
 =========================
