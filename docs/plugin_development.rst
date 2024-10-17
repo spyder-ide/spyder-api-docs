@@ -151,7 +151,7 @@ These are the general steps that we will follow throughout this tutorial:
 Features
 ~~~~~~~~
 
-Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin. Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented. As figures 1 and 2 show, there will be features in the toolbar, status bar, and the preferences window. An explanation of each feature is provided below. 
+Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin. Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented. As figures 1 and 2 show, there will be features in the toolbar, status bar, and the preferences window. An explanation of each feature is provided below.
 
 .. figure:: images/workshop-3/pd_spyder_wireframe.png
    :alt: figure1
@@ -324,7 +324,7 @@ In the root folder you'll find two important files:
 * The Makefile, which has several useful commands:
 
 .. code-block:: text
-   
+
    clean                remove all build, test, coverage and Python artifacts
    clean-build          remove build artifacts
    clean-pyc            remove Python file artifacts
@@ -336,7 +336,7 @@ In the root folder you'll find two important files:
    dist                 builds source and wheel package
    install              install the package to the active Python's site-packages
    develop              install the package to the active Python's site-packages
-   
+
 
 * ``setup.py``. It helps you install, package and distribute your plugin with ``setuptools``, the standard for distributing Python Modules.
   In this file the ``entry_points`` parameter of ``setup`` is quite important, as it is what allows Spyder to identify this package as a plugin, and know how to access its functionalities.
