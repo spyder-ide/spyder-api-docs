@@ -9,7 +9,7 @@
 [![Build](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/build.yaml/badge.svg)](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/build.yaml)
 [![Check](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/check.yaml/badge.svg)](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/check.yaml)
 [![Lint](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/lint.yaml/badge.svg)](https://github.com/spyder-ide/spyder-api-docs/actions/workflows/lint.yaml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/_FIXME_NETLIFY_PROJECT_ID/deploy-status)](https://app.netlify.com/sites/spyder-api-docs-preview/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e8229c2b-a95c-4bac-876d-61cd286c62e8/deploy-status)](https://app.netlify.com/sites/spyder-api-docs-preview/deploys)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Nox](https://img.shields.io/badge/%F0%9F%A6%8A-Nox-D85E00.svg)](https://github.com/wntrblm/nox)
 [![OpenCollective Backers](https://opencollective.com/spyder/backers/badge.svg?color=blue)](https://opencollective.com/spyder)
