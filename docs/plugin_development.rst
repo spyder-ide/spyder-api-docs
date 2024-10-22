@@ -257,13 +257,13 @@ However, if you use a working environment that has other dependencies and you wa
 
 We can install it in the following way.
 
-.. code-block:: bash
+.. code-block:: shell
 
-   $ conda activate base
-   $ conda install -c conda-forge mamba # A personal recommendation
-   $ mamba create -n spyder-dev -c conda-forge python=3
-   $ mamba activate spyder-dev
-   $ mamba install spyder
+   conda activate base
+   conda install -c conda-forge mamba  # A personal recommendation
+   mamba create -n spyder-dev -c conda-forge python=3
+   mamba activate spyder-dev
+   mamba install spyder
 
 .. note::
 
@@ -338,7 +338,7 @@ We have developed one of these templates to generate the basic structure of a pl
 
 Let's run Cookiecutter to generate our plugin structure.
 
-.. code-block:: shell
+.. code-block:: console
 
    $ cookiecutter https://github.com/spyder-ide/spyder5-plugin-cookiecutter
    You\'ve downloaded /home/mapologo/.cookiecutters/spyder5-plugin-cookiecutter before.
@@ -386,25 +386,23 @@ After ``cookicutter`` finishes its job, you'll get the following tree structure 
    │       └── widgets.py
    └── tests
 
-
 In the root folder you'll find two important files:
 
 * The Makefile, which has several useful commands:
 
-.. code-block:: text
+  .. code-block:: text
 
-   clean                remove all build, test, coverage and Python artifacts
-   clean-build          remove build artifacts
-   clean-pyc            remove Python file artifacts
-   clean-test           remove test and coverage artifacts
-   test                 run tests quickly with the default Python
-   docs                 generate Sphinx HTML documentation, including API docs
-   servedocs            compile the docs watching for changes
-   release              package and upload a release
-   dist                 builds source and wheel package
-   install              install the package to the active Python's site-packages
-   develop              install the package to the active Python's site-packages
-
+     clean                remove all build, test, coverage and Python artifacts
+     clean-build          remove build artifacts
+     clean-pyc            remove Python file artifacts
+     clean-test           remove test and coverage artifacts
+     test                 run tests quickly with the default Python
+     docs                 generate Sphinx HTML documentation, including API docs
+     servedocs            compile the docs watching for changes
+     release              package and upload a release
+     dist                 builds source and wheel package
+     install              install the package to the active Python's site-packages
+     develop              install the package to the active Python's site-packages
 
 * ``setup.py``.
   It helps you install, package and distribute your plugin with Setuptools, the standard for distributing Python packages.
