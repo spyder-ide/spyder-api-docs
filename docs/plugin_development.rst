@@ -103,7 +103,7 @@ Now that we know a little bit about the basics of Spyder, it's time to dive into
 First, let's define what a plugin is.
 *A plugin is a component that adds functionality to an application; it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax coloring schemes.*
 In the case of Spyder, plugins are instances of Qt classes that modify Spyder's behavior.
-Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types: SpyderDockablePlugin and SpyderPluginV2.
+Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types: ``SpyderDockablePlugin`` and ``SpyderPluginV2``.
 
 
 SpyderDockablePlugin
@@ -114,11 +114,11 @@ This is a Qt class that provides a graphical control that can be docked inside a
 
 .. topic:: ``SpyderDockablePlugin``
 
-   If we look at the Spyder interface, we can find a number of different panes on the right side (with the default layout), such as *Help*, *Variable Explorer*, *Plots*, *Files* and *History*.
+   If we look at the Spyder interface, we can find a number of different panes on the right side (with the default layout), such as :guilabel:`Help`, :guilabel:`Variable Explorer`, :guilabel:`Plots`, :guilabel:`Files` and :guilabel:`History`.
 
-   * Each of these panes is a ``SpyderDockablePlugin`` that offers an *Undock* option by clicking the hamburger menu button in the upper right corner.
+   * Each of these panes is a ``SpyderDockablePlugin`` that offers an :guilabel:`Undock` option by clicking the hamburger menu button in the upper right corner.
 
-   * These plugins can also be hidden or shown via their entry in the *View > Panes* menu, or using its corresponding keyboard shortcut displayed there.
+   * These plugins can also be hidden or shown via their entry in the :menuselection:`View --> Panes` menu, or using its corresponding keyboard shortcut displayed there.
 
 .. _QDockWidget: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QDockWidget.html
 .. _QMainWindow: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMainWindow.html
@@ -182,7 +182,7 @@ These are the general steps that we will follow throughout this tutorial:
 * Select the most suitable plugin type and create its initial structure using `Cookiecutter`_.
 * Install the plugin in development mode in the virtual environment from which we run Spyder.
 * Implement the functionality of our plugin using the Spyder classes and following the guidelines indicated in the plugin structure.
-* Build a configuration page for our plugin, which would appear in Tools > Preferences.
+* Build a configuration page for our plugin, which would appear in :menuselection:`Tools --> Preferences`.
 
 
 Features
@@ -208,10 +208,10 @@ An explanation of each feature is provided below.
   - *Status bar widget*.
     Used to display the time of the current pomodoro interval.
   - *State*.
-    We have three activity states: *pomodoro*, *short-break* and *long-break*.
+    We have three activity states: ``pomodoro``, ``short-break`` and ``long-break``.
     We can show a message (with `QMessageBox`_) to indicate to users that it is time to take a break.
   - *Interactions*.
-    The user can use Start, Stop and Reset buttons to operate the pomodoro timer.
+    The user can use :guilabel:`Start`, :guilabel:`Stop` and :guilabel:`Reset` buttons to operate the pomodoro timer.
     This could be implemented by adding instances of `QAction`_ in a toolbar menu.
   - *Preferences*.
     An option will be implemented in the preferences window to set the time limits of the pomodoro timer.
@@ -248,7 +248,7 @@ This section describes two main tasks for plugin development: setting up the dev
 Setting up the development environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In principle, we could use any Spyder installed within a `conda environment`_ according to the instructions given in the `installation guide`_.
+In principle, we could use any Spyder installed within a `conda environment`_ according to the instructions given in the :ref:`spyder:install-guide`.
 However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, we recommend creating a new virtual environment that only has Spyder with the minimum dependencies needed for your plugin.
 
 .. image:: images/workshop-3/pd_dev_environment.png
@@ -292,14 +292,14 @@ To create a Git repository on GitHub, we need to follow these steps:
 
 #. Log in to your GitHub account.
 
-#. Click on the "New repository" option in the "+" menu at the top right next to your profile picture.
+#. Click on the :guilabel:`New repository` option in the :guilabel:`+` menu at the top right next to your profile picture.
 
 #. A dialog will appear where you can insert the repository name and some basic options, e.g.
 to initialize the repository with a README or license files.
 
-#. Click the “Create repository” button.
+#. Click the :guilabel:`Create repository` button.
 
-#. In the main window of the newly created repository, click on the green "Code" button and copy the clone link.
+#. In the main window of the newly created repository, click on the green :guilabel:`Code` button and copy the clone link.
 
 #. On your local command line, run ``git clone <repo-link>``.
    You must have Git installed and configured on your computer.
@@ -436,7 +436,7 @@ In the ``spyder`` directory you'll find the following files:
   If the plugin is of type ``SpyderDockablePlugin``, this is where we can place the instance of ``PluginMainWidget`` that is needed for it.
 
 * ``confpage.py``.
-  It includes the specific configuration page that will be displayed in ``Preferences``, so that the user can adjust the options of our plugin.
+  It includes the specific configuration page that will be displayed in :guilabel:`Preferences`, so that the user can adjust the options of our plugin.
 
 
 
