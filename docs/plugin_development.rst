@@ -4,9 +4,9 @@ Tutorial to develop a Spyder plugin
 
 This tutorial aims to describe the features and possibilities of the API offered by `Spyder`_ to develop plugins and extend their functionality.
 First, the tutorial lists the prerequisites to implement a plugin in Spyder.
-Second, it describes the learning goals that a participant can achieved.
-Third, it includes a brief explanation about the type of plugins in Spyder and their benefits.
-Fourth, it defines how to setup the environment for a plugin development.
+Second, it describes the learning goals that a participant can achieve.
+Third, it includes a brief explanation of the types of plugins for Spyder and their benefits.
+Fourth, it defines how to set up an environment for plugin development.
 Fifth, it explains the steps to build and publish a simple plugin.
 This plugin incorporates a configurable Pomodoro timer in the status bar and some toolbar buttons to interact with it.
 Finally, the tutorial concludes highlighting the key points of developing plugins with Spyder to improve its maintenance and adaptability.
@@ -25,15 +25,15 @@ Visit our :ref:`spyder:install-guide` for more information.
 .. important::
 
    Spyder now offers :ref:`spyder:install-standalone` for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
-   However, readers of this tutorial should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow to add extra packages like the plugin we are going to develop in this tutorial.
+   However, readers of this tutorial should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow adding extra packages like the plugin we are going to develop in this tutorial.
 
 It is also desirable to have the following prior knowledge:
 
 * Basic level of Python.
   You can visit `The Python Tutorial`_ to learn the basics of this programming language.
-* Know the basics of Qt application development using Python, either with `PyQt`_ or `PySide`_.
+* Basics of Qt application development using Python, either with `PyQt`_ or `PySide`_.
 
-To quickly get started in desktop application development with Qt and Python here is a set of open access resources:
+To quickly get started in desktop application development with Qt and Python, here is a set of open access resources:
 
 * `Tutorials Point - PyQt tutorial`_
 * `Real Python - PyQt entries`_
@@ -51,14 +51,14 @@ To quickly get started in desktop application development with Qt and Python her
 
 
 ==============
-Learning Goals
+Learning goals
 ==============
 
 By the end of this tutorial, participants will know:
 
-* The basics to develop plugins for Spyder, and get a general idea of its inner workings.
+* The basics of developing plugins for Spyder, and a general idea of its inner workings.
 * The types of plugins that can be developed for Spyder.
-* The structure of a plugin, the functionality of their components, and how to extend its features.
+* The structure of a plugin, the functionality of its components, and how to extend its features.
 * The way to package and publish a plugin so that it can be installed and used by others.
 
 
@@ -69,10 +69,10 @@ Spyder fundamentals
 
 Before we dive into the formal explanation of Spyder plugins, let's briefly explain some Spyder basics.
 Spyder is a powerful scientific desktop application written in Python that has specific features for data exploration, interactive execution, deep inspection, and graphical visualization.
-Spyder was developed in *Qt*, which requires for its operation two packages with which it is closely related (and without which it cannot work): `Spyder-Kernels`_ and `Python-LSP-Server`_.
+Spyder was developed in Qt, and requires for its operation two packages with which it is closely related (and without which it cannot work): `Spyder-Kernels`_ and `Python-LSP-Server`_.
 
 * `Qt`_ is an open source multiplatform widget toolkit for creating native graphical user interfaces.
-  Qt is a very complete development framework that offers utilities for building applications and has extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
+  Qt is a very complete development framework that offers utilities for building applications and has extensions for networking, Bluetooth, charts, 3D rendering, navigation (such as GPS), among others.
 
 * Spyder uses `QtPy`_ which is an abstraction layer that allows you to work with Qt from Python regardless of whether you use one of the two reference libraries: PyQt or PySide.
 
@@ -98,10 +98,10 @@ Developing Spyder plugins
 Now that we know a little bit about the basics of Spyder, it's time to dive into the heart of this tutorial: the plugins that can be developed in Spyder.
 
 .. image:: images/workshop-3/pd_spyder_plugins.png
-   :alt: Types of Spyder plugins.
+   :alt: Types of Spyder plugins
 
 First, let's define what a plugin is.
-*A plugin is a component that adds functionality to an application, it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax coloring schemes*.
+*A plugin is a component that adds functionality to an application; it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax coloring schemes.*
 In the case of Spyder, plugins are instances of Qt classes that modify Spyder's behavior.
 Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types: SpyderDockablePlugin and SpyderPluginV2.
 
@@ -109,7 +109,7 @@ Aside from a few fundamental components, most of Spyder's functionality arises f
 SpyderDockablePlugin
 ~~~~~~~~~~~~~~~~~~~~
 
-It is a plugin that works as a `QDockWidget`_.
+A plugin that works as a `QDockWidget`_.
 This is a Qt class that provides a graphical control that can be docked inside a `QMainWindow`_ or floated as a top-level window on the desktop.
 
 .. topic:: ``SpyderDockablePlugin``
@@ -159,17 +159,17 @@ The `Pomodoro Technique`_, designed by Francesco Cirillo, is a time management p
 Using a Pomodoro timer can help you pay attention to a task.
 
 .. image:: images/workshop-3/pd_pomodoro_timer.png
-   :alt: Description of the pomodoro technique.
+   :alt: Description of the pomodoro technique
 
 The typical process of the Pomodoro technique consists of the following six steps:
 
 1. Choose a task to be done.
 2. Set the Pomodoro timer (default is 25 minutes).
 3. Work only on that task until the timer ends.
-4. Put a check mark on a piece of paper when the timer rings, this is called "a pomodoro".
-5. If you have less than 3 check marks, take a short break (by default, 5 minutes), and go back to step 2.
+4. Put a check mark on a piece of paper when the timer rings; this is called "a pomodoro".
+5. If you have fewer than 3 check marks, take a short break (by default, 5 minutes), and go back to step 2.
 6. When you have completed four Pomodoro cycles, you deserve a longer break (our default is 15 minutes).
-   The check marks are reset to zero, return to step 1.
+   The check marks are reset to zero; return to step 1.
 
 .. _Pomodoro Technique: https://www.pomodorotechnique.com/
 
@@ -190,40 +190,40 @@ Features
 
 Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin.
 Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented.
-As figures 1 and 2 show, there will be features in the toolbar, status bar, and the preferences window.
+As Figures 1 and 2 show, there will be features in the toolbar, status bar, and the preferences window.
 An explanation of each feature is provided below.
 
 .. figure:: images/workshop-3/pd_spyder_wireframe.png
    :alt: figure1
 
-   Fig.1 Location of Spyder Pomodoro Timer widgets in Spyder.
+   Figure 1: Location of Spyder Pomodoro Timer widgets in Spyder.
 
 .. figure:: images/workshop-3/pd_preferences_wireframe.png
    :alt: figure2
 
-   Fig.2 Spyder Pomodoro Timer in the preferences window.
+   Figure 2: Spyder Pomodoro Timer in the preferences window.
 
 * Pomodoro Timer
 
-  - Status bar widget.
+  - *Status bar widget*.
     Used to display the time of the current pomodoro interval.
-  - State.
+  - *State*.
     We have three activity states: *pomodoro*, *short-break* and *long-break*.
     We can show a message (with `QMessageBox`_) to indicate to users that it is time to take a break.
-  - Interactions.
-    The user could use Start, Stop and Reset buttons to operate the Pomodoro Timer.
+  - *Interactions*.
+    The user can use Start, Stop and Reset buttons to operate the pomodoro timer.
     This could be implemented by adding instances of `QAction`_ in a toolbar menu.
-  - Preferences.
-    An option will be implemented in the preferences windows to set the time limits of the pomodoro timer.
+  - *Preferences*.
+    An option will be implemented in the preferences window to set the time limits of the pomodoro timer.
 
 * Tasks Logger
 
-  - Counter.
+  - *Counter*.
     A variable is needed to count the number of completed pomodoros.
 
 * Notifications
 
-  - Dialog.
+  - *Dialog*.
     Each time a pomodoro or break interval is completed, a message should appear to tell the user to start working on a task or take a break.
 
   When working on a plugin for any system, we must check the data structures and functions available in that system that can facilitate our development.
@@ -249,13 +249,12 @@ Setting up the development environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In principle, we could use any Spyder installed within a `conda environment`_ according to the instructions given in the `installation guide`_.
-However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, it is recommended to create a new virtual environment that only has Spyder with the minimum dependencies needed for your plugin.
+However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, we recommend creating a new virtual environment that only has Spyder with the minimum dependencies needed for your plugin.
 
 .. image:: images/workshop-3/pd_dev_environment.png
-   :alt: Spyder development environment.
+   :alt: Spyder development environment
 
-
-We can install it in the following way.
+We can install it in the following way:
 
 .. code-block:: shell
 
@@ -267,18 +266,17 @@ We can install it in the following way.
 
 .. note::
 
-   * `Anaconda Individual Edition`_ is a Python distribution for data science and machine learning to be used in a single machine.
+   * `Anaconda`_ is a Python distribution for data science and machine learning to be used in a single machine.
    * `Conda`_ is an Anaconda tool that manages virtual environments and their packages.
    * Conda can work with *channels* that allow the use of packages that are not part of the official distribution.
-     The most important channel is `conda-forge`_, where a more extensive and updated list of packages is maintained than those offered by Anaconda Individual Edition.
-   * Finally, `mamba`_, is an optimized implementation of conda's package management features, which resolves dependencies and installs packages much faster than conda.
+     The most important channel is `conda-forge`_, where a more extensive and updated list of packages is maintained than those offered by Anaconda itself.
+   * Finally, `Mamba`_, is an optimized implementation of Conda's package management features, which resolves dependencies and installs packages much faster than Conda.
 
 .. _conda environment: https://conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
-.. _installation guide: https://docs.spyder-ide.org/5/installation.html
-.. _Anaconda Individual Edition: https://www.anaconda.com/download
+.. _Anaconda: https://www.anaconda.com/download
 .. _Conda: https://docs.conda.io/en/latest/
 .. _conda-forge: https://conda-forge.org/
-.. _mamba: https://github.com/mamba-org/mamba
+.. _Mamba: https://github.com/mamba-org/mamba
 
 
 Creating a repository
@@ -288,9 +286,9 @@ Now that we have our local virtual environment, it is good practice to manage ou
 Here you can find, for example, the Spyder and Python repositories.
 
 .. image:: images/workshop-3/pd_github_repo.png
-   :alt: Git and GitHub repository concepts.
+   :alt: Git and GitHub repository concepts
 
-To create a git repository on GitHub, we need to follow these steps:
+To create a Git repository on GitHub, we need to follow these steps:
 
 #. Log in to your GitHub account.
 
@@ -301,17 +299,17 @@ to initialize the repository with a README or license files.
 
 #. Click the “Create repository” button.
 
-#. In the main window of the newly created repository, click on the green "Code" button an copy the clone link.
+#. In the main window of the newly created repository, click on the green "Code" button and copy the clone link.
 
-#. On your local command line run ``$ git clone [repo-link]``.
-   You must have git installed and configured on your computer.
-   If you have no experience using git we recommend The Carpentries workshop `Version control with git`_.
+#. On your local command line, run ``git clone <repo-link>``.
+   You must have Git installed and configured on your computer.
+   If you have no experience using Git, we recommend The Carpentries workshop `Version Control with Git`_.
 
-You can find a detailed description of `creating repositories`_ in the official GitHub documentation, and a `hello world`_ tutorial with basic git operations from the GitHub interface.
+You can find a detailed description of `creating repositories`_ in the official GitHub documentation, and a `Hello World tutorial`_ with basic Git operations from the GitHub interface.
 
-.. _Version control with git: https://swcarpentry.github.io/git-novice/
+.. _Version Control with Git: https://swcarpentry.github.io/git-novice/
 .. _creating repositories: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
-.. _hello world: https://docs.github.com/en/get-started/start-your-journey/hello-world
+.. _Hello World tutorial: https://docs.github.com/en/get-started/start-your-journey/hello-world
 
 
 
@@ -319,8 +317,8 @@ You can find a detailed description of `creating repositories`_ in the official 
 Defining the plugin structure
 =============================
 
-We already have a git repository and a virtual environment where Spyder 5 is installed.
-Let's activate our environment and go into the local folder of our repository.
+We already have a Git repository and a virtual environment where Spyder 5 is installed.
+Let's activate our environment and go into the local folder of our repository:
 
 .. code-block:: shell
 
@@ -329,14 +327,16 @@ Let's activate our environment and go into the local folder of our repository.
 
 Then we need to use `Cookiecutter`_ to create the initial structure of our plugin.
 Cookiecutter is a tool made in Python specifically designed to create project templates.
-We have developed one of these templates to generate the basic structure of a plugin, it can be found at: https://github.com/spyder-ide/spyder5-plugin-cookiecutter.
+We have developed a `Spyder Cookiecutter template`_ to generate the basic structure of a plugin.
 
 .. _Cookiecutter: https://cookiecutter.readthedocs.io
 
-.. image:: images/workshop-3/pd_plugin_structure.png
-   :alt: Folder structure of our plugin.
+.. _Spyder Cookiecutter template: https://github.com/spyder-ide/spyder5-plugin-cookiecutter
 
-Let's run Cookiecutter to generate our plugin structure.
+.. image:: images/workshop-3/pd_plugin_structure.png
+   :alt: Folder structure of our plugin
+
+Let's run Cookiecutter to generate our plugin structure:
 
 .. code-block:: console
 
@@ -365,7 +365,7 @@ Let's run Cookiecutter to generate our plugin structure.
    6 - Not open source
    Choose from 1, 2, 3, 4, 5, 6 [1]: 1
 
-After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository.
+After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository:
 
 .. code-block:: text
 
@@ -406,16 +406,16 @@ In the root folder you'll find two important files:
 
 * ``setup.py``.
   It helps you install, package and distribute your plugin with Setuptools, the standard for distributing Python packages.
-  In this file the ``entry_points`` parameter of ``setup`` is quite important, as it is what allows Spyder to identify this package as a plugin, and know how to access its functionalities.
+  In this file the ``entry_points`` parameter of ``setup`` is quite important, as it is what allows Spyder to identify this package as a plugin, and know how to access its functionality.
 
 The ``spyder-pomodoro-timer`` folder has the same name you entered when you ran ``cookiecutter``.
 Inside it you will see a folder called ``spyder``, where we will place the code of our plugin.
 
-In the ``spyder`` directory you'll find the following files.
+In the ``spyder`` directory you'll find the following files:
 
 * ``api.py``.
   Exposes the functionality of the plugin to the rest of Spyder.
-  That would allow adding additional functionality from other plugins.
+  That allows adding additional functionality from other plugins.
 
 * ``plugin.py``.
   This is the core of the plugin.
@@ -426,15 +426,14 @@ In the ``spyder`` directory you'll find the following files.
 
 * ``container.py``.
   It is only used for ``SpyderPluginV2`` plugins.
-  This file contains an instance of ``PluginMainContainer`` which contains a reference to all graphical elements (or widgets) that the plugin will add to the interface.
+  This file contains an instance of ``PluginMainContainer``, which contains a reference to all graphical elements (or widgets) that the plugin will add to the interface.
   This is necessary because Qt requires widgets to be children of other widgets before using them (otherwise they appear as floating windows).
-  Since ``SpyderPluginV2`` is not a widget, we need a data structure (i.e.
-  the container) that is a widget for it.
+  Since ``SpyderPluginV2`` is not a widget, we need a data structure (i.e. the container) that is a widget for it.
 
 * ``widgets.py``.
   Contains the graphical components of our plugin.
   If the plugin is of type ``SpyderPluginV2`` and it does not have widgets, then it is not needed.
-  If the plugin is of type ``SpyderDockablePlugin``, we can  place here the instance of ``PluginMainWidget`` needed for it.
+  If the plugin is of type ``SpyderDockablePlugin``, this is where we can place the instance of ``PluginMainWidget`` that is needed for it.
 
 * ``confpage.py``.
   It includes the specific configuration page that will be displayed in ``Preferences``, so that the user can adjust the options of our plugin.
