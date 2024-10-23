@@ -1,19 +1,23 @@
+.. _tutorial-main:
+
 ###################################
 Tutorial to develop a Spyder plugin
 ###################################
 
 This tutorial aims to describe the features and possibilities of the API offered by `Spyder`_ to develop plugins and extend their functionality.
-First, the tutorial lists the prerequisites to implement a plugin in Spyder.
-Second, it describes the learning goals that a participant can achieve.
-Third, it includes a brief explanation of the types of plugins for Spyder and their benefits.
-Fourth, it defines how to set up an environment for plugin development.
+First, the tutorial lists the :ref:`tutorial-prereqs` to implement a plugin in Spyder.
+Second, it describes the :ref:`tutorial-goals` that a participant can achieve.
+Third, it includes a brief explanation of the :ref:`types of plugins <tutorial-plugin-concepts>` for Spyder and their benefits.
+Fourth, it defines how to :ref:`set up an environment <tutorial-setup>` for plugin development.
 Fifth, it explains the steps to build and publish a simple plugin.
-This plugin incorporates a configurable Pomodoro timer in the status bar and some toolbar buttons to interact with it.
+:ref:`This plugin incorporates <tutorial-plugin-features>` a configurable Pomodoro timer in the status bar and some toolbar buttons to interact with it.
 Finally, the tutorial concludes highlighting the key points of developing plugins with Spyder to improve its maintenance and adaptability.
 
 .. _Spyder: https://www.spyder-ide.org
 
 
+
+.. _tutorial-prereqs:
 
 =============
 Prerequisites
@@ -50,6 +54,8 @@ To quickly get started in desktop application development with Qt and Python, he
 
 
 
+.. _tutorial-goals:
+
 ==============
 Learning goals
 ==============
@@ -57,11 +63,13 @@ Learning goals
 By the end of this tutorial, participants will know:
 
 * The basics of developing plugins for Spyder, and a general idea of its inner workings.
-* The types of plugins that can be developed for Spyder.
-* The structure of a plugin, the functionality of its components, and how to extend its features.
+* The :ref:`types of plugins <tutorial-plugin-types>` that can be developed for Spyder.
+* The :ref:`structure of a plugin <tutorial-structure-details>`, the :ref:`functionality <tutorial-plugin-features>` of its components, and how to extend its features.
 * The way to package and publish a plugin so that it can be installed and used by others.
 
 
+
+.. _tutorial-spyder-fundamentals:
 
 ===================
 Spyder fundamentals
@@ -91,6 +99,8 @@ If you are interested in contributing to Spyder, please visit the `contribution 
 
 
 
+.. _tutorial-plugin-concepts:
+
 =========================
 Developing Spyder plugins
 =========================
@@ -105,6 +115,9 @@ First, let's define what a plugin is.
 In the case of Spyder, plugins are instances of Qt classes that modify Spyder's behavior.
 Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types: ``SpyderDockablePlugin`` and ``SpyderPluginV2``.
 
+
+.. _tutorial-plugin-types:
+.. _tutorial-spyderdockableplugin:
 
 SpyderDockablePlugin
 ~~~~~~~~~~~~~~~~~~~~
@@ -124,6 +137,8 @@ This is a Qt class that provides a graphical control that can be docked inside a
 .. _QMainWindow: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMainWindow.html
 
 
+.. _tutorial-spyderpluginv2:
+
 SpyderPluginV2
 ~~~~~~~~~~~~~~
 
@@ -142,15 +157,19 @@ In fact, ``SpyderPluginV2`` is the parent class of ``SpyderDockablePlugin``.
 
 
 
+.. _tutorial-task-overview:
+
 ================
 What will we do?
 ================
 
-So far, we have reviewed the concepts necessary to create your first plugin.
-In this section, first, we explain the Pomodoro technique that will be implemented for time management in the plugin.
-Second, we describe the steps to develop the plugin.
-Finally, we present the main features that will be displayed in Spyder once the plugin is developed and published.
+So far, we have :ref:`reviewed the concepts <tutorial-plugin-concepts>` necessary to create your first plugin.
+In this section, first, we :ref:`explain the Pomodoro technique <tutorial-pomodoro-technique>` that will be implemented for time management in the plugin.
+Second, we describe the :ref:`steps to develop the plugin <tutorial-plugin-steps>`.
+Finally, we :ref:`present the main features <tutorial-plugin-features>` that will be displayed in Spyder once the plugin is developed and published.
 
+
+.. _tutorial-pomodoro-technique:
 
 Pomodoro Technique
 ~~~~~~~~~~~~~~~~~~
@@ -174,34 +193,44 @@ The typical process of the Pomodoro technique consists of the following six step
 .. _Pomodoro Technique: https://www.pomodorotechnique.com/
 
 
+.. _tutorial-plugin-steps:
+
 Steps to develop a plugin
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 These are the general steps that we will follow throughout this tutorial:
 
-* Select the most suitable plugin type and create its initial structure using `Cookiecutter`_.
-* Install the plugin in development mode in the virtual environment from which we run Spyder.
-* Implement the functionality of our plugin using the Spyder classes and following the guidelines indicated in the plugin structure.
+* Select the most suitable :ref:`plugin type <tutorial-plugin-types>` and :ref:`create its initial structure <tutorial-plugin-structure>` using `Cookiecutter`_.
+* Install the plugin in development mode in the :ref:`virtual environment <tutorial-environment>` from which we run Spyder.
+* Implement the functionality of our plugin using the Spyder classes and following the guidelines indicated in the :ref:`plugin structure <tutorial-structure-details>`.
 * Build a configuration page for our plugin, which would appear in :menuselection:`Tools --> Preferences`.
 
+
+.. _tutorial-plugin-features:
 
 Features
 ~~~~~~~~
 
 Up to this point, we are clear on the concepts related to the Pomodoro Technique and the steps to develop a Spyder plugin.
 Now, we present a minimal plan to identify the features that will be displayed in Spyder once the plugin is implemented.
-As Figures 1 and 2 show, there will be features in the toolbar, status bar, and the preferences window.
-An explanation of each feature is provided below.
+As :ref:`Figure 1 <tutorial-figure-1>` and :ref:`Figure 2 <tutorial-figure-2>` show, there will be features in the toolbar, status bar, and the preferences window.
+An explanation of each feature is :ref:`provided below <tutorial-feature-explanation>`.
+
+.. _tutorial-figure-1:
 
 .. figure:: images/workshop-3/pd_spyder_wireframe.png
    :alt: figure1
 
    Figure 1: Location of Spyder Pomodoro Timer widgets in Spyder.
 
+.. _tutorial-figure-2:
+
 .. figure:: images/workshop-3/pd_preferences_wireframe.png
    :alt: figure2
 
    Figure 2: Spyder Pomodoro Timer in the preferences window.
+
+.. _tutorial-feature-explanation:
 
 * Pomodoro Timer
 
@@ -238,12 +267,16 @@ An explanation of each feature is provided below.
 
 
 
+.. _tutorial-setup:
+
 =======================
 Development environment
 =======================
 
-This section describes two main tasks for plugin development: setting up the development environment and creating a repository to manage code changes and its versions.
+This section describes two main tasks for plugin development: :ref:`tutorial-environment` and :ref:`tutorial-repo` to manage code changes and its versions.
 
+
+.. _tutorial-environment:
 
 Setting up the development environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -279,6 +312,8 @@ We can install it in the following way:
 .. _Mamba: https://github.com/mamba-org/mamba
 
 
+.. _tutorial-repo:
+
 Creating a repository
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -313,11 +348,13 @@ You can find a detailed description of `creating repositories`_ in the official 
 
 
 
+.. _tutorial-plugin-structure:
+
 =============================
 Defining the plugin structure
 =============================
 
-We already have a Git repository and a virtual environment where Spyder 5 is installed.
+We already have :ref:`a Git repository <tutorial-repo>` and :ref:`a virtual environment <tutorial-environment>` where Spyder 5 is installed.
 Let's activate our environment and go into the local folder of our repository:
 
 .. code-block:: shell
@@ -325,7 +362,9 @@ Let's activate our environment and go into the local folder of our repository:
    mamba activate spyder-dev
    cd /path/to/your/repository
 
-Then we need to use `Cookiecutter`_ to create the initial structure of our plugin.
+.. _tutorial-cookiecutter:
+
+Then we need to use `Cookiecutter`_ to create the :ref:`initial structure <tutorial-structure-details>` of our plugin.
 Cookiecutter is a tool made in Python specifically designed to create project templates.
 We have developed a `Spyder Cookiecutter template`_ to generate the basic structure of a plugin.
 
@@ -364,6 +403,8 @@ Let's run Cookiecutter to generate our plugin structure:
    5 - GNU General Public License v3
    6 - Not open source
    Choose from 1, 2, 3, 4, 5, 6 [1]: 1
+
+.. _tutorial-structure-details:
 
 After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository:
 
