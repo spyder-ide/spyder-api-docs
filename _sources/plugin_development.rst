@@ -1,34 +1,47 @@
-##############################
-Plugin Development with Spyder
-##############################
+.. _tutorial-main:
 
-This workshop reviews the features and possibilities of the API offered by `Spyder`_ 5—the recently released version of our favorite IDE for scientific Python—for plugin development and to extend its functionality.
+###################################
+Tutorial to develop a Spyder plugin
+###################################
 
-As a practical exercise, we will develop a simple plugin that incorporates a configurable pomodoro timer in the status bar and some toolbar buttons to interact with it.
+This tutorial walks you through creating a Spyder plugin to add a configurable `Pomodoro Technique`_ timer to the status bar and toolbar buttons to interact with it.
+Along the way, we'll learn how to use Spyder's API to develop plugins and extend their functionality.
 
-.. _Spyder: https://www.spyder-ide.org
+To do so, we'll:
+
+#. List the :ref:`tutorial-prereqs` to implement a Spyder plugin.
+#. Describe the :ref:`tutorial-goals` that a participant can achieve.
+#. Explain the :ref:`types of Spyder plugins <tutorial-plugin-concepts>` and their benefits.
+#. Define how to :ref:`set up an environment <tutorial-setup>` for plugin development.
+#. Go through the :ref:`steps <tutorial-building-plugin>` to build and publish a simple plugin.
+#. Finally, highlight the key points of developing maintainable, adaptable plugins with Spyder.
+
+.. _website: https://www.spyder-ide.org
 
 
+
+.. _tutorial-prereqs:
 
 =============
 Prerequisites
 =============
 
-You will need to have Spyder installed. Visit our :ref:`spyder:install-guide` for more information.
+You will need to have Spyder 5 installed.
+Visit our :ref:`spyder:install-guide` for more information.
 
 .. important::
 
-   Spyder now offers :ref:`spyder:install-standalone` for Windows and macOS, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
-   However, readers of this workshop should install Spyder using Anaconda or Miniconda, as standalone installers currently do not allow to add extra packages like the plugin we are going to develop in this workshop.
+   Spyder offers :ref:`spyder:install-standalone` for Windows, macOS and Linux, making it easier to get up and running with the application without having to download Anaconda or manually install it in your existing environment.
+   However, for this tutorial Spyder should be installed using Anaconda or Miniconda, as standalone installers currently do not allow adding extra packages like the plugin we are going to develop.
 
 It is also desirable to have the following prior knowledge:
 
-* Basic level of Python. You can visit `The Python Tutorial`_ to learn the basics of this programming language.
-* Know the basics of Qt application development using Python, either with `PyQT`_ or `PySide`_.
+* Intermediate proficiency with Python.
+  You can visit `The Python Tutorial`_ to learn the basics of this programming language.
+* Basics of Qt application development using Python, either with `PyQt`_ or `PySide`_.
 
-To quickly get started in desktop application development with Qt and Python here is a set of open access resources:
+To quickly get started in desktop application development with Qt and Python, here is a set of open access resources:
 
-* `Tutorials Point - PyQt tutorial`_
 * `Real Python - PyQt entries`_
 * `Guru99 - PyQt tutorial`_
 * `Python GUIs - PyQt and PySide tutorials`_
@@ -41,170 +54,209 @@ To quickly get started in desktop application development with Qt and Python her
 .. _Guru99 - PyQt tutorial: https://www.guru99.com/pyqt-tutorial.html
 .. _Python GUIs - PyQt and PySide tutorials: https://www.pythonguis.com/
 
+
+
+.. _tutorial-goals:
+
 ==============
-Learning Goals
+Learning goals
 ==============
 
-By the end of this workshop participants will know:
+By the end of this tutorial, we'll learn:
 
-* The basics to develop plugins for Spyder, and get a general idea of its inner workings.
-* What types of plugins can be developed with Spyder.
-* The structure of a plugin and the functionality of each component and how it connects to Spyder to extend its features.
-* How to package and publish our plugin so that it can be easily installed and used by others.
+* The basics of developing plugins for Spyder, and a general idea of its inner workings.
+* The :ref:`types of plugins <tutorial-plugin-types>` that can be developed for Spyder.
+* The :ref:`structure of a plugin <tutorial-structure-details>`, the :ref:`functionality <tutorial-plugin-features>` of its components, and how to extend its features.
+* The way to package and publish a plugin so that it can be installed and used by others.
 
 
 
-=====================
-Spyder for developers
-=====================
+.. _tutorial-spyder-fundamentals:
 
-The best place to find information about contributing to Spyder or developing for Spyder is its Github repository, in particular the `contribution guide`_.
+===================
+Spyder fundamentals
+===================
 
-.. image:: images/workshop-3/pd_spyder_ide.png
-   :alt: Spyder IDE components.
+Before we dive into the formal explanation of Spyder plugins, let's briefly go over some Spyder basics.
+Spyder is a powerful scientific desktop application written in Python with features for data exploration, interactive execution, deep inspection, and graphical visualization.
+Spyder uses Qt for its GUI, through the PyQt or PySide Python bindings via the `QtPy`_ abstraction layer:
 
-* The core of **Spyder** is `Spyder-IDE`_ , a desktop application developed in *Qt*, which requires for its operation two packages with it is closely related (and without which it cannot work): *spyder-kernels* and *python-lsp-server*.
+* `Qt`_ is an open source, multiplatform toolkit for creating graphical user interfaces.
+  It is a complete development framework that offers utilities for building applications and has extensions for networking, Bluetooth, charts, 3D rendering, and navigation, among others.
 
-* `Qt`_ is an open source multiplatform widget toolkit for creating native graphical user interfaces. Qt is a very complete development framework that offers utilities for building applications, and has extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.
+* PyQt and PySide are two different Python bindings for the C++-native Qt library, allowing Spyder to use Qt from Python.
+* `QtPy`_ is an abstraction layer for PyQt and PySide, allowing Spyder to work with either one as well as multiple major Qt versions.
 
-* Spyder uses `qtpy`_ which is an abstraction layer that allows you to work with Qt from Python regardless of whether you use either of the two reference libraries: PyQt or PySide.
+As for Spyder's own structure, all of its panes and nearly all its functionality is implemented as plugins.
+This means the plugins you create can be just as powerful as Spyder's own internal components!
 
-* `spyder-kernels`_ provide Jupyter kernels to Spyder, for use within its consoles.
+To learn more about Spyder itself, check out the `website`_ and `documentation`_, and to contribute, read the `contributing guide`_!
 
-.. important::
-
-   Spyder is currently developed in such a way that most of its features are implemented as plugins.
-
-.. _contribution guide: https://github.com/spyder-ide/spyder/blob/master/CONTRIBUTING.md
+.. _documentation: https://docs.spyder-ide.org
+.. _contributing guide: https://github.com/spyder-ide/spyder/blob/master/CONTRIBUTING.md
 .. _Qt: https://www.qt.io/
-.. _qtpy: https://github.com/spyder-ide/qtpy
-.. _spyder-kernels: https://github.com/spyder-ide/spyder-kernels
-.. _pyls-spyder: https://github.com/spyder-ide/pyls-spyder
-.. _python-lsp-server: https://github.com/python-lsp/python-lsp-server
+.. _QtPy: https://github.com/spyder-ide/qtpy
 
 
 
-=========================================
-Types of plugins we can develop in Spyder
-=========================================
+.. _tutorial-plugin-concepts:
 
+=====================
+Basic plugin concepts
+=====================
+
+Now that we know a little bit about the basics of Spyder, let's go over the basics of Spyder plugins.
 
 .. image:: images/workshop-3/pd_spyder_plugins.png
-   :alt: Types of Spyder plugins.
+   :alt: Types of Spyder plugins
 
-.. note::
+First, let's define what a plugin is.
+A *plugin* is a component that adds functionality to an application; it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax highlighting schemes.
+For Spyder, plugins add new panes, new features, or otherwise modify Spyder's behavior.
+Aside from a few fundamental components, most of Spyder's functionality is implemented via plugins of two types: ``SpyderDockablePlugin`` and ``SpyderPluginV2``.
 
-    A plugin is a component that adds functionality to an application, it can be a graphical component, for example, to display maps, or a non-graphical one that adds additional syntax coloring schemes.
 
-Formally, plugins are instances of Qt classes that modify the behavior of Spyder.
-Aside from a few fundamental components, most of Spyder's functionality arises from the interaction of plugins of two types:
-
+.. _tutorial-plugin-types:
+.. _tutorial-spyderdockableplugin:
 
 SpyderDockablePlugin
 ~~~~~~~~~~~~~~~~~~~~
 
-It is a plugin that works as a `QDockWidget`_, this is a Qt class that provides a graphical control that can be docked inside a `QMainWindow`_ or floated as a top-level window on the desktop.
+A plugin with a dockable pane in the Spyder interface, implemented as a `QDockWidget`_.
+This is a Qt class that provides a graphical widget that can be docked inside a `QMainWindow`_ or floated as a top-level window on the desktop.
+
+.. topic:: ``SpyderDockablePlugin``
+
+   If we look at the Spyder interface, we can find a number of different panes (on the right side, with the default layout), such as :guilabel:`Help`, :guilabel:`Variable Explorer`, :guilabel:`Plots`, :guilabel:`Files` and :guilabel:`History`:
+
+   * Each of these panes is a ``SpyderDockablePlugin`` that offers an :guilabel:`Undock` option by clicking the hamburger menu button in the upper right corner.
+
+   * These plugins can also be hidden or shown via their entry in the :menuselection:`View --> Panes` menu, or using their corresponding keyboard shortcut displayed there.
 
 .. _QDockWidget: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QDockWidget.html
 .. _QMainWindow: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMainWindow.html
 
 
+.. _tutorial-spyderpluginv2:
+
 SpyderPluginV2
 ~~~~~~~~~~~~~~
 
-``SpyderPluginV2`` is a plugin that does not create a new dock widget on Spyder's main window. In fact, ``SpyderPluginV2`` is the parent class of ``SpyderDockablePlugin``.
-
-
-
-Discovering Spyder plugins
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. topic:: ``SpyderDockablePlugin``
-
-   If we look at the Spyder interface, we can find a number of different panes on the right side (with the default layout), such as *Help*, *Variable Explorer*, *Plots*, *Files* and *History*.
-
-   * Each of these panes is a ``SpyderDockablePlugin`` that offers an *Undock* option by clicking the hamburger menu button in the upper right corner.
-
-   * These plugins can also be hidden or shown via their entry in the *View > Panes* menu, or using its corresponding keyboard shortcut displayed there.
+A plugin that does not create a new pane (``QDockWidget``) in Spyder's main window.
+In fact, ``SpyderPluginV2`` is the parent class of ``SpyderDockablePlugin``.
 
 .. topic:: ``SpyderPluginV2``
 
-   High-level interface elements that do not offer an undocking option are basically instances of ``SpyderPluginV2``. These are typically used to handle more abstract functionality.
+   High-level interface elements that do not offer an undocking option are typically instances of ``SpyderPluginV2``.
+   These are typically used to handle more abstract functionality:
 
-   * Examples of this are the *appearance* and *layout* plugins that manage Spyder's code color schemes and window layouts respectively.
+   * Examples include the *appearance* and *layout* plugins that manage Spyder's syntax highlighting schemes and window layouts respectively.
 
-   * Other examples of this type of plugins are the *main menu* and keyboard *shortcuts*. Some graphical elements, such as the main toolbar and the status bar are also instances of the ``SpyderPluginV2`` class.
+   * Other examples of this type of plugins are the *main menu* and keyboard *shortcuts*.
+   * Some graphical elements, such as the main toolbar and the status bar, are also instances of the ``SpyderPluginV2`` class.
 
 
+
+.. _tutorial-task-overview:
 
 ================
 What will we do?
 ================
 
-Our practical work will consist in the implementation of the Pomodoro technique for time management in the Spyder interface.
+So far, we have :ref:`reviewed the concepts <tutorial-plugin-concepts>` necessary to create your first plugin.
+In this section, we:
+
+#. :ref:`Explain the Pomodoro technique <tutorial-pomodoro-technique>` that will be implemented for time management in the plugin.
+#. Describe the :ref:`steps to develop the plugin <tutorial-plugin-steps>`.
+#. :ref:`Present the main features <tutorial-plugin-features>` that will be displayed in Spyder once the plugin is developed and published.
+
+
+.. _tutorial-pomodoro-technique:
+
+Pomodoro Technique
+~~~~~~~~~~~~~~~~~~
+
+The `Pomodoro Technique`_, designed by Francesco Cirillo, is a time management practice used to increase concentration and productivity when completing tasks or meeting deadlines.
+Using a Pomodoro timer can help you pay attention to a task.
 
 .. image:: images/workshop-3/pd_pomodoro_timer.png
-   :alt: Description of the pomodoro technique.
+   :alt: Description of the pomodoro technique
 
-.. note::
-
-   The `Pomodoro Technique`_, designed by Francesco Cirillo, is a time management practice used to increase your focus and productivity when trying to complete assignments or meet deadlines.
-   Choosing to use a Pomodoro Timer can help to give a task your full, undivided attention.
-
-The typical process of the Pomodoro Technique consists of the following six
-steps:
+The typical process of the Pomodoro technique consists of the following six steps:
 
 1. Choose a task to be done.
-2. Set the Pomodoro Timer (default is 25 minutes).
+2. Set the Pomodoro timer (default is 25 minutes).
 3. Work only on that task until the timer ends.
-4. When the timer rings, put a checkmark on a piece of paper, this is called "a pomodoro".
-5. If you have less than 3 checkmarks take a short break (by default, 5 minutes), and return to step 2.
-6. When you have completed four Pomodoro cycles, you deserve a longer break (our default is 15 minutes). Checkmarks are reset to zero, go back to step 1.
+4. Put a check mark on a piece of paper when the timer rings; this is called a "pomodoro".
+5. If you have fewer than 3 check marks, take a short break (by default, 5 minutes), and go back to step 2.
+6. When you have completed four Pomodoro cycles, you deserve a longer break (our default is 15 minutes).
+   The check marks are reset to zero; return to step 1.
 
 .. _Pomodoro Technique: https://www.pomodorotechnique.com/
 
 
-Steps
-~~~~~
+.. _tutorial-plugin-steps:
 
-These are the general steps that we will be following throughout this workshop:
+Steps to develop a plugin
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Select the most suitable plugin type and create its initial structure using `cookiecutter`_.
-* Install the plugin in development mode in the virtual environment from which we run Spyder.
-* Implement the functionality of our plugin using the Spyder classes and following the guidelines indicated in the plugin structure.
-* Build a configuration page for our plugin, which would appear in Tools > Preferences.
+These are the general steps that we will follow throughout this tutorial:
 
-.. figure:: images/workshop-3/pd_spyder_wireframe.png
-   :alt: Location of Spyder Pomodoro Timer widgets in Spyder.
+* Select the most suitable :ref:`plugin type <tutorial-plugin-types>` and :ref:`create its initial structure <tutorial-plugin-structure>` using `Cookiecutter`_.
+* Install the plugin in development mode in the :ref:`virtual environment <tutorial-environment>` from which we run Spyder.
+* Implement the functionality of our plugin using the Spyder classes and following the guidelines indicated in the :ref:`plugin structure <tutorial-structure-details>`.
+* Build a configuration page for our plugin (if needed), which will appear in :menuselection:`Tools --> Preferences`.
 
-   Location of Spyder Pomodoro Timer widgets in Spyder.
 
-.. figure:: images/workshop-3/pd_preferences_wireframe.png
-   :alt: Spyder Pomodoro Timer in the preferences window.
-
-   Spyder Pomodoro Timer in the preferences window.
-
+.. _tutorial-plugin-features:
 
 Features
 ~~~~~~~~
 
-A minimal planning to organize ideas.
+Up to this point, we've gone over the Pomodoro Technique and the steps to develop a Spyder plugin.
+Now, we identify the features that will be displayed in Spyder once the plugin is implemented.
+As :ref:`Figure 1 <tutorial-figure-1>` and :ref:`Figure 2 <tutorial-figure-2>` show, there will be features in the toolbar, status bar, and the preferences window.
+An explanation of each feature is :ref:`provided below <tutorial-feature-explanation>`.
+
+.. _tutorial-figure-1:
+
+.. figure:: images/workshop-3/pd_spyder_wireframe.png
+   :alt: figure1
+
+   Figure 1: Location of Spyder Pomodoro Timer widgets in Spyder.
+
+.. _tutorial-figure-2:
+
+.. figure:: images/workshop-3/pd_preferences_wireframe.png
+   :alt: figure2
+
+   Figure 2: Spyder Pomodoro Timer in the preferences window.
+
+.. _tutorial-feature-explanation:
 
 * Pomodoro Timer
 
-  - Status bar widget: to display the time for the current pomodoro interval.
-  - State: we have three activity states: *pomodoro*, *short-break* and *long-break*. We can show a message (with `QMessageBox`_) to tell users that the time to take a break has arrived.
-  - Interactions: the user could use Start, Stop and Reset buttons to handle the Pomodoro Timer. This can be implemented adding `QAction`_ instances in a menu on the toolbar.
+  - *Status bar widget*.
+    Used to display the time of the current pomodoro interval.
+  - *State*.
+    We have three activity states: ``pomodoro``, ``short-break`` and ``long-break``.
+    We can show a message (with `QMessageBox`_) to indicate to users that it is time to take a break.
+  - *Interactions*.
+    The user can use :guilabel:`Start`, :guilabel:`Stop` and :guilabel:`Reset` buttons to operate the pomodoro timer.
+    This could be implemented by adding instances of `QAction`_ in a toolbar menu.
+  - *Preferences*.
+    An option will be implemented in the preferences window to set the time limits of the pomodoro timer.
 
 * Tasks Logger
-  - Counter: We need a variable to count the number of pomodoros completed.
+
+  - *Counter*.
+    A variable is needed to count the number of completed pomodoros.
 
 * Notifications
 
-  - Dialog: Each time a pomodoro or break interval is completed, a message should appear to prompt the user to start working on a task or take a break.
+  - *Dialog*.
+    Each time a pomodoro or break interval is completed, a message should appear to tell the user to start working on a task or take a break.
 
-  When working on a plugin for any system, we must check the data structures and functions available in that system that can facilitate our development.
-  This involves spending considerable time understanding its inner workings.
 
 .. _QTimer: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtCore/QTimer.html
 .. _QToolButton: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QToolButton.html
@@ -214,105 +266,129 @@ A minimal planning to organize ideas.
 .. _QMessageBox: https://doc.qt.io/archives/qtforpython-5.12/PySide2/QtWidgets/QMessageBox.html
 
 
-================================
-Set up a development environment
-================================
 
-In principle, we could use any Spyder installed within a `conda environment`_ according to the instructions given in the `installation guide`_.
+.. _tutorial-setup:
 
-However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, it is recommended to create a new environment which only has Spyder with the minimum dependencies needed for your plugin.
+=======================
+Development environment
+=======================
+
+This section describes two main tasks for plugin development: :ref:`tutorial-environment` and :ref:`tutorial-repo` to manage code changes and versions.
+
+
+.. _tutorial-environment:
+
+Setting up the development environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In principle, we could use any copy of Spyder within a `conda environment`_ installed as described in the :ref:`spyder:install-guide`.
+However, if you use a working environment that has other dependencies and you want to keep your plugin development independent of them, we recommend creating a new virtual environment that only has Spyder with the minimum dependencies needed for your plugin.
 
 .. image:: images/workshop-3/pd_dev_environment.png
-   :alt: Spyder development environment.
+   :alt: Spyder development environment
 
-We can install it in the following way:
+We can install it using the following system terminal commands (in the Anaconda Prompt, on Windows):
 
-.. code-block:: bash
+.. code-block:: shell
 
-   $ conda activate base
-   $ conda install -c conda-forge mamba # A personal recommendation
-   $ mamba create -n spyder-dev -c conda-forge python=3
-   $ mamba activate spyder-dev
-   $ mamba install spyder
+   conda activate base
+   conda create -n spyder-dev -c conda-forge spyder
+   conda activate spyder-dev
 
 .. note::
 
-   * `Anaconda Individual Edition`_ is a Python distribution for data science and machine learning to be used in a single machine.
-   * `Conda`_ is an Anaconda tool that manages virtual environments and their packages.
-   * Conda can work with *channels* that allow the use of packages that are not part of the official distribution. The most important channel is `conda-forge`_, where a more extensive and updated list of packages than those offered by Anaconda Individual Edition are maintained.
-   * Finally, `mamba`_, is an optimized implementation of conda's package management features, that resolves dependencies and installs packages much faster than conda.
+   * `Miniforge`_ is a Python distribution for data science and machine learning, similar to Anaconda except without all the glut of packages installed by default (which won't be used here).
+   * `Conda`_ is an open source tool that manages virtual environments and their packages.
+   * Conda can work with *channels* that allow the use of packages that are not part of the official distribution.
+     The most important channel is `conda-forge`_, where a more extensive and updated list of packages is maintained than those offered by Anaconda itself.
 
 .. _conda environment: https://conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
-.. _installation guide: https://docs.spyder-ide.org/5/installation.html
-.. _Anaconda Individual Edition: https://www.anaconda.com/download
+.. _Miniforge: https://conda-forge.org/download/
 .. _Conda: https://docs.conda.io/en/latest/
 .. _conda-forge: https://conda-forge.org/
-.. _mamba: https://github.com/mamba-org/mamba
 
 
+.. _tutorial-repo:
 
-===================
-Create a repository
-===================
+Creating a repository
+~~~~~~~~~~~~~~~~~~~~~~
 
-Now that we have our local virtual environment, it is good practice to manage our source code with a version control system, and the most widely used web service for this purpose is currently Github. Here you can find, for example, the Spyder and Python repositories.
+Now that we have our local virtual environment, it is good practice to manage our source code with a version control system.
+By far the most widely used VCS is `Git`_, and the most popular web hosting service for Git is `GitHub`_.
+You can find the `Spyder repository`_ on GitHub, and download (or ``clone``) it with Git.
+
+.. _Git: https://git-scm.com
+.. _GitHub: https://github.com
+.. _Spyder repository: https://github.com/spyder-ide/spyder
 
 .. image:: images/workshop-3/pd_github_repo.png
-   :alt: Git and Github repository concepts.
+   :alt: Git and GitHub repository concepts
 
-To create a git repository on Github, we need to follow these steps:
+To create a Git repository on GitHub, we need to follow these steps:
 
-#. Log in to your Github account.
-#. Click on the "New repository" option in the "+" menu at the top right next to your profile picture.
-#. A dialog will appear where you can insert the repository name and some basic options, e.g. to initialize the repository with a README or license files.
-#. Click the “Create repository” button.
-#. In the main window of the recently created repository, click on the green "Code" button an copy the clone link.
-#. In your local command line run ``$ git clone [repo-link]``. You must have git installed and configured on your computer. If you don't have experience using git we recommend The Carpentries workshop `Version control with git`_.
+#. Log in to your GitHub account (or create one if you don't have one already).
 
-A detailed description of `repository creation`_ could be found in the official Github documentation, and a `hello world`_ tutorial with basic git operations from the Github interface.
+#. Click on the :guilabel:`New repository` option in the :guilabel:`+` menu at the top right next to your profile picture.
 
-.. _Version control with git: https://swcarpentry.github.io/git-novice/
-.. _repository creation: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
-.. _hello world: https://docs.github.com/en/get-started/start-your-journey/hello-world
+#. Type the repository name in the resulting dialog and select the options you want (e.g. whether to initialize the repository with a README or license files).
+
+#. Click the :guilabel:`Create repository` button.
+
+#. In the main window of the newly created repository, click on the green :guilabel:`Code` button and copy the clone link.
+
+#. On your local command line, run ``git clone <repo-link>``.
+   You must have Git installed and configured on your computer.
+   If you have no experience using Git, we recommend The Carpentries workshop `Version Control with Git`_.
+
+You can find a detailed description of `creating repositories`_ in the official GitHub documentation, and a `Hello World tutorial`_ with basic Git operations from the GitHub interface.
+
+.. _Version Control with Git: https://swcarpentry.github.io/git-novice/
+.. _creating repositories: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
+.. _Hello World tutorial: https://docs.github.com/en/get-started/start-your-journey/hello-world
 
 
 
-=================
-Let's get started
-=================
+.. _tutorial-plugin-structure:
 
-We already have a git repository and a virtual environment where Spyder 5 is installed.
+=============================
+Defining the plugin structure
+=============================
 
-Let's activate our environment and go into the local folder of our repository.
+We already have :ref:`a Git repository <tutorial-repo>` and :ref:`a virtual environment <tutorial-environment>` where Spyder 5 is installed.
+Let's activate our environment in the system terminal (Anaconda Prompt for Windows) and navigate into the root folder of our repository:
 
 .. code-block:: shell
 
-   mamba activate spyder-dev
-   cd /path/to/your/repository
+   conda activate spyder-dev
+   cd path/to/your/repository
 
-Then we need to use ``cookiecutter`` to create the initial structure of our plugin. `cookiecutter`_ is a tool made in Python specifically designed to create project templates.
-We have developed one of these templates to generate the basic structure of a plugin, it can be found at: https://github.com/spyder-ide/spyder5-plugin-cookiecutter
+.. _tutorial-cookiecutter:
 
-.. _cookiecutter: https://cookiecutter.readthedocs.io
+Then we need to use `Cookiecutter`_ to create the :ref:`initial structure <tutorial-structure-details>` of our plugin.
+Cookiecutter is a tool implemented in Python specifically designed to create project skeletons.
+We have developed a `Spyder Cookiecutter template`_ to generate the basic structure of a plugin.
+
+.. _Cookiecutter: https://cookiecutter.readthedocs.io
+
+.. _Spyder Cookiecutter template: https://github.com/spyder-ide/spyder5-plugin-cookiecutter
 
 .. image:: images/workshop-3/pd_plugin_structure.png
-   :alt: Folder structure of our plugin.
+   :alt: Folder structure of our plugin
 
-Let's run cookiecutter to generate our
+Let's run Cookiecutter to generate our plugin structure:
 
-.. code-block:: shell
+.. code-block:: console
 
    $ cookiecutter https://github.com/spyder-ide/spyder5-plugin-cookiecutter
-   You\'ve downloaded /home/mapologo/.cookiecutters/spyder5-plugin-cookiecutter before. Is it okay to delete and re-download it? [yes]:
-   full_name [Spyder Bot]: Francisco Palm # It's your name, better John Doe
-   email [spyder.python@gmail.com]: fpalm@qu4nt.com
-   github_username [spyder-bot]: map0logo
+   full_name [Spyder Bot]: Spyder Man  # YOUR NAME
+   email [spyder.python@gmail.com]: spyder.python@gmail.com  # YOUR EMAIL
+   github_username [spyder-bot]: spyder-ide
    github_org [spyder-ide]:
    project_name [Spyder Boilerplate]: Spyder Pomodoro Timer
    project_short_description [Boilerplate needed to create a Spyder Plugin.]: A very simple pomodoro timer that shows in the status bar.
    project_pypi_name [spyder-pomodoro-timer]:
    project_package_name [spyder_pomodoro_timer]:
-   pypi_username [map0logo]:
+   pypi_username [spyder-ide]:
    Select plugin_type:
    1 - Spyder Dockable Plugin
    2 - Spyder Plugin
@@ -326,14 +402,11 @@ Let's run cookiecutter to generate our
    6 - Not open source
    Choose from 1, 2, 3, 4, 5, 6 [1]: 1
 
+.. _tutorial-structure-details:
 
-The plugin structure
-~~~~~~~~~~~~~~~~~~~~
+After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository:
 
-
-After ``cookicutter`` finishes its job, you'll get the following tree structure in your repository
-
-.. code-block:: bash
+.. code-block:: text
 
    .
    ├── [Some info files]
@@ -352,102 +425,123 @@ After ``cookicutter`` finishes its job, you'll get the following tree structure 
    │       └── widgets.py
    └── tests
 
-
 In the root folder you'll find two important files:
 
 * The Makefile, which has several useful commands:
 
-.. code-block:: bash
+  .. code-block:: text
 
-   clean                remove all build, test, coverage and Python artifacts
-   clean-build          remove build artifacts
-   clean-pyc            remove Python file artifacts
-   clean-test           remove test and coverage artifacts
-   test                 run tests quickly with the default Python
-   docs                 generate Sphinx HTML documentation, including API docs
-   servedocs            compile the docs watching for changes
-   release              package and upload a release
-   dist                 builds source and wheel package
-   install              install the package to the active Python's site-packages
-   develop              install the package to the active Python's site-packages
+     clean                remove all build, test, coverage and Python artifacts
+     clean-build          remove build artifacts
+     clean-pyc            remove Python file artifacts
+     clean-test           remove test and coverage artifacts
+     test                 run tests quickly with the default Python
+     docs                 generate Sphinx HTML documentation, including API docs
+     servedocs            compile the docs watching for changes
+     release              package and upload a release
+     dist                 builds source and wheel package
+     install              install the package to the active Python's site-packages
+     develop              install the package to the active Python's site-packages
 
+* ``setup.py``.
+  It helps you install, package and distribute your plugin with Setuptools, the standard for distributing Python packages.
+  In this file the ``entry_points`` parameter of ``setup`` is quite important, as it is what allows Spyder to identify this package as a plugin, and know how to access its functionality.
 
-* ``setup.py``, which helps you to install, package and distribute your plugin with ``setuptools``, the standard for distributing Python Modules.
-  On this file the ``entry_points`` parameter of ``setup`` is quite important, as it is the one that allows Spyder to identify this package as a plugin, and to know how to access its functionalities.
-
-
-
-The ``spyder-pomodoro-timer`` folder has the name you introduced when running ``cookiecutter``. Inside this you'll see a folder called ``spyder``, where we will place the code of our plugin.
+The folder for ``spyder-pomodoro-timer`` has the project name you entered when you ran ``cookiecutter``.
+Inside it we should see a folder called ``spyder``, where we will place the code of our plugin.
 
 In the ``spyder`` directory you'll find the following files:
 
-* ``api.py``: where the functionality of the plugin is exposed to the rest of Spyder. That would allow additional functionality to be added from other plugins.
+* ``api.py``.
+  Exposes the functionality of the plugin to the rest of Spyder, allowing other plugins to build on top of it in turn.
 
-* ``plugin.py``: is the core of the plugin. Depending on the type of plugin we created, here you'll see an instance of ``SpyderDockablePlugin`` or ``SpyderPluginV2``.
+* ``plugin.py``.
+  This is the core of the plugin.
+  Depending on the type of plugin created, you will see an instance of either ``SpyderDockablePlugin`` or ``SpyderPluginV2``.
 
-  * If it is a ``SpyderPluginV2`` you should set a constant class named ``CONTAINER_CLASS`` with an instance of ``PluginMainContainer``.
-  * If it is a ``SpyderDockablePlugin`` you should set a constant class named ``WIDGET_CLASS`` with an instance of ``PluginMainWidget``.
+  * If it is a ``SpyderPluginV2``, it needs to have a constant named ``CONTAINER_CLASS`` with its value being a class object which is a subclass of ``PluginMainContainer``.
+  * If it is a ``SpyderDockablePlugin``, it needs constant named ``WIDGET_CLASS`` with its value being a class object which is a subclass of ``PluginMainWidget``.
 
-* ``container.py``: only used for ``SpyderPluginV2`` plugins. This file contains an instance of ``PluginMainContainer`` that holds a reference to all graphical elements (or widgets) that the plugin is going to add to the interface. This is necessary because Qt requires widgets to be children of other widgets before using them (otherwise they appear as floating windows). Since ``SpyderPluginV2`` is not a widget, we need a data structure (i.e. the container) that is a widget for that.
+  For example, with a ``SpyderPluginV2``:
 
-* ``widgets.py``: in this file we will add the graphical components of our plugin. If it is of type ``SpyderPluginV2`` and it does not have widgets, then it is not necessary.
-  We can also place here the instance of ``PluginMainWidget`` necessary for ``SpyderDockablePlugin``, if we are developing that kind of plugin.
+  .. code-block:: python
 
-* ``confpage.py``: this is where you specify the configuration page that will be displayed in ``Preferences``, so that the user can adjust the options of our plugin.
+     # plugin.py
+     from spyder.api.plugins import SpyderPluginV2
+     from my_plugin.spyder.container import MyContainer
+
+     class MyPlugin(SpyderPluginV2):
+         CONTAINER_CLASS = MyContainer
+
+* ``container.py``.
+  Only used for ``SpyderPluginV2`` plugins, this file has an instance of ``PluginMainContainer`` that contains references to all graphical elements (or widgets) your plugin will add to the interface.
+  This is necessary because Qt requires widgets to be children of other widgets before using them (otherwise they appear as floating windows).
+  Since ``SpyderPluginV2`` is not a widget, the container (which is a widget) serves this role for us.
+
+* ``widgets.py``.
+  Contains the graphical components of our plugin.
+  This not needed for a ``SpyderPluginV2`` without widgets.
+  For ``SpyderPluginV2`` with widgets or a ``SpyderDockablePlugin``, the required instance of ``PluginMainWidget`` goes here.
+
+* ``confpage.py``.
+  Includes the configuration page that will be displayed in :guilabel:`Preferences`, so that the user can adjust the options of our plugin.
 
 
 
-=========================
-Building our first plugin
-=========================
+.. _tutorial-building-plugin:
 
-From now on we will be building the plugin step by step. In the `spyder pomodoro timer repository`_ you will find the final version of the code for you to take a look at it, in case we are missing any detail.
+===================
+Building our plugin
+===================
 
-.. _spyder pomodoro timer repository: https://github.com/map0logo/spyder-pomodoro-timer
+We'll now build the three components of our plugin step by step: its :ref:`graphical widgets <tutorial-building-widgets-py>`, the :ref:`container for them <tutorial-building-container-py>`, and the :ref:`plugin interface itself <tutorial-building-plugin-py>`.
 
-Widgets
-~~~~~~~
+The `Spyder-Pomodoro-Timer repository`_ contains all the major versions of the code we'll walk you through, in case you run into any issues.
+We'll call the initial template (produced by :ref:`the cookiecutter above <tutorial-plugin-structure>`) *INITIAL*.
+The first working version we are building here we'll refer to as ``HELLO WORLD``.
 
-The best way to start building our plugin is by implementing its graphical components first in ``widgets.py``
+.. note::
 
-Let's call the initial version, without any editing ``INITIAL``.
-In `INITIAL`_, widgets.py is as follows:
+   We will include links to the GitHub diffs between the tags at the end of each subsection, as an aid to check the progressive changes that we'll make in the code.
+
+.. _Spyder-Pomodoro-Timer repository: https://github.com/spyder-ide/spyder-pomodoro-timer
+.. _INITIAL: https://github.com/spyder-ide/spyder-pomodoro-timer/tree/v0.1.1-dev0
+
+
+.. _tutorial-building-widgets-py:
+
+The widgets
+~~~~~~~~~~~
+
+The best way to start building our plugin is to implement its graphical components in the ``widgets.py`` file.
+
+In `INITIAL`_, the ``widgets.py`` file contains:
 
 .. code-block:: python
 
    # Spyder imports
    from spyder.api.config.decorators import on_conf_change
    from spyder.api.translations import get_translation
-
    from spyder.api.widgets.mixins import SpyderWidgetMixin
-
 
    # Localization
    _ = get_translation("spyder_pomodoro_timer.spyder")
 
+The predetermined imports are a guide to what we will need in our plugin:
 
-.. hint::
+* ``@on_conf_change`` (a decorator) propagates configuration changes.
+* ``get_translation()`` generates and retrieves translation strings for the plugin.
+* ``SpyderWidgetMixin`` adds the necessary attributes and methods to widgets to integrate it with Spyder (e.g. icon, style, translation, actions, and extra options).
 
-   The preset imports are a guide to what we will need in our plugin. The ``on_conf_change`` decorator will allow us to propagate the changes in configuration. ``get_translation`` helps us to generate translation strings for the plugin and ``SpyderWidgetMixin`` adds to any widget the attributes and methods needed to integrate it with Spyder (icon, style, translation, actions and extra options).
+Taking a look at the ``spyder.api.widgets.status`` module, there are two types of predefined widgets to go in the Spyder status bar:
 
-When taking a look at the Spyder ``api`` module, we can find that in Spyder there are two types of predefined components for the status bar:
+* ``StatusBarWidget``.
+  A class derived from ``QWidget`` and ``SpyderWidgetMixin``, which contains an icon, a label, and a spinner (to show the plugin loading).
+* ``BaseTimerStatus``.
+  A class derived from ``StatusBarWidget`` with an internal ``QTimer`` to periodically update its content.
 
-* ``StatusBarWidget``, a class derived from ``QWidget`` and ``SpyderWidgetMixin``, which contains an icon, a label and a spinner (to show the plugin loading).
-* ``BaseTimerStatus``, a class derived from ``StatusBarWidget`` with an internal ``QTimer`` to periodically update its content.
-
-.. note::
-
-   Below, we will be indicating links in github with the diffs between the tags, this as an aid to check the progressive changes that will be made in the code.
-
-The first version that we are going to reach after the first editions will be called ``HELLO WORLD``.
-
-`INITIAL -> HELLO WORLD widgets.py diff`_
-
-.. _INITIAL -> HELLO WORLD widgets.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/c7b5cc6c4ce3c4afcd3cb9d3474bdabe2b81e060
-
-Since we want a widget that shows the pomodoro countdown and is periodically updated, we will use a ``BaseTimerStatus`` instance.
-
-So, we can substitute
+Since we want a widget that shows the Pomodoro countdown and is updated periodically, we will use an instance of ``BaseTimerStatus``.
+So, we can replace
 
 .. code-block:: python
 
@@ -460,19 +554,19 @@ with
    from spyder.api.widgets.status import BaseTimerStatus
    from spyder.utils.icon_manager import ima
 
-Add an initial import:
+and add an initial import:
 
 .. code-block:: python
 
    # Third party imports
    import qtawesome as qta
 
-With that, we can write our first widget like this
+With that, we can write our first widget like this:
 
 .. code-block:: python
 
    class PomodoroTimerStatus(BaseTimerStatus):
-       """Status bar widget to display the pomodoro timer"""
+       """Status bar widget to display the pomodoro timer."""
 
        ID = "pomodoro_timer_status"
        CONF_SECTION = "spyder_pomodoro_timer"
@@ -488,40 +582,46 @@ With that, we can write our first widget like this
        def get_icon(self):
            return qta.icon("mdi.av-timer", color=ima.MAIN_FG_COLOR)
 
-.. hint::
+.. note::
 
-    Spyder needs ``ID`` to be defined for ``BaseTimerStatus``. Its constructor calls the parent class constructor and initializes the label with ``value``.
+    Spyder needs an ``ID`` to be defined for ``BaseTimerStatus``.
+    Its constructor calls the parent class constructor and initializes the label with ``value``.
 
-We add a tooltip to verify the presence of our widget. Since Spyder uses ``qtawesome`` (another of our projects that eases the incorporation of iconic fonts into PyQt applications), we can select an appropriate icon by running the ``qta-browser`` command on a terminal.
+We've added a tooltip to explain the purpose of our widget, and an icon from `QtAwesome`_ (a Spyder project that makes it easy to incorporate icon fonts into PyQT applications).
+We can find an appropriate icon by running the ``qta-browser`` command in a system terminal (Anaconda Prompt on Windows).
 
-.. code-block:: bash
+From here, as :ref:`Figure 3 <tutorial-figure-3>` shows, we can select and copy the icon name of our preference.
 
-   (spyder-dev) $ qta-browser
+.. _tutorial-figure-3:
 
-From here we can select and copy the name of the icon of our preference.
+.. figure:: images/workshop-3/pd_qta-browser_timer.png
+   :alt: A graphical window showing a grid with a number of timer-related icons.
 
-.. image:: images/workshop-3/pd_qta-browser_timer.png
-   :alt: qta browser dialog
+   Figure 3: QtAwesome icon browser
 
-To finish the implementation of our widget, we need to add the following method:
+To finish the implementation of our widget, ``BaseTimerStatus`` requires the following method to update its contents each time it is requested by the internal timer:
 
 .. code-block:: python
 
    # ---- BaseTimerStatus API
    def get_value(self):
-       """Get current time of the timer"""
-
+       """Get current time of the timer."""
        return self.value
 
-``BaseTimerStatus`` requires this method to be implemented to update its content every time it is requested by the internal timer.
+Here's the `INITIAL -> HELLO WORLD widgets.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/c7b5cc6c4ce3c4afcd3cb9d3474bdabe2b81e060>`__ that sums everything up.
 
+.. _QtAwesome: https://github.com/spyder-ide/qtawesome
+
+
+.. _tutorial-building-container-py:
 
 The container
 ~~~~~~~~~~~~~
 
-The next step in the development of our plugin is to create an instance of the widget we wrote above, so we can add it to Spyder's status bar. For that, we need to use a container. Due to Qt specifics, we need an instance of ``QWidget`` (the container) to be the parent of all other widgets part of our plugin (as mentioned above).
+The next step is instantiating the status bar widget we :ref:`created above <tutorial-building-widgets-py>`.
+To do this, we need a ``QWidget`` instance (the container) to be the parent of all the other widgets in our plugin (as explained in the :ref:`discussion above <tutorial-structure-details>`).
 
-Thus, the `COOKIECUTTER`_ version of ``container.py`` is:
+The ``INITIAL`` version of the ``container.py`` file is:
 
 .. code-block:: python
 
@@ -530,7 +630,6 @@ Thus, the `COOKIECUTTER`_ version of ``container.py`` is:
    from spyder.api.widgets.main_container import PluginMainContainer
 
    _ = get_translation("spyder_pomodoro_timer.spyder")
-
 
    class SpyderPomodoroTimerContainer(PluginMainContainer):
 
@@ -544,20 +643,17 @@ Thus, the `COOKIECUTTER`_ version of ``container.py`` is:
        def update_actions(self):
            pass
 
-`INITIAL -> HELLO WORLD container.py diff`_
+``SpyderPomodoroTimerContainer`` is already defined, and we just need to implement the ``setup()`` method.
+This is where we add the widget we :ref:`created earlier <tutorial-building-widgets-py>` to the container.
 
-.. _INITIAL -> HELLO WORLD container.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/73dbc2c010274613357d6d8d2e4d1428dc030c77
-
-In this case ``SpyderPomodoroTimerContainer`` is already defined, and we must implement the ``setup`` and ``update_actions`` methods.
-
-Now we are going to add the widget created earlier to the container. To do so, first we need to import the widget.
+To do so, first we need to import the widget:
 
 .. code-block:: python
 
    # Local imports
    from spyder_pomodoro_timer.spyder.widgets import PomodoroTimerStatus
 
-Then we edit the ``setup`` method to add an instance of our widget.
+Then, we edit the ``setup()`` method to add an instance of our widget.
 
 .. code-block:: python
 
@@ -565,14 +661,16 @@ Then we edit the ``setup`` method to add an instance of our widget.
            # Widgets
            self.pomodoro_timer_status = PomodoroTimerStatus(self)
 
+Here's the full `INITIAL -> HELLO WORLD container.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/73dbc2c010274613357d6d8d2e4d1428dc030c77>`__, as a review.
 
-Plugin
-~~~~~~
 
-Finally, we define our plugin so that it is registered within Spyder.
-The `INITIAL`_ version (i.e. the one created by cookiecutter)  for ``plugin.py`` is:
+.. _tutorial-building-plugin-py:
 
-* Imports:
+The plugin
+~~~~~~~~~~
+
+Finally, we define our plugin to be registered within Spyder.
+The `INITIAL`_ version (i.e. the one created by :ref:`our cookiecutter template <tutorial-plugin-structure>`) of the ``plugin.py`` file has a number of imports:
 
 .. code-block:: python
 
@@ -589,14 +687,12 @@ The `INITIAL`_ version (i.e. the one created by cookiecutter)  for ``plugin.py``
 
     _ = get_translation("spyder_pomodoro_timer.spyder")
 
-* Plugin class:
+and the main plugin class:
 
 .. code-block:: python
 
     class SpyderPomodoroTimer(SpyderPluginV2):
-        """
-        Spyder Pomodoro Timer plugin.
-        """
+        """Spyder Pomodoro Timer plugin."""
 
         NAME = "spyder_pomodoro_timer"
         REQUIRES = []
@@ -613,7 +709,7 @@ The `INITIAL`_ version (i.e. the one created by cookiecutter)  for ``plugin.py``
             return _("Spyder Pomodoro Timer")
 
         def get_description(self):
-            return _("A very simple pomodoro timer")
+            return _("A very simple Pomodoro timer")
 
         def get_icon(self):
             return QIcon()
@@ -630,32 +726,25 @@ The `INITIAL`_ version (i.e. the one created by cookiecutter)  for ``plugin.py``
         def on_close(self, cancellable=True):
             return True
 
-`INITIAL -> HELLO WORLD plugin.py diff`_
+.. note::
 
-.. _INITIAL -> HELLO WORLD plugin.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/d368e695e096e1a054e043671f98b5f0021b6822
+   The ``CONTAINER_CLASS`` constant is what registers the container class we :ref:`implemented previously <tutorial-building-container-py>` with the top-level plugin object.
 
-First, we need to declare the dependencies of our plugin, by defining the ``REQUIRES`` class constant. Since we're going to add a status bar widget, we require the ``StatusBar`` plugin, as shown below.
+Now, we need to declare the dependencies of our plugin by defining the ``REQUIRES`` class constant.
+As we are going to add a status bar widget, we need the ``StatusBar`` plugin, as shown below.
 
 .. code-block:: python
 
        REQUIRES = [Plugins.StatusBar]
 
-Then we need to set the icon for our plugin. For that, we substitute
+Then, we need to set the icon for our plugin.
+For that, we replace
 
 .. code-block:: python
 
    from qtpy.QtGui import QIcon
 
-   # ...
-
-and
-
-.. code-block:: python
-
-       def get_icon(self):
-           return QIcon()
-
-by
+with
 
 .. code-block:: python
 
@@ -665,22 +754,28 @@ by
    # Spyder imports
    from spyder.utils.icon_manager import ima
 
-and
+and replace
+
+.. code-block:: python
+
+       def get_icon(self):
+           return QIcon()
+
+with
 
 .. code-block:: python
 
        def get_icon(self):
            return qta.icon("mdi.av-timer", color=ima.MAIN_FG_COLOR)
 
-
-Due to recent changes to the Spyder API, we need to add to the spyder imports
+We also need to add, under Spyder imports:
 
 .. code-block:: python
 
    # Spyder imports
    from spyder.api.plugin_registration.decorators import on_plugin_available
 
-And add the following after the ``on_initialize`` method:
+And add the following code after the ``on_initialize()`` method:
 
 .. code-block:: python
 
@@ -690,9 +785,9 @@ And add the following after the ``on_initialize`` method:
            if statusbar:
                statusbar.add_status_widget(self.pomodoro_timer_status)
 
-With these changes, Spyder will be aware of the presence of our plugin, and that this plugin adds a new widget to the status bar.
+Taking these changes into account, Spyder will recognize the presence of our plugin and identify that it adds a new widget to the status bar.
 
-Finally, we add the following method to our plugin:
+Finally, we add the following ``property`` accessor to our plugin class:
 
 .. code-block:: python
 
@@ -701,199 +796,218 @@ Finally, we add the following method to our plugin:
        container = self.get_container()
        return container.pomodoro_timer_status
 
-In this way, ``SpyderPomodoroTimer`` can access ``pomodoro_timer_status`` of ``SpyderPomodoroTimerContainer`` as if it were its own property.
+This way, consumers of ``SpyderPomodoroTimer`` can easily read (but not write) ``pomodoro_timer_status`` as an attribute of the top-level plugin.
 
-In summary, we did the following:
+In summary, we implemented the following structure:
 
 .. image:: images/workshop-3/pd_plugin_build.png
    :alt: Basic structure of Pomodoro Timer Spyder plugin.
 
-We created a widget, then we added it to the container, which is registered in the plugin through the ``CONTAINER_CLASS`` constant. In the plugin, we accessed the instance of that widget and added it to the status bar.
+We :ref:`created a widget <tutorial-building-widgets-py>`, :ref:`added it to a container <tutorial-building-container-py>`.
+In the plugin, we accessed the instance of that widget and added it to the status bar.
 
-.. _INITIAL: https://github.com/map0logo/spyder-pomodoro-timer/tree/v0.1.1-dev0
+To summarize, here's the full diff, `INITIAL -> HELLO WORLD plugin.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/d368e695e096e1a054e043671f98b5f0021b6822>`__.
 
-======================
-How to test our plugin
-======================
+
+
+.. _tutorial-testing-plugin:
+
+==================
+Testing our plugin
+==================
 
 Now it is time to see how our plugin looks in the Spyder interface.
 
-**From the root folder of our plugin**, we activate the environment where Spyder is installed, and run:
+In a system terminal (Anaconda Prompt on Windows), **from the root folder of our plugin**, we activate the plugin's environment and install it:
 
-.. code-block:: bash
+.. code-block:: shell
 
-   (base) $ conda activate spyder-dev
-   (spyder-dev) $ pip install -e .
+   conda activate spyder-dev
+   pip install -e .
 
+Running Spyder in the system terminal and checking the output, we should see:
 
-Now we can see two outputs. The first one is shown in the command line:
+.. code-block:: console
 
-.. code-block:: bash
-
-   (spyder-dev) $ spyder
+   $ spyder
    SpyderPomodoroTimer registered!
 
-And in Spyder you'll see our plugin in the status bar with the tooltip "I am the Pomodoro tooltip".
+And as :ref:`Figure 4 <tutorial-figure-4>` presents, you should see our plugin in the Spyder status bar with the tooltip :guilabel:`I am the Pomodoro tooltip`!
 
-.. image:: images/workshop-3/pd_hello_world.png
-   :alt: First version of our plugin
+.. _tutorial-figure-4:
 
-Keep in mind that every time we make a change to our code, it is necessary to restart Spyder so that the plugin is reloaded and we can check the changes.
+.. figure:: images/workshop-3/pd_hello_world.png
+   :alt: Spyder status bar, showing a time icon and counter, with the toolip reading I am the Pomodoro tooltip
 
+   Figure 4: First "Hello World" version of our plugin in the status bar
 
-
-====================
-Enhancing our plugin
-====================
-
-From now on we are going to go into details of how things are implemented in Qt. So in case you have any doubts, the Qt documentation will be your best guide.
-We created an annex to this workshop that quickly explains way the fundamental concepts of Qt for those in a hurry: :ref:`qt-fundamentals`
+.. hint::
+   Every time we modify the code, we'll need to restart Spyder to see the updates to our plugin.
 
 
-Timer updates
-~~~~~~~~~~~~~
 
-The first problem with our plugin is that its pomodoro timer is not being updated. To activate it we can use the ``QTimer`` in ``PomodoroTimerStatus``, which is present because it's an instance of ``BaseTimerStatus``.
+.. _tutorial-update-timer:
 
-The second version where the value in the status bar is updated is called ``TIMER``.
+==============================
+Making the Pomodoro timer work
+==============================
 
-Let's go back to ``widgets.py`` and add this constant below the import lines (line 22).
+Now, we're going to get into the details of how Spyder plugins are implemented in Qt.
+The plugin displays the time in Spyder's status bar, but the Pomodoro timer is not being updated.
+In this section, we will use a ``QTimer`` in the ``PomodoroTimerStatus`` class (inherited from ``BaseTimerStatus``) to update the time shown in the status bar.
 
-`HELLO WORLD -> TIMER widgets.py diff`_
+.. hint::
 
-.. _HELLO WORLD -> TIMER widgets.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/5d72eaf2c8ce6c7760529c90121837e275757974
+   If you're new to `Qt`_, see our :ref:`qt-fundamentals` page for an overview of the basics, and the  `Qt documentation`_ for the full reference.
+
+.. _Qt documentation: https://doc.qt.io/
+
+Let's go back to ``widgets.py`` and add the default time and update interval below the import lines:
 
 .. code-block:: python
 
    # --- Constants
-   # ------ Time limits by default
 
-   POMODORO_DEFAULT = 25 * 60 * 1000  # 25 mins in milliseconds
+   # ------ Default time limits
+   POMODORO_DEFAULT = 25 * 60 * 1000  # 25 minutes in milliseconds
    INTERVAL = 1000
 
-``POMODORO_DEFAULT`` is to set the pomodoro time limit in milliseconds, and ``INTERVAL`` to the timer update rate.
+``POMODORO_DEFAULT`` sets the default Pomodoro time limit in milliseconds and ``INTERVAL`` is how often to update the timer (every second).
 
-Now, in the ``__init__`` method of ``PomodoroTimerStatus`` we need to add:
+Now, in the ``__init__`` method of the ``PomodoroTimerStatus`` class, we need to add:
 
 .. code-block:: python
 
-       # Actual time limits
+       # Current time limit
        self.pomodoro_limit = POMODORO_DEFAULT
        self.countdown = self.pomodoro_limit
-
        self._interval = INTERVAL
+
        self.timer.timeout.connect(self.update_timer)
        self.timer.start(self._interval)
 
-Up to this point, we created a default value (``POMODORO_DEFAULT``) for the timer duration during pomodoros; we added it to the ``pomodoro_limit`` attribute to be able to configure it; and with that value we initialized the ``countdown`` attribute that will be modified over time.
-As for the update interval of the timer, we set it to to the value of ``INTERVAL``, which corresponds to 1 second (one thousand milliseconds).
+Here, we add the following attributes:
 
-The function of ``self.timer`` is to update our timer periodically. This is done through the method ``timeout.connect()``, to which we pass as parameter the reference to the ``update_timer`` function that will perform the required adjustments.
+* ``pomodoro_limit``: The current Pomodoro time limit in ms, which we set to the default time specified by the ``POMODORO_DEFAULT`` constant.
+* ``countdown``: The number of milliseconds left in the countdown, which is set to the starting value of ``self.pomodoro_limit``.
+* ``_interval``: The timer update frequency, to which we assign the value of the ``INTERVAL`` constant (1000 ms / 1 s).
 
-Now let's implement ``update_timer`` at the end of the file:
+.. note:: The leading underscore (``_``) in ``self._interval``, signifies this attribute is private and not intended to be used outside the class.
+
+After that, we set up the ``self.timer`` object, a ``QTimer`` which this class inherits from its parent ``BaseTimerStatus``.
+To do this, we use the ``connect`` method of ``self.timer.timeout``, passing it a ``update_timer`` function as a callback.
+Then, we call ``self.timer.start()``, which calls ``update_timer`` at the time interval we pass it.
+
+Now let's implement the ``update_timer()`` callback method (at the end of ``widgets.py``):
 
 .. code-block:: python
 
        def display_time(self):
            """Calculate the time that should be displayed."""
-
            minutes = int((self.countdown / (1000 * 60)) % 60)
            seconds = int((self.countdown / 1000) % 60)
            return f"{minutes:02d}:{seconds:02d}"
 
        def update_timer(self):
-           """Updates the timer and the current widget. Also, update the
-           task counter if a task is set."""
-
+           """
+           Update the timer and the current widget.
+           Also update the task counter if a task is a set.
+           """
            if self.countdown > 0:
                # Update the current timer by decreasing the current running time by one second
                self.countdown -= INTERVAL
                self.value = self.display_time()
 
-Here we rely on the ``display_time`` method that converts the current ``countdown`` value, which is measured in milliseconds, into a human-readable format. And ``update_timer`` simply keeps updating the countdown until it reaches zero.
+The ``display_time()`` method converts the current ``countdown`` value into human-readable text, which the ``update_timer()`` callback uses to decrement the timer value every second until it reaches zero.
 
-If we run Spyder again we will find that our timer has come to life.
+If we run Spyder again, we will see that our timer has started counting down.
 
 .. image:: images/workshop-3/pd_timer_countdown.gif
-   :alt: Timer countdown working.
+   :alt: Animated screen capture showing the time in the statusbar widget counting down
+
+For reference, the changes in this revision ("``TIMER``") are shown in the `HELLO WORLD -> TIMER widgets.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/5d72eaf2c8ce6c7760529c90121837e275757974>`__.
 
 
 
-==============
-Timer controls
-==============
+.. _tutorial-toolbar:
 
-Now we need a way to control our timer. We can achieve this by adding some buttons to Spyder's toolbar, which will be useful to learn how to work with toolbars, menus and actions in Spyder.
+====================================
+Adding timer controls to the toolbar
+====================================
+
+Now that our plugin :ref:`updates the timer <tutorial-update-timer>` in Spyder's toolbar, we'll add some controls for it, by:
+
+#. :ref:`tutorial-toolbar-subclass`,
+#. :ref:`tutorial-toolbar-actions`,
+#. :ref:`tutorial-toolbar-behavior`,
+#. :ref:`tutorial-toolbar-registration`, and
+#. :ref:`tutorial-toolbar-reviewing`.
+
+Implementing these changes will help us learn how to work with toolbars, menus, and actions in Spyder.
+For future reference, we'll call this revision ``TOOLBAR``.
 
 
-PomodoroTimerToolbar
-~~~~~~~~~~~~~~~~~~~~
+.. _tutorial-toolbar-subclass:
 
-The next version where actions are added to the toolbar is called ``ACTIONS``.
+Creating a toolbar subclass
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`TIMER -> ACTIONS widgets.py diff`_
-
-.. _TIMER -> ACTIONS widgets.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/48a946fdbb934b9b85facd3c1b77fc8999e049a9
-
-Let's go back to ``widgets.py`` and import the Spyder application toolbar class:
+Focusing on ``widgets.py`` first, let's import the Spyder ``ApplicationToolbar`` class:
 
 .. code-block:: python
 
    from spyder.api.widgets.toolbars import ApplicationToolbar
 
-And create an instance of it by adding the following code before the definition of ``PomodoroTimerStatus``:
+Then, create our own subclass of it above the ``PomodoroTimerStatus`` class definition:
 
 .. code-block:: python
 
    class PomodoroTimerToolbar(ApplicationToolbar):
        """Toolbar to add buttons to control our timer."""
-
        ID = 'pomodoro_timer_toolbar'
 
-As you can see, this statement is very simple. It only needs to declare an ``ID``, that serves to identify our toolabr among the rest.
+The only customization we need is to declare an ``ID`` to identify our particular toolbar.
 
-It is possible to include other Qt widgets in our toolbar, but in this case it's better to use the appropriate Spyder methods for that in order to maintain their relationship with the rest of the application. In other words, as long as the widget you need exists in ``spyder.api.widgets``, use it!
-
-
-Next, we need to declare a boolean variable in our status widget to indicate if the countdown is paused or not. For that, let's add the following inside the ``__init__`` method of ``PomodoroTimerStatus``:
+Next, we need to declare a boolean variable in our status widget to indicate if the countdown is paused or not.
+Let's add the following code inside the ``__init__`` method of the ``PomodoroTimerStatus`` class definition:
 
 .. code-block:: python
 
    self.pause = True
 
-And inside the ``update_timer`` method, substitute
+And inside the ``update_timer`` method of the same class, replace
 
 .. code-block:: python
 
            if self.countdown > 0:
-               ...
 
-by
+with
 
 .. code-block:: python
 
            if self.countdown > 0 and not self.pause:
-               ...
+
+Here's a full listing of the `TIMER -> TOOLBAR widgets.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/48a946fdbb934b9b85facd3c1b77fc8999e049a9>`__.
 
 
-Create the Pomodoro Toolbar
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _tutorial-toolbar-actions:
 
-Now we are going to create a new section in our toolbar and associate some functionality to it by means of actions. This particular information is recommended to be included in the ``api.py`` file because this way we can offer endpoints to the rest of Spyder and new plugins for tweaking the behavior of our plugin.
+Declaring the high-level toolbar structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`TIMER -> ACTIONS api.py diff`_
+Now we'll declare the high-level structure of our new toolbar, including its actions and sections, as well as that of a menu for our plugin.
+This goes in the ``api.py`` file, since that allows Spyder and other plugins to modify and add to our toolbar if needed.
 
-.. _TIMER -> ACTIONS api.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/cf540f972f37aaf5d6ccc8524cbcc7aeae9c483b
+.. note:: Actions represent the control buttons that have associated functions to be called when interacted with, while toolbar sections contain groups of actions.
 
-Let's add the following to the end of ``api.py``:
+Let's add the following to ``api.py``:
 
 .. code-block:: python
 
    class PomodoroToolbarActions:
-       Start = 'start_timer'
-       Pause = 'pause_timer'
-       Stop = 'stop_timer'
-
+       Start = "start_timer"
+       Pause = "pause_timer"
+       Stop = "stop_timer'
 
    class PomodoroToolbarSections:
        Controls = "pomodoro_timer"
@@ -901,21 +1015,30 @@ Let's add the following to the end of ``api.py``:
    class PomodoroMenuSections:
        Main = "main_section"
 
-With these we are telling the rest of Spyder, and our own plugin, that we are going to have a new toolbar section called "pomodoro_timer". This section will consist of a button containing a menu (with a single section "main_section") and actions identified as "start_timer", "pause_timer" and "stop_timer", to start, pause and stop (resetting) our timer, respectively.
+Here, we create three classes:
 
-Note that these are simple class definitions with class constants, to ease the encapsulation and exchange of this information in a simple way.
+* ``PomodoroToolbarActions``: Lists the buttons in our toolbar—start, pause and stop the timer
+* ``PomodoroToolbarSections``: Lists the sections of the graphical toolbar—in this case, just one for the timer controls
+* ``PomodoroMenuSections``: Lists the sections of a menu for the plugin (again, just one in this case)
 
-Add actions to the toolbar
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. note::
 
-`TIMER -> ACTIONS container.py diff`_
+   Lightweight class definitions with class constants facilitates the  exchange of this information with minimal complexity.
 
-.. _TIMER -> ACTIONS container.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/492f30771285af937a8a75d69e4e879d21f9dc0f
+To review, you can check out the `TIMER -> TOOLBAR api.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/cf540f972f37aaf5d6ccc8524cbcc7aeae9c483b>`__.
 
-Now let's go to ``container.py``, where we are going to implement the behavior of our new toolbar and its actions.
-In this case, we are not going to specify the internal behavior of our plugin, but the relationship between its widgets and other areas of Spyder, so it is more convenient to do it in the container.
 
-As we did with ``PomodoroTimerStatus``, we are going to use ``qtawesome`` icons for our actions. For this purpose, let's add at the beginning of our imports:
+.. _tutorial-toolbar-behavior:
+
+Implementing the toolbar behaviors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now let's implement the behavior of our new Pomodoro timer toolbar and its actions.
+Because this involves the relationship between our plugin widgets, we'll do this in the ``container.py`` file.
+
+:ref:`As we did <tutorial-building-widgets-py>` with the ``PomodoroTimerStatus`` class, we will use `QtAwesome`_ icons for our actions.
+We also use the ``QToolButton`` class for the buttons added to our toolbar.
+We'll first need to add these as third party imports (above the Spyder section):
 
 .. code-block:: python
 
@@ -923,15 +1046,13 @@ As we did with ``PomodoroTimerStatus``, we are going to use ``qtawesome`` icons 
    import qtawesome as qta
    from qtpy.QtWidgets import QToolButton
 
-We also imported ``QToolButton`` because it will be used to set the button that we will add in our toolbar.
-
-At the end of the Spyder imports we also need:
+At the end of the Spyder imports, we also need:
 
 .. code-block:: python
 
    from spyder.utils.icon_manager import ima
 
-Now, let's include ``PomodoroTimerToolbar`` and the actions and sections we just declared in ``api.py`` in our local imports:
+We also need to add local imports from our ``widgets`` and ``api`` modules:
 
 .. code-block:: python
 
@@ -945,20 +1066,19 @@ Now, let's include ``PomodoroTimerToolbar`` and the actions and sections we just
        PomodoroMenuSections,
    )
 
-Next, we need to do following things in the ``setup`` method of ``SpyderPomodoroTimerContainer``.
+Next, we need to modify the ``setup`` method of the ``SpyderPomodoroTimerContainer`` class.
 
-The first one is to create an instance of the toolbar class we declared earlier:
+First, let's instantiate the ``PomodoroTimerToolbar`` class that we declared previously:
 
 .. code-block:: python
 
            title = _("Pomodoro Timer Toolbar")
            self.pomodoro_timer_toolbar = PomodoroTimerToolbar(self, title)
 
-The second one is to create the actions corresponding to Start, Pause and Stop our pomodoro timer:
+Second, we create the actions corresponding to start, pause, and stop buttons on our toolbar:
 
 .. code-block:: python
 
-           # Actions
            start_timer_action = self.create_action(
                PomodoroToolbarActions.Start,
                text=_("Start"),
@@ -966,7 +1086,6 @@ The second one is to create the actions corresponding to Start, Pause and Stop o
                icon=qta.icon("fa.play-circle", color=ima.MAIN_FG_COLOR),
                triggered=self.start_pomodoro_timer,
            )
-
            pause_timer_action = self.create_action(
                PomodoroToolbarActions.Pause,
                text=_("Pause"),
@@ -974,7 +1093,6 @@ The second one is to create the actions corresponding to Start, Pause and Stop o
                icon=qta.icon("fa.pause-circle", color=ima.MAIN_FG_COLOR),
                triggered=self.pause_pomodoro_timer,
            )
-
            stop_timer_action = self.create_action(
                PomodoroToolbarActions.Stop,
                text=_("Stop"),
@@ -983,7 +1101,9 @@ The second one is to create the actions corresponding to Start, Pause and Stop o
                triggered=self.stop_pomodoro_timer,
            )
 
-The third one is to create the menu that will contain our actions and add them to it.
+We use the ``triggered`` parameter of ``create_action()`` to set the callback function that will be executed when the action is interacted with—in this case, when the corresponding toolbar buttons are clicked.
+
+Third, we create a menu for our actions, and add them to it:
 
 .. code-block:: python
 
@@ -992,7 +1112,6 @@ The third one is to create the menu that will contain our actions and add them t
                text=_("Pomodoro timer"),
                icon=qta.icon("mdi.av-timer", color=ima.MAIN_FG_COLOR),
            )
-
            # Add actions to the menu
            for action in [start_timer_action, pause_timer_action, stop_timer_action]:
                self.add_item_to_menu(
@@ -1001,7 +1120,7 @@ The third one is to create the menu that will contain our actions and add them t
                    section=PomodoroMenuSections.Main,
                )
 
-The fourth one is to create a button that will contain the menu and configure it as ``PopupMode``, so that it is displayed when clicked.
+Fourth, let's create a button to pop up the menu immediately when clicked, setting ``PopupMode`` to ``QToolButton.InstantPopup`` to achieve this:
 
 .. code-block:: python
 
@@ -1010,24 +1129,20 @@ The fourth one is to create a button that will contain the menu and configure it
                text=_("Pomodoro timer"),
                icon=qta.icon("mdi.av-timer", color=ima.MAIN_FG_COLOR),
            )
-
            self.pomodoro_button.setMenu(self.pomodoro_menu)
            self.pomodoro_button.setPopupMode(QToolButton.InstantPopup)
 
-And finally, the fifth one is to add the button to our toolbar:
+Fifth, we add the ``pomodoro_button`` menu popup to our toolbar:
 
 .. code-block:: python
 
-           # Add menu to toolbar
            self.add_item_to_toolbar(
                self.pomodoro_button,
                self.pomodoro_timer_toolbar,
                section=PomodoroToolbarSections.Controls,
            )
 
-When creating the actions, we indicate by means of the ``triggered`` parameter the methods to be executed when they are activated, i.e. when the corresponding buttons on the toolbar are clicked.
-
-We can insert these methods at the end of the ``SpyderPomodoroTimerContainer`` declaration, in the section that our cookiecutter template indicates as ``# --- Public API``.
+Finally, we insert the appropriate public methods at the end of the ``SpyderPomodoroTimerContainer`` declaration (in the ``# --- Public API`` section).
 
 .. code-block:: python
 
@@ -1047,24 +1162,26 @@ We can insert these methods at the end of the ``SpyderPomodoroTimerContainer`` d
                self.pomodoro_timer_status.pause = True
                self.pomodoro_timer_status.countdown = self.pomodoro_timer_status.pomodoro_limit
 
-These methods simply manipulate the ``pause`` field of ``pomodoro_timer_status``, and in the case of ``stop_pomodoro_timer`` the countdown is restarted.
+These methods set the ``pause`` attribute of ``pomodoro_timer_status``,
+and restart the countdown in the case of ``stop_pomodoro_timer()``.
 
-Register the toolbar
-~~~~~~~~~~~~~~~~~~~~
+Summing up, here's the `TIMER -> TOOLBAR container.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/492f30771285af937a8a75d69e4e879d21f9dc0f>`__.
 
-`TIMER -> ACTIONS plugin.py diff`_
 
-.. _TIMER -> ACTIONS plugin.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/012c5ef6568114ea945501d44efb30afeefbad98
+.. _tutorial-toolbar-registration:
 
-A final mandatory step is to go to ``plugin.py`` and register this new toolbar component.
+Registering the toolbar
+~~~~~~~~~~~~~~~~~~~~~~~
 
-To do this, add ``Plugins.Toolbar`` to the plugin requirements:
+A final, mandatory step is to register the new ``pomodoro_timer_toolbar`` component in the ``plugin.py`` file.
+
+To register, add ``Plugins.Toolbar`` to the plugin requirements:
 
 .. code-block:: python
 
        REQUIRES = [Plugins.StatusBar, Plugins.Toolbar]
 
-And use this plugin's API to add the toolbar we have created in the container to Spyder's toolbar.
+And use this plugin's API to add the Pomodoro toolbar we created in the ``container`` module to the Spyder toolbar area.
 
 .. code-block:: python
 
@@ -1074,57 +1191,63 @@ And use this plugin's API to add the toolbar we have created in the container to
            toolbar = self.get_plugin(Plugins.Toolbar)
            toolbar.add_application_toolbar(container.pomodoro_timer_toolbar)
 
-Review the changes
-~~~~~~~~~~~~~~~~~~
+Here's the final `TIMER -> ACTIONS plugin.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/012c5ef6568114ea945501d44efb30afeefbad98>`__.
 
-The first thing we can notice is that we already have the corresponding buttons in the toolbar.
+
+.. _tutorial-toolbar-reviewing:
+
+Reviewing our changes
+~~~~~~~~~~~~~~~~~~~~~
+
+Once we've restarted Spyder, we should notice several new changes after our work above.
+
+Our Pomodoro toolbar should be present, including its Start, Pause and Stop buttons.
+In addition, the buttons should have the tooltips set by their corresponding ``tip`` parameter.
 
 .. image:: images/workshop-3/pd_toolbar_actions.gif
-   :alt: Pomodoro timer toolbar buttons
+   :alt: Pomodoro timer toolbar in Spyder, with start, pause and stop buttons
 
-The strings that were entered as the ``tip`` parameter in the creation of the actions are shown here as the buttons' tooltips.
-
-Also, if we check the menu "View > Toolbars", we find that there is a new entry there corresponding to our toolbar.
+If we check the :menuselection:`View --> Toolbars` menu, there should be a new entry corresponding to our toolbar.
 
 .. image:: images/workshop-3/pd_view_pomodoro_toolbar.png
-   :alt: View > Toolbars menu with "Pomodoro Timer Toolbar" option.
+   :alt: View > Toolbars menu in Spyder, showing a new "Pomodoro Timer Toolbar" item
 
-
-Finally, let's check how the new Pomodoro Timer control buttons in the toolbar interact with the component in the status bar.
+Finally, when we click the Pomodoro timer buttons on the toolbar, we should see the status bar widget changing accordingly.
 
 .. image:: images/workshop-3/pd_toolbar_statusbar_interact.gif
-   :alt: Interaction between the Pomodoro Timer toolbar and its status bar.
+   :alt: Timer buttons in Spyder's toolbar being clicked and showing how they start, pause and stop the pomodoro timer in the status bar
 
 
 
-========================
-Add a Configuration Page
-========================
+.. _tutorial-config:
 
-Another feature of Spyder plugins is that they can have configurable options that appear in Spyder's Preferences window.
+===========================
+Adding a configuration page
+===========================
 
-Configuration defaults
-~~~~~~~~~~~~~~~~~~~~~~
+Spyder plugins can have their own preferences section with configurable options listed in Spyder's :guilabel:`Preferences` dialog.
+In this section, we'll walk through implementing a preferences page for our example plugin.
 
-The final version in which we add a configurable parameter will be called ``CONFPAGE``.
+We'll call this final version of our plugin ``CONFPAGE``, for reference in the diffs below.
 
-The first step is to define what options we want to offer to our users. For this we must create a new file, which we can call ``conf.py``. In this file we will write the following:
 
-`ACTIONS -> CONFPAGE config.py diff`_
+_tutorial-config-defaults:
 
-.. _ACTIONS -> CONFPAGE config.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/b71457c96013dc0b9c27d588f46568a81e9a2f0c
+Defining the defaults
+~~~~~~~~~~~~~~~~~~~~~
+
+The first step is to define what options we want to offer our users, which we'll do in a new file named ``config.py``.
+In this file we'll add some key constants and default config values:
 
 .. code-block:: python
 
-   """Spyder terminal default configuration."""
+   """Spyder-Pomodoro-Timer default configuration."""
 
    # --- Constants
+
    # ------ Time limits by default
-
    POMODORO_DEFAULT = 25 * 60 * 1000  # 25 mins in milliseconds
-
    CONF_SECTION = "spyder_pomodoro_timer"
-
    CONF_DEFAULTS = [
        (
            CONF_SECTION,
@@ -1135,9 +1258,12 @@ The first step is to define what options we want to offer to our users. For this
        ("shortcuts", {"pomodoro-timer start/pause": "Ctrl+Alt+Shift+P"}),
    ]
 
-We must highlight the declaration of ``CONF_SECTION``, which is the internal name of the section in Preferences corresponding to our plugin; and the dictionary keys associated with ``CONF_DEFAULTS``. In this case, we are indicating that ``pomodoro_limit`` is a configurable parameter within the ``spyder_pomodoro_timer`` section.
+``CONF_SECTION`` is the internal name of our plugin's section in :guilabel:`Preferences`, as well as the plugin's namespace in the config dictionary.
+``CONF_DEFAULTS`` lists the plugin's settings and their default values.
+In the code, we are indicating that ``pomodoro_limit`` is a configurable parameter within the ``spyder_pomodoro_timer`` section, and storing its default value in minutes for user display.
 
-At the end of this file it is necessary to set another important constant, ``CONF_VERSION``, which must be updated when adding, removing or renaming configurable parameters in successive versions of the plugin.
+At the end of this file, as shown below, we need to set the ``CONF_VERSION`` constant.
+It must be incremented when adding, deleting, or renaming configurable parameters in successive versions of the plugin.
 
 .. code-block:: python
 
@@ -1150,22 +1276,25 @@ At the end of this file it is necessary to set another important constant, ``CON
    # 3. You don't need to touch this value if you're just adding a new option
    CONF_VERSION = "1.0.0"
 
-Note that we are moving the definition of ``POMODORO_DEFAULT`` from ``widgets.py`` to ``conf.py``, since we now have a dedicated place for default configuration values.
+.. note::
+   We've also moved the definition of ``POMODORO_DEFAULT`` from ``widgets.py`` to ``config.py``, as we now have a dedicated place for default configuration values.
 
-Configuration page
-~~~~~~~~~~~~~~~~~~
+For reference, here's the `ACTIONS -> CONFPAGE config.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/b71457c96013dc0b9c27d588f46568a81e9a2f0c>`__.
 
-Now, we need to build the page that will appear in the Preferences window. For this, we edit the ``confpage.py`` file generated by cokkiecutter as follows:
 
-`ACTIONS -> CONFPAGE confpage.py diff`_
+.. _tutorial-config-page:
 
-.. _ACTIONS -> CONFPAGE confpage.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/bd3bcf2ce895c440fb2d6b80233100c6d86822fe
+Building the preferences page
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now, we need to create the preferences page itself.
+
+To implement the required code, we will edit the generated ``confpage.py`` file as follows:
 
 .. code-block:: python
 
-   """
-   Spyder Pomodoro Timer Preferences Page.
-   """
+   """Spyder Pomodoro Timer Preferences Page."""
+
    from qtpy.QtWidgets import QGridLayout, QGroupBox, QVBoxLayout
    from spyder.api.preferences import PluginConfigPage
    from spyder.api.translations import get_translation
@@ -1174,11 +1303,9 @@ Now, we need to build the page that will appear in the Preferences window. For t
 
    _ = get_translation("spyder_pomodoro_timer.spyder")
 
-
    class SpyderPomodoroTimerConfigPage(PluginConfigPage):
 
        # --- PluginConfigPage API
-       # ------------------------------------------------------------------------
        def setup_page(self):
            limits_group = QGroupBox(_("Time limits"))
            pomodoro_spin = self.create_spinbox(
@@ -1203,18 +1330,24 @@ Now, we need to build the page that will appear in the Preferences window. For t
            vlayout.addStretch(1)
            self.setLayout(vlayout)
 
-This mostly corresponds to the regular code for user interfaces based on Qt widgets. In this case, our options section corresponds to a ``QGroupBox``, where the parameters are organized vertically using a ``QVBoxLayout``, and each parameter corresponds to a ``QGridLayout`` where labels and inputs are distributed (in this case a ``QSpinBox``).
+Most of this code follows the typical pattern of building up a Qt widget-based user interface.
+In this case, our options section uses a ``QGroupBox``, where the parameters are organized vertically using a ``QVBoxLayout``.
+Each parameter corresponds to a ``QGridLayout`` where labels and inputs (in this case a ``QSpinBox``) are distributed.
 
-Configuration pages in Spyder provide some helper methods to facilitate this work. For instance, ``create_spinbox`` allows to instantiate and initialize in a single step the widgets corresponding prefix an suffix labels together with the spinbox.
+.. tip::
 
-Propagate configuration changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   Configuration pages in Spyder provide some helper methods to facilitate this work.
+   For instance, the ``create_spinbox()`` method allows us to instantiate and initialize the widgets corresponding to the prefix and suffix labels together with the spinbox, all in a single step.
 
-Since we moved all the configuration information to ``conf.py``, now we have to import it from there into ``widgets.py``.
+You can see the all the changes we've made here in the `ACTIONS -> CONFPAGE confpage.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/bd3bcf2ce895c440fb2d6b80233100c6d86822fe>`__.
 
-`ACTIONS -> CONFPAGE widgets.py diff`_
 
-.. _ACTIONS -> CONFPAGE widgets.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/b94cee118bf887b52934230a35d67a0080551a68
+.. _tutorial-config-changes:
+
+Propagating config changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since we moved all our configuration to ``config.py``, we now have to import it into ``widgets.py``:
 
 .. code-block:: python
 
@@ -1225,7 +1358,16 @@ Since we moved all the configuration information to ``conf.py``, now we have to 
        CONF_VERSION,
    )
 
-Now we can access the configuration options from anywhere in our plugin using the ``get_conf`` method. In this case we use it to access the value of ``pomodoro_limit`` from the configuration instead of the constant ``POMODORO_DEFAULT``.
+In the class ``PomodoroTimerStatus``, after the ID declaration, let's add the config parameters as class constants:
+
+.. code-block:: python
+
+   CONF_SECTION = CONF_SECTION
+   CONF_DEFAULTS = CONF_DEFAULTS
+   CONF_VERSION = CONF_VERSION
+
+We can now access the configuration options from anywhere in our plugin using the ``get_conf`` method.
+In this case, we use this method to access the ``pomodoro_limit`` value of the configuration instead of just the ``POMODORO_DEFAULT`` constant, so we use the current user-selected value if configured:
 
 .. code-block:: python
 
@@ -1233,7 +1375,7 @@ Now we can access the configuration options from anywhere in our plugin using th
                "pomodoro_limit"
            )
 
-Now we can add a method that updates our configurable parameter ``pomodoro_limit``. The ``@on_conf_change`` decorator is the one in charge of capturing the signal that is generated when applying the change of a specific option.
+Then, we can add the ``set_pomodoro_limit()`` method that updates our configurable parameter ``pomodoro_limit``.
 
 .. code-block:: python
 
@@ -1243,14 +1385,17 @@ Now we can add a method that updates our configurable parameter ``pomodoro_limit
            self.countdown = self.pomodoro_limit
            self.value = self.display_time()
 
+.. note:: The ``@on_conf_change`` decorator is responsible for capturing the signal generated when changing a specific config option.
+
+To view all these changes together, see the `ACTIONS -> CONFPAGE widgets.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/b94cee118bf887b52934230a35d67a0080551a68>`__.
+
+
+.. _tutorial-config-registering:
+
 Registering preferences
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Finally, it is necessary to activate the use of preferences in ``plugin.py``, by requiring the Preferences plugin
-
-`ACTIONS -> CONFPAGE plugin.py diff`_
-
-.. _ACTIONS -> CONFPAGE plugin.py diff: https://github.com/map0logo/spyder-pomodoro-timer/commit/b238b133d46a52e2d6e57ae938964094a45e7177
+Finally, we need to enable using our new preference page in ``plugin.py``, by including ``Plugin.Preferences`` in the list of ``REQUIRES``:
 
 .. code-block:: python
 
@@ -1258,8 +1403,7 @@ Finally, it is necessary to activate the use of preferences in ``plugin.py``, by
        ...
        REQUIRES = [Plugins.Preferences, Plugins.StatusBar, Plugins.Toolbar]
 
-
-and registering our plugin in a method with the decorator ``@on_plugin_available``.
+...and registering our plugin's preferences in the ``on_preferences_available()`` method, which is decorated with ``@on_plugin_available`` so it is called once the ``Preferences`` plugin is loaded:
 
 .. code-block:: python
 
@@ -1268,92 +1412,127 @@ and registering our plugin in a method with the decorator ``@on_plugin_available
            preferences = self.get_plugin(Plugins.Preferences)
            preferences.register_plugin_preferences(self)
 
-Now we can access the Preferences window either from the toolbar or from the "Tools > Preferences" menu. There we will find a section called *Spyder Pomodoro Timer* and inside it is the *Pomodoro timer limit* parameter. If we change that value, we will see how the corresponding label in the status bar changes.
+You can find the Spyder :guilabel:`Preferences` dialog in :menuselection:`Tools --> Preferences`, or :menuselection:`Python --> Preferences` on macOS.
+As shown in the following image, we should find a section called :guilabel:`Spyder Pomodoro Timer`, which contains our :guilabel:`Pomodoro timer limit` parameter.
+If we modify that value, we should see how the corresponding status bar timer updates appropriately.
 
 .. image:: images/workshop-3/pd_plugin_confpage.gif
-   :alt: Pomodoro Timer toolbar configuration page.
+   :alt: A Spyder preferences page entitled Spyder Pomodoro Timer, containing a Pomodoro timer limit option with a numeric value in minutes
 
-Now your plugin is in an initial version ready to publish...
+Now our example plugin is ready to be published!
+
+For a review of our changes here, see the `ACTIONS -> CONFPAGE plugin.py diff <https://github.com/spyder-ide/spyder-pomodoro-timer/commit/b238b133d46a52e2d6e57ae938964094a45e7177>`__.
 
 
 
-======================
-Publishing your plugin
-======================
+.. _tutorial-publishing:
 
-Since the recommended way to install Spyder is through conda, the obvious choice would be to publish our plugin through a channel like conda-forge, but this is a task that is beyond the scope of this workshop due to its complexity.
+=====================
+Publishing our plugin
+=====================
 
-However, the tools used to publish packages in conda are usually based on the packages published in PyPI. So let's see how to publish our plugin there.
+It's time to publish our plugin as a PyPI package!
+`PyPI`_, the Python Package Index, is the central repository where anyone can publish their own Python packages, that can be installed with Pip or other similar tools.
+
+.. _PyPI: https://pypi.org
+
+.. note::
+
+   Since the recommended way to install Spyder plugins is through `Conda-Forge`_, its a good idea to also publish our plugin there.
+   Once our package is uploaded to PyPI, the `Grayskull`_ tool can automatically generate a Conda-Forge "recipe" with just a single command.
+   This can be added to Conda-Forge by cloning the `Staged Recipes repo`_, adding the generated recipe to the ``recipes/`` directory, and submitting a PR with your changes.
+   See the Conda-Forge `Contributing Packages`_ documentation for full details.
 
 .. image:: images/workshop-3/pd_plugin_publish.png
-   :alt: Publish your plugin in PyPI.
+   :alt: Package publishing flow chart, listing the main tools needed for publishing a package (PyPI, TestPyPI, Twine, and editing the project configuration file)
+
+.. _Grayskull: https://github.com/conda/grayskull
+.. _Staged Recipes repo: https://github.com/conda-forge/staged-recipes
+.. _Contributing packages: https://conda-forge.org/docs/maintainer/adding_pkgs/
 
 
-PyPI and TestPyPI
-~~~~~~~~~~~~~~~~~
+.. _tutorial-publishing-account:
 
-The first thing we have to do is to create an account on the `PyPI`_ and `TestPyPI`_ websites. Although our package will be finally published in PyPI, it is advisable to use TestPyPI to test that our package can be published properly without generating additional load to the PyPI servers or affecting their logs.
+Creating a PyPI account
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Next, we need edit the ``setup.py`` file at the root of our project with our own data. Fortunately, cookiecutter created one for us.
+First, we create an account on the `PyPI`_ and `TestPyPI`_ websites if we don't have one already, by clicking :guilabel:`Register` in the top left and entering the appropriate details.
+Although our package will eventually be published on PyPI, it is advisable to use TestPyPI first to test that everything works correctly before actually uploading to the real thing, as once package versions are pushed to PyPI they cannot be changed.
 
-To upload our package to PyPI we have to use a tool called `Twine`_ that makes this task much easier. And we can install it in our conda environment using:
+Next, we should fill in the ``setup.py`` file at the root of our project with our package's metadata.
+
+Finally, in order to build and upload our package to PyPI, we need the `Build`_ builder frontend and `Twine`_ uploader.
+We can install them in our Conda environment using:
 
 .. code-block:: shell
 
-   $ mamba install twine
+   conda install -c conda-forge python-build twine
 
-Build and check the package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. caution::
 
-Before publishing our plugin we must package it. To do it we must write the following from the root folder of our project (where ``setup.py`` is placed):
+   The Python ``build`` package is named ``build`` on PyPI (``pip install build``) and ``python-build`` on Conda-Forge (``conda install python-build``); the Conda-Forge package named ``build`` should *not* be used as it is obsolete.
 
-.. code-block:: bash
 
-   $ python setup.py sdist bdist_wheel
+.. _tutorial-publishing-building:
 
-After that we will see that the following files are generated in the ``dist`` folder:
+Building and checking the package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+Before publishing our plugin, we must package it.
+To do this, we execute the following code from the root folder of our project (where ``setup.py`` is located):
+
+.. code-block:: shell
+
+   python -m build
+
+Then, we can see that the following files are generated in the new ``dist`` folder:
+
+.. code-block:: text
 
    spyder_pomodoro_timer
    └── dist
        ├── spyder_pomodoro_timer-0.0.1.dev0-py3-none-any.whl
        └── spyder-pomodoro-timer-0.0.1.dev0.tar.gz
 
-On Linux and macOS we can check that the newly built distribution packages contain the expected files by inspecting the contents of the ``tar`` file:
+We can check that newly created distribution packages contain the expected files by inspecting the contents of the ``tar`` file (on Windows, you'll need a third-party tool like 7-Zip to open it):
 
 .. code-block:: bash
 
-   $ tar tzf dist/spyder-pomodoro-timer-0.0.1.dev0.tar.gz
+   tar tzf dist/spyder-pomodoro-timer-0.0.1.dev0.tar.gz
 
-You can also use ``twine`` to run a check on the created files in ``dist``:
+You can also use Twine to run a check of the distribution packages created in the ``dist`` folder:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ twine check dist/*
    Checking dist/spyder_pomodoro_timer-0.0.1.dev0-py3-none-any.whl: PASSED
    Checking dist/spyder-pomodoro-timer-0.0.1.dev0.tar.gz: PASSED
 
-Upload to PyPI
-~~~~~~~~~~~~~~
 
-Now we can use twine to upload the distribution packages we have built. First, we will upload them to TestPyPI to make sure everything works:
+.. _tutorial-publishing-uploading:
 
-.. code-block:: bash
+Testing and uploading to PyPI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   $ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+Now we can use ``twine`` to upload the distribution packages we have built.
+First, we will upload them to TestPyPI to make sure everything works:
 
-This command will prompt you for the username and password with which you registered in TestPyPI.
+.. code-block:: shell
 
-If we open https://test.pypi.org/project/spyder-pomodoro-timer/ in the browser we will be able to see the package we have just published.
+   twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
-There we'll see that some details are missing, like the package description, and that our package is marked as ``Development Status 5-Stable``.
+This command will prompt you for the user name and password with which you registered in TestPyPI.
 
-To fix the first one, we can follow the instructions in `Making a PyPI-friendly README`_. Since we already have a README file, we simply add the following lines to the beginning of our ``setup.py`` file:
+To view the uploaded package, open the `Spyder-Pomodoro-Timer TestPyPI page <https://test.pypi.org/project/spyder-pomodoro-timer/>`_.
+We should notice that some details are missing, such as the package description.
+Also, our package is marked as ``Development Status 5-Stable``, which is not (yet) the case.
+
+To fix the package description, we can follow the instructions in `Making a PyPI-friendly README`_.
+Since we already have a ``README.md`` file, we simply add the following lines to the beginning of ``setup.py``:
 
 .. code-block:: python
 
-   # read the contents of your README file
+   # Read the contents of your README file
    from pathlib import Path
    this_directory = Path(__file__).parent
    long_description = (this_directory / "README.md").read_text()
@@ -1365,76 +1544,83 @@ To fix the first one, we can follow the instructions in `Making a PyPI-friendly 
        long_description_content_type='text/markdown'
    )
 
-We can also change the classifiers of our package using the following site as a guide: https://pypi.org/classifiers. Here we can simply copy the classifiers we consider appropriate and then paste them into our code.
-Specifically in ``setup.py``, within the list that enters as the ``classifier`` argument in the call to function ``setup``.
+We can also add or change the classifiers of our package using the `PyPI classifiers page <https://pypi.org/classifiers>`_ as a guide.
+We can copy the classifiers we consider appropriate and paste them as a list into the ``classifiers`` argument of ``setup()``.
 
-With these changes, and by bumping our plugin's version in the ``__init__.py`` file inside the ``spyder_pomodoro_timer`` folder, we can repeat the cycle of building a new version of our package, loading it into TestPyPI for checking, and finally loading it into PyPI by using:
+After these changes and bumping the version of our plugin in the ``__init__.py`` inside the ``spyder_pomodoro_timer`` folder, we can repeat the cycle of building a new version of our package with ``build`` and uploading it to TestPyPI with ``twine``.
+After checking to make sure the result on TestPyPI looks as we expect, we can reset our package version to the initial ``0.1.0`` and finally upload it to PyPI with:
 
-.. code-block:: bash
+.. code-block:: shell
 
-   $ twine upload dist/
+   twine upload dist/
 
-And check the result in https://pypi.org/project/spyder-pomodoro-timer/
-
+We can check the result in at our `Spyder-Pomodoro-Timer PyPI page <https://pypi.org/project/spyder-pomodoro-timer/>`_.
 Once this is done, anyone can install our plugin in their environments simply by running:
 
-.. code-block:: bash
+.. code-block:: shell
 
-   $ pip install spyder-pomodoro-timer
+   pip install spyder-pomodoro-timer
 
 .. _PyPI: https://pypi.org
 .. _TestPyPI: https://test.pypi.org
+.. _Setuptools: https://setuptools.pypa.io/
+.. _Build: https://build.pypa.io/
 .. _Twine: https://twine.readthedocs.io
 .. _Making a PyPI-friendly README: https://packaging.python.org/guides/making-a-pypi-friendly-readme/
 
 
 
+.. _tutorial-conclusion:
+
 ===========
 Final words
 ===========
 
-The possibility of making a tool extensible through plugins, extensions or addons, as they are usually called, is a fundamental feature that allows taking advantage of the talent of third-party developers to respond to needs and enhancements that are beyond the scope of the application's core development team.
+Through this tutorial, we have navigated many of the features that Spyder offers for developing plugins.
+In Spyder, we have put a lot of effort toward creating and maintaining an API that allows for powerful, flexible and easy plugin development.
+The main focus of the development effort between versions 4 and 5 was in this direction, while Spyder 6 further expanded upon this work, so we're looking forward to seeing what you can do with it!
 
-Similarly, a plugin-based system makes the application much easier to maintain. Eventually, the ability to enable and disable plugins makes it more adaptable to different use cases. For instance, at present it would be inconceivable to think of a web browser that does not have extensions to block advertising or organize links, even if those features don't come by default on them.
+In this tutorial, we've learned how to:
 
-In Spyder we have put special interest in consolidating an API that allows the development of plugins in a consistent way. The main focus of the development effort between versions 4 and 5 was in this direction and we are at a key moment where we expect to capitalize on all this work.
+* Understand the basic building blocks of Spyder development.
+* Choose the different types of plugins that can be implemented in Spyder.
+* Plan the development of a new Spyder plugin.
+* Set up a Spyder plugin development environment.
+* Initialize a Git repository on GitHub to manage our version control.
+* Generate the basic structure of a plugin using Cookiecutter.
+* Understand the basic file structure of a Spyder plugin.
+* Create, develop and test a plugin with Spyder.
+* Add and register Qt widgets in both the Spyder status bar and the toolbar.
+* Include a menu with multiple actions in the toolbar.
+* Add configuration options to a plugin and make them appear in the :guilabel:`Preferences` dialog.
+* Edit the packaging configuration of our plugin.
+* Publish our plugin on TestPyPI and PyPI.
 
-In this workshop you have learned how to:
+We hope these skills have helped you learn how to develop your very own Spyder plugins!
 
-- Identify the basic building blocks in Spyder development.
-- Identify the different types of plugins that can be implemented in Spyder.
-- Recognize the types of plugins that are part of Spyder.
-- Plan the development of a new Spyder plugin.
-- Build a development environment for Spyder plugin development.
-- Generate the basic structure of a Spyder plugin using Cookiecutter.
-- Understand the file structure of a Spyder plugin.
-- Add and register Qt widgets in the Spyder status bar.
-- Add and register Qt widgets in the Spyder toolbar.
-- Add a menu with actions in the toolbar.
-- Add configuration options to our plugin and display them appear in the Preferences window.
-- Edit the description and classifiers of the installable package of our plugin.
-- Publish our plugin to TestPyPI and PyPI.
+.. note::
+   As you may have noticed, there were some features left to implement such as notifications when pomodoros are completed.
+   Try to implement them by putting your knowledge in practice!
+   Please, do not hesitate to contact us if you have any questions.
 
-With these skills we hope to ease the way for you to develop your own Spyder plugins.
-
-If you have ideas for plugin development feel free to contact us through the `Spyder-IDE`_ Github organization space.
+If you have any ideas for plugin development, you're welcome to contact us through the `Spyder-IDE`_ GitHub organization.
 
 .. _Spyder-IDE: https://github.com/spyder-ide
 
 
-Homework
-~~~~~~~~
 
-As you may have noticed, there were some features left to implement such as notifications when pomodoros are completed. Try to implement them and do not hesitate to contact us if you have any doubts.
-
+.. _tutorial-further-reading:
 
 ===============
 Further reading
 ===============
 
-In the `plugin-examples`_ repository you can find additional examples that will surely be useful for you to further understand Spyder plugin development.
+If you would like to dive deeper into Spyder plugin development, we invite you to consult the following resources:
 
-A more in-depth review of the Spyder repository itself, especially its simpler plugins, such as History, Plots or Working directory, may help you understand it better. As well as a review of the various helper functions, widgets and mixins present in ``spyder.api``.
-
+* You can find additional examples in the `plugin-examples`_ repository that should be useful to better understand Spyder plugin development.
+* A closer look at the `Spyder repository`_ itself, especially its simpler plugins (such as History, Plots or Working directory) can help you understand Spyder better.
+* You can review the various helper functions, widgets and mixins present in `spyder.api`_.
 
 .. _plugin-examples: https://github.com/spyder-ide/plugin-examples
+.. _Spyder repository: https://github.com/spyder-ide/spyder
+.. _spyder.api: https://github.com/spyder-ide/spyder/tree/master/spyder/api
