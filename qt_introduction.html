@@ -367,13 +367,12 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-qt-components">Basic Qt Components</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals-slots">Signals &amp; Slots</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#widgets">Widgets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-and-mainwindows">Windows and MainWindows</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layouts">Layouts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions-toolbars-menus">Actions, Toolbars &amp; Menus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions-menus-toolbars">Actions, Menus &amp; Toolbars</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dialogs">Dialogs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#events">Events</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals-slots">Signals &amp; Slots</a></li>
 </ul>
 </li>
 </ul>
@@ -389,58 +388,71 @@
                   
   <section id="qt-fundamentals">
 <span id="id1"></span><h1>Qt Fundamentals<a class="headerlink" href="#qt-fundamentals" title="Link to this heading">#</a></h1>
-<p><strong>Qt</strong> is a multiplatform widget toolkit for creating native graphical user interfaces. Qt is also a very complete development framework that offers utilities for building applications, and libraries of extensions for Networking, Bluetooth, Charts, 3D rendering, Navigation (as GPS), among others.</p>
+<p><a class="reference external" href="https://www.qt.io/">Qt</a> is an open source, multiplatform toolkit for creating graphical user interfaces (GUIs).
+It is a complete development framework that offers utilities for building applications, and has extensions for networking, Bluetooth, charts, 3D rendering, and navigation, among others.</p>
+<p>To develop a GUI, we start with the core building blocks—graphical elements known as <em>widgets</em>—and arrange them using <em>layouts</em>, themselves contained within other widgets and ultimately application <em>windows</em>.
+Then, we interconnect these widgets using special functions and methods (called <em>slots</em>) that are triggered by receiving connected <em>signals</em>.
+In turn, <em>actions</em> are the common building blocks of toolbars and menu items representing a specific option the user can select.</p>
 <section id="basic-qt-components">
 <h2>Basic Qt Components<a class="headerlink" href="#basic-qt-components" title="Link to this heading">#</a></h2>
-<p>As mentioned before, Spyder’s plugin development consists of extending the functionality of its Qt-based graphical interface.</p>
-<p>To develop a GUI we will add graphical elements of interaction known as widgets, arrange them using layouts. Then, we interconnect those widgets using customized procedures implemented as functions or methods, allowing to trigger behavior from user interaction. In the following, we will develop these ideas in more detail.</p>
-<p>Each type of Qt component is a class starting with the letter <code class="docutils literal notranslate"><span class="pre">Q</span></code> followed by a name related to its functionality.</p>
-<p>The core component of Qt is the <code class="docutils literal notranslate"><span class="pre">QApplication</span></code> class. Every Qt application needs a single instance of this class as the base, from where the Qt <em>event loop</em> is controlled.
-Spyder itself is an instance of <code class="docutils literal notranslate"><span class="pre">QApplication</span></code>, its starting point is in the following two lines of code (Spyder/Spyder/app/mainwindow.py):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="n">qapp</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">QMainWindow</span></code> is a pre-built widget that provides many standard window features as toolbars, menus, a status bar, dockable widgets and more, which serves as the basis for the application.</p>
-<section id="signals-slots">
-<h3>Signals &amp; Slots<a class="headerlink" href="#signals-slots" title="Link to this heading">#</a></h3>
-<p><strong>Signals</strong> are notifications emitted by widgets when something happens. That something could be different things, from pressing a button, to changing text in an input box, to changing text in the window.
-Many signals are initiated by user action, but this is not a rule.</p>
-<p><strong>Slots</strong> are signal receivers. Functions or methods could be used as slots, by connecting a signal to them.
-If a signal sends data, the receiver callable will also receive it.
-Many Qt widgets also have their own built-in slots, so the corresponding widgets are notified automatically.</p>
-</section>
+<p>According to the official <a class="reference external" href="https://doc.qt.io/qtdesignstudio/quick-components.html">Qt documentation</a>: “a component is a reusable building block for a UI”.
+Qt has some preset components that can include simple representations (shapes, text or images) or complex user interface controls (sliders or dropdowns).
+Each type of Qt component is a class starting with the letter <code class="docutils literal notranslate"><span class="pre">Q</span></code>, followed by the name of the component (such as <code class="docutils literal notranslate"><span class="pre">QSlider</span></code> or <code class="docutils literal notranslate"><span class="pre">QCombobox</span></code>).
+Much of Spyder plugin development consists of extending the functionality of its Qt-based graphical interface.</p>
+<p>Common Qt components are summarized below in the following sections, and linked to their full reference in the Qt documentation.</p>
 <section id="widgets">
 <h3>Widgets<a class="headerlink" href="#widgets" title="Link to this heading">#</a></h3>
-<p>In computer science a <em>Widget</em> is a shortened form of “window gadget”. A widget is an element of interaction, such as a button, or a container for other widgets, as panels or tabs.
-The <code class="docutils literal notranslate"><span class="pre">QWidget</span></code> class is the fundamental class for creating interfaces in Qt, it receives events from the window system, and renders its representation on the screen. A widget can provide a container for grouping other widgets, and if it is not embedded in a parent widget, it becomes a window.</p>
+<p><a class="reference external" href="https://doc.qt.io/qt/qtwidgets-index.html">Widgets</a> are the main building blocks for creating a UI in Qt.
+They can display information, receive user input (mouse, keyboard, and other events from the window system), and provide a container for grouping other widgets.</p>
+<p><a class="reference external" href="https://doc.qt.io/qt/qwidget.html">QWidget</a> is the fundamental class in Qt that provides the capability to handle user input events and renders its representation on the screen.
+All UI elements provided by Qt are subclasses of <code class="docutils literal notranslate"><span class="pre">QWidget</span></code> or are used in connection with a <code class="docutils literal notranslate"><span class="pre">QWidget</span></code> subclass.
+You can define your own custom widget class by subclassing QWidget, and adding or reimplementing the methods that you need.</p>
+</section>
+<section id="windows-and-mainwindows">
+<h3>Windows and MainWindows<a class="headerlink" href="#windows-and-mainwindows" title="Link to this heading">#</a></h3>
+<p>A Qt <a class="reference external" href="https://doc.qt.io/qt/application-windows.html">window</a> is a widget that is not embedded in a parent widget. The <a class="reference external" href="https://doc.qt.io/qt/qmainwindow.html#details">MainWindow</a> class provides a main application window with its own layout in which you can include toolbars (<a class="reference external" href="https://doc.qt.io/qt/qtoolbar.html">QToolBar</a>), menus (<a class="reference external" href="https://doc.qt.io/qt/qmenubar.html">QMenuBar</a>), status bars (<a class="reference external" href="https://doc.qt.io/qt/qstatusbar.html">QStatusBar</a>), and dockable widgets (<a class="reference external" href="https://doc.qt.io/qt/qdockwidget.html">QDockWidget</a>).</p>
 </section>
 <section id="layouts">
 <h3>Layouts<a class="headerlink" href="#layouts" title="Link to this heading">#</a></h3>
-<p>Interfaces are built by embedding widgets inside widgets, and since they are visual components they are visually organized by means of <em>layouts</em>.
-A layout indicates how the widgets fill their container, either as columns, rows, cells in a matrix or stacked so that only one is visible at a time.
-Those are the 4 basic layouts available in Qt: <code class="docutils literal notranslate"><span class="pre">QHBoxLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">QVBoxLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">QGridLayout</span></code>, and <code class="docutils literal notranslate"><span class="pre">QStackedLayout</span></code>.</p>
+<p>Qt’s <a class="reference external" href="https://doc.qt.io/qt/layout.html">layout</a> system provides a way for a widget to arrange and automatically distribute child widgets, taking advantage of the available space.
+It can automatically position and resize widgets when the space available for them changes, ensuring that the UI remains usable.
+You can use the built-in layout managers to organize your widgets:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doc.qt.io/qt/qhboxlayout.html">QHBoxLayout</a></p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qt/qvboxlayout.html">QVBoxLayout</a></p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qt/qgridlayout.html">QGridLayout</a></p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qt/qformlayout.html">QFormLayoutClass</a>, and</p></li>
+<li><p><a class="reference external" href="https://doc.qt.io/qt/qstackedlayout.html">QStackedLayout</a></p></li>
+</ul>
 </section>
-<section id="actions-toolbars-menus">
-<h3>Actions, Toolbars &amp; Menus<a class="headerlink" href="#actions-toolbars-menus" title="Link to this heading">#</a></h3>
-<p>User interfaces of desktop applications usually use <code class="docutils literal notranslate"><span class="pre">QToolbar</span></code> and <code class="docutils literal notranslate"><span class="pre">QMenu</span></code>. Since these are alternative ways to access the same functionality, Qt provides <code class="docutils literal notranslate"><span class="pre">QAction</span></code> as a way to avoid duplication of functions.
-Thus, each time a menu option or a toolbar button gives access to the same function, they point to the same action.</p>
+<section id="actions-menus-toolbars">
+<h3>Actions, Menus &amp; Toolbars<a class="headerlink" href="#actions-menus-toolbars" title="Link to this heading">#</a></h3>
+<p>User interfaces of desktop applications often rely on menus and toolbars to display groups of commands and options to the user, for which Qt provides the <a class="reference external" href="https://doc.qt.io/qt/qtoolbar.html#details">QToolBar</a> and <a class="reference external" href="https://doc.qt.io/qt/qmenu.html">QMenu</a> classes.
+Menus present a list of items to the user when clicked and may be either global or context-specific.
+Toolbars display commonly-used controls as a ribbon of buttons (and often other interactive elements).
+Since the same individual items can be included in multiple places in the UI, items only need to be created once as a <a class="reference external" href="https://doc.qt.io/qt/qaction.html">QAction</a> that can be added to any menu or toolbar.
+Their state will then be automatically synchronized: for example, if the user toggles the “Bold” toolbar button, the “Bold” menu item will also be (un)checked.</p>
 </section>
 <section id="dialogs">
 <h3>Dialogs<a class="headerlink" href="#dialogs" title="Link to this heading">#</a></h3>
-<p>A <em>Dialog</em> is a GUI component that communicates with the user. Dialogs are commonly used for functions that do not fit into the main interface.
-In Qt, by design <code class="docutils literal notranslate"><span class="pre">QDialog</span></code> is a modal (or blocking) window that show in front of the main Window until it is dismissed.</p>
-<p>Qt provides some <em>special dialogs</em> for the most common use-cases as <em>file Open/Save</em>, <em>font selection</em>, <em>error messages</em>, <em>color choosing</em>, <em>printing</em>, among others.</p>
+<p>A <a class="reference external" href="https://doc.qt.io/qt/dialogs.html">dialog</a> is a new, smaller window for temporary interactions and messages, such as a configuration panel or a warning notification.
+The <a class="reference external" href="https://doc.qt.io/qt/qdialog.html">QDialog</a> class is used to create dialogs, which can be set as either modal or modeless.
+A modal dialog blocks interaction with other windows in the same application until it is dismissed, useful for an error message or requesting key information to complete a requested action.
+A modeless dialog behaves as an independent window without blocking the user from doing anything else, such as for a find and replace feature where a user needs to interact with other windows.
+Modal dialogs should only be used where truly necessary, as they can harm user productivity and create frustration if a user wants to interact with the rest of the application before dismissing the dialog.</p>
+<p>Qt provides some <a class="reference external" href="https://doc.qt.io/qt/dialogs.html">special dialogs</a> for common use-cases, such as <em>file open/save</em>, <em>font selection</em>, <em>error messages</em>, <em>color choosing</em>, <em>printing</em>, among others.</p>
 </section>
-<section id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
-<p>If an application requires additional windows that do not block the main window, these are generated as non-parent <code class="docutils literal notranslate"><span class="pre">QWidget</span></code> instances.
-These are used for tasks that happen in parallel over long-running processes such as displaying graphs or document editing.</p>
-</section>
-<section id="events">
-<h3>Events<a class="headerlink" href="#events" title="Link to this heading">#</a></h3>
-<p>An <em>Event</em> denote every interaction the user has with a Qt application. There are several types of events designed to address different types of interactions.
-In Qt they are represented by <code class="docutils literal notranslate"><span class="pre">QEvent</span></code> instances that contain information about what prompted them, and are passed to specific handlers that are responsible for triggering further actions.</p>
+<section id="signals-slots">
+<h3>Signals &amp; Slots<a class="headerlink" href="#signals-slots" title="Link to this heading">#</a></h3>
+<p>GUI programming requires a way to notify and communicate with other objects in the application, which Qt provides via <a class="reference external" href="https://doc.qt.io/qt/signalsandslots.html">signals and slots</a>.</p>
+<p>A <a class="reference external" href="https://doc.qt.io/qt/signalsandslots.html#signals">Signal</a> is a notification emitted by a widget (as well as non-graphical Qt objects) when a particular event occurs.
+For example, this might include pressing a button, changing text in an input box, or moving a slider.
+Many signals are initiated by an user action, but they can also be issued for other events, like completing a process.
+Qt’s widgets have different predetermined signals, and you can also add your own.</p>
+<p>A <a class="reference external" href="https://doc.qt.io/qt/signalsandslots.html#slots">Slot</a> is a function or method that is invoked in response to a specific signal.
+Functions and methods can be used as slots by connecting a signal to them.
+If a signal sends data, the receiving callable will receive it as arguments.
+You can add your own functions as slots to manage particular signals (built-in or custom) that you are interested in.</p>
 </section>
 </section>
 </section>
@@ -492,13 +504,12 @@ In Qt they are represented by <code class="docutils literal notranslate"><span c
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-qt-components">Basic Qt Components</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals-slots">Signals &amp; Slots</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#widgets">Widgets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-and-mainwindows">Windows and MainWindows</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layouts">Layouts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions-toolbars-menus">Actions, Toolbars &amp; Menus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions-menus-toolbars">Actions, Menus &amp; Toolbars</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dialogs">Dialogs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#events">Events</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signals-slots">Signals &amp; Slots</a></li>
 </ul>
 </li>
 </ul>
