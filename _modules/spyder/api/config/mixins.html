@@ -608,7 +608,7 @@ document.write(`
 
 <span class="sd">    This mixin enables a class to receive configuration updates seamlessly,</span>
 <span class="sd">    by registering methods using the</span>
-<span class="sd">    :function:`spyder.api.config.decorators.on_conf_change` decorator, which</span>
+<span class="sd">    :func:`spyder.api.config.decorators.on_conf_change` decorator, which</span>
 <span class="sd">    receives a configuration section and option to observe.</span>
 
 <span class="sd">    When a change occurs on any of the registered configuration options,</span>
@@ -757,7 +757,7 @@ document.write(`
 <span class="sd">        - This is only necessary if you need to add a callable that is not a</span>
 <span class="sd">          class method to observe an option. Otherwise, you simply need to</span>
 <span class="sd">          decorate your method with</span>
-<span class="sd">          :function:`spyder.api.config.decorators.on_conf_change`.</span>
+<span class="sd">          :func:`spyder.api.config.decorators.on_conf_change`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span>

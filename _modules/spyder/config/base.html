@@ -1,0 +1,1065 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.config.base &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/config/base';</script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/config/base.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.config.base</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © Spyder Project Contributors</span>
+<span class="c1"># Licensed under the terms of the MIT License</span>
+<span class="c1"># (see spyder/__init__.py for details)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Spyder base configuration management</span>
+
+<span class="sd">This file only deals with non-GUI configuration features</span>
+<span class="sd">(in other words, we won&#39;t import any PyQt object here, avoiding any</span>
+<span class="sd">sip API incompatibility issue in spyder&#39;s non-gui modules)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">locale</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">osp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">encoding</span>
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Only for development</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># To activate/deactivate certain things for development</span>
+<span class="c1"># SPYDER_DEV is (and *only* has to be) set in bootstrap.py</span>
+<span class="n">DEV</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SPYDER_DEV&#39;</span><span class="p">)</span>
+
+<span class="c1"># Manually override whether the dev configuration directory is used.</span>
+<span class="n">USE_DEV_CONFIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SPYDER_USE_DEV_CONFIG_DIR&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get a random id for the safe-mode config dir</span>
+<span class="n">CLEAN_DIR_ID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_safe_mode</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make Spyder use a temp clean configuration directory for testing</span>
+<span class="sd">    purposes SPYDER_SAFE_MODE can be set using the --safe-mode option.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SPYDER_SAFE_MODE&#39;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">running_under_pytest</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return True if currently running under pytest.</span>
+
+<span class="sd">    This function is used to do some adjustment for testing. The environment</span>
+<span class="sd">    variable SPYDER_PYTEST is defined in conftest.py.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SPYDER_PYTEST&#39;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">running_remoteclient_tests</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return True if currently running the remoteclient tests.</span>
+
+<span class="sd">    This function is used to do some adjustment for testing. The environment</span>
+<span class="sd">    variable SPYDER_TEST_REMOTE_CLIENT is &#39;true&#39; in conftest.py.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SPYDER_TEST_REMOTE_CLIENT&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">running_in_ci</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return True if currently running under CI.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CI&#39;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">running_in_ci_with_conda</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return True if currently running under CI with conda packages.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">running_in_ci</span><span class="p">()</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USE_CONDA&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">running_in_binder</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return True if currently running in Binder.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="nb">bool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BINDER_REPO_URL&quot;</span><span class="p">))</span>
+        <span class="ow">and</span> <span class="s2">&quot;spyder-ide/binder-environments&quot;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;BINDER_REPO_URL&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_stable_version</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return true if version is stable, i.e. with letters in the final component.</span>
+
+<span class="sd">    Stable version examples: ``1.2``, ``1.3.4``, ``1.0.5``.</span>
+<span class="sd">    Non-stable version examples: ``1.3.4beta``, ``0.1.0rc1``, ``3.0.0dev0``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">last_part</span> <span class="o">=</span> <span class="n">version</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a-zA-Z]&#39;</span><span class="p">,</span> <span class="n">last_part</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">use_dev_config_dir</span><span class="p">(</span><span class="n">use_dev_config_dir</span><span class="o">=</span><span class="n">USE_DEV_CONFIG_DIR</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether the dev configuration directory should used.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_dev_config_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">use_dev_config_dir</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;false&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">}:</span>
+            <span class="n">use_dev_config_dir</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">use_dev_config_dir</span> <span class="o">=</span> <span class="n">DEV</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_stable_version</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">use_dev_config_dir</span>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Debug helpers</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># This is needed after restarting and using debug_print</span>
+<span class="n">STDOUT</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+<span class="n">STDERR</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_debug_level</span><span class="p">():</span>
+    <span class="n">debug_env</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SPYDER_DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">debug_env</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+        <span class="n">debug_env</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">debug_env</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">debug_env</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">debug_print</span><span class="p">(</span><span class="o">*</span><span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Output debug messages to stdout&quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;debug_print is deprecated; use the logging module instead.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">get_debug_level</span><span class="p">():</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="n">STDOUT</span>
+        <span class="c1"># This is needed after restarting and using debug_print</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+            <span class="n">ss</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">ss</span><span class="p">)</span>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Configuration paths</span>
+<span class="c1">#==============================================================================</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_conf_subfolder</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the configuration subfolder for different ooperating systems.&quot;&quot;&quot;</span>
+    <span class="c1"># Spyder settings dir</span>
+    <span class="c1"># NOTE: During the 2.x.x series this dir was named .spyder2, but</span>
+    <span class="c1"># since 3.0+ we&#39;ve reverted back to use .spyder to simplify major</span>
+    <span class="c1"># updates in version (required when we change APIs by Linux</span>
+    <span class="c1"># packagers)</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;linux&#39;</span><span class="p">):</span>
+        <span class="n">SUBFOLDER</span> <span class="o">=</span> <span class="s1">&#39;spyder&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">SUBFOLDER</span> <span class="o">=</span> <span class="s1">&#39;.spyder&#39;</span>
+
+    <span class="c1"># We can&#39;t have PY2 and PY3 settings in the same dir because:</span>
+    <span class="c1"># 1. This leads to ugly crashes and freezes (e.g. by trying to</span>
+    <span class="c1">#    embed a PY2 interpreter in PY3)</span>
+    <span class="c1"># 2. We need to save the list of installed modules (for code</span>
+    <span class="c1">#    completion) separately for each version</span>
+    <span class="n">SUBFOLDER</span> <span class="o">=</span> <span class="n">SUBFOLDER</span> <span class="o">+</span> <span class="s1">&#39;-py3&#39;</span>
+
+    <span class="c1"># If running a development/beta version, save config in a separate</span>
+    <span class="c1"># directory to avoid wiping or contaiminating the user&#39;s saved stable</span>
+    <span class="c1"># configuration.</span>
+    <span class="k">if</span> <span class="n">use_dev_config_dir</span><span class="p">():</span>
+        <span class="n">SUBFOLDER</span> <span class="o">=</span> <span class="n">SUBFOLDER</span> <span class="o">+</span> <span class="s1">&#39;-dev&#39;</span>
+
+    <span class="k">return</span> <span class="n">SUBFOLDER</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_project_config_folder</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the default project configuration folder.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;.spyproject&#39;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_home_dir</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return user home directory.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># expanduser() returns a raw byte string which needs to be</span>
+        <span class="c1"># decoded with the codec that the OS is using to represent</span>
+        <span class="c1"># file paths.</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">to_unicode_from_fs</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">path</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Get home from alternative locations</span>
+        <span class="k">for</span> <span class="n">env_var</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;HOME&#39;</span><span class="p">,</span> <span class="s1">&#39;USERPROFILE&#39;</span><span class="p">,</span> <span class="s1">&#39;TMP&#39;</span><span class="p">):</span>
+            <span class="c1"># os.environ.get() returns a raw byte string which needs to be</span>
+            <span class="c1"># decoded with the codec that the OS is using to represent</span>
+            <span class="c1"># environment variables.</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">to_unicode_from_fs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">env_var</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">path</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Please set the environment variable HOME to &#39;</span>
+                               <span class="s1">&#39;your user/home directory path so Spyder can &#39;</span>
+                               <span class="s1">&#39;start properly.&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_clean_conf_dir</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the path to a temp clean configuration dir, for tests and safe mode.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span>
+        <span class="s1">&#39;spyder-clean-conf-dirs&#39;</span><span class="p">,</span>
+        <span class="n">CLEAN_DIR_ID</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">conf_dir</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_custom_conf_dir</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use a custom configuration directory, passed through our command</span>
+<span class="sd">    line options or by setting the env var below.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">custom_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SPYDER_CONFDIR&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">custom_dir</span><span class="p">:</span>
+        <span class="n">custom_dir</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">custom_dir</span><span class="p">)</span>
+
+        <span class="c1"># Set env var to not lose its value in future calls when the cwd</span>
+        <span class="c1"># is changed by Spyder.</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPYDER_CONFDIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_dir</span>
+        <span class="k">return</span> <span class="n">custom_dir</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_conf_path</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return absolute path to the config file with the specified filename.&quot;&quot;&quot;</span>
+    <span class="c1"># Define conf_dir</span>
+    <span class="k">if</span> <span class="n">running_under_pytest</span><span class="p">()</span> <span class="ow">or</span> <span class="n">get_safe_mode</span><span class="p">():</span>
+        <span class="c1"># Use clean config dir if running tests or the user requests it.</span>
+        <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">get_clean_conf_dir</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">get_custom_conf_dir</span><span class="p">():</span>
+        <span class="c1"># Use a custom directory if the user decided to do it through</span>
+        <span class="c1"># our command line options.</span>
+        <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">get_custom_conf_dir</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;linux&#39;</span><span class="p">):</span>
+        <span class="c1"># This makes us follow the XDG standard to save our settings</span>
+        <span class="c1"># on Linux, as it was requested on spyder-ide/spyder#2629.</span>
+        <span class="n">xdg_config_home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;XDG_CONFIG_HOME&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">xdg_config_home</span><span class="p">:</span>
+            <span class="n">xdg_config_home</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_home_dir</span><span class="p">(),</span> <span class="s1">&#39;.config&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">xdg_config_home</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">xdg_config_home</span><span class="p">)</span>
+
+        <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xdg_config_home</span><span class="p">,</span> <span class="n">get_conf_subfolder</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_home_dir</span><span class="p">(),</span> <span class="n">get_conf_subfolder</span><span class="p">())</span>
+
+    <span class="c1"># Create conf_dir</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">running_under_pytest</span><span class="p">()</span> <span class="ow">or</span> <span class="n">get_safe_mode</span><span class="p">()</span> <span class="ow">or</span> <span class="n">get_custom_conf_dir</span><span class="p">():</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">conf_dir</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_conf_paths</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the files that can update system configuration defaults.&quot;&quot;&quot;</span>
+    <span class="n">CONDA_PREFIX</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CONDA_PREFIX&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+        <span class="n">SEARCH_PATH</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;C:/ProgramData/spyder&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">SEARCH_PATH</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;/etc/spyder&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;/usr/local/etc/spyder&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">CONDA_PREFIX</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">CONDA_PREFIX</span> <span class="o">=</span> <span class="n">CONDA_PREFIX</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">SEARCH_PATH</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/etc/spyder&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CONDA_PREFIX</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="n">SEARCH_PATH</span> <span class="o">+=</span> <span class="p">(</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/etc/spyder&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">running_under_pytest</span><span class="p">():</span>
+        <span class="n">search_paths</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tmpfolder</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpfolder</span><span class="p">,</span> <span class="s1">&#39;site-config-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="n">search_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">SEARCH_PATH</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">search_paths</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SEARCH_PATH</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_module_path</span><span class="p">(</span><span class="n">modname</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return module *modname* base path&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">modname</span><span class="p">]</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_module_data_path</span><span class="p">(</span><span class="n">modname</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attr_name</span><span class="o">=</span><span class="s1">&#39;DATAPATH&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return module *modname* data path</span>
+<span class="sd">    Note: relpath is ignored if module has an attribute named *attr_name*</span>
+
+<span class="sd">    Handles py2exe/cx_Freeze distributions&quot;&quot;&quot;</span>
+    <span class="n">datapath</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">modname</span><span class="p">],</span> <span class="n">attr_name</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">datapath</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">datapath</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">datapath</span> <span class="o">=</span> <span class="n">get_module_path</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+        <span class="n">parentdir</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datapath</span><span class="p">,</span> <span class="n">osp</span><span class="o">.</span><span class="n">pardir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">parentdir</span><span class="p">):</span>
+            <span class="c1"># Parent directory is not a directory but the &#39;library.zip&#39; file:</span>
+            <span class="c1"># this is either a py2exe or a cx_Freeze distribution</span>
+            <span class="n">datapath</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parentdir</span><span class="p">,</span> <span class="n">osp</span><span class="o">.</span><span class="n">pardir</span><span class="p">),</span>
+                                            <span class="n">modname</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">relpath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">datapath</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datapath</span><span class="p">,</span> <span class="n">relpath</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">datapath</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_module_source_path</span><span class="p">(</span><span class="n">modname</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return module *modname* source path</span>
+<span class="sd">    If *basename* is specified, return *modname.basename* path where</span>
+<span class="sd">    *modname* is a package containing the module *basename*</span>
+
+<span class="sd">    *basename* is a filename (not a module name), so it must include the</span>
+<span class="sd">    file extension: .py or .pyw</span>
+
+<span class="sd">    Handles py2exe/cx_Freeze distributions&quot;&quot;&quot;</span>
+    <span class="n">srcpath</span> <span class="o">=</span> <span class="n">get_module_path</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+    <span class="n">parentdir</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">srcpath</span><span class="p">,</span> <span class="n">osp</span><span class="o">.</span><span class="n">pardir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">parentdir</span><span class="p">):</span>
+        <span class="c1"># Parent directory is not a directory but the &#39;library.zip&#39; file:</span>
+        <span class="c1"># this is either a py2exe or a cx_Freeze distribution</span>
+        <span class="n">srcpath</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parentdir</span><span class="p">,</span> <span class="n">osp</span><span class="o">.</span><span class="n">pardir</span><span class="p">),</span>
+                                       <span class="n">modname</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">basename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">srcpath</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">srcpath</span><span class="p">,</span> <span class="n">basename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">srcpath</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_py2exe_or_cx_Freeze</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return True if this is a py2exe/cx_Freeze distribution of Spyder&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_module_path</span><span class="p">(</span><span class="s1">&#39;spyder&#39;</span><span class="p">),</span> <span class="n">osp</span><span class="o">.</span><span class="n">pardir</span><span class="p">))</span>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Translations</span>
+<span class="c1">#==============================================================================</span>
+<span class="n">LANG_FILE</span> <span class="o">=</span> <span class="n">get_conf_path</span><span class="p">(</span><span class="s1">&#39;langconfig&#39;</span><span class="p">)</span>
+<span class="n">DEFAULT_LANGUAGE</span> <span class="o">=</span> <span class="s1">&#39;en&#39;</span>
+
+<span class="c1"># This needs to be updated every time a new language is added to spyder, and is</span>
+<span class="c1"># used by the Preferences configuration to populate the Language QComboBox</span>
+<span class="n">LANGUAGE_CODES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="s1">&#39;English&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fr&#39;</span><span class="p">:</span> <span class="s1">&#39;Français&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;es&#39;</span><span class="p">:</span> <span class="s1">&#39;Español&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hu&#39;</span><span class="p">:</span> <span class="s1">&#39;Magyar&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pt_BR&#39;</span><span class="p">:</span> <span class="s1">&#39;Português&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ru&#39;</span><span class="p">:</span> <span class="s1">&#39;Русский&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zh_CN&#39;</span><span class="p">:</span> <span class="s1">&#39;简体中文&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ja&#39;</span><span class="p">:</span> <span class="s1">&#39;日本語&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;de&#39;</span><span class="p">:</span> <span class="s1">&#39;Deutsch&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pl&#39;</span><span class="p">:</span> <span class="s1">&#39;Polski&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fa&#39;</span><span class="p">:</span> <span class="s1">&#39;Persian&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hr&#39;</span><span class="p">:</span> <span class="s1">&#39;Croatian&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;te&#39;</span><span class="p">:</span> <span class="s1">&#39;Telugu&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;uk&#39;</span><span class="p">:</span> <span class="s1">&#39;Ukrainian&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Disabled languages because their translations are outdated or incomplete</span>
+<span class="n">DISABLED_LANGUAGES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fa&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;hu&#39;</span><span class="p">,</span> <span class="s1">&#39;pl&#39;</span><span class="p">,</span> <span class="s1">&#39;te&#39;</span><span class="p">,</span> <span class="s1">&#39;uk&#39;</span><span class="p">,</span> <span class="s1">&#39;ru&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_available_translations</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List available translations for spyder based on the folders found in the</span>
+<span class="sd">    locale folder. This function checks if LANGUAGE_CODES contain the same</span>
+<span class="sd">    information that is found in the &#39;locale&#39; folder to ensure that when a new</span>
+<span class="sd">    language is added, LANGUAGE_CODES is updated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">locale_path</span> <span class="o">=</span> <span class="n">get_module_data_path</span><span class="p">(</span><span class="s2">&quot;spyder&quot;</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="s2">&quot;locale&quot;</span><span class="p">,</span>
+                                       <span class="n">attr_name</span><span class="o">=</span><span class="s1">&#39;LOCALEPATH&#39;</span><span class="p">)</span>
+    <span class="n">listdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">locale_path</span><span class="p">)</span>
+    <span class="n">langs</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">listdir</span> <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">locale_path</span><span class="p">,</span> <span class="n">d</span><span class="p">))]</span>
+    <span class="n">langs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DEFAULT_LANGUAGE</span><span class="p">]</span> <span class="o">+</span> <span class="n">langs</span>
+
+    <span class="c1"># Remove disabled languages</span>
+    <span class="n">langs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">langs</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">DISABLED_LANGUAGES</span><span class="p">))</span>
+
+    <span class="c1"># Check that there is a language code available in case a new translation</span>
+    <span class="c1"># is added, to ensure LANGUAGE_CODES is updated.</span>
+    <span class="n">retlangs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">langs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lang</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">LANGUAGE_CODES</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">DEV</span><span class="p">:</span>
+                <span class="n">error</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Update LANGUAGE_CODES (inside config/base.py) if a &#39;</span>
+                         <span class="s1">&#39;new translation has been added to Spyder. &#39;</span>
+                         <span class="s1">&#39;Currently missing &#39;</span> <span class="o">+</span> <span class="n">lang</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>  <span class="c1"># spyder: test-skip</span>
+                <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">retlangs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">retlangs</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_interface_language</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If Spyder has a translation available for the locale language, it will</span>
+<span class="sd">    return the version provided by Spyder adjusted for language subdifferences,</span>
+<span class="sd">    otherwise it will return DEFAULT_LANGUAGE.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    1.) Spyder provides (&#39;en&#39;, &#39;de&#39;, &#39;fr&#39;, &#39;es&#39; &#39;hu&#39; and &#39;pt_BR&#39;), if the</span>
+<span class="sd">    locale is either &#39;en_US&#39; or &#39;en&#39; or &#39;en_UK&#39;, this function will return &#39;en&#39;</span>
+
+<span class="sd">    2.) Spyder provides (&#39;en&#39;, &#39;de&#39;, &#39;fr&#39;, &#39;es&#39; &#39;hu&#39; and &#39;pt_BR&#39;), if the</span>
+<span class="sd">    locale is either &#39;pt&#39; or &#39;pt_BR&#39;, this function will return &#39;pt_BR&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
+        <span class="c1"># Changing to locale.getlocale from locale.getdefaultlocale caused some</span>
+        <span class="c1"># Windows machines to return non BCP47 locale codes. Instead use</span>
+        <span class="c1"># win32 GetUserDefaultLocaleName which does seem to give BCP47 locale.</span>
+        <span class="c1"># Fixes spyder-ide/spyder#23318.</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ctypes</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_unicode_buffer</span><span class="p">,</span> <span class="n">windll</span>
+        <span class="n">bufsize</span> <span class="o">=</span> <span class="mi">85</span>  <span class="c1"># LOCALE_NAME_MAX_LENGTH</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">create_unicode_buffer</span><span class="p">(</span><span class="n">bufsize</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GetUserDefaultLocaleName</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">bufsize</span><span class="p">):</span>
+            <span class="n">locale_language</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">locale_language</span> <span class="o">=</span> <span class="n">DEFAULT_LANGUAGE</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Fixes spyder-ide/spyder#3627.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">locale_language</span> <span class="o">=</span> <span class="n">locale</span><span class="o">.</span><span class="n">getlocale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">locale_language</span> <span class="o">=</span> <span class="n">DEFAULT_LANGUAGE</span>
+
+    <span class="c1"># Tests expect English as the interface language</span>
+    <span class="k">if</span> <span class="n">running_under_pytest</span><span class="p">():</span>
+        <span class="n">locale_language</span> <span class="o">=</span> <span class="n">DEFAULT_LANGUAGE</span>
+
+    <span class="n">language</span> <span class="o">=</span> <span class="n">DEFAULT_LANGUAGE</span>
+
+    <span class="k">if</span> <span class="n">locale_language</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">spyder_languages</span> <span class="o">=</span> <span class="n">get_available_translations</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">spyder_languages</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">locale_language</span> <span class="o">==</span> <span class="n">lang</span><span class="p">:</span>
+                <span class="n">language</span> <span class="o">=</span> <span class="n">locale_language</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">locale_language</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span> <span class="ow">or</span>
+                    <span class="n">lang</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">locale_language</span><span class="p">)):</span>
+                <span class="n">language</span> <span class="o">=</span> <span class="n">lang</span>
+                <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">language</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_lang_conf</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save language setting to language config file&quot;&quot;&quot;</span>
+    <span class="c1"># Needed to avoid an error when trying to save LANG_FILE</span>
+    <span class="c1"># but the operation fails for some reason.</span>
+    <span class="c1"># See spyder-ide/spyder#8807.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">LANG_FILE</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">EnvironmentError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_lang_conf</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load language setting from language config file if it exists, otherwise</span>
+<span class="sd">    try to use the local settings if Spyder provides a translation, or</span>
+<span class="sd">    return the default if no translation provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">LANG_FILE</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">LANG_FILE</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">lang</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lang</span> <span class="o">=</span> <span class="n">get_interface_language</span><span class="p">()</span>
+        <span class="n">save_lang_conf</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+
+    <span class="c1"># Save language again if it&#39;s been disabled</span>
+    <span class="k">if</span> <span class="n">lang</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">DISABLED_LANGUAGES</span><span class="p">:</span>
+        <span class="n">lang</span> <span class="o">=</span> <span class="n">DEFAULT_LANGUAGE</span>
+        <span class="n">save_lang_conf</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">lang</span>
+
+
+<div class="viewcode-block" id="get_translation">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.translations.html#spyder.api.translations.get_translation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_translation</span><span class="p">(</span><span class="n">modname</span><span class="p">,</span> <span class="n">dirname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return translation callback for module *modname*&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dirname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">modname</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">translate_dumb</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dumb function to not use translations.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="n">locale_path</span> <span class="o">=</span> <span class="n">get_module_data_path</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="s2">&quot;locale&quot;</span><span class="p">,</span>
+                                       <span class="n">attr_name</span><span class="o">=</span><span class="s1">&#39;LOCALEPATH&#39;</span><span class="p">)</span>
+
+    <span class="c1"># If LANG is defined in Ubuntu, a warning message is displayed,</span>
+    <span class="c1"># so in Unix systems we define the LANGUAGE variable.</span>
+    <span class="n">language</span> <span class="o">=</span> <span class="n">load_lang_conf</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+        <span class="c1"># Trying to set LANG on Windows can fail when Spyder is</span>
+        <span class="c1"># run with admin privileges.</span>
+        <span class="c1"># Fixes spyder-ide/spyder#6886.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language</span>      <span class="c1"># Works on Windows</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">translate_dumb</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGUAGE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language</span>  <span class="c1"># Works on Linux</span>
+
+    <span class="k">if</span> <span class="n">language</span> <span class="o">==</span> <span class="s2">&quot;en&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">translate_dumb</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">gettext</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_trans</span> <span class="o">=</span> <span class="n">gettext</span><span class="o">.</span><span class="n">translation</span><span class="p">(</span><span class="n">modname</span><span class="p">,</span> <span class="n">locale_path</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">translate_gettext</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_trans</span><span class="o">.</span><span class="n">gettext</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">translate_gettext</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="c1"># logging module is not yet initialised at this point</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Could not load translations for </span><span class="si">{</span><span class="n">language</span><span class="si">}</span><span class="s2"> due to: &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exc</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">translate_dumb</span></div>
+
+
+
+<span class="c1"># Translation callback</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="s2">&quot;spyder&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Namespace Browser (Variable Explorer) configuration management</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Variable explorer display / check all elements data types for sequences:</span>
+<span class="c1"># (when saving the variable explorer contents, check_all is True,</span>
+<span class="n">CHECK_ALL</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># XXX: If True, this should take too much to compute...</span>
+
+<span class="n">EXCLUDED_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nan&#39;</span><span class="p">,</span> <span class="s1">&#39;inf&#39;</span><span class="p">,</span> <span class="s1">&#39;infty&#39;</span><span class="p">,</span> <span class="s1">&#39;little_endian&#39;</span><span class="p">,</span> <span class="s1">&#39;colorbar_doc&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;typecodes&#39;</span><span class="p">,</span> <span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span> <span class="s1">&#39;__main__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;NaN&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Inf&#39;</span><span class="p">,</span> <span class="s1">&#39;Infinity&#39;</span><span class="p">,</span> <span class="s1">&#39;sctypes&#39;</span><span class="p">,</span> <span class="s1">&#39;rcParams&#39;</span><span class="p">,</span> <span class="s1">&#39;rcParamsDefault&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;sctypeNA&#39;</span><span class="p">,</span> <span class="s1">&#39;typeNA&#39;</span><span class="p">,</span> <span class="s1">&#39;False_&#39;</span><span class="p">,</span> <span class="s1">&#39;True_&#39;</span><span class="p">]</span>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Conda-based installer application utilities</span>
+<span class="c1">#==============================================================================</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_conda_based_app</span><span class="p">(</span><span class="n">pyexec</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if Spyder is running from the conda-based installer by looking for</span>
+<span class="sd">    the `spyder-menu.json` file.</span>
+
+<span class="sd">    If a Python executable is provided, checks if it is in a conda-based</span>
+<span class="sd">    installer environment or the root environment thereof.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">real_pyexec</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">pyexec</span><span class="p">)</span>  <span class="c1"># pyexec may be symlink</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+        <span class="n">env_path</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">real_pyexec</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">env_path</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">osp</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">real_pyexec</span><span class="p">))</span>
+
+    <span class="n">menu_rel_path</span> <span class="o">=</span> <span class="s1">&#39;/Menu/conda-based-app&#39;</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">osp</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">env_path</span> <span class="o">+</span> <span class="n">menu_rel_path</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">glob</span><span class="p">(</span><span class="n">env_path</span> <span class="o">+</span> <span class="s1">&#39;/envs/*&#39;</span> <span class="o">+</span> <span class="n">menu_rel_path</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Reset config files</span>
+<span class="c1">#==============================================================================</span>
+<span class="n">SAVED_CONFIG_FILES</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;help&#39;</span><span class="p">,</span> <span class="s1">&#39;onlinehelp&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;pylint.results&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;spyder.ini&#39;</span><span class="p">,</span> <span class="s1">&#39;temp.py&#39;</span><span class="p">,</span> <span class="s1">&#39;temp.spydata&#39;</span><span class="p">,</span> <span class="s1">&#39;template.py&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;history.py&#39;</span><span class="p">,</span> <span class="s1">&#39;history_internal.py&#39;</span><span class="p">,</span> <span class="s1">&#39;workingdir&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;.projects&#39;</span><span class="p">,</span> <span class="s1">&#39;.spyproject&#39;</span><span class="p">,</span> <span class="s1">&#39;.ropeproject&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;monitor.log&#39;</span><span class="p">,</span> <span class="s1">&#39;monitor_debug.log&#39;</span><span class="p">,</span> <span class="s1">&#39;rope.log&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;langconfig&#39;</span><span class="p">,</span> <span class="s1">&#39;spyder.lock&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;config</span><span class="si">{}</span><span class="s1">spyder.ini&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">),</span>
+                      <span class="s1">&#39;config</span><span class="si">{}</span><span class="s1">transient.ini&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">),</span>
+                      <span class="s1">&#39;lsp_root_path&#39;</span><span class="p">,</span> <span class="s1">&#39;plugins&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reset_config_files</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all config files&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Reset Spyder settings to defaults ***&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">STDERR</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">SAVED_CONFIG_FILES</span><span class="p">:</span>
+        <span class="n">cfg_fname</span> <span class="o">=</span> <span class="n">get_conf_path</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">cfg_fname</span><span class="p">)</span> <span class="ow">or</span> <span class="n">osp</span><span class="o">.</span><span class="n">islink</span><span class="p">(</span><span class="n">cfg_fname</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">cfg_fname</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cfg_fname</span><span class="p">):</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">cfg_fname</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;removing:&quot;</span><span class="p">,</span> <span class="n">cfg_fname</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">STDERR</span><span class="p">)</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

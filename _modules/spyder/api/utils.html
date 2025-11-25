@@ -496,17 +496,20 @@ document.write(`
 
 <span class="sd">    Usage</span>
 <span class="sd">    -----</span>
-<span class="sd">    class MyABC(metaclass=ABCMeta):</span>
-<span class="sd">        @abstract_attribute</span>
-<span class="sd">        def my_abstract_attribute(self):</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        class MyABC(metaclass=ABCMeta):</span>
+<span class="sd">            @abstract_attribute</span>
+<span class="sd">            def my_abstract_attribute(self):</span>
+<span class="sd">                pass</span>
+
+<span class="sd">        class MyClassOK(MyABC):</span>
+<span class="sd">            def __init__(self):</span>
+<span class="sd">                self.my_abstract_attribute = 1</span>
+
+<span class="sd">        class MyClassNotOK(MyABC):</span>
 <span class="sd">            pass</span>
-
-<span class="sd">    class MyClassOK(MyABC):</span>
-<span class="sd">        def __init__(self):</span>
-<span class="sd">            self.my_abstract_attribute = 1</span>
-
-<span class="sd">    class MyClassNotOK(MyABC):</span>
-<span class="sd">        pass</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>

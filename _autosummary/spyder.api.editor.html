@@ -405,7 +405,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -421,6 +423,37 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension"><code class="docutils literal notranslate"><span class="pre">EditorExtension</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.clone_settings"><code class="docutils literal notranslate"><span class="pre">EditorExtension.clone_settings()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.editor"><code class="docutils literal notranslate"><span class="pre">EditorExtension.editor</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.enabled"><code class="docutils literal notranslate"><span class="pre">EditorExtension.enabled</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.on_install"><code class="docutils literal notranslate"><span class="pre">EditorExtension.on_install()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.on_state_changed"><code class="docutils literal notranslate"><span class="pre">EditorExtension.on_state_changed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.on_uninstall"><code class="docutils literal notranslate"><span class="pre">EditorExtension.on_uninstall()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel"><code class="docutils literal notranslate"><span class="pre">Panel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.Position"><code class="docutils literal notranslate"><span class="pre">Panel.Position</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.Position.iterable"><code class="docutils literal notranslate"><span class="pre">Panel.Position.iterable()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.geometry"><code class="docutils literal notranslate"><span class="pre">Panel.geometry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.on_install"><code class="docutils literal notranslate"><span class="pre">Panel.on_install()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.paintEvent"><code class="docutils literal notranslate"><span class="pre">Panel.paintEvent()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.paint_cell"><code class="docutils literal notranslate"><span class="pre">Panel.paint_cell()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.scrollable"><code class="docutils literal notranslate"><span class="pre">Panel.scrollable</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.setVisible"><code class="docutils literal notranslate"><span class="pre">Panel.setVisible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.set_geometry"><code class="docutils literal notranslate"><span class="pre">Panel.set_geometry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.sizeHint"><code class="docutils literal notranslate"><span class="pre">Panel.sizeHint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -433,6 +466,231 @@ document.write(`
   <section id="module-spyder.api.editor">
 <span id="spyder-api-editor"></span><h1>spyder.api.editor<a class="headerlink" href="#module-spyder.api.editor" title="Link to this heading">#</a></h1>
 <p>This module contains the code editor API.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.editor.</span></span><span class="sig-name descname"><span class="pre">EditorExtension</span></span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/editorextension.html#EditorExtension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.EditorExtension" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base class for editor extensions.</p>
+<p>An extension is a “thing” that can be installed on an editor to add new
+behaviours or to modify its appearance.</p>
+<p>A panel (model child class) is added to an editor by using PanelsManager,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.plugins.editor.widgets.codeeditor.CodeEditor.panels.append()</span></code>.</p>
+<p>Subclasses may/should override the following methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.EditorExtension.on_install()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.EditorExtension.on_uninstall()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.EditorExtension.on_state_changed()</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>..warning: The editor extension will be identified by its class name, this
+means that <strong>there cannot be two editor extensions of the same type on the
+same editor instance!</strong></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension.clone_settings">
+<span class="sig-name descname"><span class="pre">clone_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/editorextension.html#EditorExtension.clone_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.EditorExtension.clone_settings" title="Link to this definition">#</a></dt>
+<dd><p>Clone the settings from another editor extension (same class).</p>
+<p>This method is called when splitting an editor widget.
+# TODO at the current estate this is not working</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>original</strong> – other editor extension (must be the same class).</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The base method does not do anything, you must implement
+this method for every new editor extension/panel (if you plan on
+using the split feature). You should also make sure any properties
+will be propagated to the clones.</p>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension.editor">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">editor</span></span><a class="headerlink" href="#spyder.api.editor.EditorExtension.editor" title="Link to this definition">#</a></dt>
+<dd><p>Returns a reference to the parent code editor widget.</p>
+<p><strong>READ ONLY</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>spyder.plugins.editor.widgets.codeeditor.CodeEditor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension.enabled">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enabled</span></span><a class="headerlink" href="#spyder.api.editor.EditorExtension.enabled" title="Link to this definition">#</a></dt>
+<dd><p>Tells if the editor extension is enabled.</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.EditorExtension.on_state_changed()</span></code> will be called as
+soon as the editor extension state changed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension.on_install">
+<span class="sig-name descname"><span class="pre">on_install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">editor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/editorextension.html#EditorExtension.on_install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.EditorExtension.on_install" title="Link to this definition">#</a></dt>
+<dd><p>Installs the extension on the editor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>editor</strong> (<em>spyder.plugins.editor.widgets.codeeditor.CodeEditor</em>) – editor widget instance</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is called by editor when you install a
+EditorExtension.
+You should never call it yourself, even in a subclasss.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don’t forget to call <strong>super</strong> when subclassing</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension.on_state_changed">
+<span class="sig-name descname"><span class="pre">on_state_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/editorextension.html#EditorExtension.on_state_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.EditorExtension.on_state_changed" title="Link to this definition">#</a></dt>
+<dd><p>Called when the enable state has changed.</p>
+<p>This method does not do anything, you may override it if you need
+to connect/disconnect to the editor’s signals (connect when state is
+true and disconnect when it is false).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – True = enabled, False = disabled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.EditorExtension.on_uninstall">
+<span class="sig-name descname"><span class="pre">on_uninstall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/editorextension.html#EditorExtension.on_uninstall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.EditorExtension.on_uninstall" title="Link to this definition">#</a></dt>
+<dd><p>Uninstalls the editor extension from the editor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.editor.</span></span><span class="sig-name descname"><span class="pre">Panel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>, <a class="reference internal" href="#spyder.api.editor.EditorExtension" title="spyder.plugins.editor.api.editorextension.EditorExtension"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorExtension</span></code></a></p>
+<p>Base class for editor panels.</p>
+<p>A panel is a editor extension and a QWidget.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use enabled to disable panel actions and setVisible to change the
+visibility of the panel.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.Position">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Position</span></span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.Position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.Position" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Enumerates the possible panel positions</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.Position.iterable">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iterable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.Position.iterable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.Position.iterable" title="Link to this definition">#</a></dt>
+<dd><p>Returns possible positions as an iterable (list)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.geometry">
+<span class="sig-name descname"><span class="pre">geometry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.geometry" title="Link to this definition">#</a></dt>
+<dd><p>Return geometry dimensions for floating Panels.</p>
+<p>Note: If None is returned It’ll use editor contentsRect dimensions.</p>
+<p>returns: x0, y0, height width.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.on_install">
+<span class="sig-name descname"><span class="pre">on_install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">editor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.on_install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.on_install" title="Link to this definition">#</a></dt>
+<dd><p>Extends <code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.EditorExtension.on_install()</span></code> method to set the
+editor instance as the parent widget.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don’t forget to call <strong>super</strong> if you override this
+method!</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>editor</strong> (<em>spyder.plugins.editor.widgets.codeeditor.CodeEditor</em>) – editor instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.paintEvent">
+<span class="sig-name descname"><span class="pre">paintEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.paintEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.paintEvent" title="Link to this definition">#</a></dt>
+<dd><p>Fill the panel background using QPalette.</p>
+<p class="rubric">Notes</p>
+<p>Please remember to extend this method in the child class to
+paint the panel’s desired information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.paint_cell">
+<span class="sig-name descname"><span class="pre">paint_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">painter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.paint_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.paint_cell" title="Link to this definition">#</a></dt>
+<dd><p>Paint cell dividers in the visible region if needed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.scrollable">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scrollable</span></span><a class="headerlink" href="#spyder.api.editor.Panel.scrollable" title="Link to this definition">#</a></dt>
+<dd><p>A scrollable panel will follow the editor’s scroll-bars.</p>
+<p>Left and right panels follow the vertical scrollbar. Top and bottom
+panels follow the horizontal scrollbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.setVisible">
+<span class="sig-name descname"><span class="pre">setVisible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visible</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.setVisible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.setVisible" title="Link to this definition">#</a></dt>
+<dd><p>Shows/Hides the panel.</p>
+<p>Automatically call PanelsManager.refresh_panels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>visible</strong> – Visible state</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.set_geometry">
+<span class="sig-name descname"><span class="pre">set_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crect</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.set_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.set_geometry" title="Link to this definition">#</a></dt>
+<dd><p>Set geometry for floating panels.</p>
+<p>Normally you don’t need to override this method, you should override
+<cite>geometry</cite> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.editor.Panel.sizeHint">
+<span class="sig-name descname"><span class="pre">sizeHint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/plugins/editor/api/panel.html#Panel.sizeHint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.editor.Panel.sizeHint" title="Link to this definition">#</a></dt>
+<dd><p>Return the widget size hint, overriding the Qt method.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This size hint will define the QSize of the panel, i.e. it is
+where its width and height are defined.</p></li>
+<li><p>If the size of your panel depends on displayed text, please
+use the LineNumberArea one as reference on how to implement
+this method.</p></li>
+<li><p>If the size is not dependent on displayed text, please use
+the debugger panel as reference.</p></li>
+<li><p>If your panel is in a floating position, please use the
+IndentationGuide one as reference.</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -470,6 +728,44 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension"><code class="docutils literal notranslate"><span class="pre">EditorExtension</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.clone_settings"><code class="docutils literal notranslate"><span class="pre">EditorExtension.clone_settings()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.editor"><code class="docutils literal notranslate"><span class="pre">EditorExtension.editor</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.enabled"><code class="docutils literal notranslate"><span class="pre">EditorExtension.enabled</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.on_install"><code class="docutils literal notranslate"><span class="pre">EditorExtension.on_install()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.on_state_changed"><code class="docutils literal notranslate"><span class="pre">EditorExtension.on_state_changed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.EditorExtension.on_uninstall"><code class="docutils literal notranslate"><span class="pre">EditorExtension.on_uninstall()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel"><code class="docutils literal notranslate"><span class="pre">Panel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.Position"><code class="docutils literal notranslate"><span class="pre">Panel.Position</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.Position.iterable"><code class="docutils literal notranslate"><span class="pre">Panel.Position.iterable()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.geometry"><code class="docutils literal notranslate"><span class="pre">Panel.geometry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.on_install"><code class="docutils literal notranslate"><span class="pre">Panel.on_install()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.paintEvent"><code class="docutils literal notranslate"><span class="pre">Panel.paintEvent()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.paint_cell"><code class="docutils literal notranslate"><span class="pre">Panel.paint_cell()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.scrollable"><code class="docutils literal notranslate"><span class="pre">Panel.scrollable</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.setVisible"><code class="docutils literal notranslate"><span class="pre">Panel.setVisible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.set_geometry"><code class="docutils literal notranslate"><span class="pre">Panel.set_geometry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.editor.Panel.sizeHint"><code class="docutils literal notranslate"><span class="pre">Panel.sizeHint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

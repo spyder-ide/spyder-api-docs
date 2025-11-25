@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.plugins.editor.api.editorextension &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/plugins/editor/api/editorextension';</script>
+    <link rel="icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/plugins/editor/api/editorextension.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.plugins.editor.api.editorextension</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2013-2016 Colin Duquesnoy and others (see pyqode/AUTHORS.rst)</span>
+<span class="c1"># Copyright (c) 2016- Spyder Project Contributors (see AUTHORS.txt)</span>
+<span class="c1">#</span>
+<span class="c1"># Distributed under the terms of the MIT License</span>
+<span class="c1"># (see NOTICE.txt in the Spyder root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains the editor extension API.</span>
+
+<span class="sd">Adapted from pyqode/core/api/mode.py of the</span>
+<span class="sd">`PyQode project &lt;https://github.com/pyQode/pyQode&gt;`_.</span>
+<span class="sd">Original file:</span>
+<span class="sd">&lt;https://github.com/pyQode/pyqode.core/blob/master/pyqode/core/api/mode.py&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="EditorExtension">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.EditorExtension">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EditorExtension</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for editor extensions.</span>
+
+<span class="sd">    An extension is a &quot;thing&quot; that can be installed on an editor to add new</span>
+<span class="sd">    behaviours or to modify its appearance.</span>
+
+<span class="sd">    A panel (model child class) is added to an editor by using PanelsManager,</span>
+<span class="sd">    :meth:`spyder.plugins.editor.widgets.codeeditor.CodeEditor.panels.append`.</span>
+
+<span class="sd">    Subclasses may/should override the following methods:</span>
+
+<span class="sd">        - :meth:`spyder.api.EditorExtension.on_install`</span>
+<span class="sd">        - :meth:`spyder.api.EditorExtension.on_uninstall`</span>
+<span class="sd">        - :meth:`spyder.api.EditorExtension.on_state_changed`</span>
+
+<span class="sd">    ..warning: The editor extension will be identified by its class name, this</span>
+<span class="sd">    means that **there cannot be two editor extensions of the same type on the</span>
+<span class="sd">    same editor instance!**</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">editor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a reference to the parent code editor widget.</span>
+
+<span class="sd">        **READ ONLY**</span>
+
+<span class="sd">        :rtype: spyder.plugins.editor.widgets.codeeditor.CodeEditor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tells if the editor extension is enabled.</span>
+
+<span class="sd">        :meth:`spyder.api.EditorExtension.on_state_changed` will be called as</span>
+<span class="sd">        soon as the editor extension state changed.</span>
+
+<span class="sd">        :type: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span>
+
+    <span class="nd">@enabled</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">enabled</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span> <span class="o">=</span> <span class="n">enabled</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on_state_changed</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        EditorExtension name/identifier.</span>
+<span class="sd">        :class:`spyder.widgets.sourcecode.CodeEditor` uses that as the</span>
+<span class="sd">        attribute key when you install a editor extension.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="c1"># EditorExtension description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="EditorExtension.on_install">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.EditorExtension.on_install">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">editor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Installs the extension on the editor.</span>
+
+<span class="sd">        :param editor: editor widget instance</span>
+<span class="sd">        :type editor: spyder.plugins.editor.widgets.codeeditor.CodeEditor</span>
+
+<span class="sd">        .. note:: This method is called by editor when you install a</span>
+<span class="sd">                  EditorExtension.</span>
+<span class="sd">                  You should never call it yourself, even in a subclasss.</span>
+
+<span class="sd">        .. warning:: Don&#39;t forget to call **super** when subclassing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span> <span class="o">=</span> <span class="n">editor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="EditorExtension.on_uninstall">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.EditorExtension.on_uninstall">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_uninstall</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Uninstalls the editor extension from the editor.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_on_close</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="EditorExtension.on_state_changed">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.EditorExtension.on_state_changed">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_state_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the enable state has changed.</span>
+
+<span class="sd">        This method does not do anything, you may override it if you need</span>
+<span class="sd">        to connect/disconnect to the editor&#39;s signals (connect when state is</span>
+<span class="sd">        true and disconnect when it is false).</span>
+
+<span class="sd">        :param state: True = enabled, False = disabled</span>
+<span class="sd">        :type state: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="EditorExtension.clone_settings">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.EditorExtension.clone_settings">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clone_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clone the settings from another editor extension (same class).</span>
+
+<span class="sd">        This method is called when splitting an editor widget.</span>
+<span class="sd">        # TODO at the current estate this is not working</span>
+
+<span class="sd">        :param original: other editor extension (must be the same class).</span>
+
+<span class="sd">        .. note:: The base method does not do anything, you must implement</span>
+<span class="sd">            this method for every new editor extension/panel (if you plan on</span>
+<span class="sd">            using the split feature). You should also make sure any properties</span>
+<span class="sd">            will be propagated to the clones.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

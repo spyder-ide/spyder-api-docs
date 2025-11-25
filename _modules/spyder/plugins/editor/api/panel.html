@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.plugins.editor.api.panel &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/plugins/editor/api/panel';</script>
+    <link rel="icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/plugins/editor/api/panel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.plugins.editor.api.panel</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2013-2016 Colin Duquesnoy and others (see pyqode/AUTHORS.rst)</span>
+<span class="c1"># Copyright (c) 2016- Spyder Project Contributors (see AUTHORS.txt)</span>
+<span class="c1">#</span>
+<span class="c1"># Distributed under the terms of the MIT License</span>
+<span class="c1"># (see NOTICE.txt in the Spyder root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains the panel API.</span>
+
+<span class="sd">Adapted from pyqode/core/api/panel.py of the</span>
+<span class="sd">`PyQode project &lt;https://github.com/pyQode/pyQode&gt;`_.</span>
+<span class="sd">Original file:</span>
+<span class="sd">&lt;https://github.com/pyQode/pyqode.core/blob/master/pyqode/core/api/panel.py&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QApplication</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QBrush</span><span class="p">,</span> <span class="n">QColor</span><span class="p">,</span> <span class="n">QPen</span><span class="p">,</span> <span class="n">QPainter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QRect</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.plugins.editor.api.editorextension</span><span class="w"> </span><span class="kn">import</span> <span class="n">EditorExtension</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.plugins.outlineexplorer.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_cell_header</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Panel">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Panel</span><span class="p">(</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">EditorExtension</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for editor panels.</span>
+
+<span class="sd">    A panel is a editor extension and a QWidget.</span>
+
+<span class="sd">    .. note:: Use enabled to disable panel actions and setVisible to change the</span>
+<span class="sd">        visibility of the panel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Panel.Position">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.Position">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Position</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enumerates the possible panel positions&quot;&quot;&quot;</span>
+        <span class="c1"># Top margin</span>
+        <span class="n">TOP</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Left margin</span>
+        <span class="n">LEFT</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># Right margin</span>
+        <span class="n">RIGHT</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="c1"># Bottom margin</span>
+        <span class="n">BOTTOM</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="c1"># Floating panel</span>
+        <span class="n">FLOATING</span> <span class="o">=</span> <span class="mi">4</span>
+
+<div class="viewcode-block" id="Panel.Position.iterable">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.Position.iterable">[docs]</a>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">iterable</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot; Returns possible positions as an iterable (list) &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span></div>
+</div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scrollable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A scrollable panel will follow the editor&#39;s scroll-bars.</span>
+
+<span class="sd">        Left and right panels follow the vertical scrollbar. Top and bottom</span>
+<span class="sd">        panels follow the horizontal scrollbar.</span>
+
+<span class="sd">        :type: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scrollable</span>
+
+    <span class="nd">@scrollable</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scrollable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scrollable</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">EditorExtension</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">QWidget</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Specifies whether the panel is dynamic. A dynamic panel is a panel</span>
+        <span class="c1"># that will be shown/hidden depending on the context.</span>
+        <span class="c1"># Dynamic panel should not appear in any GUI menu</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamic</span> <span class="o">=</span> <span class="n">dynamic</span>
+        <span class="c1"># Panel order into the zone it is installed to. This value is</span>
+        <span class="c1"># automatically set when installing the panel but it can be changed</span>
+        <span class="c1"># later (negative values can also be used).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order_in_zone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scrollable</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_background_brush</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linecell_color</span> <span class="o">=</span> <span class="n">QColor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">darkGray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_foreground_pen</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Position in the editor (top, left, right, bottom)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<div class="viewcode-block" id="Panel.on_install">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.on_install">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">editor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extends :meth:`spyder.api.EditorExtension.on_install` method to set the</span>
+<span class="sd">        editor instance as the parent widget.</span>
+
+<span class="sd">        .. warning:: Don&#39;t forget to call **super** if you override this</span>
+<span class="sd">            method!</span>
+
+<span class="sd">        :param editor: editor instance</span>
+<span class="sd">        :type editor: spyder.plugins.editor.widgets.codeeditor.CodeEditor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">EditorExtension</span><span class="o">.</span><span class="n">on_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">editor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">editor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">palette</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">font</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">panels</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_background_brush</span> <span class="o">=</span> <span class="n">QBrush</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">palette</span><span class="p">()</span><span class="o">.</span><span class="n">window</span><span class="p">()</span><span class="o">.</span><span class="n">color</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_foreground_pen</span> <span class="o">=</span> <span class="n">QPen</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">palette</span><span class="p">()</span><span class="o">.</span><span class="n">windowText</span><span class="p">()</span><span class="o">.</span><span class="n">color</span><span class="p">()))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">FLOATING</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WA_TransparentForMouseEvents</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Panel.paintEvent">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.paintEvent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">paintEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill the panel background using QPalette.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Please remember to extend this method in the child class to</span>
+<span class="sd">        paint the panel&#39;s desired information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isVisible</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">FLOATING</span><span class="p">:</span>
+            <span class="c1"># fill background</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_background_brush</span> <span class="o">=</span> <span class="n">QBrush</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">sideareas_color</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_foreground_pen</span> <span class="o">=</span> <span class="n">QPen</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">palette</span><span class="p">()</span><span class="o">.</span><span class="n">windowText</span><span class="p">()</span><span class="o">.</span><span class="n">color</span><span class="p">()))</span>
+            <span class="n">painter</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">rect</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_background_brush</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;paintEvent method must be defined in </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Panel.paint_cell">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.paint_cell">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">paint_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Paint cell dividers in the visible region if needed.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">top_position</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">visible_blocks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">is_cell_header</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">])</span>
+            <span class="p">):</span>
+                <span class="n">pen</span> <span class="o">=</span> <span class="n">painter</span><span class="o">.</span><span class="n">pen</span><span class="p">()</span>
+                <span class="n">pen</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SolidLine</span><span class="p">)</span>
+                <span class="n">pen</span><span class="o">.</span><span class="n">setBrush</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linecell_color</span><span class="p">)</span>
+                <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">pen</span><span class="p">)</span>
+                <span class="n">painter</span><span class="o">.</span><span class="n">drawLine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">top_position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">(),</span>
+                                 <span class="n">top_position</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Panel.sizeHint">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.sizeHint">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sizeHint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the widget size hint, overriding the Qt method.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        * This size hint will define the QSize of the panel, i.e. it is</span>
+<span class="sd">          where its width and height are defined.</span>
+<span class="sd">        * If the size of your panel depends on displayed text, please</span>
+<span class="sd">          use the LineNumberArea one as reference on how to implement</span>
+<span class="sd">          this method.</span>
+<span class="sd">        * If the size is not dependent on displayed text, please use</span>
+<span class="sd">          the debugger panel as reference.</span>
+<span class="sd">        * If your panel is in a floating position, please use the</span>
+<span class="sd">          IndentationGuide one as reference.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">FLOATING</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;sizeHint method must be implemented in </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Panel.setVisible">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.setVisible">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setVisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visible</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Shows/Hides the panel.</span>
+
+<span class="sd">        Automatically call PanelsManager.refresh_panels.</span>
+
+<span class="sd">        :param visible: Visible state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> visibility changed&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="n">visible</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">panels</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Panel.geometry">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.geometry">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return geometry dimensions for floating Panels.</span>
+
+<span class="sd">        Note: If None is returned It&#39;ll use editor contentsRect dimensions.</span>
+
+<span class="sd">        returns: x0, y0, height width.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="Panel.set_geometry">
+<a class="viewcode-back" href="../../../../../_autosummary/spyder.api.editor.html#spyder.api.editor.Panel.set_geometry">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crect</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set geometry for floating panels.</span>
+
+<span class="sd">        Normally you don&#39;t need to override this method, you should override</span>
+<span class="sd">        `geometry` instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">crect</span><span class="o">.</span><span class="n">width</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">height</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="n">crect</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
+
+        <span class="c1"># Calculate editor coordinates with their offsets</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">contentOffset</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">blockBoundingGeometry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">firstVisibleBlock</span><span class="p">())</span>\
+            <span class="o">.</span><span class="n">translated</span><span class="p">(</span><span class="n">offset</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="n">offset</span><span class="o">.</span><span class="n">y</span><span class="p">())</span><span class="o">.</span><span class="n">left</span><span class="p">()</span> \
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">document</span><span class="p">()</span><span class="o">.</span><span class="n">documentMargin</span><span class="p">()</span> \
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">panels</span><span class="o">.</span><span class="n">margin_size</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">crect</span><span class="o">.</span><span class="n">top</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="o">.</span><span class="n">panels</span><span class="o">.</span><span class="n">margin_size</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">TOP</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QRect</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">x0</span><span class="p">),</span> <span class="n">ceil</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">y0</span><span class="p">),</span>
+                               <span class="n">ceil</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">ceil</span><span class="p">(</span><span class="n">height</span><span class="p">)))</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

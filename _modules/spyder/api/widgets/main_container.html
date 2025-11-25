@@ -449,14 +449,17 @@ document.write(`
 <span class="sd">    ----------</span>
 <span class="sd">    error_data: dict</span>
 <span class="sd">        The dictionary containing error data. The expected keys are:</span>
-<span class="sd">        &gt;&gt;&gt; error_data= {</span>
-<span class="sd">            &quot;text&quot;: str,</span>
-<span class="sd">            &quot;is_traceback&quot;: bool,</span>
-<span class="sd">            &quot;repo&quot;: str,</span>
-<span class="sd">            &quot;title&quot;: str,</span>
-<span class="sd">            &quot;label&quot;: str,</span>
-<span class="sd">            &quot;steps&quot;: str,</span>
-<span class="sd">        }</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            error_data = {</span>
+<span class="sd">                &quot;text&quot;: str,</span>
+<span class="sd">                &quot;is_traceback&quot;: bool,</span>
+<span class="sd">                &quot;repo&quot;: str,</span>
+<span class="sd">                &quot;title&quot;: str,</span>
+<span class="sd">                &quot;label&quot;: str,</span>
+<span class="sd">                &quot;steps&quot;: str,</span>
+<span class="sd">            }</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -477,7 +480,7 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    plugin_instance: SpyderDockablePlugin</span>
+<span class="sd">    plugin_instance: spyder.api.plugins.SpyderDockablePlugin</span>
 <span class="sd">        Unmaximize plugin only if it is not `plugin_instance`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 

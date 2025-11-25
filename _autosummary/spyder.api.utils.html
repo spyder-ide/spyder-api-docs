@@ -535,21 +535,19 @@ ABCMeta metaclass.</p>
 and is instantiated, a NotImplementedError is raised.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<dl>
-<dt>class MyABC(metaclass=ABCMeta):</dt><dd><p>&#64;abstract_attribute
-def my_abstract_attribute(self):</p>
-<blockquote>
-<div><p>pass</p>
-</div></blockquote>
-</dd>
-<dt>class MyClassOK(MyABC):</dt><dd><dl class="simple">
-<dt>def __init__(self):</dt><dd><p>self.my_abstract_attribute = 1</p>
-</dd>
-</dl>
-</dd>
-<dt>class MyClassNotOK(MyABC):</dt><dd><p>pass</p>
-</dd>
-</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyABC</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstract_attribute</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_abstract_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyClassOK</span><span class="p">(</span><span class="n">MyABC</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_abstract_attribute</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyClassNotOK</span><span class="p">(</span><span class="n">MyABC</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">raises NotImplementedError<span class="colon">:</span></dt>
 <dd class="field-odd"><p>When it’s not possible to instantiate an abstract class with abstract
