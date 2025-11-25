@@ -1,0 +1,1617 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>spyder.api.plugins.new_api &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/spyder.api.plugins.new_api';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="spyder.api.preferences" href="spyder.api.preferences.html" />
+    <link rel="prev" title="spyder.api.plugins.enum" href="spyder.api.plugins.enum.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../reference.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="spyder.api.html">spyder.api</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/edit/main/_autosummary/spyder.api.plugins.new_api.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_autosummary/spyder.api.plugins.new_api.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_autosummary/spyder.api.plugins.new_api.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>spyder.api.plugins.new_api</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_free_memory_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_free_memory_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_plugin_ready"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_plugin_ready</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_quit_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_quit_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_restart_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_restart_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_status_message_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_status_message_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_redirect_stdio_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_redirect_stdio_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_exception_occurred"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_exception_occurred</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_resized"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_mainwindow_resized</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_moved"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_mainwindow_moved</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_unmaximize_plugin_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_unmaximize_plugin_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_state_changed"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_mainwindow_state_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_focused_plugin_changed"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_focused_plugin_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_path"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_path()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_container"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_container()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_configuration"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_configuration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_main"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_plugin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_enabled"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.is_plugin_enabled()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_available"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.is_plugin_available()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_dockable_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_dockable_plugins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.set_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.set_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.remove_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.remove_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.apply_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.apply_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.disable_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.disable_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.restore_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.restore_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.show_status_message"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.show_status_message()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.before_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.before_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.after_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_color_scheme"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_color_scheme()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.initialize"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.initialize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.create_icon"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.create_icon()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_font"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_font()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_command_line_options"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_command_line_options()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_name"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_name()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_description"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_description()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_icon"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_icon()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_initialize"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_initialize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.check_compatibility"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.check_compatibility()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_first_registration"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_first_registration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.before_mainwindow_visible"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.before_mainwindow_visible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_mainwindow_visible"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_mainwindow_visible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_close"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.can_close"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.can_close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.update_font"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.update_font()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.update_style"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.update_style()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_container_creation"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.after_container_creation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_configuration_update"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.after_configuration_update()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_focus_changed"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_focus_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_toggle_view_changed"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_toggle_view_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_switch_to_plugin_requested"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_switch_to_plugin_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_update_ancestor_requested"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_update_ancestor_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.create_new_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.create_new_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.open_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.open_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.get_current_filename"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.get_current_filename()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.current_file_is_temporary"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.current_file_is_temporary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.open_last_closed_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.open_last_closed_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file_as"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_file_as()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_copy_as"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_copy_as()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_all"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.revert_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.revert_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.close_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.close_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.close_all"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.close_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.undo"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.undo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.redo"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.redo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.cut"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.cut()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.copy"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.copy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.paste"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.paste()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.select_all"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.select_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.find()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find_next"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.find_next()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find_previous"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.find_previous()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.replace"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.replace()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.before_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.before_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.after_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.after_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.get_widget"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.get_widget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.update_title"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.update_title()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.update_margins"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.update_margins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.switch_to_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.switch_to_plugin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.set_ancestor"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.set_ancestor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-spyder.api.plugins.new_api">
+<span id="spyder-api-plugins-new-api"></span><h1>spyder.api.plugins.new_api<a class="headerlink" href="#module-spyder.api.plugins.new_api" title="Link to this heading">#</a></h1>
+<p>New API for plugins.</p>
+<p>All plugins in Spyder 5+ must inherit from the classes present in this file.</p>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.plugins.new_api.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>(parent, configuration)</p></td>
+<td><p>A Spyder plugin to enhance functionality with a dockable widget.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.plugins.new_api.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a>(parent[, configuration])</p></td>
+<td><p>A Spyder plugin to extend functionality without a dockable widget.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.plugins.new_api.</span></span><span class="sig-name descname"><span class="pre">SpyderPluginV2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QObject</span></code>, <a class="reference internal" href="spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin" title="spyder.api.widgets.mixins.SpyderActionMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderActionMixin</span></code></a>, <a class="reference internal" href="spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver" title="spyder.api.config.mixins.SpyderConfigurationObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a>, <a class="reference internal" href="spyder.api.plugin_registration.mixins.html#spyder.api.plugin_registration.mixins.SpyderPluginObserver" title="spyder.api.plugin_registration.mixins.SpyderPluginObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginObserver</span></code></a></p>
+<p>A Spyder plugin to extend functionality without a dockable widget.</p>
+<p>If you want to create a plugin that adds a new pane, please use
+SpyderDockablePlugin.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_free_memory_requested">
+<span class="sig-name descname"><span class="pre">sig_free_memory_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_free_memory_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to request the main application to garbage
+collect deleted objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_plugin_ready">
+<span class="sig-name descname"><span class="pre">sig_plugin_ready</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_plugin_ready" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to reflect that the plugin was initialized.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_quit_requested">
+<span class="sig-name descname"><span class="pre">sig_quit_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_quit_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to request the main application to quit.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_restart_requested">
+<span class="sig-name descname"><span class="pre">sig_restart_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_restart_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to request the main application to restart.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_status_message_requested">
+<span class="sig-name descname"><span class="pre">sig_status_message_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_status_message_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to request the main application to display a
+message in the status bar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The actual message to display.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The timeout before the message disappears.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_redirect_stdio_requested">
+<span class="sig-name descname"><span class="pre">sig_redirect_stdio_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_redirect_stdio_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to request the main application to redirect
+standard output/error when using Open/Save/Browse dialogs within widgets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Enable/Disable standard input/output redirection.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_exception_occurred">
+<span class="sig-name descname"><span class="pre">sig_exception_occurred</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_exception_occurred" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to report an exception from any plugin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>error_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – <p>The dictionary containing error data. The expected keys are:
+&gt;&gt;&gt; error_data= {</p>
+<blockquote>
+<div><p>”text”: str,
+“is_traceback”: bool,
+“repo”: str,
+“title”: str,
+“label”: str,
+“steps”: str,</p>
+</div></blockquote>
+<p>}</p>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The <cite>is_traceback</cite> key indicates if <cite>text</cite> contains plain text or a
+Python error traceback.</p>
+<p>The <cite>title</cite> and <cite>repo</cite> keys indicate how the error data should
+customize the report dialog and Github error submission.</p>
+<p>The <cite>label</cite> and <cite>steps</cite> keys allow customizing the content of the
+error dialog.</p>
+<p>This signal is automatically connected to the main container/widget.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_resized">
+<span class="sig-name descname"><span class="pre">sig_mainwindow_resized</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_resized" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted when the main window is resized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resize_event</strong> (<em>QResizeEvent</em>) – The event triggered on main window resize.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>To be used by plugins tracking main window size changes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_moved">
+<span class="sig-name descname"><span class="pre">sig_mainwindow_moved</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_moved" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted when the main window is moved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>move_event</strong> (<em>QMoveEvent</em>) – The event triggered on main window move.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>To be used by plugins tracking main window position changes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_unmaximize_plugin_requested">
+<span class="sig-name descname"><span class="pre">sig_unmaximize_plugin_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_unmaximize_plugin_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted to inform the main window that it needs to
+unmaximize the currently maximized plugin, if any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plugin_instance</strong> (<a class="reference internal" href="#spyder.api.plugins.new_api.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><em>SpyderDockablePlugin</em></a>) – Unmaximize plugin only if it is not <cite>plugin_instance</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_state_changed">
+<span class="sig-name descname"><span class="pre">sig_mainwindow_state_changed</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_state_changed" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted when the main window state has changed (for
+instance, between maximized and minimized states).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>window_state</strong> (<em>Qt.WindowStates</em>) – The window state.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.sig_focused_plugin_changed">
+<span class="sig-name descname"><span class="pre">sig_focused_plugin_changed</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_focused_plugin_changed" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted when the plugin with keyboard focus changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plugin</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#spyder.api.plugins.new_api.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><em>SpyderDockablePlugin</em></a><em>]</em>) – The plugin that currently has keyboard focus, or None if no dockable
+plugin has focus.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_path">
+<span class="sig-name descname"><span class="pre">get_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_path" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin’s system path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_container">
+<span class="sig-name descname"><span class="pre">get_container</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_container" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin main container.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_configuration">
+<span class="sig-name descname"><span class="pre">get_configuration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_configuration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_configuration" title="Link to this definition">#</a></dt>
+<dd><p>Return the Spyder configuration object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_main">
+<span class="sig-name descname"><span class="pre">get_main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_main" title="Link to this definition">#</a></dt>
+<dd><p>Return the Spyder main window..</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_plugin">
+<span class="sig-name descname"><span class="pre">get_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#spyder.api.plugins.new_api.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><span class="pre">SpyderPluginV2</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_plugin" title="Link to this definition">#</a></dt>
+<dd><p>Get a plugin instance by providing its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin from which its instance will be returned.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to raise errors when trying to return the plugin’s
+instance.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_enabled">
+<span class="sig-name descname"><span class="pre">is_plugin_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.is_plugin_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_enabled" title="Link to this definition">#</a></dt>
+<dd><p>Determine if a given plugin is going to be loaded.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_available">
+<span class="sig-name descname"><span class="pre">is_plugin_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.is_plugin_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_available" title="Link to this definition">#</a></dt>
+<dd><p>Determine if a given plugin is available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_dockable_plugins">
+<span class="sig-name descname"><span class="pre">get_dockable_plugins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_dockable_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_dockable_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Return a list of the required plugin instances.</p>
+<p>Only required plugins that extend SpyderDockablePlugin are returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_conf">
+<span class="sig-name descname"><span class="pre">get_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default=&lt;class</span> <span class="pre">'spyder.config.user.NoDefault'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_conf" title="Link to this definition">#</a></dt>
+<dd><p>Get an option from Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the option to get its value from.</p></li>
+<li><p><strong>default</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>NoDefault</em>) – Value to get from the configuration system, passed as a
+Python object.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Section in the configuration system, e.g. <cite>shortcuts</cite>.</p></li>
+<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, the option will be retrieved securely using the <cite>keyring</cite>
+Python package.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value associated with <cite>option</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.set_conf">
+<span class="sig-name descname"><span class="pre">set_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive_notification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.set_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.set_conf" title="Link to this definition">#</a></dt>
+<dd><p>Set an option in Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the option (e.g. ‘case_sensitive’)</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Value to save in the configuration system, passed as a
+Python object.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Section in the configuration system, e.g. <cite>shortcuts</cite>.</p></li>
+<li><p><strong>recursive_notification</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, all objects that observe all changes on the
+configuration section and objects that observe partial tuple paths
+are notified. For example if the option <cite>opt</cite> of section <cite>sec</cite>
+changes, then the observers for section <cite>sec</cite> are notified.
+Likewise, if the option <cite>(a, b, c)</cite> changes, then observers for
+<cite>(a, b, c)</cite>, <cite>(a, b)</cite> and a are notified as well.</p></li>
+<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, the option will be saved securely using the <cite>keyring</cite>
+Python package.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.remove_conf">
+<span class="sig-name descname"><span class="pre">remove_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.remove_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.remove_conf" title="Link to this definition">#</a></dt>
+<dd><p>Delete an option in the Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>option</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>...</em><em>]</em><em>]</em>) – Name of the option, either a string or a tuple of strings.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Section in the configuration system.</p></li>
+<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, the option will be removed securely using the <cite>keyring</cite>
+Python package.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.apply_conf">
+<span class="sig-name descname"><span class="pre">apply_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.apply_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.apply_conf" title="Link to this definition">#</a></dt>
+<dd><p>Apply <cite>options_set</cite> to this plugin’s widget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.disable_conf">
+<span class="sig-name descname"><span class="pre">disable_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.disable_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.disable_conf" title="Link to this definition">#</a></dt>
+<dd><p>Disable notifications for an option in the Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>option</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>...</em><em>]</em><em>]</em>) – Name of the option, either a string or a tuple of strings.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Section in the configuration system.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.restore_conf">
+<span class="sig-name descname"><span class="pre">restore_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.restore_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.restore_conf" title="Link to this definition">#</a></dt>
+<dd><p>Restore notifications for an option in the Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>option</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>...</em><em>]</em><em>]</em>) – Name of the option, either a string or a tuple of strings.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Section in the configuration system.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.show_status_message">
+<span class="sig-name descname"><span class="pre">show_status_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.show_status_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.show_status_message" title="Link to this definition">#</a></dt>
+<dd><p>Show message in status bar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Message to display in the status bar.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Amount of time to display the message.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.before_long_process">
+<span class="sig-name descname"><span class="pre">before_long_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.before_long_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.before_long_process" title="Link to this definition">#</a></dt>
+<dd><p>Show a message in main window’s status bar and change the mouse
+pointer to Qt.WaitCursor when starting a long process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Message to show in the status bar when the long process starts.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.after_long_process">
+<span class="sig-name descname"><span class="pre">after_long_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.after_long_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_long_process" title="Link to this definition">#</a></dt>
+<dd><p>Clear main window’s status bar after a long process and restore
+mouse pointer to the OS deault.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Message to show in the status bar when the long process finishes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_color_scheme">
+<span class="sig-name descname"><span class="pre">get_color_scheme</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_color_scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_color_scheme" title="Link to this definition">#</a></dt>
+<dd><p>Get the current color scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with properties and colors of the color scheme
+used in the Editor.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This is useful to set the color scheme of all instances of
+CodeEditor used by the plugin.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.initialize" title="Link to this definition">#</a></dt>
+<dd><p>Initialize a plugin instance.</p>
+<p class="rubric">Notes</p>
+<p>This method should be called to initialize the plugin, but it should
+not be overridden, since it internally calls <cite>on_initialize</cite> and emits
+the <cite>sig_plugin_ready</cite> signal.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.create_icon">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_icon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.create_icon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.create_icon" title="Link to this definition">#</a></dt>
+<dd><p>Provide icons from the theme and icon manager.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_font">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_font" title="Link to this definition">#</a></dt>
+<dd><p>Return one of font types used in Spyder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>font_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – There are three types of font types in Spyder:
+SpyderFontType.Monospace, used in the Editor, IPython console,
+and History; SpyderFontType.Interface, used by the entire Spyder
+app; and SpyderFontType.MonospaceInterface, used by the Variable
+Explorer, Find, Debugger and others.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>QFont object to be passed to other Qt widgets.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QFont</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>All plugins in Spyder use the same, global fonts. In case some a plugin
+wants to use a delta font size based on the default one, they can set
+the MONOSPACE_FONT_SIZE_DELTA or INTERFACE_FONT_SIZE_DELTA class
+constants.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_command_line_options">
+<span class="sig-name descname"><span class="pre">get_command_line_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_command_line_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_command_line_options" title="Link to this definition">#</a></dt>
+<dd><p>Get command line options passed by the user when they started
+Spyder in a system terminal.</p>
+<p>See app/cli_options.py for the option names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_name">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_name" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin localized name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Localized name of the plugin.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method needs to be decorated with <cite>staticmethod</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_description">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_description" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin localized description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Localized description of the plugin.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method needs to be decorated with <cite>staticmethod</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.get_icon">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_icon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.get_icon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_icon" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin associated icon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QIcon instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>QIcon</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method needs to be decorated with <cite>classmethod</cite> or <cite>staticmethod</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.on_initialize">
+<span class="sig-name descname"><span class="pre">on_initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.on_initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_initialize" title="Link to this definition">#</a></dt>
+<dd><p>Setup the plugin.</p>
+<p class="rubric">Notes</p>
+<p>All calls performed on this method should not call other plugins.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.check_compatibility">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_compatibility</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.check_compatibility"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.check_compatibility" title="Link to this definition">#</a></dt>
+<dd><p>This method can be reimplemented to check compatibility of a plugin
+with the user’s current environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first value tells Spyder if the plugin has passed the
+compatibility test defined in this method. The second value
+is a message that must explain users why the plugin was
+found to be incompatible (e.g. ‘This plugin does not work
+with PyQt4’). It will be shown at startup in a QMessageBox.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.on_first_registration">
+<span class="sig-name descname"><span class="pre">on_first_registration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.on_first_registration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_first_registration" title="Link to this definition">#</a></dt>
+<dd><p>Actions to be performed the first time the plugin is started.</p>
+<p>It can also be used to perform actions that are needed only the
+first time this is loaded after installation.</p>
+<p>This method is called after the main window is visible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.before_mainwindow_visible">
+<span class="sig-name descname"><span class="pre">before_mainwindow_visible</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.before_mainwindow_visible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.before_mainwindow_visible" title="Link to this definition">#</a></dt>
+<dd><p>Actions to be performed after setup but before the main window’s has
+been shown.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.on_mainwindow_visible">
+<span class="sig-name descname"><span class="pre">on_mainwindow_visible</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.on_mainwindow_visible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_mainwindow_visible" title="Link to this definition">#</a></dt>
+<dd><p>Actions to be performed after the main window’s has been shown.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.on_close">
+<span class="sig-name descname"><span class="pre">on_close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cancelable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.on_close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_close" title="Link to this definition">#</a></dt>
+<dd><p>Perform actions before the plugin is closed.</p>
+<p>This method <strong>must</strong> only operate on local attributes and not other
+plugins.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.can_close">
+<span class="sig-name descname"><span class="pre">can_close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.can_close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.can_close" title="Link to this definition">#</a></dt>
+<dd><p>Determine if a plugin can be closed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>close</strong> – True if the plugin can be closed, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.update_font">
+<span class="sig-name descname"><span class="pre">update_font</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.update_font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.update_font" title="Link to this definition">#</a></dt>
+<dd><p>This must be reimplemented by plugins that need to adjust their fonts.</p>
+<dl class="simple">
+<dt>The following plugins illustrate the usage of this method:</dt><dd><ul class="simple">
+<li><p>spyder/plugins/help/plugin.py</p></li>
+<li><p>spyder/plugins/onlinehelp/plugin.py</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.update_style">
+<span class="sig-name descname"><span class="pre">update_style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.update_style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.update_style" title="Link to this definition">#</a></dt>
+<dd><p>This must be reimplemented by plugins that need to adjust their style.</p>
+<p>Changing from the dark to the light interface theme might
+require specific styles or stylesheets to be applied. When
+the theme is changed by the user through our Preferences,
+this method will be called for all plugins.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.after_container_creation">
+<span class="sig-name descname"><span class="pre">after_container_creation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.after_container_creation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_container_creation" title="Link to this definition">#</a></dt>
+<dd><p>Perform necessary operations before setting up the container.</p>
+<p>This must be reimplemented by plugins whose containers emit signals in
+on_option_update that need to be connected before applying those
+options to our config system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderPluginV2.after_configuration_update">
+<span class="sig-name descname"><span class="pre">after_configuration_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderPluginV2.after_configuration_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_configuration_update" title="Link to this definition">#</a></dt>
+<dd><p>Perform additional operations after updating the plugin configuration
+values.</p>
+<p>This can be implemented by plugins that do not have a container and
+need to act on configuration updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>List</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>]</em><em>]</em>) – A list that contains the options that were updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.plugins.new_api.</span></span><span class="sig-name descname"><span class="pre">SpyderDockablePlugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spyder.api.plugins.new_api.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a></p>
+<p>A Spyder plugin to enhance functionality with a dockable widget.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.sig_focus_changed">
+<span class="sig-name descname"><span class="pre">sig_focus_changed</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_focus_changed" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted to inform the focus of this plugin has changed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.sig_toggle_view_changed">
+<span class="sig-name descname"><span class="pre">sig_toggle_view_changed</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_toggle_view_changed" title="Link to this definition">#</a></dt>
+<dd><p>This action is emitted to inform the visibility of a dockable plugin
+has changed.</p>
+<p>This is triggered by checking/unchecking the entry for a pane in the
+<cite>Window &gt; Panes</cite> menu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>visible</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – New visibility of the dockwidget.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.sig_switch_to_plugin_requested">
+<span class="sig-name descname"><span class="pre">sig_switch_to_plugin_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_switch_to_plugin_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal can be emitted to inform the main window that this plugin
+requested to be displayed.</p>
+<p class="rubric">Notes</p>
+<p>This is automatically connected to main container/widget at plugin’s
+registration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.sig_update_ancestor_requested">
+<span class="sig-name descname"><span class="pre">sig_update_ancestor_requested</span></span><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_update_ancestor_requested" title="Link to this definition">#</a></dt>
+<dd><p>This signal is emitted to inform the main window that a child widget
+needs its ancestor to be updated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.create_new_file">
+<span class="sig-name descname"><span class="pre">create_new_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.create_new_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.create_new_file" title="Link to this definition">#</a></dt>
+<dd><p>Create a new file inside the plugin.</p>
+<p>This function will be called if the user creates a new file using
+the <cite>File &gt; New</cite> menu item or the “New file” button in the main
+toolbar, and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.open_file">
+<span class="sig-name descname"><span class="pre">open_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.open_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.open_file" title="Link to this definition">#</a></dt>
+<dd><p>Open file inside plugin.</p>
+<p>This method will be called if the user wants to open a file with one
+of the file name extensions listed in <cite>FILE_EXTENSIONS</cite>, so you need
+to define that variable too.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The name of the file to be opened.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.get_current_filename">
+<span class="sig-name descname"><span class="pre">get_current_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.get_current_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.get_current_filename" title="Link to this definition">#</a></dt>
+<dd><p>Return file name of the file that is currently displayed.</p>
+<p>This is meant for plugins like the Editor or Notebook plugin which
+can edit or display files. Return <cite>None</cite> if no file is displayed or if
+this does not display files.</p>
+<p>This function is used in the <cite>Open file</cite> action to initialize the
+“Open file” dialog.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.current_file_is_temporary">
+<span class="sig-name descname"><span class="pre">current_file_is_temporary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.current_file_is_temporary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.current_file_is_temporary" title="Link to this definition">#</a></dt>
+<dd><p>Return whether the currently displayed file is a temporary file.</p>
+<p>This function should only be called if a file is displayed, that is,
+if <cite>self.get_current_filename()</cite> does not return <cite>None</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.open_last_closed_file">
+<span class="sig-name descname"><span class="pre">open_last_closed_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.open_last_closed_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.open_last_closed_file" title="Link to this definition">#</a></dt>
+<dd><p>Open the last closed file again.</p>
+<p>This function will be called if the <cite>File &gt; Open last closed</cite> menu item
+is selected while the plugin has focus and <cite>CAN_HANDLE_FILE_ACTIONS</cite>
+is set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.save_file">
+<span class="sig-name descname"><span class="pre">save_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.save_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file" title="Link to this definition">#</a></dt>
+<dd><p>Save the current file.</p>
+<p>This function will be called if the user saves the current file using
+the <cite>File &gt; Save</cite> menu item or the “Save file” button in the main
+toolbar, the plugin has focus, and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is set to
+<cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.save_file_as">
+<span class="sig-name descname"><span class="pre">save_file_as</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.save_file_as"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file_as" title="Link to this definition">#</a></dt>
+<dd><p>Save the current file under a different name.</p>
+<p>This function will be called if the <cite>File &gt; Save as</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.save_copy_as">
+<span class="sig-name descname"><span class="pre">save_copy_as</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.save_copy_as"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_copy_as" title="Link to this definition">#</a></dt>
+<dd><p>Save a copy of the current file under a different name.</p>
+<p>This function will be called if the <cite>File &gt; Save copy as</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.save_all">
+<span class="sig-name descname"><span class="pre">save_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.save_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_all" title="Link to this definition">#</a></dt>
+<dd><p>Save all files that are opened in the plugin.</p>
+<p>This function will be called if the user saves all files using the
+<cite>File &gt; Save all</cite> menu item or the “Save all” button in the main
+toolbar, the plugin has focus, and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is set to
+<cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.revert_file">
+<span class="sig-name descname"><span class="pre">revert_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.revert_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.revert_file" title="Link to this definition">#</a></dt>
+<dd><p>Revert the current file to the version stored on disk.</p>
+<p>This function will be called if the <cite>File &gt; Revert</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.close_file">
+<span class="sig-name descname"><span class="pre">close_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.close_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.close_file" title="Link to this definition">#</a></dt>
+<dd><p>Close the current file.</p>
+<p>This function will be called if the <cite>File &gt; Close</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.close_all">
+<span class="sig-name descname"><span class="pre">close_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.close_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.close_all" title="Link to this definition">#</a></dt>
+<dd><p>Close all opened files.</p>
+<p>This function will be called if the <cite>File &gt; Close all</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_FILE_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.undo">
+<span class="sig-name descname"><span class="pre">undo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.undo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.undo" title="Link to this definition">#</a></dt>
+<dd><p>Undo last edition.</p>
+<p>This function will be called if the <cite>Edit &gt; Undo</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_EDIT_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.redo">
+<span class="sig-name descname"><span class="pre">redo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.redo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.redo" title="Link to this definition">#</a></dt>
+<dd><p>Redo last edition.</p>
+<p>This function will be called if the <cite>Edit &gt; Redo</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_EDIT_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.cut">
+<span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.cut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.cut" title="Link to this definition">#</a></dt>
+<dd><p>Cut selection.</p>
+<p>This function will be called if the <cite>Edit &gt; Cut</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_EDIT_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.copy" title="Link to this definition">#</a></dt>
+<dd><p>Copy selection.</p>
+<p>This function will be called if the <cite>Edit &gt; Copy</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_EDIT_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.paste">
+<span class="sig-name descname"><span class="pre">paste</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.paste"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.paste" title="Link to this definition">#</a></dt>
+<dd><p>Paste clipboard.</p>
+<p>This function will be called if the <cite>Edit &gt; Paste</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_EDIT_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.select_all">
+<span class="sig-name descname"><span class="pre">select_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.select_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.select_all" title="Link to this definition">#</a></dt>
+<dd><p>Select all text in the plugin.</p>
+<p>This function will be called if the <cite>Edit &gt; Select All</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_EDIT_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find" title="Link to this definition">#</a></dt>
+<dd><p>Find text in the plugin.</p>
+<p>This function will be called if the <cite>Search &gt; Find text</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_SEARCH_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.find_next">
+<span class="sig-name descname"><span class="pre">find_next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.find_next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find_next" title="Link to this definition">#</a></dt>
+<dd><p>Move to next find text occurrence in the plugin.</p>
+<p>This function will be called if the <cite>Search &gt; Find next</cite> menu item is
+selected while the plugin has focus and <cite>CAN_HANDLE_SEARCH_ACTIONS</cite> is
+set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.find_previous">
+<span class="sig-name descname"><span class="pre">find_previous</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.find_previous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find_previous" title="Link to this definition">#</a></dt>
+<dd><p>Move to previous find text occurrence in the plugin.</p>
+<p>This function will be called if the <cite>Search &gt; Find previous</cite> menu item
+is selected while the plugin has focus and <cite>CAN_HANDLE_SEARCH_ACTIONS</cite>
+is set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.replace" title="Link to this definition">#</a></dt>
+<dd><p>Replace text occurrence in the plugin.</p>
+<p>This function will be called if the <cite>Search &gt; Replace text</cite> menu item
+is selected while the plugin has focus and <cite>CAN_HANDLE_SEARCH_ACTIONS</cite>
+is set to <cite>True</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.before_long_process">
+<span class="sig-name descname"><span class="pre">before_long_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.before_long_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.before_long_process" title="Link to this definition">#</a></dt>
+<dd><p>Show a message in main window’s status bar, change the mouse pointer
+to Qt.WaitCursor and start spinner when starting a long process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Message to show in the status bar when the long process starts.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.after_long_process">
+<span class="sig-name descname"><span class="pre">after_long_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.after_long_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.after_long_process" title="Link to this definition">#</a></dt>
+<dd><p>Clear main window’s status bar after a long process, restore mouse
+pointer to the OS deault and stop spinner.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Message to show in the status bar when the long process finishes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.get_widget">
+<span class="sig-name descname"><span class="pre">get_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.get_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.get_widget" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin main widget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.update_title">
+<span class="sig-name descname"><span class="pre">update_title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.update_title"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.update_title" title="Link to this definition">#</a></dt>
+<dd><p>Update plugin title, i.e. dockwidget or window title.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.update_margins">
+<span class="sig-name descname"><span class="pre">update_margins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">margin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.update_margins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.update_margins" title="Link to this definition">#</a></dt>
+<dd><p>Update margins of main widget inside dockable plugin.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.switch_to_plugin">
+<span class="sig-name descname"><span class="pre">switch_to_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force_focus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.switch_to_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.switch_to_plugin" title="Link to this definition">#</a></dt>
+<dd><p>Switch to plugin and define if focus should be given or not.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugins.new_api.SpyderDockablePlugin.set_ancestor">
+<span class="sig-name descname"><span class="pre">set_ancestor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ancestor_widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugins/new_api.html#SpyderDockablePlugin.set_ancestor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.set_ancestor" title="Link to this definition">#</a></dt>
+<dd><p>Update the ancestor/parent of child widgets when undocking.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="spyder.api.plugins.enum.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">spyder.api.plugins.enum</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="spyder.api.preferences.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">spyder.api.preferences</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_free_memory_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_free_memory_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_plugin_ready"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_plugin_ready</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_quit_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_quit_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_restart_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_restart_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_status_message_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_status_message_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_redirect_stdio_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_redirect_stdio_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_exception_occurred"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_exception_occurred</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_resized"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_mainwindow_resized</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_moved"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_mainwindow_moved</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_unmaximize_plugin_requested"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_unmaximize_plugin_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_state_changed"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_mainwindow_state_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.sig_focused_plugin_changed"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.sig_focused_plugin_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_path"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_path()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_container"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_container()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_configuration"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_configuration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_main"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_plugin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_enabled"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.is_plugin_enabled()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_available"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.is_plugin_available()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_dockable_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_dockable_plugins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.set_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.set_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.remove_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.remove_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.apply_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.apply_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.disable_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.disable_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.restore_conf"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.restore_conf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.show_status_message"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.show_status_message()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.before_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.before_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.after_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_color_scheme"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_color_scheme()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.initialize"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.initialize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.create_icon"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.create_icon()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_font"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_font()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_command_line_options"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_command_line_options()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_name"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_name()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_description"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_description()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.get_icon"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.get_icon()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_initialize"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_initialize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.check_compatibility"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.check_compatibility()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_first_registration"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_first_registration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.before_mainwindow_visible"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.before_mainwindow_visible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_mainwindow_visible"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_mainwindow_visible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.on_close"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.on_close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.can_close"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.can_close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.update_font"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.update_font()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.update_style"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.update_style()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_container_creation"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.after_container_creation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderPluginV2.after_configuration_update"><code class="docutils literal notranslate"><span class="pre">SpyderPluginV2.after_configuration_update()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_focus_changed"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_focus_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_toggle_view_changed"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_toggle_view_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_switch_to_plugin_requested"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_switch_to_plugin_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_update_ancestor_requested"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.sig_update_ancestor_requested</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.create_new_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.create_new_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.open_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.open_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.get_current_filename"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.get_current_filename()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.current_file_is_temporary"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.current_file_is_temporary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.open_last_closed_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.open_last_closed_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file_as"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_file_as()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_copy_as"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_copy_as()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.save_all"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.save_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.revert_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.revert_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.close_file"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.close_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.close_all"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.close_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.undo"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.undo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.redo"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.redo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.cut"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.cut()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.copy"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.copy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.paste"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.paste()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.select_all"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.select_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.find()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find_next"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.find_next()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.find_previous"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.find_previous()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.replace"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.replace()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.before_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.before_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.after_long_process"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.after_long_process()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.get_widget"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.get_widget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.update_title"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.update_title()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.update_margins"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.update_margins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.switch_to_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.switch_to_plugin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugins.new_api.SpyderDockablePlugin.set_ancestor"><code class="docutils literal notranslate"><span class="pre">SpyderDockablePlugin.set_ancestor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

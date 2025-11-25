@@ -15,28 +15,25 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=47b62374"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
@@ -48,7 +45,6 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6" />
   </head>
   
   
@@ -64,8 +60,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -73,6 +80,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -80,8 +88,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -99,8 +107,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -130,17 +137,21 @@
     
     
     <img src="_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
-    <img src="_static/spyder_logo.svg" class="logo__image only-dark pst-js-only" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
@@ -156,6 +167,54 @@
 <li class="toctree-l1"><a class="reference internal" href="common_extension_points.html">Extending Spyder</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -164,14 +223,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -267,16 +321,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -306,8 +368,1306 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.ABCMeta">ABCMeta (class in spyder.api.utils)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.abstract_attribute">abstract_attribute() (in module spyder.api.utils)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.add_action">add_action() (spyder.api.widgets.menus.SpyderMenu method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer">add_configuration_observer() (spyder.api.config.mixins.SpyderConfigurationObserver method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.add_corner_widget">add_corner_widget() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_errored_shellwidget">add_errored_shellwidget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.add_errored_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_errored_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_errored_shellwidget">(spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.add_item">add_item() (spyder.api.widgets.toolbars.SpyderToolbar method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.add_item_to_menu">add_item_to_menu() (spyder.api.widgets.mixins.SpyderMenuMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.add_item_to_toolbar">add_item_to_toolbar() (spyder.api.widgets.mixins.SpyderToolbarMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_shellwidget">add_shellwidget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.add_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_shellwidget">(spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.add_widget">add_widget() (spyder.api.widgets.auxiliary_widgets.MainCornerWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.after_configuration_update">after_configuration_update() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.after_container_creation">after_container_creation() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.after_long_process">after_long_process() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.after_long_process">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials">aggregate_sections_partials() (spyder.api.preferences.PluginConfigPage method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ApplicationToolbar">ApplicationToolbar (class in spyder.api.widgets.toolbars)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.apply_conf">apply_conf() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.apply_settings">apply_settings() (spyder.api.preferences.PluginConfigPage method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.apply_settings">(spyder.api.preferences.SpyderPreferencesTab method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher">AsyncDispatcher (class in spyder.api.asyncdispatcher)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus">BaseTimerStatus (class in spyder.api.widgets.status)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.before_long_process">before_long_process() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.before_long_process">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.before_mainwindow_visible">before_mainwindow_visible() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.can_close">can_close() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins">can_delete_all_plugins() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin">can_delete_plugin() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.cancel_all">cancel_all() (spyder.api.asyncdispatcher.AsyncDispatcher class method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.change_visibility">change_visibility() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent">changeEvent() (spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.check_compatibility">check_compatibility() (spyder.api.plugins.new_api.SpyderPluginV2 static method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.classproperty">classproperty (class in spyder.api.utils)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.clear_actions">clear_actions() (spyder.api.widgets.menus.SpyderMenu method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.close">close() (spyder.api.asyncdispatcher.AsyncDispatcher static method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.close_all">close_all() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.close_dock">close_dock() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.close_file">close_file() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.close_widget">close_widget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.close_window">close_window() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent">closeEvent() (spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.closeEvent">(spyder.api.widgets.main_container.PluginMainContainer method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.closeEvent">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.closeEvent">(spyder.api.widgets.status.BaseTimerStatus method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_WIDGET_CLASS">CONF_WIDGET_CLASS (spyder.api.plugin_registration.registry.PreferencesAdapter attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel">config_spyder_kernel() (spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.DispatcherFuture.connect">connect() (spyder.api.asyncdispatcher.DispatcherFuture method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.CONTEXT_NAME">CONTEXT_NAME (spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.CONTEXT_NAME">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.copy">copy() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.count">count() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.create_action">create_action() (spyder.api.widgets.mixins.SpyderActionMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.create_dockwidget">create_dockwidget() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.create_icon">create_icon() (spyder.api.plugins.new_api.SpyderPluginV2 static method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.create_icon">(spyder.api.widgets.mixins.SpyderWidgetMixin static method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.create_menu">create_menu() (spyder.api.widgets.mixins.SpyderMenuMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.create_new_file">create_new_file() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.create_new_widget">create_new_widget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.create_stretcher">create_stretcher() (spyder.api.widgets.mixins.SpyderToolbarMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.create_toolbar">create_toolbar() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.create_toolbar">(spyder.api.widgets.mixins.SpyderToolbarMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.create_toolbutton">create_toolbutton() (spyder.api.widgets.mixins.SpyderToolButtonMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.create_window">create_window() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.current_file_is_temporary">current_file_is_temporary() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.current_widget">current_widget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.current_widget">(spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.CUSTOM_WIDGET_CLASS">CUSTOM_WIDGET_CLASS (spyder.api.widgets.status.StatusBarWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.cut">cut() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_all_plugins">delete_all_plugins() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_plugin">delete_plugin() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.DESCRIPTION_WHEN_EMPTY">DESCRIPTION_WHEN_EMPTY (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.disable_conf">disable_conf() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.DispatcherFuture">DispatcherFuture (class in spyder.api.asyncdispatcher)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_all_undocked_plugins">dock_all_undocked_plugins() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_undocked_plugin">dock_undocked_plugin() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.dock_window">dock_window() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.DummyAttribute">DummyAttribute (class in spyder.api.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.ENABLE_SPINNER">ENABLE_SPINNER (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.enterEvent">enterEvent() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolTipFilter.eventFilter">eventFilter() (spyder.api.widgets.toolbars.ToolTipFilter method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.find">find() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.find_next">find_next() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.find_previous">find_previous() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent">focusInEvent() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.focusOutEvent">focusOutEvent() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_action">get_action() (spyder.api.widgets.auxiliary_widgets.MainCornerWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_action">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.get_action">(spyder.api.widgets.mixins.SpyderActionMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.get_actions">get_actions() (spyder.api.widgets.menus.SpyderMenu method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.get_actions">(spyder.api.widgets.mixins.SpyderActionMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_auxiliary_toolbars">get_auxiliary_toolbars() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.get_class_values">get_class_values() (in module spyder.api.utils)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_color_scheme">get_color_scheme() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_command_line_options">get_command_line_options() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf">get_conf() (spyder.api.config.mixins.SpyderConfigurationAccessor method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_conf">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_default">get_conf_default() (spyder.api.config.mixins.SpyderConfigurationAccessor method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options">get_conf_options() (spyder.api.config.mixins.SpyderConfigurationAccessor method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_configuration">get_configuration() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_container">get_container() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_corner_widget">get_corner_widget() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.get_current_filename">get_current_filename() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_description">get_description() (spyder.api.plugins.new_api.SpyderPluginV2 static method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_dockable_plugins">get_dockable_plugins() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.get_event_loop">get_event_loop() (spyder.api.asyncdispatcher.AsyncDispatcher class method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_focus_widget">get_focus_widget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_focus_widget">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.fonts.html#spyder.api.fonts.SpyderFontsMixin.get_font">get_font() (spyder.api.fonts.SpyderFontsMixin class method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_font">(spyder.api.plugins.new_api.SpyderPluginV2 class method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_icon">get_icon() (spyder.api.plugins.new_api.SpyderPluginV2 class method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.get_icon">(spyder.api.preferences.PluginConfigPage method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_icon">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.get_icon">(spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_main">get_main() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_main_toolbar">get_main_toolbar() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_maximized_state">get_maximized_state() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.get_menu">get_menu() (spyder.api.widgets.mixins.SpyderMenuMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.get_menus">get_menus() (spyder.api.widgets.mixins.SpyderMenuMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_name">get_name() (spyder.api.plugins.new_api.SpyderPluginV2 static method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.get_name">(spyder.api.preferences.PluginConfigPage method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_name">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_options_menu">get_options_menu() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_options_menu_button">get_options_menu_button() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_path">get_path() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_plugin">get_plugin() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_plugin">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_plugin">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.get_sections">get_sections() (spyder.api.widgets.menus.SpyderMenu method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shortcuts.html#spyder.api.shortcuts.SpyderShortcutsMixin.get_shortcut">get_shortcut() (spyder.api.shortcuts.SpyderShortcutsMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_title">get_title() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.get_title">(spyder.api.widgets.menus.SpyderMenu method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.get_toolbar">get_toolbar() (spyder.api.widgets.mixins.SpyderToolbarMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.get_toolbars">get_toolbars() (spyder.api.widgets.mixins.SpyderToolbarMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.get_toolbutton">get_toolbutton() (spyder.api.widgets.mixins.SpyderToolButtonMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.get_toolbuttons">get_toolbuttons() (spyder.api.widgets.mixins.SpyderToolButtonMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.get_tooltip">get_tooltip() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.get_value">get_value() (spyder.api.widgets.status.BaseTimerStatus method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.get_widget">get_widget() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_widget">(spyder.api.widgets.auxiliary_widgets.MainCornerWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_widget_for_shellwidget">get_widget_for_shellwidget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.get_widget_for_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.hidePopup">hidePopup() (spyder.api.widgets.comboboxes.SpyderComboBox method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.hidePopup">(spyder.api.widgets.comboboxes.SpyderFontComboBox method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.ID">ID (spyder.api.widgets.status.StatusBarWidget attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ApplicationToolbar.ID">(spyder.api.widgets.toolbars.ApplicationToolbar attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.MainWidgetToolbar.ID">(spyder.api.widgets.toolbars.MainWidgetToolbar attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.IMAGE_WHEN_EMPTY">IMAGE_WHEN_EMPTY (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.initialize">initialize() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.INTERACT_ON_CLICK">INTERACT_ON_CLICK (spyder.api.widgets.status.StatusBarWidget attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.is_current_widget_error_message">is_current_widget_error_message() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_available">is_plugin_available() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_available">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_enabled">is_plugin_enabled() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_enabled">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.is_valid">is_valid() (spyder.api.preferences.SpyderPreferencesTab method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.join">join() (spyder.api.asyncdispatcher.AsyncDispatcher class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.leaveEvent">leaveEvent() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.lock_unlock_position">lock_unlock_position() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget">MainCornerWidget (class in spyder.api.widgets.auxiliary_widgets)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.MainWidgetToolbar">MainWidgetToolbar (class in spyder.api.widgets.toolbars)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.MARGIN_TOP">MARGIN_TOP (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.MESSAGE_WHEN_EMPTY">MESSAGE_WHEN_EMPTY (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.html#module-spyder.api">spyder.api</a>
+</li>
+        <li><a href="_autosummary/spyder.api.asyncdispatcher.html#module-spyder.api.asyncdispatcher">spyder.api.asyncdispatcher</a>
+</li>
+        <li><a href="_autosummary/spyder.api.config.html#module-spyder.api.config">spyder.api.config</a>
+</li>
+        <li><a href="_autosummary/spyder.api.config.decorators.html#module-spyder.api.config.decorators">spyder.api.config.decorators</a>
+</li>
+        <li><a href="_autosummary/spyder.api.config.mixins.html#module-spyder.api.config.mixins">spyder.api.config.mixins</a>
+</li>
+        <li><a href="_autosummary/spyder.api.editor.html#module-spyder.api.editor">spyder.api.editor</a>
+</li>
+        <li><a href="_autosummary/spyder.api.exceptions.html#module-spyder.api.exceptions">spyder.api.exceptions</a>
+</li>
+        <li><a href="_autosummary/spyder.api.fonts.html#module-spyder.api.fonts">spyder.api.fonts</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugin_registration.html#module-spyder.api.plugin_registration">spyder.api.plugin_registration</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugin_registration.decorators.html#module-spyder.api.plugin_registration.decorators">spyder.api.plugin_registration.decorators</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugin_registration.mixins.html#module-spyder.api.plugin_registration.mixins">spyder.api.plugin_registration.mixins</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#module-spyder.api.plugin_registration.registry">spyder.api.plugin_registration.registry</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugins.html#module-spyder.api.plugins">spyder.api.plugins</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugins.enum.html#module-spyder.api.plugins.enum">spyder.api.plugins.enum</a>
+</li>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#module-spyder.api.plugins.new_api">spyder.api.plugins.new_api</a>
+</li>
+        <li><a href="_autosummary/spyder.api.preferences.html#module-spyder.api.preferences">spyder.api.preferences</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.html#module-spyder.api.shellconnect">spyder.api.shellconnect</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#module-spyder.api.shellconnect.main_widget">spyder.api.shellconnect.main_widget</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#module-spyder.api.shellconnect.mixins">spyder.api.shellconnect.mixins</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.status.html#module-spyder.api.shellconnect.status">spyder.api.shellconnect.status</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shortcuts.html#module-spyder.api.shortcuts">spyder.api.shortcuts</a>
+</li>
+        <li><a href="_autosummary/spyder.api.translations.html#module-spyder.api.translations">spyder.api.translations</a>
+</li>
+        <li><a href="_autosummary/spyder.api.utils.html#module-spyder.api.utils">spyder.api.utils</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.html#module-spyder.api.widgets">spyder.api.widgets</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#module-spyder.api.widgets.auxiliary_widgets">spyder.api.widgets.auxiliary_widgets</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#module-spyder.api.widgets.comboboxes">spyder.api.widgets.comboboxes</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.dialogs.html#module-spyder.api.widgets.dialogs">spyder.api.widgets.dialogs</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#module-spyder.api.widgets.main_container">spyder.api.widgets.main_container</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#module-spyder.api.widgets.main_widget">spyder.api.widgets.main_widget</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.menus.html#module-spyder.api.widgets.menus">spyder.api.widgets.menus</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#module-spyder.api.widgets.mixins">spyder.api.widgets.mixins</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.status.html#module-spyder.api.widgets.status">spyder.api.widgets.status</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.toolbars.html#module-spyder.api.widgets.toolbars">spyder.api.widgets.toolbars</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.mousePressEvent">mousePressEvent() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.mouseReleaseEvent">mouseReleaseEvent() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin.move_to_primary_screen">move_to_primary_screen() (spyder.api.widgets.mixins.SpyderMainWindowMixin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability">notify_plugin_availability() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.old_spyder_conf_version">old_spyder_conf_version (spyder.api.config.mixins.SpyderConfigurationAccessor property)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_close">on_close() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.on_close">(spyder.api.widgets.main_container.PluginMainContainer method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.on_close">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.config.decorators.html#spyder.api.config.decorators.on_conf_change">on_conf_change() (in module spyder.api.config.decorators)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change">on_configuration_change() (spyder.api.config.mixins.SpyderConfigurationObserver method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_first_registration">on_first_registration() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.on_focus_in">on_focus_in() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.on_focus_out">on_focus_out() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_initialize">on_initialize() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_available">on_ipython_console_available() (spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_teardown">on_ipython_console_teardown() (spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start">on_kernel_start() (spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_mainwindow_visible">on_mainwindow_visible() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.decorators.html#spyder.api.plugin_registration.decorators.on_plugin_available">on_plugin_available() (in module spyder.api.plugin_registration.decorators)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.decorators.html#spyder.api.plugin_registration.decorators.on_plugin_teardown">on_plugin_teardown() (in module spyder.api.plugin_registration.decorators)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.open_file">open_file() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.open_last_closed_file">open_last_closed_file() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.paste">paste() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenuProxyStyle.pixelMetric">pixelMetric() (spyder.api.widgets.menus.SpyderMenuProxyStyle method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric">(spyder.api.widgets.toolbars.ToolbarStyle method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage">PluginConfigPage (class in spyder.api.preferences)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer">PluginMainContainer (class in spyder.api.widgets.main_container)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget">PluginMainWidget (class in spyder.api.widgets.main_widget)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.PluginMainWidgetOptionsMenu">PluginMainWidgetOptionsMenu (class in spyder.api.widgets.menus)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.enum.html#spyder.api.plugins.enum.Plugins">Plugins (class in spyder.api.plugins.enum)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.PreferencesAdapter">PreferencesAdapter (class in spyder.api.plugin_registration.registry)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.PrefixedTuple">PrefixedTuple (class in spyder.api.utils)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.utils.html#spyder.api.utils.PrefixNode">PrefixNode (class in spyder.api.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.QtSlot">QtSlot() (spyder.api.asyncdispatcher.AsyncDispatcher static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.redo">redo() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.refresh">refresh() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.register_ipythonconsole">register_ipythonconsole() (spyder.api.shellconnect.mixins.ShellConnectMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin">register_plugin() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shortcuts.html#spyder.api.shortcuts.SpyderShortcutsMixin.register_shortcut_for_widget">register_shortcut_for_widget() (spyder.api.shortcuts.SpyderShortcutsMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.remove_conf">remove_conf() (spyder.api.config.mixins.SpyderConfigurationAccessor method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.remove_conf">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.remove_item">remove_item() (spyder.api.widgets.toolbars.SpyderToolbar method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.remove_shellwidget">remove_shellwidget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.remove_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.remove_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.remove_shellwidget">(spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.PluginMainWidgetOptionsMenu.render">render() (spyder.api.widgets.menus.PluginMainWidgetOptionsMenu method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.render">(spyder.api.widgets.menus.SpyderMenu method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.render">(spyder.api.widgets.toolbars.SpyderToolbar method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.render_toolbars">render_toolbars() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.replace">replace() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset">reset() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.restore_conf">restore_conf() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.DispatcherFuture.result">result() (spyder.api.asyncdispatcher.DispatcherFuture method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.revert_file">revert_file() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.run_coroutine_threadsafe">run_coroutine_threadsafe() (in module spyder.api.asyncdispatcher)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_all">save_all() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_copy_as">save_copy_as() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file">save_file() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file_as">save_file_as() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.select_all">select_all() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.set_ancestor">set_ancestor() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_ancestor">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf">set_conf() (spyder.api.config.mixins.SpyderConfigurationAccessor method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.set_conf">(spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_content_widget">set_content_widget() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_icon">set_icon() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.set_icon">(spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_icon_size">set_icon_size() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.set_interval">set_interval() (spyder.api.widgets.status.BaseTimerStatus method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.SET_LAYOUT_WHEN_EMPTY">SET_LAYOUT_WHEN_EMPTY (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_maximized_state">set_maximized_state() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_name">set_name() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_plugin_enabled">set_plugin_enabled() (spyder.api.plugin_registration.registry.SpyderPluginRegistry method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.set_shellwidget">set_shellwidget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.set_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.set_shellwidget">(spyder.api.shellconnect.mixins.ShellConnectPluginMixin method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.set_shellwidget">(spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.shortcuts.html#spyder.api.shortcuts.SpyderShortcutsMixin.set_shortcut">set_shortcut() (spyder.api.shortcuts.SpyderShortcutsMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.set_value">set_value() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.setLayout">setLayout() (spyder.api.preferences.SpyderPreferencesTab method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.setLayout">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.setup">setup() (spyder.api.widgets.main_container.PluginMainContainer method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.setup">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.setup_page">setup_page() (spyder.api.preferences.PluginConfigPage method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.setVisible">setVisible() (spyder.api.widgets.status.BaseTimerStatus method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget">ShellConnectMainWidget (class in spyder.api.shellconnect.main_widget)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin">ShellConnectMixin (class in spyder.api.shellconnect.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin">ShellConnectPluginMixin (class in spyder.api.shellconnect.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget">ShellConnectStatusBarWidget (class in spyder.api.shellconnect.status)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin">ShellConnectWidgetForStackMixin (class in spyder.api.shellconnect.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.show_content_widget">show_content_widget() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.show_empty_message">show_empty_message() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.SHOW_MESSAGE_WHEN_EMPTY">SHOW_MESSAGE_WHEN_EMPTY (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.show_status_message">show_status_message() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.show_status_message">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.showEvent">showEvent() (spyder.api.widgets.comboboxes.SpyderComboBox method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.showEvent">(spyder.api.widgets.menus.SpyderMenu method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.showPopup">showPopup() (spyder.api.widgets.comboboxes.SpyderComboBox method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.showPopup">(spyder.api.widgets.comboboxes.SpyderFontComboBox method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.sig_clicked">sig_clicked (spyder.api.widgets.status.StatusBarWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed">sig_closed (spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_exception_occurred">sig_exception_occurred (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.sig_exception_occurred">(spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_exception_occurred">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_focus_changed">sig_focus_changed (spyder.api.plugins.new_api.SpyderDockablePlugin attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_focus_status_changed">sig_focus_status_changed (spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_focused_plugin_changed">sig_focused_plugin_changed (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_free_memory_requested">sig_free_memory_requested (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.sig_free_memory_requested">(spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_free_memory_requested">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.sig_is_rendered">sig_is_rendered (spyder.api.widgets.toolbars.SpyderToolbar attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_moved">sig_mainwindow_moved (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_resized">sig_mainwindow_resized (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_mainwindow_state_changed">sig_mainwindow_state_changed (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.sig_plugin_ready">sig_plugin_ready (spyder.api.plugin_registration.registry.SpyderPluginRegistry attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_plugin_ready">(spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_quit_requested">sig_quit_requested (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.sig_quit_requested">(spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_quit_requested">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_redirect_stdio_requested">sig_redirect_stdio_requested (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.sig_redirect_stdio_requested">(spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_redirect_stdio_requested">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_restart_requested">sig_restart_requested (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.sig_restart_requested">(spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_restart_requested">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.sig_show_empty_message_requested">sig_show_empty_message_requested (spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_status_message_requested">sig_status_message_requested (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_switch_to_plugin_requested">sig_switch_to_plugin_requested (spyder.api.plugins.new_api.SpyderDockablePlugin attribute)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_toggle_view_changed">sig_toggle_view_changed (spyder.api.plugins.new_api.SpyderDockablePlugin attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_toggle_view_changed">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.sig_unmaximize_plugin_requested">sig_unmaximize_plugin_requested (spyder.api.plugins.new_api.SpyderPluginV2 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.sig_unmaximize_plugin_requested">(spyder.api.widgets.main_container.PluginMainContainer attribute)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_unmaximize_plugin_requested">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.sig_update_ancestor_requested">sig_update_ancestor_requested (spyder.api.plugins.new_api.SpyderDockablePlugin attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.sig_update_ancestor_requested">(spyder.api.widgets.main_widget.PluginMainWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed">sig_window_state_changed (spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget attribute)</a>
+</li>
+      <li>
+    spyder.api
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.html#module-spyder.api">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.asyncdispatcher
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.asyncdispatcher.html#module-spyder.api.asyncdispatcher">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.config
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.config.html#module-spyder.api.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.config.decorators
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.config.decorators.html#module-spyder.api.config.decorators">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.config.mixins
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.config.mixins.html#module-spyder.api.config.mixins">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    spyder.api.editor
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.editor.html#module-spyder.api.editor">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.exceptions
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.exceptions.html#module-spyder.api.exceptions">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.fonts
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.fonts.html#module-spyder.api.fonts">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugin_registration
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugin_registration.html#module-spyder.api.plugin_registration">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugin_registration.decorators
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugin_registration.decorators.html#module-spyder.api.plugin_registration.decorators">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugin_registration.mixins
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugin_registration.mixins.html#module-spyder.api.plugin_registration.mixins">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugin_registration.registry
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#module-spyder.api.plugin_registration.registry">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugins
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.html#module-spyder.api.plugins">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugins.enum
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.enum.html#module-spyder.api.plugins.enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.plugins.new_api
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.plugins.new_api.html#module-spyder.api.plugins.new_api">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.preferences
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.preferences.html#module-spyder.api.preferences">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.shellconnect
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.html#module-spyder.api.shellconnect">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.shellconnect.main_widget
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#module-spyder.api.shellconnect.main_widget">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.shellconnect.mixins
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#module-spyder.api.shellconnect.mixins">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.shellconnect.status
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.status.html#module-spyder.api.shellconnect.status">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.shortcuts
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shortcuts.html#module-spyder.api.shortcuts">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.translations
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.translations.html#module-spyder.api.translations">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.utils
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.utils.html#module-spyder.api.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.html#module-spyder.api.widgets">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.auxiliary_widgets
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#module-spyder.api.widgets.auxiliary_widgets">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.comboboxes
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#module-spyder.api.widgets.comboboxes">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.dialogs
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.dialogs.html#module-spyder.api.widgets.dialogs">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.main_container
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_container.html#module-spyder.api.widgets.main_container">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.main_widget
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#module-spyder.api.widgets.main_widget">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.menus
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.menus.html#module-spyder.api.widgets.menus">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.mixins
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#module-spyder.api.widgets.mixins">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.status
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.status.html#module-spyder.api.widgets.status">module</a>
+</li>
+      </ul></li>
+      <li>
+    spyder.api.widgets.toolbars
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.toolbars.html#module-spyder.api.widgets.toolbars">module</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.spyder_conf_version">spyder_conf_version (spyder.api.config.mixins.SpyderConfigurationAccessor property)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin">SpyderActionMixin (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError">SpyderAPIError</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox">SpyderComboBox (class in spyder.api.widgets.comboboxes)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons">SpyderComboBoxWithIcons (class in spyder.api.widgets.comboboxes)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor">SpyderConfigurationAccessor (class in spyder.api.config.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver">SpyderConfigurationObserver (class in spyder.api.config.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.dialogs.html#spyder.api.widgets.dialogs.SpyderDialogButtonBox">SpyderDialogButtonBox (class in spyder.api.widgets.dialogs)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin">SpyderDockablePlugin (class in spyder.api.plugins.new_api)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox">SpyderFontComboBox (class in spyder.api.widgets.comboboxes)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.fonts.html#spyder.api.fonts.SpyderFontsMixin">SpyderFontsMixin (class in spyder.api.fonts)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.fonts.html#spyder.api.fonts.SpyderFontType">SpyderFontType (class in spyder.api.fonts)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin">SpyderMainWindowMixin (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu">SpyderMenu (class in spyder.api.widgets.menus)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin">SpyderMenuMixin (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenuProxyStyle">SpyderMenuProxyStyle (class in spyder.api.widgets.menus)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.mixins.html#spyder.api.plugin_registration.mixins.SpyderPluginObserver">SpyderPluginObserver (class in spyder.api.plugin_registration.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry">SpyderPluginRegistry (class in spyder.api.plugin_registration.registry)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2">SpyderPluginV2 (class in spyder.api.plugins.new_api)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab">SpyderPreferencesTab (class in spyder.api.preferences)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shortcuts.html#spyder.api.shortcuts.SpyderShortcutsMixin">SpyderShortcutsMixin (class in spyder.api.shortcuts)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar">SpyderToolbar (class in spyder.api.widgets.toolbars)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin">SpyderToolbarMixin (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin">SpyderToolButtonMixin (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin">SpyderWidgetMixin (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget">SpyderWindowWidget (class in spyder.api.widgets.auxiliary_widgets)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.start_spinner">start_spinner() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget">StatusBarWidget (class in spyder.api.widgets.status)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.stop_spinner">stop_spinner() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SvgToScaledPixmap.svg_to_scaled_pixmap">svg_to_scaled_pixmap() (spyder.api.widgets.mixins.SvgToScaledPixmap method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SvgToScaledPixmap">SvgToScaledPixmap (class in spyder.api.widgets.mixins)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_empty_message">switch_empty_message() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.switch_to_plugin">switch_to_plugin() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_widget">switch_widget() (spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.toggle_view">toggle_view() (spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolbarStyle">ToolbarStyle (class in spyder.api.widgets.toolbars)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolTipFilter">ToolTipFilter (class in spyder.api.widgets.toolbars)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.undo">undo() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.unregister_ipythonconsole">unregister_ipythonconsole() (spyder.api.shellconnect.mixins.ShellConnectMixin method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.update_actions">update_actions() (spyder.api.widgets.main_container.PluginMainContainer method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.update_actions">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.update_actions">(spyder.api.widgets.mixins.SpyderActionMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.update_font">update_font() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.update_margins">update_margins() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.update_margins">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status">update_status() (spyder.api.shellconnect.status.ShellConnectStatusBarWidget method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.update_status">(spyder.api.widgets.status.BaseTimerStatus method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.update_style">update_style() (spyder.api.plugins.new_api.SpyderPluginV2 method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.update_style">(spyder.api.shellconnect.main_widget.ShellConnectMainWidget method)</a>
+</li>
+        <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.update_style">(spyder.api.widgets.mixins.SpyderWidgetMixin method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.update_title">update_title() (spyder.api.plugins.new_api.SpyderDockablePlugin method)</a>
+
+      <ul>
+        <li><a href="_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.update_title">(spyder.api.widgets.main_widget.PluginMainWidget method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.update_tooltip">update_tooltip() (spyder.api.widgets.status.StatusBarWidget method)</a>
+</li>
+      <li><a href="_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.update_translation">update_translation() (spyder.api.widgets.mixins.SpyderWidgetMixin method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 
 
                 </article>
@@ -370,8 +1730,8 @@ By Spyder-API-Docs Contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

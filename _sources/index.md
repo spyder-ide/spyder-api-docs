@@ -40,4 +40,5 @@ Plugin Development with Spyder <plugin_development>
 Extending Spyder <common_extension_points>
 Design Patterns <design_patterns>
 FAQ <faq>
+API Reference <reference>
 ```

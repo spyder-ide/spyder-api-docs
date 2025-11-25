@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.api.config.mixins &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/api/config/mixins';</script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/api/config/mixins.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.api.config.mixins</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © Spyder Project Contributors</span>
+<span class="c1"># Licensed under the terms of the MIT License</span>
+<span class="c1"># (see spyder/__init__.py for details)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Spyder API helper mixins.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Third-party imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">PYSIDE6</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONF</span><span class="p">,</span> <span class="n">CONF_VERSION</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigurationKey</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.user</span><span class="w"> </span><span class="kn">import</span> <span class="n">NoDefault</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">BasicTypes</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="SpyderConfigurationAccessor">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderConfigurationAccessor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mixin used to access options stored in the Spyder configuration system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Name of the configuration section that&#39;s going to be</span>
+    <span class="c1"># used to record the object&#39;s permanent data in Spyder</span>
+    <span class="c1"># config system.</span>
+    <span class="n">CONF_SECTION</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="SpyderConfigurationAccessor.get_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_conf</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKey</span><span class="p">,</span>
+        <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NoDefault</span><span class="p">,</span> <span class="n">BasicTypes</span><span class="p">]</span> <span class="o">=</span> <span class="n">NoDefault</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">secure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get an option from the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Name/Tuple path of the option to get its value from.</span>
+<span class="sd">        default: Union[NoDefault, BasicTypes]</span>
+<span class="sd">            Fallback value to return if the option is not found on the</span>
+<span class="sd">            configuration system.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`. If None,</span>
+<span class="sd">            then the value of `CONF_SECTION` is used.</span>
+<span class="sd">        secure: bool</span>
+<span class="sd">            If True, the option will be retrieved securely using the `keyring`</span>
+<span class="sd">            Python package.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        value: BasicTypes</span>
+<span class="sd">            Value of the option in the configuration section.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        configparser.NoOptionError</span>
+<span class="sd">            If the section does not exist in the configuration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderConfigurationAccessor must define a `CONF_SECTION` &#39;</span>
+                <span class="s1">&#39;class attribute!&#39;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">CONF</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">secure</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderConfigurationAccessor.get_conf_options">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_conf_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all options from the given section.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        section: Optional[str]</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`. If None,</span>
+<span class="sd">            then the value of `CONF_SECTION` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values: BasicTypes</span>
+<span class="sd">            Values of the option in the configuration section.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        configparser.NoOptionError</span>
+<span class="sd">            If the section does not exist in the configuration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderConfigurationAccessor must define a `CONF_SECTION` &#39;</span>
+                <span class="s1">&#39;class attribute!&#39;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">CONF</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">section</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderConfigurationAccessor.set_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_conf</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKey</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="n">BasicTypes</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">recursive_notification</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">secure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set an option in the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Name/Tuple path of the option to set its value.</span>
+<span class="sd">        value: BasicTypes</span>
+<span class="sd">            Value to set on the configuration system.</span>
+<span class="sd">        section: Optional[str]</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`. If None,</span>
+<span class="sd">            then the value of `CONF_SECTION` is used.</span>
+<span class="sd">        recursive_notification: bool</span>
+<span class="sd">            If True, all objects that observe all changes on the</span>
+<span class="sd">            configuration section and objects that observe partial tuple paths</span>
+<span class="sd">            are notified. For example if the option `opt` of section `sec`</span>
+<span class="sd">            changes, then the observers for section `sec` are notified.</span>
+<span class="sd">            Likewise, if the option `(a, b, c)` changes, then observers for</span>
+<span class="sd">            `(a, b, c)`, `(a, b)` and a are notified as well.</span>
+<span class="sd">        secure: bool</span>
+<span class="sd">            If True, the option will be saved securely using the `keyring`</span>
+<span class="sd">            Python package.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderConfigurationAccessor must define a `CONF_SECTION` &#39;</span>
+                <span class="s1">&#39;class attribute!&#39;</span>
+            <span class="p">)</span>
+        <span class="n">CONF</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+            <span class="n">section</span><span class="p">,</span>
+            <span class="n">option</span><span class="p">,</span>
+            <span class="n">value</span><span class="p">,</span>
+            <span class="n">recursive_notification</span><span class="o">=</span><span class="n">recursive_notification</span><span class="p">,</span>
+            <span class="n">secure</span><span class="o">=</span><span class="n">secure</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderConfigurationAccessor.remove_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.remove_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_conf</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKey</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">secure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove an option in the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Name/Tuple path of the option to remove its value.</span>
+<span class="sd">        section: Optional[str]</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`. If None,</span>
+<span class="sd">            then the value of `CONF_SECTION` is used.</span>
+<span class="sd">        secure: bool</span>
+<span class="sd">            If True, the option will be removed securely using the `keyring`</span>
+<span class="sd">            Python package.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderConfigurationAccessor must define a `CONF_SECTION` &#39;</span>
+                <span class="s1">&#39;class attribute!&#39;</span>
+            <span class="p">)</span>
+        <span class="n">CONF</span><span class="o">.</span><span class="n">remove_option</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">secure</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderConfigurationAccessor.get_conf_default">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_default">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_conf_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                         <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKey</span><span class="p">,</span>
+                         <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get an option default value in the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Name/Tuple path of the option to remove its value.</span>
+<span class="sd">        section: Optional[str]</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`. If None,</span>
+<span class="sd">            then the value of `CONF_SECTION` is used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderConfigurationAccessor must define a `CONF_SECTION` &#39;</span>
+                <span class="s1">&#39;class attribute!&#39;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">CONF</span><span class="o">.</span><span class="n">get_default</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">spyder_conf_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get current version for the Spyder configuration system.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">CONF_VERSION</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">old_spyder_conf_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get old version for the Spyder configuration system.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">CONF</span><span class="o">.</span><span class="n">old_spyder_version</span></div>
+
+
+
+<div class="viewcode-block" id="SpyderConfigurationObserver">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderConfigurationObserver</span><span class="p">(</span><span class="n">SpyderConfigurationAccessor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Concrete implementation of the protocol</span>
+<span class="sd">    :class:`spyder.config.types.ConfigurationObserver`.</span>
+
+<span class="sd">    This mixin enables a class to receive configuration updates seamlessly,</span>
+<span class="sd">    by registering methods using the</span>
+<span class="sd">    :function:`spyder.api.config.decorators.on_conf_change` decorator, which</span>
+<span class="sd">    receives a configuration section and option to observe.</span>
+
+<span class="sd">    When a change occurs on any of the registered configuration options,</span>
+<span class="sd">    the corresponding registered method is called with the new value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderConfigurationObserver must define a `CONF_SECTION` &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;class attribute! Hint: </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s1"> or its parent should define &#39;</span>
+                <span class="s1">&#39;the section.&#39;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multi_option_listeners</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gather_observers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_merge_none_observers</span><span class="p">()</span>
+
+        <span class="c1"># Register class to listen for changes in all registered options</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+            <span class="n">observed_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="p">[</span><span class="n">section</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">observed_options</span><span class="p">:</span>
+                <span class="c1"># Avoid a crash at startup due to MRO</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">PYSIDE6</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s1"> is observing option &quot;</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1">&quot; in section &#39;</span>
+                        <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">section</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+                    <span class="p">)</span>
+
+                <span class="n">CONF</span><span class="o">.</span><span class="n">observe_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Remove object from the configuration observer</span>
+        <span class="n">CONF</span><span class="o">.</span><span class="n">unobserve_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_gather_observers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gather all the methods decorated with `on_conf_change`.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="c1"># Avoid crash at startup due to MRO</span>
+            <span class="k">if</span> <span class="n">PYSIDE6</span> <span class="ow">and</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="p">{</span>
+                <span class="c1"># PySide seems to require that the class is instantiated to</span>
+                <span class="c1"># access this method</span>
+                <span class="s2">&quot;painters&quot;</span><span class="p">,</span>
+                <span class="c1"># Method is debounced</span>
+                <span class="s2">&quot;restart_kernel&quot;</span><span class="p">,</span>
+            <span class="p">}:</span>
+                <span class="k">continue</span>
+
+            <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s1">&#39;_conf_listen&#39;</span><span class="p">):</span>
+                <span class="n">info</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">_conf_listen</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_multi_option_listeners</span> <span class="o">|=</span> <span class="p">{</span><span class="n">method_name</span><span class="p">}</span>
+
+                <span class="k">for</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_listener</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_merge_none_observers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace observers that declared section as None by CONF_SECTION.&quot;&quot;&quot;</span>
+        <span class="n">default_selectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">section_selectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">default_selectors</span><span class="p">:</span>
+            <span class="n">default_option_receivers</span> <span class="o">=</span> <span class="n">default_selectors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">section_option_receivers</span> <span class="o">=</span> <span class="n">section_selectors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">merged_receivers</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">default_option_receivers</span> <span class="o">+</span> <span class="n">section_option_receivers</span><span class="p">)</span>
+            <span class="n">section_selectors</span><span class="p">[</span><span class="n">option</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_receivers</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span><span class="p">]</span> <span class="o">=</span> <span class="n">section_selectors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_listener</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKey</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a callable as listener of the option `option` on section `section`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        func: Callable</span>
+<span class="sd">            Function/method that will be called when `option` changes.</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Configuration option to observe.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Name of the section where `option` is contained.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section_listeners</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">option_listeners</span> <span class="o">=</span> <span class="n">section_listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">option_listeners</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="n">section_listeners</span><span class="p">[</span><span class="n">option</span><span class="p">]</span> <span class="o">=</span> <span class="n">option_listeners</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="n">section_listeners</span>
+
+<div class="viewcode-block" id="SpyderConfigurationObserver.on_configuration_change">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_configuration_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKey</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle configuration updates for the option `option` on the section</span>
+<span class="sd">        `section`, whose new value corresponds to `value`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Configuration option that did change.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Name of the section where `option` is contained.</span>
+<span class="sd">        value: Any</span>
+<span class="sd">            New value of the configuration option that produced the event.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">section_receivers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration_listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">option_receivers</span> <span class="o">=</span> <span class="n">section_receivers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">for</span> <span class="n">receiver</span> <span class="ow">in</span> <span class="n">option_receivers</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">receiver</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span> <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">receiver</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multi_option_listeners</span><span class="p">:</span>
+                <span class="n">method</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">method</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderConfigurationObserver.add_configuration_observer">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_configuration_observer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">option</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a callable to observe the option `option` on section `section`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        func: Callable</span>
+<span class="sd">            Function that will be called when `option` changes.</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Configuration option to observe.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Name of the section where `option` is contained.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - This is only necessary if you need to add a callable that is not a</span>
+<span class="sd">          class method to observe an option. Otherwise, you simply need to</span>
+<span class="sd">          decorate your method with</span>
+<span class="sd">          :function:`spyder.api.config.decorators.on_conf_change`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s1"> is observing &quot;</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1">&quot; option on section &quot;</span><span class="si">{</span><span class="n">section</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_listener</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="p">)</span>
+        <span class="n">CONF</span><span class="o">.</span><span class="n">observe_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

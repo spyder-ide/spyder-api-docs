@@ -1,0 +1,2052 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.api.plugins.new_api &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/api/plugins/new_api';</script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/api/plugins/new_api.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.api.plugins.new_api</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © Spyder Project Contributors</span>
+<span class="c1"># Licensed under the terms of the MIT License</span>
+<span class="c1"># (see spyder/__init__.py for details)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">New API for plugins.</span>
+
+<span class="sd">All plugins in Spyder 5+ must inherit from the classes present in this file.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">osp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Slot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCursor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.config.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderConfigurationObserver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderAPIError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.fonts</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderFontType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.plugin_registration.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderPluginObserver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.main_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginMainWidget</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderActionMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderWidgetMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.app.cli_options</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_options</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.gui</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_color_scheme</span><span class="p">,</span> <span class="n">get_font</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.user</span><span class="w"> </span><span class="kn">import</span> <span class="n">NoDefault</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.icon_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ima</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.image_path_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">IMAGE_PATH_MANAGER</span>
+
+<span class="c1"># Package imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Plugins</span>
+
+
+<span class="c1"># Logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SpyderPluginV2">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderPluginV2</span><span class="p">(</span><span class="n">QObject</span><span class="p">,</span> <span class="n">SpyderActionMixin</span><span class="p">,</span> <span class="n">SpyderConfigurationObserver</span><span class="p">,</span>
+                     <span class="n">SpyderPluginObserver</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Spyder plugin to extend functionality without a dockable widget.</span>
+
+<span class="sd">    If you want to create a plugin that adds a new pane, please use</span>
+<span class="sd">    SpyderDockablePlugin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># --- API: Mandatory attributes ------------------------------------------</span>
+    <span class="c1"># ------------------------------------------------------------------------</span>
+    <span class="c1"># Name of the plugin that will be used to refer to it.</span>
+    <span class="c1"># This name must be unique and will only be loaded once.</span>
+    <span class="n">NAME</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># --- API: Optional attributes ------------------------------------------</span>
+    <span class="c1"># ------------------------------------------------------------------------</span>
+    <span class="c1"># List of required plugin dependencies.</span>
+    <span class="c1"># Example: [Plugins.Plots, Plugins.IPythonConsole, ...].</span>
+    <span class="c1"># These values are defined in the `Plugins` class present in this file.</span>
+    <span class="c1"># If a plugin is using a widget from another plugin, that other</span>
+    <span class="c1"># must be declared as a required dependency.</span>
+    <span class="n">REQUIRES</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># List of optional plugin dependencies.</span>
+    <span class="c1"># Example: [Plugins.Plots, Plugins.IPythonConsole, ...].</span>
+    <span class="c1"># These values are defined in the `Plugins` class present in this file.</span>
+    <span class="c1"># A plugin might be performing actions when connectiong to other plugins,</span>
+    <span class="c1"># but the main functionality of the plugin does not depend on other</span>
+    <span class="c1"># plugins. For example, the Help plugin might render information from</span>
+    <span class="c1"># the Editor or from the Console or from another source, but it does not</span>
+    <span class="c1"># depend on either of those plugins.</span>
+    <span class="c1"># Methods in the plugin that make use of optional plugins must check</span>
+    <span class="c1"># existence before using those methods or applying signal connections.</span>
+    <span class="n">OPTIONAL</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># This must subclass a `PluginMainContainer` for non dockable plugins that</span>
+    <span class="c1"># create a widget, like a status bar widget, a toolbar, a menu, etc.</span>
+    <span class="c1"># For non dockable plugins that do not define widgets of any kind this can</span>
+    <span class="c1"># be `None`, for example a plugin that only exposes a configuration page.</span>
+    <span class="n">CONTAINER_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Name of the configuration section that&#39;s going to be</span>
+    <span class="c1"># used to record the plugin&#39;s permanent data in Spyder</span>
+    <span class="c1"># config system (i.e. in spyder.ini)</span>
+    <span class="n">CONF_SECTION</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Use a separate configuration file for the plugin.</span>
+    <span class="n">CONF_FILE</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Define configuration defaults if using a separate file.</span>
+    <span class="c1"># List of tuples, with the first item in the tuple being the section</span>
+    <span class="c1"># name and the second item being the default options dictionary.</span>
+    <span class="c1">#</span>
+    <span class="c1"># CONF_DEFAULTS_EXAMPLE = [</span>
+    <span class="c1">#     (&#39;section-name&#39;, {&#39;option-1&#39;: &#39;some-value&#39;,</span>
+    <span class="c1">#                       &#39;option-2&#39;: True,}),</span>
+    <span class="c1">#     (&#39;another-section-name&#39;, {&#39;option-3&#39;: &#39;some-other-value&#39;,</span>
+    <span class="c1">#                               &#39;option-4&#39;: [1, 2, 3],}),</span>
+    <span class="c1"># ]</span>
+    <span class="n">CONF_DEFAULTS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Define configuration version if using a separate file</span>
+    <span class="c1">#</span>
+    <span class="c1"># IMPORTANT NOTES:</span>
+    <span class="c1"># 1. If you want to *change* the default value of a current option, you</span>
+    <span class="c1">#    need to do a MINOR update in config version, e.g. from 3.0.0 to 3.1.0</span>
+    <span class="c1"># 2. If you want to *remove* options that are no longer needed or if you</span>
+    <span class="c1">#    want to *rename* options, then you need to do a MAJOR update in</span>
+    <span class="c1">#    version, e.g. from 3.0.0 to 4.0.0</span>
+    <span class="c1"># 3. You don&#39;t need to touch this value if you&#39;re just adding a new option</span>
+    <span class="n">CONF_VERSION</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Widget to be used as entry in Spyder Preferences dialog.</span>
+    <span class="n">CONF_WIDGET_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Some plugins may add configuration options for other plugins.</span>
+    <span class="c1"># Example:</span>
+    <span class="c1"># ADDITIONAL_CONF_OPTIONS = {&#39;section&#39;: &lt;new value to add&gt;}</span>
+    <span class="n">ADDITIONAL_CONF_OPTIONS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Define additional configurable options (via a tab) to</span>
+    <span class="c1"># another&#39;s plugin configuration page. All configuration tabs should</span>
+    <span class="c1"># inherit from `SpyderPreferencesTab`.</span>
+    <span class="c1"># Example:</span>
+    <span class="c1"># ADDITIONAL_CONF_TABS = {&#39;plugin_name&#39;: [&lt;SpyderPreferencesTab classes&gt;]}</span>
+    <span class="n">ADDITIONAL_CONF_TABS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Define custom layout classes that the plugin wantes to be registered.</span>
+    <span class="c1"># THe custom classes should extend from</span>
+    <span class="c1">#       `spyder.pluginsl.layout.api::BaseGridLayoutType`</span>
+    <span class="n">CUSTOM_LAYOUTS</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Path for images relative to the plugin path</span>
+    <span class="c1"># A Python package can include one or several Spyder plugins. In this case</span>
+    <span class="c1"># the package may be using images from a global folder outside the plugin</span>
+    <span class="c1"># folder</span>
+    <span class="n">IMG_PATH</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Control the font size relative to the global fonts defined in Spyder</span>
+    <span class="n">MONOSPACE_FONT_SIZE_DELTA</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">INTERFACE_FONT_SIZE_DELTA</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Define context to store actions, toolbars, toolbuttons and menus.</span>
+    <span class="n">CONTEXT_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Define if a plugin can be disabled in preferences.</span>
+    <span class="c1"># If False, the plugin is considered &quot;core&quot; and therefore it cannot be</span>
+    <span class="c1"># disabled. Default: True</span>
+    <span class="n">CAN_BE_DISABLED</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Qt Web Widgets may be a heavy dependency for many packagers</span>
+    <span class="c1"># (e.g. conda-forge)</span>
+    <span class="c1"># We thus ask plugins to declare whether or not they need</span>
+    <span class="c1"># web widgets to enhance the distribution of Spyder to users</span>
+    <span class="c1"># https://github.com/spyder-ide/spyder/pull/22196#issuecomment-2189377043</span>
+    <span class="n">REQUIRE_WEB_WIDGETS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># --- API: Signals -------------------------------------------------------</span>
+    <span class="c1"># ------------------------------------------------------------------------</span>
+    <span class="c1"># Signals here are automatically connected by the Spyder main window and</span>
+    <span class="c1"># connected to the the respective global actions defined on it.</span>
+    <span class="n">sig_free_memory_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to garbage</span>
+<span class="sd">    collect deleted objects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_plugin_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to reflect that the plugin was initialized.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_quit_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to quit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_restart_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to restart.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_status_message_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to display a</span>
+<span class="sd">    message in the status bar.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    message: str</span>
+<span class="sd">        The actual message to display.</span>
+<span class="sd">    timeout: int</span>
+<span class="sd">        The timeout before the message disappears.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_redirect_stdio_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to redirect</span>
+<span class="sd">    standard output/error when using Open/Save/Browse dialogs within widgets.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    enable: bool</span>
+<span class="sd">        Enable/Disable standard input/output redirection.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_exception_occurred</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to report an exception from any plugin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    error_data: dict</span>
+<span class="sd">        The dictionary containing error data. The expected keys are:</span>
+<span class="sd">        &gt;&gt;&gt; error_data= {</span>
+<span class="sd">            &quot;text&quot;: str,</span>
+<span class="sd">            &quot;is_traceback&quot;: bool,</span>
+<span class="sd">            &quot;repo&quot;: str,</span>
+<span class="sd">            &quot;title&quot;: str,</span>
+<span class="sd">            &quot;label&quot;: str,</span>
+<span class="sd">            &quot;steps&quot;: str,</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The `is_traceback` key indicates if `text` contains plain text or a</span>
+<span class="sd">    Python error traceback.</span>
+
+<span class="sd">    The `title` and `repo` keys indicate how the error data should</span>
+<span class="sd">    customize the report dialog and Github error submission.</span>
+
+<span class="sd">    The `label` and `steps` keys allow customizing the content of the</span>
+<span class="sd">    error dialog.</span>
+
+<span class="sd">    This signal is automatically connected to the main container/widget.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_mainwindow_resized</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="s2">&quot;QResizeEvent&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted when the main window is resized.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    resize_event: QResizeEvent</span>
+<span class="sd">        The event triggered on main window resize.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    To be used by plugins tracking main window size changes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_mainwindow_moved</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="s2">&quot;QMoveEvent&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted when the main window is moved.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    move_event: QMoveEvent</span>
+<span class="sd">        The event triggered on main window move.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    To be used by plugins tracking main window position changes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_unmaximize_plugin_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">((),</span> <span class="p">(</span><span class="nb">object</span><span class="p">,))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the main window that it needs to</span>
+<span class="sd">    unmaximize the currently maximized plugin, if any.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    plugin_instance: SpyderDockablePlugin</span>
+<span class="sd">        Unmaximize plugin only if it is not `plugin_instance`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_mainwindow_state_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted when the main window state has changed (for</span>
+<span class="sd">    instance, between maximized and minimized states).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    window_state: Qt.WindowStates</span>
+<span class="sd">        The window state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_focused_plugin_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted when the plugin with keyboard focus changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    plugin: Optional[SpyderDockablePlugin]</span>
+<span class="sd">        The plugin that currently has keyboard focus, or None if no dockable</span>
+<span class="sd">        plugin has focus.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---- Private attributes</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Define configuration name map for plugin to split configuration</span>
+    <span class="c1"># among several files. See spyder/config/main.py</span>
+    <span class="n">_CONF_NAME_MAP</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="c1"># This is required since the MRO of this class does not go up until to</span>
+        <span class="c1"># SpyderPluginObserver and SpyderConfigurationObserver when using</span>
+        <span class="c1"># super(), see https://fuhm.net/super-harmful/</span>
+        <span class="n">SpyderPluginObserver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">SpyderConfigurationObserver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_widget</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="o">=</span> <span class="n">configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_added_toolbars</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_compatible</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_registered</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">:</span> <span class="n">QMainWindow</span> <span class="o">=</span> <span class="n">parent</span>
+
+        <span class="c1"># Attribute used to access the action, toolbar, toolbutton and menu</span>
+        <span class="c1"># registries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NAME</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTAINER_CLASS</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTAINER_CLASS</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span>
+                <span class="n">plugin</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">parent</span><span class="o">=</span><span class="n">parent</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="s1">&#39;_setup&#39;</span><span class="p">):</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">_setup</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">SpyderWidgetMixin</span><span class="p">):</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">update_actions</span><span class="p">()</span>
+
+            <span class="c1"># Default signals to connect in main container or main widget.</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">sig_free_memory_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sig_free_memory_requested</span><span class="p">)</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">sig_quit_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig_quit_requested</span><span class="p">)</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">sig_restart_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig_restart_requested</span><span class="p">)</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">sig_redirect_stdio_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sig_redirect_stdio_requested</span><span class="p">)</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">sig_exception_occurred</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sig_exception_occurred</span><span class="p">)</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">sig_unmaximize_plugin_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sig_unmaximize_plugin_requested</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">after_container_creation</span><span class="p">()</span>
+
+        <span class="c1"># Load the custom images of the plugin</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">IMG_PATH</span><span class="p">:</span>
+            <span class="n">plugin_path</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">IMG_PATH</span><span class="p">)</span>
+            <span class="n">IMAGE_PATH_MANAGER</span><span class="o">.</span><span class="n">add_image_path</span><span class="p">(</span><span class="n">plugin_path</span><span class="p">)</span>
+
+    <span class="c1"># ---- Private methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">omit_conf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setup and register plugin in Spyder&#39;s main window and connect it to</span>
+<span class="sd">        other plugins.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Checks</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">NAME</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="s1">&#39;A Spyder Plugin must define a `NAME`!&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Setup configuration</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">omit_conf</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">register_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Signals</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_registered</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_font</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_unregister</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disconnect signals and clean up the plugin to be able to stop it while</span>
+<span class="sd">        Spyder is running.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">unregister_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_compatible</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_registered</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># ---- API: available methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderPluginV2.get_path">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_path">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plugin&#39;s system path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_path</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_container">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_container">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plugin main container.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_configuration">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_configuration">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the Spyder configuration object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_main">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_main">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the Spyder main window..</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_plugin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderPluginV2</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a plugin instance by providing its name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        plugin_name: str</span>
+<span class="sd">            Name of the plugin from which its instance will be returned.</span>
+<span class="sd">        error: bool</span>
+<span class="sd">            Whether to raise errors when trying to return the plugin&#39;s</span>
+<span class="sd">            instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Ensure that this plugin has the plugin corresponding to</span>
+        <span class="c1"># `plugin_name` listed as required or optional.</span>
+        <span class="n">requires</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">REQUIRES</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="n">optional</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">OPTIONAL</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="n">full_set</span> <span class="o">=</span> <span class="n">requires</span> <span class="o">|</span> <span class="n">optional</span>
+
+        <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="n">full_set</span> <span class="ow">or</span> <span class="n">Plugins</span><span class="o">.</span><span class="n">All</span> <span class="ow">in</span> <span class="n">full_set</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">SpyderAPIError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="n">optional</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">e</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="s1">&#39;Plugin &quot;</span><span class="si">{}</span><span class="s1">&quot; not part of REQUIRES or &#39;</span>
+                <span class="s1">&#39;OPTIONAL requirements!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.is_plugin_enabled">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_enabled">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_plugin_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if a given plugin is going to be loaded.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">is_plugin_enabled</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.is_plugin_available">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.is_plugin_available">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_plugin_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if a given plugin is available.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">is_plugin_available</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_dockable_plugins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_dockable_plugins">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_dockable_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a list of the required plugin instances.</span>
+
+<span class="sd">        Only required plugins that extend SpyderDockablePlugin are returned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">requires</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">REQUIRES</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="n">dockable_plugins_required</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">plugin_instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">get_dockable_plugins</span><span class="p">():</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="ow">in</span> <span class="n">requires</span> <span class="ow">or</span> <span class="n">Plugins</span><span class="o">.</span><span class="n">All</span> <span class="ow">in</span> <span class="n">requires</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">plugin_instance</span><span class="p">,</span> <span class="n">SpyderDockablePlugin</span>
+            <span class="p">):</span>
+                <span class="n">dockable_plugins_required</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plugin_instance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dockable_plugins_required</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">NoDefault</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get an option from Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: str</span>
+<span class="sd">            Name of the option to get its value from.</span>
+<span class="sd">        default: bool, int, str, tuple, list, dict, NoDefault</span>
+<span class="sd">            Value to get from the configuration system, passed as a</span>
+<span class="sd">            Python object.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`.</span>
+<span class="sd">        secure: bool</span>
+<span class="sd">            If True, the option will be retrieved securely using the `keyring`</span>
+<span class="sd">            Python package.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool, int, str, tuple, list, dict</span>
+<span class="sd">            Value associated with `option`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;A spyder plugin must define a `CONF_SECTION` class &#39;</span>
+                    <span class="s1">&#39;attribute!&#39;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="n">secure</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.set_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.set_conf">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">)</span>
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_conf</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">,</span>
+        <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recursive_notification</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">secure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set an option in Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: str</span>
+<span class="sd">            Name of the option (e.g. &#39;case_sensitive&#39;)</span>
+<span class="sd">        value: bool, int, str, tuple, list, dict</span>
+<span class="sd">            Value to save in the configuration system, passed as a</span>
+<span class="sd">            Python object.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Section in the configuration system, e.g. `shortcuts`.</span>
+<span class="sd">        recursive_notification: bool</span>
+<span class="sd">            If True, all objects that observe all changes on the</span>
+<span class="sd">            configuration section and objects that observe partial tuple paths</span>
+<span class="sd">            are notified. For example if the option `opt` of section `sec`</span>
+<span class="sd">            changes, then the observers for section `sec` are notified.</span>
+<span class="sd">            Likewise, if the option `(a, b, c)` changes, then observers for</span>
+<span class="sd">            `(a, b, c)`, `(a, b)` and a are notified as well.</span>
+<span class="sd">        secure: bool</span>
+<span class="sd">            If True, the option will be saved securely using the `keyring`</span>
+<span class="sd">            Python package.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;A spyder plugin must define a `CONF_SECTION` class &#39;</span>
+                    <span class="s1">&#39;attribute!&#39;</span>
+                <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+                <span class="n">section</span><span class="p">,</span>
+                <span class="n">option</span><span class="p">,</span>
+                <span class="n">value</span><span class="p">,</span>
+                <span class="n">recursive_notification</span><span class="o">=</span><span class="n">recursive_notification</span><span class="p">,</span>
+                <span class="n">secure</span><span class="o">=</span><span class="n">secure</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_conf</span><span class="p">({</span><span class="n">option</span><span class="p">},</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.remove_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.remove_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete an option in the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: Union[str, Tuple[str, ...]]</span>
+<span class="sd">            Name of the option, either a string or a tuple of strings.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Section in the configuration system.</span>
+<span class="sd">        secure: bool</span>
+<span class="sd">            If True, the option will be removed securely using the `keyring`</span>
+<span class="sd">            Python package.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;A spyder plugin must define a `CONF_SECTION` class &#39;</span>
+                    <span class="s1">&#39;attribute!&#39;</span>
+                <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">remove_option</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="n">secure</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_conf</span><span class="p">({</span><span class="n">option</span><span class="p">},</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.apply_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.apply_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options_set</span><span class="p">,</span> <span class="n">notify</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply `options_set` to this plugin&#39;s widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">options_set</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">notify</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">after_configuration_update</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">options_set</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.disable_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.disable_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">disable_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disable notifications for an option in the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: Union[str, Tuple[str, ...]]</span>
+<span class="sd">            Name of the option, either a string or a tuple of strings.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Section in the configuration system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;A spyder plugin must define a `CONF_SECTION` class &#39;</span>
+                    <span class="s1">&#39;attribute!&#39;</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">disable_notifications</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.restore_conf">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.restore_conf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">restore_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restore notifications for an option in the Spyder configuration system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        option: Union[str, Tuple[str, ...]]</span>
+<span class="sd">            Name of the option, either a string or a tuple of strings.</span>
+<span class="sd">        section: str</span>
+<span class="sd">            Section in the configuration system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">section</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;A spyder plugin must define a `CONF_SECTION` class &#39;</span>
+                    <span class="s1">&#39;attribute!&#39;</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">restore_notifications</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.show_status_message">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.show_status_message">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_status_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show message in status bar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        message: str</span>
+<span class="sd">            Message to display in the status bar.</span>
+<span class="sd">        timeout: int</span>
+<span class="sd">            Amount of time to display the message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sig_status_message_requested</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.before_long_process">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.before_long_process">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">before_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show a message in main window&#39;s status bar and change the mouse</span>
+<span class="sd">        pointer to Qt.WaitCursor when starting a long process.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        message: str</span>
+<span class="sd">            Message to show in the status bar when the long process starts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">message</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_status_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">setOverrideCursor</span><span class="p">(</span><span class="n">QCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WaitCursor</span><span class="p">))</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">processEvents</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.after_long_process">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.after_long_process">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">after_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear main window&#39;s status bar after a long process and restore</span>
+<span class="sd">        mouse pointer to the OS deault.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        message: str</span>
+<span class="sd">            Message to show in the status bar when the long process finishes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">restoreOverrideCursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_status_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+        <span class="n">QApplication</span><span class="o">.</span><span class="n">processEvents</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_color_scheme">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_color_scheme">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_color_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the current color scheme.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Dictionary with properties and colors of the color scheme</span>
+<span class="sd">            used in the Editor.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This is useful to set the color scheme of all instances of</span>
+<span class="sd">        CodeEditor used by the plugin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">get_color_scheme</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;appearance&#39;</span><span class="p">,</span> <span class="s1">&#39;selected&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.initialize">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.initialize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a plugin instance.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method should be called to initialize the plugin, but it should</span>
+<span class="sd">        not be overridden, since it internally calls `on_initialize` and emits</span>
+<span class="sd">        the `sig_plugin_ready` signal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_initialize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sig_plugin_ready</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.create_icon">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.create_icon">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_icon</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provide icons from the theme and icon manager.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_font">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_font">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_font</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">font_type</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return one of font types used in Spyder.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        font_type: str</span>
+<span class="sd">            There are three types of font types in Spyder:</span>
+<span class="sd">            SpyderFontType.Monospace, used in the Editor, IPython console,</span>
+<span class="sd">            and History; SpyderFontType.Interface, used by the entire Spyder</span>
+<span class="sd">            app; and SpyderFontType.MonospaceInterface, used by the Variable</span>
+<span class="sd">            Explorer, Find, Debugger and others.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QFont</span>
+<span class="sd">            QFont object to be passed to other Qt widgets.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        All plugins in Spyder use the same, global fonts. In case some a plugin</span>
+<span class="sd">        wants to use a delta font size based on the default one, they can set</span>
+<span class="sd">        the MONOSPACE_FONT_SIZE_DELTA or INTERFACE_FONT_SIZE_DELTA class</span>
+<span class="sd">        constants.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">font_type</span> <span class="o">==</span> <span class="n">SpyderFontType</span><span class="o">.</span><span class="n">Monospace</span><span class="p">:</span>
+            <span class="n">font_size_delta</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MONOSPACE_FONT_SIZE_DELTA</span>
+        <span class="k">elif</span> <span class="n">font_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">SpyderFontType</span><span class="o">.</span><span class="n">Interface</span><span class="p">,</span>
+                           <span class="n">SpyderFontType</span><span class="o">.</span><span class="n">MonospaceInterface</span><span class="p">]:</span>
+            <span class="n">font_size_delta</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">INTERFACE_FONT_SIZE_DELTA</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="s2">&quot;Unrecognized font type&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">get_font</span><span class="p">(</span><span class="n">option</span><span class="o">=</span><span class="n">font_type</span><span class="p">,</span> <span class="n">font_size_delta</span><span class="o">=</span><span class="n">font_size_delta</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_command_line_options">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_command_line_options">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_command_line_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get command line options passed by the user when they started</span>
+<span class="sd">        Spyder in a system terminal.</span>
+
+<span class="sd">        See app/cli_options.py for the option names.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">_cli_options</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># This is necessary when the plugin has no parent.</span>
+            <span class="n">sys_argv</span> <span class="o">=</span> <span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># Avoid options passed to pytest</span>
+            <span class="k">return</span> <span class="n">get_options</span><span class="p">(</span><span class="n">sys_argv</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+    <span class="c1"># ---- API: Mandatory methods to define</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderPluginV2.get_name">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_name">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plugin localized name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Localized name of the plugin.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method needs to be decorated with `staticmethod`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;A plugin name must be defined!&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_description">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_description">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_description</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plugin localized description.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Localized description of the plugin.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method needs to be decorated with `staticmethod`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;A plugin description must be defined!&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.get_icon">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.get_icon">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plugin associated icon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QIcon</span>
+<span class="sd">            QIcon instance</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method needs to be decorated with `classmethod` or `staticmethod`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;A plugin icon must be defined!&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.on_initialize">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_initialize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setup the plugin.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        All calls performed on this method should not call other plugins.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;register&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="s1">&#39;register was replaced by on_initialize, please check the &#39;</span>
+                <span class="s1">&#39;Spyder 5.1.0 migration guide to get more information&#39;</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;The plugin </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1"> is missing an implementation of &#39;</span>
+            <span class="s1">&#39;on_initialize&#39;</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ---- API: Optional methods to override</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderPluginV2.check_compatibility">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.check_compatibility">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_compatibility</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method can be reimplemented to check compatibility of a plugin</span>
+<span class="sd">        with the user&#39;s current environment.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (bool, str)</span>
+<span class="sd">            The first value tells Spyder if the plugin has passed the</span>
+<span class="sd">            compatibility test defined in this method. The second value</span>
+<span class="sd">            is a message that must explain users why the plugin was</span>
+<span class="sd">            found to be incompatible (e.g. &#39;This plugin does not work</span>
+<span class="sd">            with PyQt4&#39;). It will be shown at startup in a QMessageBox.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># Note: Remember to use _(&#39;&#39;) to localize the string</span>
+        <span class="k">return</span> <span class="n">valid</span><span class="p">,</span> <span class="n">message</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.on_first_registration">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_first_registration">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_first_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actions to be performed the first time the plugin is started.</span>
+
+<span class="sd">        It can also be used to perform actions that are needed only the</span>
+<span class="sd">        first time this is loaded after installation.</span>
+
+<span class="sd">        This method is called after the main window is visible.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.before_mainwindow_visible">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.before_mainwindow_visible">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">before_mainwindow_visible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actions to be performed after setup but before the main window&#39;s has</span>
+<span class="sd">        been shown.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.on_mainwindow_visible">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_mainwindow_visible">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_mainwindow_visible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actions to be performed after the main window&#39;s has been shown.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.on_close">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.on_close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cancelable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform actions before the plugin is closed.</span>
+
+<span class="sd">        This method **must** only operate on local attributes and not other</span>
+<span class="sd">        plugins.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;unregister&#39;</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The unregister method was deprecated and it &#39;</span>
+                          <span class="s1">&#39;was replaced by `on_close`. Please see the &#39;</span>
+                          <span class="s1">&#39;Spyder 5.2.0 migration guide to get more &#39;</span>
+                          <span class="s1">&#39;information.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.can_close">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.can_close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">can_close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine if a plugin can be closed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        close: bool</span>
+<span class="sd">            True if the plugin can be closed, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.update_font">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.update_font">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_font</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This must be reimplemented by plugins that need to adjust their fonts.</span>
+
+<span class="sd">        The following plugins illustrate the usage of this method:</span>
+<span class="sd">          * spyder/plugins/help/plugin.py</span>
+<span class="sd">          * spyder/plugins/onlinehelp/plugin.py</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.update_style">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.update_style">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This must be reimplemented by plugins that need to adjust their style.</span>
+
+<span class="sd">        Changing from the dark to the light interface theme might</span>
+<span class="sd">        require specific styles or stylesheets to be applied. When</span>
+<span class="sd">        the theme is changed by the user through our Preferences,</span>
+<span class="sd">        this method will be called for all plugins.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.after_container_creation">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.after_container_creation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">after_container_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform necessary operations before setting up the container.</span>
+
+<span class="sd">        This must be reimplemented by plugins whose containers emit signals in</span>
+<span class="sd">        on_option_update that need to be connected before applying those</span>
+<span class="sd">        options to our config system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginV2.after_configuration_update">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderPluginV2.after_configuration_update">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">after_configuration_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform additional operations after updating the plugin configuration</span>
+<span class="sd">        values.</span>
+
+<span class="sd">        This can be implemented by plugins that do not have a container and</span>
+<span class="sd">        need to act on configuration updates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        options: List[Union[str, tuple]]</span>
+<span class="sd">            A list that contains the options that were updated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderDockablePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Spyder plugin to enhance functionality with a dockable widget.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ---- API: Mandatory attributes</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># This is the main widget of the dockable plugin.</span>
+    <span class="c1"># It needs to be a subclass of PluginMainWidget.</span>
+    <span class="n">WIDGET_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># ---- API: Optional attributes</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Define a list of plugins next to which we want to to tabify this plugin.</span>
+    <span class="c1"># Example: [&#39;Plugins.Editor&#39;]</span>
+    <span class="n">TABIFY</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Disable actions in Spyder main menus when the plugin is not visible</span>
+    <span class="n">DISABLE_ACTIONS_WHEN_HIDDEN</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Raise and focus on switch to plugin calls.</span>
+    <span class="c1"># If False, the widget will be raised but focus will not be given until</span>
+    <span class="c1"># the action to switch is called a second time.</span>
+    <span class="n">RAISE_AND_FOCUS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Whether the plugin can handle file actions.</span>
+    <span class="c1"># If set to true, then the `create_new_file`, `open_last_closed_file`,</span>
+    <span class="c1"># `save_file`, `save_file_as`, `save_copy_as`, `save_all`, `revert_file`,</span>
+    <span class="c1"># `close_file` and `close_all` functions will be called to handle the</span>
+    <span class="c1"># corresponding actions. Individual actions can be disabled with</span>
+    <span class="c1"># `enable_file_action` in the Applications plugin.</span>
+    <span class="n">CAN_HANDLE_FILE_ACTIONS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># List of file extensions which the plugin can open.</span>
+    <span class="c1"># If the user opens a file with one of these extensions, then the file</span>
+    <span class="c1"># will open in this plugin using the `open_file` function.</span>
+    <span class="c1"># Example: [&#39;.ipynb&#39;] for spyder-notebook</span>
+    <span class="n">FILE_EXTENSIONS</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Whether the plugin can handle edit actions.</span>
+    <span class="c1"># If set to True, then the `undo`, `redo`, `cut`, `copy`, `paste` and</span>
+    <span class="c1"># `select_all` functions will be called to handle the corresponding</span>
+    <span class="c1"># actions. Individual actions can be disabled with `enable_edit_action` in</span>
+    <span class="c1"># the Applications plugin.</span>
+    <span class="n">CAN_HANDLE_EDIT_ACTIONS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Whether the plugin can handle search actions.</span>
+    <span class="c1"># If set to True, then the `find`, `find_next`, `find_previous` and</span>
+    <span class="c1"># `replace` functions will be called to handle the corresponding</span>
+    <span class="c1"># actions. Individual actions can be disabled with `enable_search_action`</span>
+    <span class="c1"># in the Applications plugin.</span>
+    <span class="n">CAN_HANDLE_SEARCH_ACTIONS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># ---- API: Available signals</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="n">sig_focus_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the focus of this plugin has changed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_toggle_view_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This action is emitted to inform the visibility of a dockable plugin</span>
+<span class="sd">    has changed.</span>
+
+<span class="sd">    This is triggered by checking/unchecking the entry for a pane in the</span>
+<span class="sd">    `Window &gt; Panes` menu.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    visible: bool</span>
+<span class="sd">        New visibility of the dockwidget.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_switch_to_plugin_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to inform the main window that this plugin</span>
+<span class="sd">    requested to be displayed.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This is automatically connected to main container/widget at plugin&#39;s</span>
+<span class="sd">    registration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_update_ancestor_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the main window that a child widget</span>
+<span class="sd">    needs its ancestor to be updated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---- Private methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">WIDGET_CLASS</span><span class="p">,</span> <span class="n">PluginMainWidget</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="s1">&#39;A SpyderDockablePlugin must define a valid WIDGET_CLASS &#39;</span>
+                <span class="s1">&#39;attribute!&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">CONTAINER_CLASS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">WIDGET_CLASS</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
+
+        <span class="c1"># Shortcut to switch to the plugin. It&#39;s defined on the main window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_switch_to_shortcut</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Widget setup</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget</span>
+        <span class="k">if</span> <span class="n">widget</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="s1">&#39;A dockable plugin must define a WIDGET_CLASS!&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">PluginMainWidget</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="s1">&#39;The WIDGET_CLASS of a dockable plugin must be a subclass of &#39;</span>
+                <span class="s1">&#39;PluginMainWidget!&#39;</span><span class="p">)</span>
+
+        <span class="n">widget</span><span class="o">.</span><span class="n">DISABLE_ACTIONS_WHEN_HIDDEN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DISABLE_ACTIONS_WHEN_HIDDEN</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">RAISE_AND_FOCUS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">RAISE_AND_FOCUS</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">set_icon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_icon</span><span class="p">())</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NAME</span><span class="p">)</span>
+
+        <span class="c1"># Render all toolbars as a final separate step on the main window</span>
+        <span class="c1"># in case some plugins want to extend a toolbar. Since the rendering</span>
+        <span class="c1"># can only be done once!</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">render_toolbars</span><span class="p">()</span>
+
+        <span class="c1"># Default Signals</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">sig_toggle_view_changed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig_toggle_view_changed</span><span class="p">)</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">sig_update_ancestor_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sig_update_ancestor_requested</span><span class="p">)</span>
+
+    <span class="c1"># ---- API: Optional methods to override</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderDockablePlugin.create_new_file">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.create_new_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_new_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new file inside the plugin.</span>
+
+<span class="sd">        This function will be called if the user creates a new file using</span>
+<span class="sd">        the `File &gt; New` menu item or the &quot;New file&quot; button in the main</span>
+<span class="sd">        toolbar, and `CAN_HANDLE_FILE_ACTIONS` is set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.open_file">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.open_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open file inside plugin.</span>
+
+<span class="sd">        This method will be called if the user wants to open a file with one</span>
+<span class="sd">        of the file name extensions listed in `FILE_EXTENSIONS`, so you need</span>
+<span class="sd">        to define that variable too.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename: str</span>
+<span class="sd">            The name of the file to be opened.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.get_current_filename">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.get_current_filename">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return file name of the file that is currently displayed.</span>
+
+<span class="sd">        This is meant for plugins like the Editor or Notebook plugin which</span>
+<span class="sd">        can edit or display files. Return `None` if no file is displayed or if</span>
+<span class="sd">        this does not display files.</span>
+
+<span class="sd">        This function is used in the `Open file` action to initialize the</span>
+<span class="sd">        &quot;Open file&quot; dialog.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.current_file_is_temporary">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.current_file_is_temporary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">current_file_is_temporary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether the currently displayed file is a temporary file.</span>
+
+<span class="sd">        This function should only be called if a file is displayed, that is,</span>
+<span class="sd">        if `self.get_current_filename()` does not return `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.open_last_closed_file">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.open_last_closed_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_last_closed_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open the last closed file again.</span>
+
+<span class="sd">        This function will be called if the `File &gt; Open last closed` menu item</span>
+<span class="sd">        is selected while the plugin has focus and `CAN_HANDLE_FILE_ACTIONS`</span>
+<span class="sd">        is set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.save_file">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the current file.</span>
+
+<span class="sd">        This function will be called if the user saves the current file using</span>
+<span class="sd">        the `File &gt; Save` menu item or the &quot;Save file&quot; button in the main</span>
+<span class="sd">        toolbar, the plugin has focus, and `CAN_HANDLE_FILE_ACTIONS` is set to</span>
+<span class="sd">        `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.save_file_as">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_file_as">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_file_as</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the current file under a different name.</span>
+
+<span class="sd">        This function will be called if the `File &gt; Save as` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_FILE_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.save_copy_as">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_copy_as">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_copy_as</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save a copy of the current file under a different name.</span>
+
+<span class="sd">        This function will be called if the `File &gt; Save copy as` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_FILE_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.save_all">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.save_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save all files that are opened in the plugin.</span>
+
+<span class="sd">        This function will be called if the user saves all files using the</span>
+<span class="sd">        `File &gt; Save all` menu item or the &quot;Save all&quot; button in the main</span>
+<span class="sd">        toolbar, the plugin has focus, and `CAN_HANDLE_FILE_ACTIONS` is set to</span>
+<span class="sd">        `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.revert_file">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.revert_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">revert_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Revert the current file to the version stored on disk.</span>
+
+<span class="sd">        This function will be called if the `File &gt; Revert` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_FILE_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.close_file">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.close_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close the current file.</span>
+
+<span class="sd">        This function will be called if the `File &gt; Close` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_FILE_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.close_all">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.close_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close all opened files.</span>
+
+<span class="sd">        This function will be called if the `File &gt; Close all` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_FILE_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.undo">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.undo">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">undo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Undo last edition.</span>
+
+<span class="sd">        This function will be called if the `Edit &gt; Undo` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_EDIT_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.redo">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.redo">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">redo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Redo last edition.</span>
+
+<span class="sd">        This function will be called if the `Edit &gt; Redo` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_EDIT_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.cut">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.cut">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cut selection.</span>
+
+<span class="sd">        This function will be called if the `Edit &gt; Cut` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_EDIT_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.copy">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.copy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copy selection.</span>
+
+<span class="sd">        This function will be called if the `Edit &gt; Copy` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_EDIT_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.paste">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.paste">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Paste clipboard.</span>
+
+<span class="sd">        This function will be called if the `Edit &gt; Paste` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_EDIT_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.select_all">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.select_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select all text in the plugin.</span>
+
+<span class="sd">        This function will be called if the `Edit &gt; Select All` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_EDIT_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.find">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.find">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find text in the plugin.</span>
+
+<span class="sd">        This function will be called if the `Search &gt; Find text` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_SEARCH_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.find_next">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.find_next">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move to next find text occurrence in the plugin.</span>
+
+<span class="sd">        This function will be called if the `Search &gt; Find next` menu item is</span>
+<span class="sd">        selected while the plugin has focus and `CAN_HANDLE_SEARCH_ACTIONS` is</span>
+<span class="sd">        set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.find_previous">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.find_previous">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_previous</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move to previous find text occurrence in the plugin.</span>
+
+<span class="sd">        This function will be called if the `Search &gt; Find previous` menu item</span>
+<span class="sd">        is selected while the plugin has focus and `CAN_HANDLE_SEARCH_ACTIONS`</span>
+<span class="sd">        is set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.replace">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.replace">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace text occurrence in the plugin.</span>
+
+<span class="sd">        This function will be called if the `Search &gt; Replace text` menu item</span>
+<span class="sd">        is selected while the plugin has focus and `CAN_HANDLE_SEARCH_ACTIONS`</span>
+<span class="sd">        is set to `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+    <span class="c1"># ---- API: available methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderDockablePlugin.before_long_process">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.before_long_process">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">before_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show a message in main window&#39;s status bar, change the mouse pointer</span>
+<span class="sd">        to Qt.WaitCursor and start spinner when starting a long process.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        message: str</span>
+<span class="sd">            Message to show in the status bar when the long process starts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">start_spinner</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">before_long_process</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.after_long_process">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.after_long_process">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">after_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear main window&#39;s status bar after a long process, restore mouse</span>
+<span class="sd">        pointer to the OS deault and stop spinner.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        message: str</span>
+<span class="sd">            Message to show in the status bar when the long process finishes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">after_long_process</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">stop_spinner</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.get_widget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.get_widget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PluginMainWidget</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plugin main widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="s1">&#39;Dockable Plugin must have a WIDGET_CLASS!&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widget</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.update_title">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.update_title">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update plugin title, i.e. dockwidget or window title.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">update_title</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.update_margins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.update_margins">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_margins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">margin</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update margins of main widget inside dockable plugin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">update_margins</span><span class="p">(</span><span class="n">margin</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.switch_to_plugin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.switch_to_plugin">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">switch_to_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force_focus</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Switch to plugin and define if focus should be given or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">windowwidget</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sig_switch_to_plugin_requested</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force_focus</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderDockablePlugin.set_ancestor">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.new_api.SpyderDockablePlugin.set_ancestor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ancestor_widget</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the ancestor/parent of child widgets when undocking.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">set_ancestor</span><span class="p">(</span><span class="n">ancestor_widget</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ---- Convenience methods from the widget exposed on the plugin</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dockwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">dockwidget</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">options_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">get_options_menu</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">toggle_view_action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">toggle_view_action</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_dockwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mainwindow</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">create_dockwidget</span><span class="p">(</span><span class="n">mainwindow</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">create_window</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">close_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_undocked</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">_close_window</span><span class="p">(</span><span class="n">save_undocked</span><span class="o">=</span><span class="n">save_undocked</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">change_visibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">force_focus</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">change_visibility</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">force_focus</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">toggle_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">toggle_view</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

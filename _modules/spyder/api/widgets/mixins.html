@@ -1,0 +1,1336 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.api.widgets.mixins &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/api/widgets/mixins';</script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/api/widgets/mixins.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.api.widgets.mixins</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2013-2016 Colin Duquesnoy and others (see pyqode/AUTHORS.rst)</span>
+<span class="c1"># Copyright (c) 2016- Spyder Project Contributors (see AUTHORS.txt)</span>
+<span class="c1">#</span>
+<span class="c1"># Distributed under the terms of the MIT License</span>
+<span class="c1"># (see NOTICE.txt in the Spyder root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Spyder API Mixins.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QPoint</span><span class="p">,</span> <span class="n">Qt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIcon</span><span class="p">,</span> <span class="n">QImage</span><span class="p">,</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">QPixmap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtSvg</span><span class="w"> </span><span class="kn">import</span> <span class="n">QSvgRenderer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="p">,</span> <span class="n">QToolBar</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QToolButton</span>
+<span class="p">)</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.config.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SpyderConfigurationAccessor</span><span class="p">,</span>
+    <span class="n">SpyderConfigurationObserver</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderAPIError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderShortcutsMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.menus</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderMenu</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.toolbars</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderToolbar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONF</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.icon_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ima</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.image_path_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_image_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_action</span><span class="p">,</span> <span class="n">create_toolbutton</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.registries</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ACTION_REGISTRY</span><span class="p">,</span> <span class="n">MENU_REGISTRY</span><span class="p">,</span> <span class="n">TOOLBAR_REGISTRY</span><span class="p">,</span> <span class="n">TOOLBUTTON_REGISTRY</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">PANES_TOOLBAR_STYLESHEET</span>
+
+
+<div class="viewcode-block" id="SpyderToolButtonMixin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderToolButtonMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide methods to create, add and get toolbuttons.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpyderToolButtonMixin.create_toolbutton">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.create_toolbutton">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_toolbutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">tip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">toggled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">triggered</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">autoraise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text_beside_icon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">register</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Spyder toolbutton.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">toggled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">toggled</span><span class="p">):</span>
+            <span class="n">toggled</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">toggled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span>
+
+        <span class="n">toolbutton</span> <span class="o">=</span> <span class="n">create_toolbutton</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+            <span class="n">shortcut</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span>
+            <span class="n">tip</span><span class="o">=</span><span class="n">tip</span><span class="p">,</span>
+            <span class="n">toggled</span><span class="o">=</span><span class="n">toggled</span><span class="p">,</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="n">triggered</span><span class="p">,</span>
+            <span class="n">autoraise</span><span class="o">=</span><span class="n">autoraise</span><span class="p">,</span>
+            <span class="n">text_beside_icon</span><span class="o">=</span><span class="n">text_beside_icon</span><span class="p">,</span>
+            <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
+            <span class="n">id_</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">plugin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span>
+            <span class="n">context_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span><span class="p">,</span>
+            <span class="n">register_toolbutton</span><span class="o">=</span><span class="n">register</span>
+        <span class="p">)</span>
+        <span class="n">toolbutton</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+        <span class="k">if</span> <span class="n">toggled</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">CONF</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+                <span class="n">toolbutton</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">toolbutton</span></div>
+
+
+<div class="viewcode-block" id="SpyderToolButtonMixin.get_toolbutton">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.get_toolbutton">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                       <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QToolButton</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return toolbutton by name, plugin and context.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Name of the toolbutton to retrieve.</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the toolbutton was stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the toolbutton was defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        toolbutton: QToolButton</span>
+<span class="sd">            The corresponding toolbutton stored under the given `name`,</span>
+<span class="sd">            `context` and `plugin`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
+<span class="sd">            toolbutton registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">TOOLBUTTON_REGISTRY</span><span class="o">.</span><span class="n">get_reference</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderToolButtonMixin.get_toolbuttons">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.get_toolbuttons">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbuttons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QToolButton</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all toolbuttons defined by a context on a given plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the toolbuttons were</span>
+<span class="sd">            stored. If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the toolbuttons were defined.</span>
+<span class="sd">            If None, then `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        toolbuttons: Dict[str, QToolButton]</span>
+<span class="sd">            A dictionary that maps string keys to their corresponding</span>
+<span class="sd">            toolbuttons.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">TOOLBUTTON_REGISTRY</span><span class="o">.</span><span class="n">get_references</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SpyderToolbarMixin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderToolbarMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide methods to create, add and get toolbars.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpyderToolbarMixin.add_item_to_toolbar">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.add_item_to_toolbar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_item_to_toolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_or_widget</span><span class="p">,</span> <span class="n">toolbar</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">before_section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If you provide a `before` action, the action will be placed before this</span>
+<span class="sd">        one, so the section option will be ignored, since the action will now</span>
+<span class="sd">        be placed in the same section as the `before` action.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">toolbar</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
+                         <span class="n">before_section</span><span class="o">=</span><span class="n">before_section</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderToolbarMixin.create_stretcher">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.create_stretcher">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_stretcher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a stretcher widget to be used in a Qt toolbar.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">stretcher</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">stretcher</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">id_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stretcher</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">id_</span>
+        <span class="k">return</span> <span class="n">stretcher</span></div>
+
+
+<div class="viewcode-block" id="SpyderToolbarMixin.create_toolbar">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.create_toolbar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_toolbar</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderToolbar</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Spyder toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Name of the toolbar to create.</span>
+<span class="sd">        register: bool</span>
+<span class="sd">            Whether to register the toolbar in the global registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">toolbar</span> <span class="o">=</span> <span class="n">SpyderToolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">toolbar</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">register</span><span class="p">:</span>
+            <span class="n">TOOLBAR_REGISTRY</span><span class="o">.</span><span class="n">register_reference</span><span class="p">(</span>
+                <span class="n">toolbar</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">toolbar</span></div>
+
+
+<div class="viewcode-block" id="SpyderToolbarMixin.get_toolbar">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.get_toolbar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QToolBar</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return toolbar by name, plugin and context.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Name of the toolbar to retrieve.</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the toolbar was stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the toolbar was defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        toolbar: QToolBar</span>
+<span class="sd">            The corresponding toolbar stored under the given `name`, `context`</span>
+<span class="sd">            and `plugin`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
+<span class="sd">            toolbar registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">TOOLBAR_REGISTRY</span><span class="o">.</span><span class="n">get_reference</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderToolbarMixin.get_toolbars">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.get_toolbars">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QToolBar</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all toolbars defined by a context on a given plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the toolbars were stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the toolbars were defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        toolbars: Dict[str, QToolBar]</span>
+<span class="sd">            A dictionary that maps string keys to their corresponding toolbars.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">TOOLBAR_REGISTRY</span><span class="o">.</span><span class="n">get_references</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SpyderMenuMixin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderMenuMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide methods to create, add and get menus.</span>
+
+<span class="sd">    This mixin uses a custom menu object that allows for the creation of</span>
+<span class="sd">    sections in a simple way.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpyderMenuMixin.add_item_to_menu">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.add_item_to_menu">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_item_to_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_or_menu</span><span class="p">,</span> <span class="n">menu</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">before_section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a SpyderAction or a QWidget to the menu.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">SpyderMenu</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="s1">&#39;Menu must be an instance of SpyderMenu!&#39;</span><span class="p">)</span>
+
+        <span class="n">menu</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span>
+            <span class="n">action_or_menu</span><span class="p">,</span>
+            <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+            <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
+            <span class="n">before_section</span><span class="o">=</span><span class="n">before_section</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_menu</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">menu_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QIcon</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reposition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">min_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">MenuClass</span><span class="o">=</span><span class="n">SpyderMenu</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderMenu</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a SpyderMenu or a subclass of it.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        * This method must only be used directly to generate a menu that is a</span>
+<span class="sd">          subclass of SpyderMenu.</span>
+<span class="sd">        * Refer to the documentation for `SpyderMenu` to learn about its args.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">register</span><span class="p">:</span>
+            <span class="n">menus</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_menus&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">menus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">menu_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;Menu name &quot;</span><span class="si">{}</span><span class="s1">&quot; already in use!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">menu_id</span><span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="n">menu</span> <span class="o">=</span> <span class="n">MenuClass</span><span class="p">(</span>
+            <span class="n">parent</span><span class="o">=</span><span class="bp">self</span> <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">parent</span><span class="p">,</span>
+            <span class="n">menu_id</span><span class="o">=</span><span class="n">menu_id</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+            <span class="n">min_width</span><span class="o">=</span><span class="n">min_width</span><span class="p">,</span>
+            <span class="n">reposition</span><span class="o">=</span><span class="n">reposition</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">icon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">menu</span><span class="o">.</span><span class="n">menuAction</span><span class="p">()</span><span class="o">.</span><span class="n">setIconVisibleInMenu</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">menu</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">register</span><span class="p">:</span>
+            <span class="n">MENU_REGISTRY</span><span class="o">.</span><span class="n">register_reference</span><span class="p">(</span>
+                <span class="n">menu</span><span class="p">,</span> <span class="n">menu_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="n">menu_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">menu</span>
+
+        <span class="k">return</span> <span class="n">menu</span>
+
+<div class="viewcode-block" id="SpyderMenuMixin.create_menu">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.create_menu">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_menu</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">menu_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QIcon</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reposition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderMenu</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a menu for Spyder.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        menu_id: str</span>
+<span class="sd">            Unique str identifier for the menu.</span>
+<span class="sd">        title: str or None</span>
+<span class="sd">            Localized text string for the menu.</span>
+<span class="sd">        icon: QIcon or None</span>
+<span class="sd">            Icon to use for the menu.</span>
+<span class="sd">        reposition: bool, optional (default True)</span>
+<span class="sd">            Whether to vertically reposition the menu due to its padding.</span>
+<span class="sd">        register: bool</span>
+<span class="sd">            Whether to register the menu in the global registry.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        SpyderMenu</span>
+<span class="sd">            The created menu.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_menu</span><span class="p">(</span>
+            <span class="n">menu_id</span><span class="o">=</span><span class="n">menu_id</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span>
+            <span class="n">reposition</span><span class="o">=</span><span class="n">reposition</span><span class="p">,</span>
+            <span class="n">register</span><span class="o">=</span><span class="n">register</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderMenuMixin.get_menu">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.get_menu">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_menu</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderMenu</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a menu by name, plugin and context.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Name of the menu to retrieve.</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the menu was stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the menu was defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        menu: SpyderMenu</span>
+<span class="sd">            The corresponding menu stored under the given `name`, `context`</span>
+<span class="sd">            and `plugin`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
+<span class="sd">            menu registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">MENU_REGISTRY</span><span class="o">.</span><span class="n">get_reference</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderMenuMixin.get_menus">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.get_menus">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                  <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SpyderMenu</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all menus defined by a context on a given plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the menus were stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the menus were defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        menus: Dict[str, SpyderMenu]</span>
+<span class="sd">            A dictionary that maps string keys to their corresponding menus.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">MENU_REGISTRY</span><span class="o">.</span><span class="n">get_references</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SpyderActionMixin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderActionMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide methods to create, add and get actions in a unified way.</span>
+
+<span class="sd">    This mixin uses a custom action object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_action_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This allows to update the state of a togglable action without emitting</span>
+<span class="sd">        signals.</span>
+
+<span class="sd">        This is useful when the global application configuration changes and</span>
+<span class="sd">        we need to propagate the current state of an action based on those</span>
+<span class="sd">        changes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="n">action_name</span><span class="p">)</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">SpyderAPIError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Comment: The word `context` is used for two different concepts.</span>
+    <span class="c1"># On one side it refers to a Qt widget shortcut context and on the</span>
+    <span class="c1"># other it refers to a section of the configuration (or the widget</span>
+    <span class="c1"># name where it is applied).</span>
+<div class="viewcode-block" id="SpyderActionMixin.create_action">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.create_action">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">icon_text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">tip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">toggled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">triggered</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">shortcut</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shortcut_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">context</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">WidgetWithChildrenShortcut</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">register_shortcut</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">register_action</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">context_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">menurole</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        name: str</span>
+<span class="sd">            unique identifiable name for the action</span>
+<span class="sd">        text: str</span>
+<span class="sd">           Localized text for the action</span>
+<span class="sd">        icon: QIcon,</span>
+<span class="sd">            Icon for the action when applied to menu or toolbutton.</span>
+<span class="sd">        icon_text: str</span>
+<span class="sd">            Icon for text in toolbars. If True, this will also disable</span>
+<span class="sd">            the tooltip on this toolbutton if part of a toolbar.</span>
+<span class="sd">        tip: str</span>
+<span class="sd">            Tooltip to define for action on menu or toolbar.</span>
+<span class="sd">        toggled: Optional[Union[Callable, bool]]</span>
+<span class="sd">            If True, then the action modifies the configuration option on the</span>
+<span class="sd">            section specified. Otherwise, it should be a callable to use</span>
+<span class="sd">            when toggling this action. If None, then the action does not</span>
+<span class="sd">            behave like a checkbox.</span>
+<span class="sd">        triggered: callable</span>
+<span class="sd">            The callable to use when triggering this action.</span>
+<span class="sd">        data: Any</span>
+<span class="sd">            Data to be set on the action.</span>
+<span class="sd">        shortcut_context: str</span>
+<span class="sd">            Set the `str` context of the shortcut.</span>
+<span class="sd">        context: Qt.ShortcutContext</span>
+<span class="sd">            Set the context for the shortcut.</span>
+<span class="sd">        initial: object</span>
+<span class="sd">            Sets the initial state of a togglable action. This does not emit</span>
+<span class="sd">            the toggled signal.</span>
+<span class="sd">        section: Optional[str]</span>
+<span class="sd">            Name of the configuration section whose option is going to be</span>
+<span class="sd">            modified. If None, and `option` is not None, then it defaults to</span>
+<span class="sd">            the class `CONF_SECTION` attribute.</span>
+<span class="sd">        option: ConfigurationKey</span>
+<span class="sd">            Name of the configuration option whose value is reflected and</span>
+<span class="sd">            affected by the action.</span>
+<span class="sd">        register_shortcut: bool, optional</span>
+<span class="sd">            If True, main window will expose the shortcut in Preferences.</span>
+<span class="sd">            The default value is `False`.</span>
+<span class="sd">        parent: QWidget (None)</span>
+<span class="sd">            Define the parent of the widget. Use `self` if not provided.</span>
+<span class="sd">        register_action: bool, optional</span>
+<span class="sd">            If True, the action will be registered and searchable.</span>
+<span class="sd">            The default value is `True`.</span>
+<span class="sd">        overwrite: bool, optional</span>
+<span class="sd">            If True, in case of action overwriting no warning will be shown.</span>
+<span class="sd">            The default value is `False`</span>
+<span class="sd">        context_name: Optional[str]</span>
+<span class="sd">            Name of the context that holds the action in case of registration.</span>
+<span class="sd">            The combination of `name` and `context_name` is unique so trying</span>
+<span class="sd">            to register an action with the same `name` and `context_name` will</span>
+<span class="sd">            cause a warning unless `overwrite` is set to `True`.</span>
+<span class="sd">        menurole: QAction.MenuRole, optional</span>
+<span class="sd">            Menu role for the action (it only has effect on macOS).</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        There is no need to set shortcuts right now. We only create actions</span>
+<span class="sd">        with this (and similar methods) and these are then exposed as possible</span>
+<span class="sd">        shortcuts on plugin registration in the main window with the</span>
+<span class="sd">        register_shortcut argument.</span>
+
+<span class="sd">        If icon_text is True, this will also disable the tooltip.</span>
+
+<span class="sd">        If a shortcut is found in the default config then it is assigned,</span>
+<span class="sd">        otherwise it&#39;s left blank for the user to define one for it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">triggered</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">toggled</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="s1">&#39;Action must provide the toggled or triggered parameters!&#39;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+
+        <span class="k">if</span> <span class="n">toggled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">toggled</span><span class="p">):</span>
+            <span class="n">toggled</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">toggled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span>
+
+        <span class="n">action</span> <span class="o">=</span> <span class="n">create_action</span><span class="p">(</span>
+            <span class="n">parent</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span>
+            <span class="n">tip</span><span class="o">=</span><span class="n">tip</span><span class="p">,</span>
+            <span class="n">toggled</span><span class="o">=</span><span class="n">toggled</span><span class="p">,</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="n">triggered</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+            <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+            <span class="n">shortcut</span><span class="o">=</span><span class="n">shortcut</span><span class="p">,</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
+            <span class="n">id_</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">plugin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span>
+            <span class="n">context_name</span><span class="o">=</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context_name</span><span class="p">),</span>
+            <span class="n">register_action</span><span class="o">=</span><span class="n">register_action</span><span class="p">,</span>
+            <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">,</span>
+            <span class="n">menurole</span><span class="o">=</span><span class="n">menurole</span>
+        <span class="p">)</span>
+        <span class="n">action</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">icon_text</span><span class="p">:</span>
+            <span class="n">action</span><span class="o">.</span><span class="n">setIconText</span><span class="p">(</span><span class="n">icon_text</span><span class="p">)</span>
+
+        <span class="n">action</span><span class="o">.</span><span class="n">text_beside_icon</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">icon_text</span><span class="p">)</span>
+        <span class="n">action</span><span class="o">.</span><span class="n">shortcut_context</span> <span class="o">=</span> <span class="n">shortcut_context</span>
+        <span class="n">action</span><span class="o">.</span><span class="n">register_shortcut</span> <span class="o">=</span> <span class="n">register_shortcut</span>
+        <span class="n">action</span><span class="o">.</span><span class="n">tip</span> <span class="o">=</span> <span class="n">tip</span>
+
+        <span class="k">if</span> <span class="n">initial</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">toggled</span><span class="p">:</span>
+                <span class="n">action</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">triggered</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s1">&#39;Initial values can only apply to togglable actions!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">toggled</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">CONF</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+                    <span class="n">action</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">action</span></div>
+
+
+<div class="viewcode-block" id="SpyderActionMixin.get_action">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.get_action">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an action by name, context and plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Name of the action to retrieve.</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the action was stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the action was defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        action: SpyderAction</span>
+<span class="sd">            The corresponding action stored under the given `name`, `context`</span>
+<span class="sd">            and `plugin`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
+<span class="sd">            action registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+
+        <span class="k">return</span> <span class="n">ACTION_REGISTRY</span><span class="o">.</span><span class="n">get_reference</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderActionMixin.get_actions">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.get_actions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all actions defined by a context on a given plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        context: Optional[str]</span>
+<span class="sd">            Widget or context identifier under which the actions were stored.</span>
+<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
+<span class="sd">        plugin: Optional[str]</span>
+<span class="sd">            Name of the plugin where the actions were defined. If None, then</span>
+<span class="sd">            `PLUGIN_NAME` is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        actions: Dict[str, SpyderAction]</span>
+<span class="sd">            A dictionary that maps string keys to their corresponding actions.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        1. Actions should be created once. Creating new actions on menu popup</span>
+<span class="sd">           is *highly* discouraged.</span>
+<span class="sd">        2. Actions can be created directly on a PluginMainWidget or</span>
+<span class="sd">           PluginMainContainer subclass. Child widgets can also create</span>
+<span class="sd">           actions, but they need to subclass SpyderWidgetMixin.</span>
+<span class="sd">        3. PluginMainWidget or PluginMainContainer will collect any actions</span>
+<span class="sd">           defined in subwidgets (if defined) and expose them in the</span>
+<span class="sd">           get_actions method at the plugin level.</span>
+<span class="sd">        4. Any action created this way is now exposed as a possible shortcut</span>
+<span class="sd">           automatically without manual shortcut registration.</span>
+<span class="sd">           If an option is found in the config system then it is assigned,</span>
+<span class="sd">           otherwise it&#39;s left with an empty shortcut.</span>
+<span class="sd">        5. There is no need to override this method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+        <span class="k">return</span> <span class="n">ACTION_REGISTRY</span><span class="o">.</span><span class="n">get_references</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderActionMixin.update_actions">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.update_actions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the state of exposed actions.</span>
+
+<span class="sd">        Exposed actions are actions created by the `create_action` method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SpyderWidgetMixin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderWidgetMixin</span><span class="p">(</span>
+    <span class="n">SpyderActionMixin</span><span class="p">,</span>
+    <span class="n">SpyderMenuMixin</span><span class="p">,</span>
+    <span class="n">SpyderToolbarMixin</span><span class="p">,</span>
+    <span class="n">SpyderToolButtonMixin</span><span class="p">,</span>
+    <span class="n">SpyderShortcutsMixin</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic functionality for all Spyder widgets and Qt items.</span>
+
+<span class="sd">    This provides a simple management of widget options, as well as Qt helpers</span>
+<span class="sd">    for defining the actions a widget provides.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Plugin name identifier used to store actions, toolbars, toolbuttons</span>
+    <span class="c1"># and menus</span>
+    <span class="n">PLUGIN_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Context name used to store actions, toolbars, toolbuttons and menus</span>
+    <span class="n">CONTEXT_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CONF_SECTION&#39;</span><span class="p">,</span> <span class="s1">&#39;PLUGIN_NAME&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">class_parent</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+                    <span class="c1"># Inherit class_parent CONF_SECTION/PLUGIN_NAME value</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">class_parent</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SpyderWidgetMixin.create_icon">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.create_icon">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_icon</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an icon by name using the spyder Icon manager.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderWidgetMixin.update_style">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.update_style">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update stylesheet and style of the widget.</span>
+
+<span class="sd">        This method will be called recursively on all widgets on theme change.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SpyderWidgetMixin.update_translation">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.update_translation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update localization of the widget.</span>
+
+<span class="sd">        This method will be called recursively on all widgets on language</span>
+<span class="sd">        change.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SpyderMainWindowMixin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderMainWindowMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mixin with additional functionality for the QMainWindow&#39;s used in Spyder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_on_visible_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Detect if the window is placed on a visible screen.&quot;&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+        <span class="n">qapp</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+        <span class="n">current_screen</span> <span class="o">=</span> <span class="n">qapp</span><span class="o">.</span><span class="n">screenAt</span><span class="p">(</span><span class="n">QPoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">current_screen</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="SpyderMainWindowMixin.move_to_primary_screen">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin.move_to_primary_screen">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_to_primary_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the window to the primary screen if necessary.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_on_visible_screen</span><span class="p">():</span>
+            <span class="k">return</span>
+
+        <span class="n">qapp</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+        <span class="n">primary_screen_geometry</span> <span class="o">=</span> <span class="n">qapp</span><span class="o">.</span><span class="n">primaryScreen</span><span class="p">()</span><span class="o">.</span><span class="n">availableGeometry</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">primary_screen_geometry</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="n">primary_screen_geometry</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isMaximized</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">showNormal</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">QPoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+        <span class="c1"># With this we want to maximize only the Spyder main window and not the</span>
+        <span class="c1"># plugin ones, which usually are not maximized.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;is_window_widget&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SvgToScaledPixmap">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SvgToScaledPixmap">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SvgToScaledPixmap</span><span class="p">(</span><span class="n">SpyderConfigurationAccessor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mixin to transform an SVG to a QPixmap that is scaled according to the</span>
+<span class="sd">    factor set by users in Preferences.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SvgToScaledPixmap.svg_to_scaled_pixmap">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SvgToScaledPixmap.svg_to_scaled_pixmap">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">svg_to_scaled_pixmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">svg_file</span><span class="p">,</span> <span class="n">rescale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_package</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transform svg to a QPixmap that is scaled according to the factor set</span>
+<span class="sd">        by users in Preferences.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        svg_file: str</span>
+<span class="sd">            Name of or path to the svg file.</span>
+<span class="sd">        rescale: float, optional</span>
+<span class="sd">            Rescale pixmap according to a factor between 0 and 1.</span>
+<span class="sd">        in_package: bool, optional</span>
+<span class="sd">            Get svg from the `images` folder in the Spyder package.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">in_package</span><span class="p">:</span>
+            <span class="n">image_path</span> <span class="o">=</span> <span class="n">get_image_path</span><span class="p">(</span><span class="n">svg_file</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span><span class="s1">&#39;high_dpi_custom_scale_factor&#39;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">):</span>
+            <span class="n">scale_factors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span>
+                <span class="s1">&#39;high_dpi_custom_scale_factors&#39;</span><span class="p">,</span>
+                <span class="n">section</span><span class="o">=</span><span class="s1">&#39;main&#39;</span>
+            <span class="p">)</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">scale_factors</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># Get width and height</span>
+        <span class="n">pm</span> <span class="o">=</span> <span class="n">QPixmap</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">width</span><span class="p">()</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
+
+        <span class="c1"># Rescale but preserving aspect ratio</span>
+        <span class="k">if</span> <span class="n">rescale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">aspect_ratio</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="n">height</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">rescale</span><span class="p">)</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">aspect_ratio</span><span class="p">)</span>
+
+        <span class="c1"># Paint image using svg renderer</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span>
+            <span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span>
+        <span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">painter</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="n">QSvgRenderer</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">painter</span><span class="p">)</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+
+        <span class="c1"># This is also necessary to make the image look good for different</span>
+        <span class="c1"># scale factors</span>
+        <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">image</span><span class="o">.</span><span class="n">setDevicePixelRatio</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+
+        <span class="c1"># Create pixmap out of image</span>
+        <span class="n">final_pm</span> <span class="o">=</span> <span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">final_pm</span> <span class="o">=</span> <span class="n">final_pm</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">final_pm</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

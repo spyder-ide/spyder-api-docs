@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.api.widgets.menus &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/api/widgets/menus';</script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/api/widgets/menus.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.api.widgets.menus</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © Spyder Project Contributors</span>
+<span class="c1"># Licensed under the terms of the MIT License</span>
+<span class="c1"># (see spyder/__init__.py for details)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Spyder API menu widgets.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qstylizer.style</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QTimer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCursor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAction</span><span class="p">,</span> <span class="n">QMenu</span><span class="p">,</span> <span class="n">QProxyStyle</span><span class="p">,</span> <span class="n">QStyle</span><span class="p">,</span> <span class="n">QWidget</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.fonts</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderFontType</span><span class="p">,</span> <span class="n">SpyderFontsMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_actions</span><span class="p">,</span> <span class="n">set_menu_icons</span><span class="p">,</span> <span class="n">SpyderAction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.palette</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderPalette</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppStyle</span><span class="p">,</span> <span class="n">MAC</span><span class="p">,</span> <span class="n">WIN</span>
+
+
+<span class="c1"># ---- Constants</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="n">MENU_SEPARATOR</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="c1"># Generic type annotations</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;SpyderMenu&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OptionsMenuSections</span><span class="p">:</span>
+    <span class="n">Top</span> <span class="o">=</span> <span class="s1">&#39;top_section&#39;</span>
+    <span class="n">Bottom</span> <span class="o">=</span> <span class="s1">&#39;bottom_section&#39;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PluginMainWidgetMenus</span><span class="p">:</span>
+    <span class="n">Context</span> <span class="o">=</span> <span class="s1">&#39;context_menu&#39;</span>
+    <span class="n">Options</span> <span class="o">=</span> <span class="s1">&#39;options_menu&#39;</span>
+
+
+<span class="c1"># ---- Style</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderMenuProxyStyle">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenuProxyStyle">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderMenuProxyStyle</span><span class="p">(</span><span class="n">QProxyStyle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Style adjustments that can only be done with a proxy style.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpyderMenuProxyStyle.pixelMetric">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenuProxyStyle.pixelMetric">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pixelMetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">PM_SmallIconSize</span><span class="p">:</span>
+            <span class="c1"># Change icon size for menus.</span>
+            <span class="c1"># Taken from https://stackoverflow.com/a/42145885/438386</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">MAC</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">WIN</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="n">QProxyStyle</span><span class="o">.</span><span class="n">pixelMetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">widget</span><span class="p">)</span> <span class="o">+</span> <span class="n">delta</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">QProxyStyle</span><span class="o">.</span><span class="n">pixelMetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">widget</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># ---- Widgets</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderMenu">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpyderMenu</span><span class="p">(</span><span class="n">QMenu</span><span class="p">,</span> <span class="n">SpyderFontsMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A QMenu subclass to implement additional functionality for Spyder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">MENUS</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">APP_MENU</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">HORIZONTAL_MARGIN_FOR_ITEMS</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span>
+    <span class="n">HORIZONTAL_PADDING_FOR_ITEMS</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">menu_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reposition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a menu for Spyder.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent: QWidget or None</span>
+<span class="sd">            The menu&#39;s parent</span>
+<span class="sd">        menu_id: str</span>
+<span class="sd">            Unique str identifier for the menu.</span>
+<span class="sd">        title: str or None</span>
+<span class="sd">            Localized text string for the menu.</span>
+<span class="sd">        min_width: int or None</span>
+<span class="sd">            Minimum width for the menu.</span>
+<span class="sd">        reposition: bool, optional (default True)</span>
+<span class="sd">            Whether to vertically reposition the menu due to it&#39;s padding.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">menu_id</span> <span class="o">=</span> <span class="n">menu_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reposition</span> <span class="o">=</span> <span class="n">reposition</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unintroduced_actions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_after_sections</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_shown</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_submenu</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_app_menu</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">MENUS</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+
+        <span class="c1"># Set min width</span>
+        <span class="k">if</span> <span class="n">min_width</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setMinimumWidth</span><span class="p">(</span><span class="n">min_width</span><span class="p">)</span>
+
+        <span class="c1"># Signals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aboutToShow</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">)</span>
+
+        <span class="c1"># Adjustmens for Mac</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+            <span class="c1"># Needed to enable the dynamic population of actions in app menus</span>
+            <span class="c1"># in the aboutToShow signal.</span>
+            <span class="c1"># See spyder-ide/spyder#14612</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">APP_MENU</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">QAction</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+            <span class="c1"># Necessary to follow Mac&#39;s HIG for app menus.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aboutToShow</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_icons</span><span class="p">)</span>
+
+        <span class="c1"># Style</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">css</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_stylesheet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">css</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span>
+
+        <span class="n">style</span> <span class="o">=</span> <span class="n">SpyderMenuProxyStyle</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+
+    <span class="c1"># ---- Public API</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderMenu.clear_actions">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.clear_actions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove actions from the menu (including custom references)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unintroduced_actions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_after_sections</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+<div class="viewcode-block" id="SpyderMenu.add_action">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.add_action">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_action</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span>
+                   <span class="n">action</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SpyderAction</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span>
+                   <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">before</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">before_section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">check_before</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                   <span class="n">omit_id</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add action to a given menu section.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        action: SpyderAction</span>
+<span class="sd">            The action to add.</span>
+<span class="sd">        section: str or None</span>
+<span class="sd">            The section id in which to insert the `action`.</span>
+<span class="sd">        before: str</span>
+<span class="sd">            Make the action appear before the given action identifier.</span>
+<span class="sd">        before_section: str or None</span>
+<span class="sd">            Make the item section (if provided) appear before another</span>
+<span class="sd">            given section.</span>
+<span class="sd">        check_before: bool</span>
+<span class="sd">            Check if the `before` action is part of the menu. This is</span>
+<span class="sd">            necessary to avoid an infinite recursion when adding</span>
+<span class="sd">            unintroduced actions with this method again.</span>
+<span class="sd">        omit_id: bool</span>
+<span class="sd">            If True, then the menu will check if the item to add declares an</span>
+<span class="sd">            id, False otherwise. This flag exists only for items added on</span>
+<span class="sd">            Spyder 4 plugins. Default: False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">item_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">SpyderAction</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;action_id&#39;</span><span class="p">):</span>
+            <span class="n">item_id</span> <span class="o">=</span> <span class="n">action</span><span class="o">.</span><span class="n">action_id</span>
+
+            <span class="c1"># This is necessary when we set a menu for `action`, e.g. for</span>
+            <span class="c1"># todo_list_action in EditorMainWidget.</span>
+            <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">menu</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">menu</span><span class="p">(),</span> <span class="n">SpyderMenu</span><span class="p">):</span>
+                <span class="n">action</span><span class="o">.</span><span class="n">menu</span><span class="p">()</span><span class="o">.</span><span class="n">_is_submenu</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">SpyderMenu</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;menu_id&#39;</span><span class="p">):</span>
+            <span class="n">item_id</span> <span class="o">=</span> <span class="n">action</span><span class="o">.</span><span class="n">menu_id</span>
+            <span class="n">action</span><span class="o">.</span><span class="n">_is_submenu</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">omit_id</span> <span class="ow">and</span> <span class="n">item_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">action</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Item </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s1"> must declare an id.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">before</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">section</span><span class="p">,</span> <span class="n">action</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_actions</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">added</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">before_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">sec</span><span class="p">,</span> <span class="n">act</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">before_item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">act</span> <span class="o">==</span> <span class="n">before_item</span><span class="p">:</span>
+                    <span class="n">added</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">new_actions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">section</span><span class="p">,</span> <span class="n">action</span><span class="p">))</span>
+
+                <span class="n">new_actions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sec</span><span class="p">,</span> <span class="n">act</span><span class="p">))</span>
+
+            <span class="c1"># Actions can&#39;t be added to the menu if the `before` action is</span>
+            <span class="c1"># not part of it yet. That&#39;s why we need to save them in the</span>
+            <span class="c1"># `_unintroduced_actions` dict, so we can add them again when</span>
+            <span class="c1"># the menu is rendered.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">added</span> <span class="ow">and</span> <span class="n">check_before</span><span class="p">:</span>
+                <span class="n">before_actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unintroduced_actions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="n">before_actions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">section</span><span class="p">,</span> <span class="n">action</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_unintroduced_actions</span><span class="p">[</span><span class="n">before</span><span class="p">]</span> <span class="o">=</span> <span class="n">before_actions</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="n">new_actions</span>
+
+        <span class="k">if</span> <span class="n">section</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_section</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">before_section</span><span class="p">)</span>
+
+        <span class="c1"># Track state of menu to avoid re-rendering if menu has not changed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions_map</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">action</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions_map</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions_map</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">item_id</span><span class="p">)</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">act</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">act</span> <span class="o">==</span> <span class="n">action</span><span class="p">:</span>
+                    <span class="n">position</span> <span class="o">=</span> <span class="n">i</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">position</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="SpyderMenu.get_title">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.get_title">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the title for menu.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_title</span></div>
+
+
+<div class="viewcode-block" id="SpyderMenu.get_actions">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.get_actions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a parsed list of menu actions.</span>
+
+<span class="sd">        Includes MENU_SEPARATOR taking into account the sections defined.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sec</span> <span class="o">==</span> <span class="n">section</span><span class="p">:</span>
+                    <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+            <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MENU_SEPARATOR</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">actions</span></div>
+
+
+<div class="viewcode-block" id="SpyderMenu.get_sections">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.get_sections">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a tuple of menu sections.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ---- Private API</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_missing_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add actions that were not introduced to the menu because a `before`</span>
+<span class="sd">        action they require is not part of it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">before</span><span class="p">,</span> <span class="n">actions</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unintroduced_actions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">section</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span>
+                    <span class="n">action</span><span class="p">,</span>
+                    <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                    <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
+                    <span class="n">check_before</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unintroduced_actions</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="SpyderMenu.render">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.render">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create the menu prior to showing it. This takes into account sections</span>
+<span class="sd">        and location of menus.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        force: bool, optional</span>
+<span class="sd">            Whether to force rendering the menu.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span> <span class="ow">or</span> <span class="n">force</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_missing_actions</span><span class="p">()</span>
+
+            <span class="n">actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_actions</span><span class="p">()</span>
+            <span class="n">add_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_icons</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">before_section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a new section to the list of sections in this menu.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        before_section: str or None</span>
+<span class="sd">            Make `section` appear before another one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">inserted_before_other</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">before_section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">before_section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+                <span class="c1"># If before_section was already introduced, we simply need to</span>
+                <span class="c1"># insert the new section on its position, which will put it</span>
+                <span class="c1"># exactly behind before_section.</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">before_section</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">section</span><span class="p">)</span>
+                <span class="n">inserted_before_other</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If before_section hasn&#39;t been introduced yet, we know we need</span>
+                <span class="c1"># to insert it after section when it&#39;s finally added to the</span>
+                <span class="c1"># menu. So, we preserve that info in the _after_sections dict.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_after_sections</span><span class="p">[</span><span class="n">before_section</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span>
+
+                <span class="c1"># Append section to the list of sections because we assume</span>
+                <span class="c1"># people build menus from top to bottom, i.e. they add its</span>
+                <span class="c1"># upper sections first.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+
+        <span class="c1"># Check if section should be inserted after another one, according to</span>
+        <span class="c1"># what we have in _after_sections.</span>
+        <span class="n">after_section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_after_sections</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">after_section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">inserted_before_other</span><span class="p">:</span>
+                <span class="c1"># Insert section to the right of after_section, if it was not</span>
+                <span class="c1"># inserted before another one.</span>
+                <span class="k">if</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+
+                <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">after_section</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">section</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If section was already inserted before another one, then we</span>
+                <span class="c1"># need to move after_section to its left instead.</span>
+                <span class="k">if</span> <span class="n">after_section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">after_section</span><span class="p">)</span>
+
+                <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">after_section</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_icons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unset menu icons for app menus and set them for regular menus.</span>
+
+<span class="sd">        This is necessary only for Mac to follow its Human Interface</span>
+<span class="sd">        Guidelines (HIG), which don&#39;t recommend icons in app menus.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">APP_MENU</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_app_menu</span><span class="p">:</span>
+                <span class="n">set_menu_icons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">in_app_menu</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">set_menu_icons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_stylesheet</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate base stylesheet for menus.&quot;&quot;&quot;</span>
+        <span class="n">css</span> <span class="o">=</span> <span class="n">qstylizer</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">StyleSheet</span><span class="p">()</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_font</span><span class="p">(</span><span class="n">SpyderFontType</span><span class="o">.</span><span class="n">Interface</span><span class="p">)</span>
+
+        <span class="c1"># Add padding and border to follow modern standards</span>
+        <span class="n">css</span><span class="o">.</span><span class="n">QMenu</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
+            <span class="c1"># Only add top and bottom padding so that menu separators can go</span>
+            <span class="c1"># completely from the left to right border.</span>
+            <span class="n">paddingTop</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">paddingBottom</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="c1"># This uses the same color as the separator</span>
+            <span class="n">border</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;1px solid </span><span class="si">{</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_6</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Set the right background color. This is the only way to do it!</span>
+        <span class="n">css</span><span class="p">[</span><span class="s1">&#39;QWidget:disabled QMenu&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
+            <span class="n">backgroundColor</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_3</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Add padding around separators to prevent that hovering on items hides</span>
+        <span class="c1"># them.</span>
+        <span class="n">css</span><span class="p">[</span><span class="s2">&quot;QMenu::separator&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
+            <span class="c1"># Only add top and bottom margins so that the separators can go</span>
+            <span class="c1"># completely from the left to right border.</span>
+            <span class="n">margin</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s1">px 0px&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Set menu item properties</span>
+        <span class="n">delta_top</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="p">(</span><span class="n">MAC</span> <span class="ow">or</span> <span class="n">WIN</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">delta_bottom</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">MAC</span> <span class="k">else</span> <span class="p">(</span><span class="mi">2</span> <span class="k">if</span> <span class="n">WIN</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">css</span><span class="p">[</span><span class="s2">&quot;QMenu::item&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
+            <span class="n">height</span><span class="o">=</span><span class="s1">&#39;1.1em&#39;</span> <span class="k">if</span> <span class="n">MAC</span> <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;1.35em&#39;</span> <span class="k">if</span> <span class="n">WIN</span> <span class="k">else</span> <span class="s1">&#39;1.25em&#39;</span><span class="p">),</span>
+            <span class="n">marginLeft</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">HORIZONTAL_MARGIN_FOR_ITEMS</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">marginRight</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">HORIZONTAL_MARGIN_FOR_ITEMS</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">paddingTop</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_top</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">paddingBottom</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_bottom</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">paddingLeft</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">HORIZONTAL_PADDING_FOR_ITEMS</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">paddingRight</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">HORIZONTAL_PADDING_FOR_ITEMS</span><span class="si">}</span><span class="s1">px&#39;</span><span class="p">,</span>
+            <span class="n">fontFamily</span><span class="o">=</span><span class="n">font</span><span class="o">.</span><span class="n">family</span><span class="p">(),</span>
+            <span class="n">fontSize</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">font</span><span class="o">.</span><span class="n">pointSize</span><span class="p">()</span><span class="si">}</span><span class="s1">pt&#39;</span><span class="p">,</span>
+            <span class="n">backgroundColor</span><span class="o">=</span><span class="s1">&#39;transparent&#39;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Set hover and pressed state of items</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="s1">&#39;pressed&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s1">&#39;selected&#39;</span><span class="p">:</span>
+                <span class="n">bg_color</span> <span class="o">=</span> <span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_4</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">bg_color</span> <span class="o">=</span> <span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_5</span>
+
+            <span class="n">css</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;QMenu::item:</span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
+                <span class="n">backgroundColor</span><span class="o">=</span><span class="n">bg_color</span><span class="p">,</span>
+                <span class="n">borderRadius</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">SIZE_BORDER_RADIUS</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Set disabled state of items</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="s1">&#39;selected:disabled&#39;</span><span class="p">]:</span>
+            <span class="n">css</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;QMenu::item:</span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_DISABLED</span><span class="p">,</span>
+                <span class="n">backgroundColor</span><span class="o">=</span><span class="s2">&quot;transparent&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">css</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;SpyderMenu(&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">menu_id</span><span class="si">}</span><span class="s2">&#39;)&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;SpyderMenu(&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">menu_id</span><span class="si">}</span><span class="s2">&#39;)&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_adjust_menu_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Menu position adjustment logic to follow custom style.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_shown</span><span class="p">:</span>
+            <span class="c1"># Reposition submenus vertically due to padding and border</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reposition</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_submenu</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span>
+                    <span class="c1"># Current vertical pos - padding - border</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_shown</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Reposition menus horizontally due to border</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">APP_MENU</span><span class="p">:</span>
+            <span class="n">delta_x</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">MAC</span> <span class="k">else</span> <span class="mi">3</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">QCursor</span><span class="p">()</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">:</span>
+                <span class="c1"># If the difference between the current cursor x position and</span>
+                <span class="c1"># the menu one is small, it means the menu will be shown to the</span>
+                <span class="c1"># right, so we need to move it in that direction.</span>
+                <span class="n">delta_x</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># This happens when the menu is shown to the left.</span>
+                <span class="n">delta_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">delta_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">())</span>
+
+    <span class="c1"># ---- Qt methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderMenu.showEvent">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.SpyderMenu.showEvent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">showEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call adjustments when the menu is going to be shown.&quot;&quot;&quot;</span>
+        <span class="c1"># To prevent race conditions which can cause partially showing a menu</span>
+        <span class="c1"># (as in spyder-ide/spyder#22266), we use a timer to queue the move</span>
+        <span class="c1"># related events after the menu is shown.</span>
+        <span class="c1"># For more info you can check:</span>
+        <span class="c1">#  * https://forum.qt.io/topic/23381/showevent-not-working/3</span>
+        <span class="c1">#  * https://stackoverflow.com/a/49351518</span>
+        <span class="n">QTimer</span><span class="o">.</span><span class="n">singleShot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adjust_menu_position</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PluginMainWidgetOptionsMenu">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.PluginMainWidgetOptionsMenu">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PluginMainWidgetOptionsMenu</span><span class="p">(</span><span class="n">SpyderMenu</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Options menu for PluginMainWidget.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PluginMainWidgetOptionsMenu.render">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.menus.html#spyder.api.widgets.menus.PluginMainWidgetOptionsMenu.render">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render the menu&#39;s bottom section as expected.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_missing_actions</span><span class="p">()</span>
+
+            <span class="n">bottom</span> <span class="o">=</span> <span class="n">OptionsMenuSections</span><span class="o">.</span><span class="n">Bottom</span>
+            <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">sec</span> <span class="o">==</span> <span class="n">section</span> <span class="ow">and</span> <span class="n">sec</span> <span class="o">!=</span> <span class="n">bottom</span><span class="p">:</span>
+                        <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+                <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MENU_SEPARATOR</span><span class="p">)</span>
+
+            <span class="c1"># Add bottom actions</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sec</span> <span class="o">==</span> <span class="n">bottom</span><span class="p">:</span>
+                    <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+            <span class="n">add_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_icons</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dirty</span> <span class="o">=</span> <span class="kc">False</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

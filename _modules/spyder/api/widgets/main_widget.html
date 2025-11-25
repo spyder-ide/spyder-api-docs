@@ -1,0 +1,1805 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spyder.api.widgets.main_widget &#8212; Spyder Developer Docs 6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=47b62374"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/spyder/api/widgets/main_widget';</script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/spyder_logo.svg" class="logo__image only-light" alt="Spyder Developer Docs 6 documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/spyder_logo.svg" class="logo__image only-dark" alt="Spyder Developer Docs 6 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Spyder's terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../codebase_orientation.html">Codebase Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api_elements.html">API Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../qt_introduction.html">Qt Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_cookiecutter.html">Cookiecutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_tutorial_1.html">The first plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plugin_development.html">Plugin Development with Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common_extension_points.html">Extending Spyder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../reference.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.html">spyder.api</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.asyncdispatcher.html">spyder.api.asyncdispatcher</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.html">spyder.api.config</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.decorators.html">spyder.api.config.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.decorators.html">spyder.api.plugin_registration.decorators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html">spyder.api.plugin_registration.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html">spyder.api.shellconnect.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.status.html">spyder.api.shellconnect.status</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.shortcuts.html">spyder.api.shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.translations.html">spyder.api.translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.utils.html">spyder.api.utils</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.html">spyder.api.widgets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html">spyder.api.widgets.auxiliary_widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html">spyder.api.widgets.comboboxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.dialogs.html">spyder.api.widgets.dialogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_container.html">spyder.api.widgets.main_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.main_widget.html">spyder.api.widgets.main_widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.menus.html">spyder.api.widgets.menus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.mixins.html">spyder.api.widgets.mixins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.status.html">spyder.api.widgets.status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.widgets.toolbars.html">spyder.api.widgets.toolbars</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/spyder-ide/spyder-api-docs/issues/new?title=Issue%20on%20page%20%2F_modules/spyder/api/widgets/main_widget.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for spyder.api.widgets.main_widget</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © Spyder Project Contributors</span>
+<span class="c1"># Licensed under the terms of the MIT License</span>
+<span class="c1"># (see spyder/__init__.py for details)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main plugin widget.</span>
+
+<span class="sd">SpyderDockablePlugin plugins must provide a WIDGET_CLASS attribute that is a</span>
+<span class="sd">subclass of PluginMainWidget.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">PYSIDE2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QByteArray</span><span class="p">,</span> <span class="n">QSize</span><span class="p">,</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Slot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QFocusEvent</span><span class="p">,</span> <span class="n">QIcon</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QApplication</span><span class="p">,</span>
+    <span class="n">QHBoxLayout</span><span class="p">,</span>
+    <span class="n">QSizePolicy</span><span class="p">,</span>
+    <span class="n">QStackedWidget</span><span class="p">,</span>
+    <span class="n">QToolButton</span><span class="p">,</span>
+    <span class="n">QVBoxLayout</span><span class="p">,</span>
+    <span class="n">QWidget</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderAPIError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.translations</span><span class="w"> </span><span class="kn">import</span> <span class="n">_</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginMainWidgetActions</span><span class="p">,</span> <span class="n">PluginMainWidgetWidgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.auxiliary_widgets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">MainCornerWidget</span><span class="p">,</span>
+                                                  <span class="n">SpyderWindowWidget</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.menus</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PluginMainWidgetOptionsMenu</span><span class="p">,</span>
+    <span class="n">OptionsMenuSections</span><span class="p">,</span>
+    <span class="n">PluginMainWidgetMenus</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderWidgetMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.toolbars</span><span class="w"> </span><span class="kn">import</span> <span class="n">MainWidgetToolbar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_waitspinner</span><span class="p">,</span> <span class="n">qbytearray_to_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.registries</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACTION_REGISTRY</span><span class="p">,</span> <span class="n">TOOLBAR_REGISTRY</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AppStyle</span><span class="p">,</span> <span class="n">APP_STYLESHEET</span><span class="p">,</span> <span class="n">PANES_TABBAR_STYLESHEET</span><span class="p">,</span>
+    <span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.widgets.dock</span><span class="w"> </span><span class="kn">import</span> <span class="n">DockTitleBar</span><span class="p">,</span> <span class="n">SpyderDockWidget</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.widgets.emptymessage</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmptyMessageWidget</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.widgets.tabs</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tabs</span>
+
+
+<span class="c1"># Logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PluginMainWidget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PluginMainWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">SpyderWidgetMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Spyder plugin main widget class.</span>
+
+<span class="sd">    This class handles both a dockwidget pane and a floating window widget</span>
+<span class="sd">    (undocked pane).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    All Spyder dockable plugins define a main widget that must subclass this.</span>
+
+<span class="sd">    This widget is a subclass of QMainWindow that consists of a single,</span>
+<span class="sd">    central widget and a set of toolbars that are stacked above or below</span>
+<span class="sd">    that widget.</span>
+
+<span class="sd">    The toolbars are not moveable nor floatable and must occupy the entire</span>
+<span class="sd">    horizontal space available for the plugin. This mean that toolbars must be</span>
+<span class="sd">    stacked vertically and cannot be placed horizontally next to each other.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---- Attributes</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="n">ENABLE_SPINNER</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This attribute enables/disables showing a spinner on the top right to the</span>
+<span class="sd">    left of the corner menu widget (Hamburguer menu).</span>
+
+<span class="sd">    Plugins that provide actions that take time should make this `True` and</span>
+<span class="sd">    use accordingly with the `start_spinner`/`stop_spinner` methods.</span>
+
+<span class="sd">    The Find in files plugin is an example of a core plugin that uses it.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ENABLE_SPINNER: bool</span>
+<span class="sd">        If `True` an extra space will be added to the toolbar (even if the</span>
+<span class="sd">        spinner is not moving) to avoid items jumping to the left/right when</span>
+<span class="sd">        the spinner appears. If `False` no extra space will be added. Default</span>
+<span class="sd">        is False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONTEXT_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This optional attribute defines the context name under which actions,</span>
+<span class="sd">    toolbars, toolbuttons and menus should be registered on the</span>
+<span class="sd">    Spyder global registry.</span>
+
+<span class="sd">    If actions, toolbars, toolbuttons or menus belong to the global scope of</span>
+<span class="sd">    the plugin, then this attribute should have a `None` value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">MARGIN_TOP</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use this attribute to adjust the widget&#39;s top margin in pixels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SHOW_MESSAGE_WHEN_EMPTY</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This attribute enables/disables showing a message when the widget is empty.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - If True, at least you need to set the MESSAGE_WHEN_EMPTY attribute as</span>
+<span class="sd">      well.</span>
+<span class="sd">    - The Find in files plugin is an example of a core plugin that uses it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">MESSAGE_WHEN_EMPTY</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the main message that will be shown when the widget is empty.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - This must be a string</span>
+<span class="sd">    - The Find in files plugin is an example of a core plugin that uses it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">IMAGE_WHEN_EMPTY</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Name of or path to the svg image to show when the widget is empty</span>
+<span class="sd">    (optional).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - This needs to be an svg file so that it can be rendered correctly in high</span>
+<span class="sd">      resolution screens.</span>
+<span class="sd">    - The Find in files plugin is an example of a core plugin that uses it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DESCRIPTION_WHEN_EMPTY</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the description (i.e. additional text) that will be shown when the</span>
+<span class="sd">    widget is empty (optional).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - This must be a string.</span>
+<span class="sd">    - The Find in files plugin is an example of a core plugin that uses this.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SET_LAYOUT_WHEN_EMPTY</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Whether to automatically set a vertical layout for the stacked widget that</span>
+<span class="sd">    holds the empty message widget and the content one.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - You need to set this to False if you need to set a more complex layout in</span>
+<span class="sd">      your widget.</span>
+<span class="sd">    - The Debugger plugin is an example of a core plugin that uses this.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---- Signals</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="n">sig_free_memory_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to garbage</span>
+<span class="sd">    collect deleted objects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_quit_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to quit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_restart_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to restart.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_redirect_stdio_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to request the main application to redirect</span>
+<span class="sd">    standard output/error when using Open/Save/Browse dialogs within widgets.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    enable: bool</span>
+<span class="sd">        Enable/Disable standard input/output redirection.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_exception_occurred</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal can be emitted to report an exception handled by this widget.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    # --- Optional overridable methods</span>
+<span class="sd">    error_data: dict</span>
+<span class="sd">        The dictionary containing error data. The expected keys are:</span>
+<span class="sd">        &gt;&gt;&gt; error_data= {</span>
+<span class="sd">            &quot;text&quot;: str,</span>
+<span class="sd">            &quot;is_traceback&quot;: bool,</span>
+<span class="sd">            &quot;repo&quot;: str,</span>
+<span class="sd">            &quot;title&quot;: str,</span>
+<span class="sd">            &quot;label&quot;: str,</span>
+<span class="sd">            &quot;steps&quot;: str,</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The `is_traceback` key indicates if `text` contains plain text or a</span>
+<span class="sd">    Python error traceback.</span>
+
+<span class="sd">    The `title` and `repo` keys indicate how the error data should</span>
+<span class="sd">    customize the report dialog and Github error submission.</span>
+
+<span class="sd">    The `label` and `steps` keys allow customizing the content of the</span>
+<span class="sd">    error dialog.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_toggle_view_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the visibility of a dockable plugin</span>
+<span class="sd">    has changed.</span>
+
+<span class="sd">    This is triggered by checking/unchecking the entry for a pane in the</span>
+<span class="sd">    `Window &gt; Panes` menu.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    visible: bool</span>
+<span class="sd">        New visibility of the dockwidget.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_update_ancestor_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the main window that a child widget</span>
+<span class="sd">    needs its ancestor to be updated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_unmaximize_plugin_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">((),</span> <span class="p">(</span><span class="nb">object</span><span class="p">,))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the main window that it needs to</span>
+<span class="sd">    unmaximize the currently maximized plugin, if any.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    plugin_instance: SpyderDockablePlugin</span>
+<span class="sd">        Unmaximize plugin only if it is not `plugin_instance`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_focus_status_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This signal is emitted to inform the focus status of the widget.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    status: bool</span>
+<span class="sd">        True if the widget is focused. False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">PYSIDE2</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">class_parent</span><span class="o">=</span><span class="n">plugin</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">QWidget</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+            <span class="n">SpyderWidgetMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_parent</span><span class="o">=</span><span class="n">plugin</span><span class="p">)</span>
+
+        <span class="c1"># Attributes</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_tab</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="o">=</span> <span class="n">plugin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default_margins</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_visible</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dock_action</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">undock_action</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_action</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_already_rendered</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_maximized</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Attribute used to access the action, toolbar, toolbutton and menu</span>
+        <span class="c1"># registries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="o">=</span> <span class="n">name</span>
+
+        <span class="c1"># We create our toggle action instead of using the one that comes with</span>
+        <span class="c1"># dockwidget because it was not possible to raise and focus the plugin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toggle_view_action</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auxiliary_toolbars</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+
+        <span class="c1"># Widgets</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_icon</span> <span class="o">=</span> <span class="n">QIcon</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_spinner</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pane_empty</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_SPINNER</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_spinner</span> <span class="o">=</span> <span class="n">create_waitspinner</span><span class="p">(</span>
+                <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">PluginMainWidgetWidgets</span><span class="o">.</span><span class="n">Spinner</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span> <span class="o">=</span> <span class="n">MainCornerWidget</span><span class="p">(</span>
+            <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">PluginMainWidgetWidgets</span><span class="o">.</span><span class="n">CornerWidget</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="s1">&#39;main_corner&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span> <span class="o">=</span> <span class="n">MainWidgetToolbar</span><span class="p">(</span>
+            <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Main widget toolbar&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="s1">&#39;main_toolbar&#39;</span>
+
+        <span class="n">TOOLBAR_REGISTRY</span><span class="o">.</span><span class="n">register_reference</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span> <span class="o">=</span> <span class="n">MainWidgetToolbar</span><span class="p">(</span>
+            <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Main widget corner toolbar&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="s1">&#39;corner_toolbar&#39;</span>
+
+        <span class="n">TOOLBAR_REGISTRY</span><span class="o">.</span><span class="n">register_reference</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">,</span>
+                                           <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options_menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_menu</span><span class="p">(</span>
+            <span class="n">PluginMainWidgetMenus</span><span class="o">.</span><span class="n">Options</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Options menu&#39;</span><span class="p">),</span>
+            <span class="n">MenuClass</span><span class="o">=</span><span class="n">PluginMainWidgetOptionsMenu</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Margins</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="c1"># These margins are necessary to give some space between the widgets</span>
+        <span class="c1"># inside this one and the window separator and borders.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_margin_right</span> <span class="o">=</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_margin_bottom</span> <span class="o">=</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span><span class="s1">&#39;vertical_tabs&#39;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_margin_left</span> <span class="o">=</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_margin_left</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Layout</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_margin_left</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_margin_right</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Add inititals layouts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_layout</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Create a stacked layout when the widget displays an empty message</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">SHOW_MESSAGE_WHEN_EMPTY</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span>
+            <span class="s2">&quot;show_message_when_panes_are_empty&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;main&quot;</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">MESSAGE_WHEN_EMPTY</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s2">&quot;You need to provide a message to show when the widget is &quot;</span>
+                    <span class="s2">&quot;empty&quot;</span>
+                <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pane_empty</span> <span class="o">=</span> <span class="n">EmptyMessageWidget</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">IMAGE_WHEN_EMPTY</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MESSAGE_WHEN_EMPTY</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">DESCRIPTION_WHEN_EMPTY</span><span class="p">,</span>
+                <span class="n">adjust_on_resize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span> <span class="o">=</span> <span class="n">QStackedWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pane_empty</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">SET_LAYOUT_WHEN_EMPTY</span><span class="p">:</span>
+                <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+                <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+    <span class="c1"># ---- Private Methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setup default actions, create options menu, and connect signals.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Tabs</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">findChildren</span><span class="p">(</span><span class="n">Tabs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">children</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_tab</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="c1"># For widgets that use tabs, we add the corner widget using</span>
+                <span class="c1"># the setCornerWidget method.</span>
+                <span class="n">child</span><span class="o">.</span><span class="n">setCornerWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">PANES_TABBAR_STYLESHEET</span><span class="p">))</span>
+                <span class="k">break</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_toolbutton</span><span class="p">(</span>
+            <span class="n">PluginMainWidgetWidgets</span><span class="o">.</span><span class="n">OptionsToolButton</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Options&#39;</span><span class="p">),</span>
+            <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;tooloptions&#39;</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_corner_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options_button</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_SPINNER</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_corner_widget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_spinner</span><span class="p">)</span>
+
+        <span class="c1"># Widget setup</span>
+        <span class="c1"># --------------------------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_tab</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_tab</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options_button</span><span class="o">.</span><span class="n">setPopupMode</span><span class="p">(</span><span class="n">QToolButton</span><span class="o">.</span><span class="n">InstantPopup</span><span class="p">)</span>
+
+        <span class="c1"># Create default widget actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dock_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">PluginMainWidgetActions</span><span class="o">.</span><span class="n">DockPane</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Dock&quot;</span><span class="p">),</span>
+            <span class="n">tip</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Dock the pane&quot;</span><span class="p">),</span>
+            <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;dock&#39;</span><span class="p">),</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dock_window</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">PluginMainWidgetActions</span><span class="o">.</span><span class="n">LockUnlockPosition</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Move&quot;</span><span class="p">),</span>
+            <span class="n">tip</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Unlock to move pane to another position&quot;</span><span class="p">),</span>
+            <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;drag_dock_widget&#39;</span><span class="p">),</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_position</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">undock_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">PluginMainWidgetActions</span><span class="o">.</span><span class="n">UndockPane</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Undock&quot;</span><span class="p">),</span>
+            <span class="n">tip</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Undock the pane&quot;</span><span class="p">),</span>
+            <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;undock&#39;</span><span class="p">),</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_window</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">PluginMainWidgetActions</span><span class="o">.</span><span class="n">ClosePane</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Close&quot;</span><span class="p">),</span>
+            <span class="n">tip</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Close the pane&quot;</span><span class="p">),</span>
+            <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;close_pane&#39;</span><span class="p">),</span>
+            <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_dock</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># We use this instead of the QDockWidget.toggleViewAction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toggle_view_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;switch to &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_title</span><span class="p">(),</span>
+            <span class="n">toggled</span><span class="o">=</span><span class="k">lambda</span> <span class="n">checked</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggle_view</span><span class="p">(</span><span class="n">checked</span><span class="p">),</span>
+            <span class="n">context</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">WidgetWithChildrenShortcut</span><span class="p">,</span>
+            <span class="n">shortcut_context</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">undock_action</span><span class="p">,</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">dock_action</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">close_action</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_item_to_menu</span><span class="p">(</span>
+                <span class="n">item</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_options_menu</span><span class="p">,</span>
+                <span class="n">section</span><span class="o">=</span><span class="n">OptionsMenuSections</span><span class="o">.</span><span class="n">Bottom</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options_button</span><span class="o">.</span><span class="n">setMenu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options_menu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options_menu</span><span class="o">.</span><span class="n">aboutToShow</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_actions</span><span class="p">)</span>
+
+        <span class="c1"># For widgets that do not use tabs, we add the corner widget to the</span>
+        <span class="c1"># corner toolbar</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_tab</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_item_to_toolbar</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="p">,</span>
+                <span class="n">toolbar</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="p">,</span>
+                <span class="n">section</span><span class="o">=</span><span class="s2">&quot;corner&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">))</span>
+
+        <span class="c1"># Update title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_title</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Refresh Options menu.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">show_dock_actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">undock_action</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="n">show_dock_actions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="n">show_dock_actions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dock_action</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="ow">not</span> <span class="n">show_dock_actions</span><span class="p">)</span>
+
+        <span class="c1"># Widget setup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_actions</span><span class="p">()</span>
+
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_top_level_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_level</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actions to perform when a plugin is undocked to be moved.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">undock_action</span><span class="o">.</span><span class="n">setDisabled</span><span class="p">(</span><span class="n">top_level</span><span class="p">)</span>
+
+        <span class="c1"># Change the cursor shape when dragging</span>
+        <span class="k">if</span> <span class="n">top_level</span><span class="p">:</span>
+            <span class="n">QApplication</span><span class="o">.</span><span class="n">setOverrideCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">ClosedHandCursor</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">QApplication</span><span class="o">.</span><span class="n">restoreOverrideCursor</span><span class="p">()</span>
+
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_title_bar_shown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visible</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actions to perform when the title bar is shown/hidden.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">visible</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Lock&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;lock_open&#39;</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;setToolTip&#39;</span><span class="p">,</span> <span class="s1">&#39;setStatusTip&#39;</span><span class="p">]:</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
+                <span class="n">method</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Lock pane to the current position&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Move&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">create_icon</span><span class="p">(</span><span class="s1">&#39;drag_dock_widget&#39;</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;setToolTip&#39;</span><span class="p">,</span> <span class="s1">&#39;setStatusTip&#39;</span><span class="p">]:</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lock_unlock_action</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
+                <span class="n">method</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Unlock to move pane to another position&quot;</span><span class="p">))</span>
+
+    <span class="c1"># ---- Public Qt overriden methods</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="PluginMainWidget.setLayout">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.setLayout">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set layout of the main widget of this plugin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_main_layout</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_margin_left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MARGIN_TOP</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_margin_right</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_margin_bottom</span>
+        <span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.closeEvent">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.closeEvent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_close</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.focusInEvent">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">focusInEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QFocusEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sig_focus_status_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_focus_in</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">focusInEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.focusOutEvent">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.focusOutEvent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">focusOutEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QFocusEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sig_focus_status_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_focus_out</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">focusOutEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ---- Public methods to use</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="PluginMainWidget.get_plugin">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the parent plugin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_action">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_action">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return action by name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
+
+        <span class="k">return</span> <span class="n">ACTION_REGISTRY</span><span class="o">.</span><span class="n">get_reference</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.add_corner_widget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.add_corner_widget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_corner_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_or_widget</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add widget to corner, that is to the left of the last added widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        action_or_widget: QAction or QWidget</span>
+<span class="sd">            Any action or widget to add to the corner widget.</span>
+<span class="sd">        before: QAction or QWidget</span>
+<span class="sd">            Insert action_or_widget before this one.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        By default widgets are added to the left of the last corner widget.</span>
+
+<span class="sd">        The central widget provides an options menu button and a spinner so any</span>
+<span class="sd">        additional widgets will be placed by default to the left of the</span>
+<span class="sd">        spinner, if visible.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_corner_widget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_corner_widget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_corner_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the a widget inside the corner widget by name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Unique name of the widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_corner_widget</span><span class="o">.</span><span class="n">get_widget</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.start_spinner">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.start_spinner">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_spinner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start default status spinner.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_SPINNER</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_spinner</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.stop_spinner">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.stop_spinner">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_spinner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop default status spinner.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_SPINNER</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_spinner</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.create_toolbar">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.create_toolbar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_toolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolbar_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create and add an auxiliary toolbar to the top of the plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        toolbar_id: str</span>
+<span class="sd">            Unique toolbar string identifier.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        SpyderPluginToolbar</span>
+<span class="sd">            The auxiliary toolbar that was created and added to the plugin</span>
+<span class="sd">            interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">toolbar</span> <span class="o">=</span> <span class="n">MainWidgetToolbar</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">toolbar</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">toolbar_id</span>
+
+        <span class="n">TOOLBAR_REGISTRY</span><span class="o">.</span><span class="n">register_reference</span><span class="p">(</span>
+            <span class="n">toolbar</span><span class="p">,</span> <span class="n">toolbar_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auxiliary_toolbars</span><span class="p">[</span><span class="n">toolbar_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">toolbar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolbars_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">toolbar</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">toolbar</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_options_menu">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_options_menu">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_options_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the main options menu of the widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options_menu</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_options_menu_button">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_options_menu_button">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_options_menu_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the main options menu button of the widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options_button</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_main_toolbar">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_main_toolbar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_main_toolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the main toolbar of the plugin.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QToolBar</span>
+<span class="sd">            The main toolbar of the widget that contains the options button.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_auxiliary_toolbars">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_auxiliary_toolbars">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_auxiliary_toolbars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the auxiliary toolbars of the plugin.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        OrderedDict</span>
+<span class="sd">            A dictionary of wirh toolbar IDs as keys and auxiliary toolbars as</span>
+<span class="sd">            values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auxiliary_toolbars</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.set_icon_size">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_icon_size">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_icon_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon_size</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the icon size of the plugin&#39;s toolbars.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        iconsize: int</span>
+<span class="sd">            An integer corresponding to the size in pixels to which the icons</span>
+<span class="sd">            of the plugin&#39;s toolbars need to be set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_icon_size</span> <span class="o">=</span> <span class="n">icon_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="o">.</span><span class="n">set_icon_size</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="n">icon_size</span><span class="p">,</span> <span class="n">icon_size</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.show_status_message">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.show_status_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_status_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show a status message in the Spyder widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">status_bar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">statusBar</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">status_bar</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
+            <span class="n">status_bar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_focus_widget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_focus_widget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_focus_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the widget to give focus to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QWidget</span>
+<span class="sd">            QWidget to give focus to.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This is applied when the plugin&#39;s dockwidget is raised to the top.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.update_margins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.update_margins">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_margins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update central widget margins.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_margins</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_default_margins</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">getContentsMargins</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">margin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="n">margin</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="n">margin</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_margins</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.update_title">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.update_title">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update title of dockwidget or plugin window.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">undocked_window</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">widget</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_title</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.set_name">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set widget name (plugin.NAME).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_name">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return widget name (plugin.NAME).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.set_icon">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_icon">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set widget icon.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_icon</span> <span class="o">=</span> <span class="n">icon</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_icon">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_icon">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return widget icon.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_icon</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.render_toolbars">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.render_toolbars">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_toolbars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Render all the toolbars of the widget.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This action can only be performed once.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if not self._toolbars_already_rendered:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_toolbar</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_corner_toolbar</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">__</span><span class="p">,</span> <span class="n">toolbar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auxiliary_toolbars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">toolbar</span><span class="o">.</span><span class="n">render</span><span class="p">()</span></div>
+
+
+            <span class="c1"># self._toolbars_already_rendered = True</span>
+
+    <span class="c1"># ---- For widgets with an empty message</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="PluginMainWidget.set_content_widget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_content_widget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_content_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">add_to_stack</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the widget that actually displays content when there is an empty</span>
+<span class="sd">        message.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget: QWidget</span>
+<span class="sd">            Widget to set as the widget with content.</span>
+<span class="sd">        add_to_stack: bool</span>
+<span class="sd">            Whether to add this widget to stacked widget that holds the empty</span>
+<span class="sd">            message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span> <span class="o">=</span> <span class="n">widget</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">add_to_stack</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># This is necessary to automatically set a layout for Find or the</span>
+            <span class="c1"># Profiler when the user disables empty messages in Preferences.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">SET_LAYOUT_WHEN_EMPTY</span><span class="p">:</span>
+                <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+                <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.show_content_widget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.show_content_widget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_content_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show the widget that actually displays content when there is an empty</span>
+<span class="sd">        message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.show_empty_message">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.show_empty_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_empty_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Show the empty message widget.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">SHOW_MESSAGE_WHEN_EMPTY</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span>
+            <span class="s2">&quot;show_message_when_panes_are_empty&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;main&quot;</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">setCurrentWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pane_empty</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ---- SpyderWindowWidget handling</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="PluginMainWidget.create_window">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.create_window">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an undocked window containing this widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Undocking plugin </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Widgets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="o">=</span> <span class="n">window</span> <span class="o">=</span> <span class="n">SpyderWindowWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># If the close corner button is used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span><span class="o">.</span><span class="n">sig_closed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close_window</span><span class="p">)</span>
+
+        <span class="c1"># Wigdet setup</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WA_DeleteOnClose</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_icon</span><span class="p">())</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_title</span><span class="p">())</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+
+        <span class="c1"># Restore window geometry</span>
+        <span class="n">geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span><span class="s1">&#39;window_geometry&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">geometry</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">window</span><span class="o">.</span><span class="n">restoreGeometry</span><span class="p">(</span>
+                    <span class="n">QByteArray</span><span class="p">()</span><span class="o">.</span><span class="n">fromHex</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+                <span class="p">)</span>
+
+                <span class="c1"># Move to the primary screen if the window is not placed in a</span>
+                <span class="c1"># visible location.</span>
+                <span class="n">window</span><span class="o">.</span><span class="n">move_to_primary_screen</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="c1"># Dock widget setup</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">setFloating</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_ancestor</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_actions</span><span class="p">()</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.dock_window">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.dock_window">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dock_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dock undocked window back to the main window.&quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Docking window of plugin </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Reset undocked state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_conf</span><span class="p">(</span><span class="s1">&#39;window_was_undocked_before_hiding&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># This avoids trying to close the window twice: once when calling</span>
+        <span class="c1"># _close_window below and the other when Qt calls the closeEvent of</span>
+        <span class="c1"># windowwidget</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Close window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_close_window</span><span class="p">(</span><span class="n">switch_to_plugin</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Make plugin visible on main window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">raise_</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.close_window">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.close_window">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close undocked window when clicking on the close window button.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        * This can either dock or hide the window, depending on whether the</span>
+<span class="sd">          user hid the window before.</span>
+<span class="sd">        * The default behavior is to dock the window, so that new users can</span>
+<span class="sd">          experiment with the dock/undock functionality without surprises.</span>
+<span class="sd">        * If the user closes the window by clicking on the `Close` action in</span>
+<span class="sd">          the plugin&#39;s Options menu or by going to the `Window &gt; Panes` menu,</span>
+<span class="sd">          then we will hide it when they click on the close button again.</span>
+<span class="sd">          That gives users the ability to show/hide plugins without</span>
+<span class="sd">          docking/undocking them first.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span><span class="s1">&#39;window_was_undocked_before_hiding&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_dock</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dock_window</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_close_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_undocked</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">switch_to_plugin</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper function to close the undocked window with different parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        save_undocked : bool, optional</span>
+<span class="sd">            True if the undocked state needs to be saved. The default is False.</span>
+<span class="sd">        switch_to_plugin : bool, optional</span>
+<span class="sd">            Whether to switch to the plugin after closing the window. The</span>
+<span class="sd">            default is True.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Save window geometry to restore it when undocking the plugin</span>
+            <span class="c1"># again.</span>
+            <span class="n">geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span><span class="o">.</span><span class="n">saveGeometry</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_conf</span><span class="p">(</span><span class="s1">&#39;window_geometry&#39;</span><span class="p">,</span> <span class="n">qbytearray_to_str</span><span class="p">(</span><span class="n">geometry</span><span class="p">))</span>
+
+            <span class="c1"># Save undocking state if requested</span>
+            <span class="k">if</span> <span class="n">save_undocked</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_conf</span><span class="p">(</span><span class="s1">&#39;undocked_on_window_close&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># Fixes spyder-ide/spyder#10704</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__unsafe_window</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__unsafe_window</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># These actions can appear disabled when &#39;Dock&#39; action is pressed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">undock_action</span><span class="o">.</span><span class="n">setDisabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_action</span><span class="o">.</span><span class="n">setDisabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sig_update_ancestor_requested</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">switch_to_plugin</span><span class="p">:</span>
+                    <span class="c1"># This is necessary to restore the main window layout when</span>
+                    <span class="c1"># there&#39;s a maximized plugin on it when the user requests</span>
+                    <span class="c1"># to dock back this plugin.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">()</span><span class="o">.</span><span class="n">switch_to_plugin</span><span class="p">()</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">setWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_update_actions</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Reset undocked state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_conf</span><span class="p">(</span><span class="s1">&#39;undocked_on_window_close&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># ---- SpyderDockwidget handling</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="PluginMainWidget.change_visibility">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.change_visibility">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">change_visibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">,</span> <span class="n">force_focus</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dock widget visibility has changed.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">enable</span><span class="p">:</span>
+            <span class="c1"># Avoid double trigger of visibility change</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">raise_</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">raise_and_focus</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;RAISE_AND_FOCUS&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">force_focus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">raise_and_focus</span> <span class="ow">and</span> <span class="n">enable</span><span class="p">:</span>
+                <span class="n">focus_widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_focus_widget</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">focus_widget</span><span class="p">:</span>
+                    <span class="n">focus_widget</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">force_focus</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">focus_widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_focus_widget</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">focus_widget</span><span class="p">:</span>
+                <span class="n">focus_widget</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">force_focus</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># If the widget is undocked, it&#39;s always visible</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_visible</span> <span class="o">=</span> <span class="n">enable</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SHOW_MESSAGE_WHEN_EMPTY</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span>
+                <span class="s2">&quot;show_message_when_panes_are_empty&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;main&quot;</span>
+            <span class="p">)</span>
+            <span class="c1"># We need to do this validation to prevent errors after changing</span>
+            <span class="c1"># the option above in Preferences and restarting Spyder.</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pane_empty</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pane_empty</span><span class="o">.</span><span class="n">set_visibility</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">is_visible</span><span class="p">)</span></div>
+
+
+        <span class="c1"># TODO: Pending on plugin migration that uses this</span>
+        <span class="c1"># if getattr(self, &#39;DISABLE_ACTIONS_WHEN_HIDDEN&#39;, None):</span>
+        <span class="c1">#     for __, action in self.get_actions().items():</span>
+        <span class="c1">#         action.setEnabled(is_visible)</span>
+
+<div class="viewcode-block" id="PluginMainWidget.toggle_view">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.toggle_view">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">toggle_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checked</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Toggle dockwidget&#39;s visibility when its entry is selected in</span>
+<span class="sd">        the menu `Window &gt; Panes`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        checked: bool</span>
+<span class="sd">            Is the entry in `Window &gt; Panes` checked or not?</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        If you need to attach some functionality when this changes, use</span>
+<span class="sd">        sig_toggle_view_changed. For an example, please see</span>
+<span class="sd">        `spyder/plugins/ipythonconsole/plugin.py`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># To check if the plugin needs to be undocked at the end</span>
+        <span class="n">undock</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">checked</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">raise_</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_visible</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="c1"># We need to undock the plugin if that was its state before</span>
+            <span class="c1"># toggling its visibility.</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="c1"># Don&#39;t run this while the window is being created to not</span>
+                <span class="c1"># affect setting up the layout at startup.</span>
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">is_setting_up</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span>
+                    <span class="s1">&#39;window_was_undocked_before_hiding&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
+            <span class="p">):</span>
+                <span class="n">undock</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Closing window of plugin </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="c1"># This avoids trying to close the window twice: once when</span>
+                <span class="c1"># calling _close_window below and the other when Qt calls the</span>
+                <span class="c1"># closeEvent of windowwidget</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">windowwidget</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="c1"># Dock plugin if it&#39;s undocked before hiding it.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_close_window</span><span class="p">(</span><span class="n">switch_to_plugin</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+                <span class="c1"># Save undocked state to restore it afterwards.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_conf</span><span class="p">(</span><span class="s1">&#39;window_was_undocked_before_hiding&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_visible</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Update toggle view status, if needed, without emitting signals.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggle_view_action</span><span class="o">.</span><span class="n">isChecked</span><span class="p">()</span> <span class="o">!=</span> <span class="n">checked</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toggle_view_action</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">checked</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blockSignals</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sig_toggle_view_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">checked</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Plugin </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2"> is now </span><span class="si">{</span><span class="s1">&#39;visible&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">checked</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;hidden&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">undock</span><span class="p">:</span>
+            <span class="c1"># We undock the plugin at this point so that the Window menu is</span>
+            <span class="c1"># updated correctly.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">create_window</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.create_dockwidget">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.create_dockwidget">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_dockwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mainwindow</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add to parent QMainWindow as a dock widget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Creating dock widget</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span> <span class="o">=</span> <span class="n">dock</span> <span class="o">=</span> <span class="n">SpyderDockWidget</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">mainwindow</span><span class="p">)</span>
+
+        <span class="c1"># Setup</span>
+        <span class="n">dock</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;_dw&#39;</span><span class="p">)</span>
+        <span class="n">dock</span><span class="o">.</span><span class="n">setWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Signals</span>
+        <span class="n">dock</span><span class="o">.</span><span class="n">visibilityChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">change_visibility</span><span class="p">)</span>
+        <span class="n">dock</span><span class="o">.</span><span class="n">topLevelChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_top_level_change</span><span class="p">)</span>
+        <span class="n">dock</span><span class="o">.</span><span class="n">sig_title_bar_shown</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_title_bar_shown</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">dock</span><span class="p">,</span> <span class="n">dock</span><span class="o">.</span><span class="n">LOCATION</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.close_dock">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.close_dock">[docs]</a>
+    <span class="nd">@Slot</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close_dock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close the dockwidget.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hiding plugin </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toggle_view_action</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.lock_unlock_position">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.lock_unlock_position">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lock_unlock_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show/hide title bar to move/lock position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">titleBarWidget</span><span class="p">(),</span> <span class="n">DockTitleBar</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">remove_title_bar</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dockwidget</span><span class="o">.</span><span class="n">set_title_bar</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.get_maximized_state">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_maximized_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_maximized_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dockwidget&#39;s maximized state.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_maximized</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.set_maximized_state">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_maximized_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_maximized_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set internal attribute that holds dockwidget&#39;s maximized state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state: bool</span>
+<span class="sd">            True if the plugin is maximized, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_maximized</span> <span class="o">=</span> <span class="n">state</span></div>
+
+
+    <span class="c1"># ---- API: methods to define or override</span>
+    <span class="c1"># ------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="PluginMainWidget.get_title">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.get_title">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the title that will be displayed on dockwidget or window title.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;PluginMainWidget must define `get_title`!&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.set_ancestor">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.set_ancestor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ancestor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Needed to update the ancestor/parent of child widgets when undocking.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.setup">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.setup">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create widget actions, add to menu and other setup requirements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1"> must define a `setup` method!&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.update_actions">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.update_actions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the state of exposed actions.</span>
+
+<span class="sd">        Exposed actions are actions created by the self.create_action method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s1">&#39;A PluginMainWidget subclass must define an `update_actions` &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;method! Hint: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s1"> should implement `update_actions`&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.on_close">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.on_close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform actions before the widget is closed.</span>
+
+<span class="sd">        This method **must** only operate on local attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.on_focus_in">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.on_focus_in">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_focus_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform actions when the widget receives focus.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="PluginMainWidget.on_focus_out">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.on_focus_out">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_focus_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform actions when the widget loses focus.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_test</span><span class="p">():</span>
+    <span class="c1"># Third party imports</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QHBoxLayout</span><span class="p">,</span> <span class="n">QTableWidget</span><span class="p">,</span> <span class="n">QMainWindow</span>
+
+    <span class="c1"># Local imports</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">qapplication</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">qapplication</span><span class="p">()</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="n">QMainWindow</span><span class="p">()</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">PluginMainWidget</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">main</span><span class="p">)</span>
+    <span class="n">widget</span><span class="o">.</span><span class="n">get_title</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">:</span> <span class="s1">&#39;Test title&#39;</span>
+    <span class="n">widget</span><span class="o">.</span><span class="n">_setup</span><span class="p">()</span>
+    <span class="n">layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+    <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">QTableWidget</span><span class="p">())</span>
+    <span class="n">widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+    <span class="n">widget</span><span class="o">.</span><span class="n">start_spinner</span><span class="p">()</span>
+    <span class="n">dock</span><span class="p">,</span> <span class="n">location</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">create_dockwidget</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+    <span class="n">main</span><span class="o">.</span><span class="n">addDockWidget</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">dock</span><span class="p">)</span>
+    <span class="n">main</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">APP_STYLESHEET</span><span class="p">))</span>
+    <span class="n">main</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run_test</span><span class="p">()</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Spyder-API-Docs Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
