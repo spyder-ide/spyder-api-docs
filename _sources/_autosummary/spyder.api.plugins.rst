@@ -11,8 +11,3 @@ spyder.api.plugins
    :template: custom-module-template.rst
    :recursive:
 
-   
-       enum
-   
-       new_api
-   

@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -373,8 +368,10 @@ document.write(`
 <span class="c1"># (see spyder/__init__.py for details)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">API utilities.</span>
+<span class="sd">Helper functions to work with the Spyder plugin API.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span> <span class="k">as</span> <span class="n">BaseABCMeta</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
@@ -391,11 +388,21 @@ document.write(`
 
 <div class="viewcode-block" id="get_class_values">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.get_class_values">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_class_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_class_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the attribute values for the class enumerations used in our API.</span>
 
-<span class="sd">    Idea from: https://stackoverflow.com/a/17249228/438386</span>
+<span class="sd">    Idea from `Stack Overflow &lt;https://stackoverflow.com/a/17249228/438386&gt;`__.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cls</span>
+<span class="sd">        Class object to list the enumeration values of.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list[str]</span>
+<span class="sd">        String attribute values from a Spyder pseudo-&quot;enum&quot; class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span><span class="p">]</span></div>
 
@@ -406,9 +413,24 @@ document.write(`
 <span class="k">class</span><span class="w"> </span><span class="nc">PrefixNode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Utility class used to represent a prefixed string tuple.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PrefixNode.__init__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.PrefixNode.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Representation of a prefixed string tuple.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : tuple[str, ...], optional</span>
+<span class="sd">            Underlying prefixed string tuple. The default is None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">prefix</span> <span class="o">=</span> <span class="p">[((</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,),</span> <span class="bp">self</span><span class="p">)]</span>
@@ -418,7 +440,21 @@ document.write(`
                        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">]</span>
             <span class="k">yield</span> <span class="n">current_prefix</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="PrefixNode.add_path">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.PrefixNode.add_path">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a path to the prefix node.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : tuple[str, ...]</span>
+<span class="sd">            Underlying prefixed string tuple.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">prefix</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="n">path</span>
         <span class="k">if</span> <span class="n">prefix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">prefix</span><span class="p">]</span> <span class="o">=</span> <span class="n">PrefixNode</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
@@ -426,6 +462,7 @@ document.write(`
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">prefix</span><span class="p">]</span>
             <span class="n">child</span><span class="o">.</span><span class="n">add_path</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span></div>
+</div>
 
 
 
@@ -446,23 +483,23 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.classproperty">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">classproperty</span><span class="p">(</span><span class="nb">property</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Decorator to declare class constants as properties that require additional</span>
-<span class="sd">    computation.</span>
+<span class="sd">    Decorator to declare class constants requiring computation as properties.</span>
 
-<span class="sd">    Taken from: https://stackoverflow.com/a/7864317/438386</span>
+<span class="sd">    Idea from `Stack Overflow &lt;https://stackoverflow.com/a/7864317/438386&gt;`__.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="classproperty.__get__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.classproperty.__get__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">classmethod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">)</span><span class="o">.</span><span class="fm">__get__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">owner</span><span class="p">)()</span></div>
+</div>
 
 
 
 <div class="viewcode-block" id="DummyAttribute">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.DummyAttribute">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DummyAttribute</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Dummy class to mark abstract attributes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dummy class to mark abstract attributes.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
@@ -475,8 +512,19 @@ document.write(`
     <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Decorator to mark abstract attributes. Must be used in conjunction with the</span>
-<span class="sd">    ABCMeta metaclass.</span>
+<span class="sd">    Decorator to mark abstract attributes.</span>
+
+<span class="sd">    Must be used in conjunction with the :class:`abc.ABCMeta` metaclass.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj: typing.Callable[_P, _T] | DummyAttribute | None</span>
+<span class="sd">        The callable attribute to mark as abstract.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    _T</span>
+<span class="sd">        The result of executing the callable attribute ``obj``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">DummyAttribute</span><span class="p">()</span>
@@ -518,6 +566,8 @@ document.write(`
 <span class="sd">        attributes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="ABCMeta.__call__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.ABCMeta.__call__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Collect all abstract-attribute names from the entire MRO</span>
         <span class="n">abstract_attr_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -540,6 +590,7 @@ document.write(`
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
 
 </pre></div>
 

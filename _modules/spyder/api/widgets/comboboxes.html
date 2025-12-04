@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -627,6 +622,8 @@ document.write(`
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderComboBox</span><span class="p">(</span><span class="n">_SpyderComboBoxMixin</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Default combobox widget for Spyder.&quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="SpyderComboBox.__init__">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_elide_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Default combobox widget for Spyder.</span>
@@ -650,7 +647,8 @@ document.write(`
         <span class="c1"># See https://stackoverflow.com/a/33464045/438386 for the details.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setItemDelegate</span><span class="p">(</span>
             <span class="n">_SpyderComboBoxDelegate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elide_mode</span><span class="o">=</span><span class="n">items_elide_mode</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="SpyderComboBox.showEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.showEvent">[docs]</a>
@@ -731,6 +729,8 @@ document.write(`
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderComboBoxWithIcons</span><span class="p">(</span><span class="n">SpyderComboBox</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;Combobox widget for Spyder when its items have icons.&quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="SpyderComboBoxWithIcons.__init__">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_elide_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;</span>
 <span class="sd">        Combobox widget for Spyder when its items have icons.</span>
@@ -750,6 +750,7 @@ document.write(`
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span></div>
+</div>
 
 
 
@@ -757,6 +758,8 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderFontComboBox</span><span class="p">(</span><span class="n">_SpyderComboBoxMixin</span><span class="p">,</span> <span class="n">QFontComboBox</span><span class="p">):</span>
 
+<div class="viewcode-block" id="SpyderFontComboBox.__init__">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">QFontComboBox</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="n">_SpyderComboBoxMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -777,7 +780,8 @@ document.write(`
         <span class="c1"># Adjust popup width to contents.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setSizeAdjustPolicy</span><span class="p">(</span>
             <span class="n">QComboBox</span><span class="o">.</span><span class="n">AdjustToMinimumContentsLengthWithIcon</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="SpyderFontComboBox.showPopup">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.showPopup">[docs]</a>

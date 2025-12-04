@@ -11,9 +11,6 @@ spyder.api.shellconnect
    :template: custom-module-template.rst
    :recursive:
 
-   
        main_widget
-   
        mixins
-   
        status

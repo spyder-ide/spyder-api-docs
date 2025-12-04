@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="spyder.api.fonts" href="spyder.api.fonts.html" />
-    <link rel="prev" title="spyder.api.editor" href="spyder.api.editor.html" />
+    <link rel="prev" title="spyder.api.config.mixins" href="spyder.api.config.mixins.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,7 +176,6 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -442,12 +437,12 @@ document.write(`
                   
   <section id="module-spyder.api.exceptions">
 <span id="spyder-api-exceptions"></span><h1>spyder.api.exceptions<a class="headerlink" href="#module-spyder.api.exceptions" title="Link to this heading">#</a></h1>
-<p>This module contains API exceptions.</p>
+<p>The API-related exception classes emitted by Spyder and its plugins.</p>
 <p class="rubric">Exceptions</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a></p></td>
-<td><p></p></td>
+<td><p>An error due to incorrect usage by the consumer of the Spyder API.</p></td>
 </tr>
 </tbody>
 </table>
@@ -456,6 +451,7 @@ document.write(`
 <dt class="sig sig-object py" id="spyder.api.exceptions.SpyderAPIError">
 <em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.exceptions.</span></span><span class="sig-name descname"><span class="pre">SpyderAPIError</span></span><a class="reference internal" href="../_modules/spyder/api/exceptions.html#SpyderAPIError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.exceptions.SpyderAPIError" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>An error due to incorrect usage by the consumer of the Spyder API.</p>
 </dd></dl>
 
 </section>
@@ -472,12 +468,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="spyder.api.editor.html"
+       href="spyder.api.config.mixins.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">spyder.api.editor</p>
+        <p class="prev-next-title">spyder.api.config.mixins</p>
       </div>
     </a>
     <a class="right-next"

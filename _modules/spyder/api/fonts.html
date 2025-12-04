@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -391,21 +386,38 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Font types used in Spyder plugins and the entire application.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    * This enum is meant to be used to get the QFont object corresponding to</span>
-<span class="sd">      each type.</span>
-<span class="sd">    * The names associated to the values in this enum depend on historical</span>
-<span class="sd">      reasons that go back to Spyder 2 and are not easy to change now.</span>
-<span class="sd">    * Monospace is the font used used in the Editor, IPython console and</span>
-<span class="sd">      History; Interface is used by the entire Spyder app; and</span>
-<span class="sd">      MonospaceInterface is used, for instance, by the Variable Explorer and</span>
-<span class="sd">      corresponds to Monospace font resized to look good against the</span>
-<span class="sd">      Interface one.</span>
+<span class="sd">    This enum is meant to be used to get the :class:`QFont` object</span>
+<span class="sd">    corresponding to each type. These are:</span>
+
+<span class="sd">    * :attr:`Monospace` is used in the :guilabel:`Editor`,</span>
+<span class="sd">      :guilabel:`IPython Console` and :guilabel:`History` panes</span>
+<span class="sd">    * :attr:`Interface` is used by the entire Spyder application</span>
+<span class="sd">    * :attr:`MonospaceInterface` is used, for instance, by the</span>
+<span class="sd">      :guilabel:`Variable Explorer` and corresponds to the :attr:`Monospace`</span>
+<span class="sd">      font resized to look good together with the :attr:`Interface` font.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The values names in this enum are a result of historical reasons</span>
+<span class="sd">        that date from Spyder 2 and are not easy to change now.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">Monospace</span> <span class="o">=</span> <span class="s1">&#39;font&#39;</span>
-    <span class="n">Interface</span> <span class="o">=</span> <span class="s1">&#39;app_font&#39;</span>
-    <span class="n">MonospaceInterface</span> <span class="o">=</span> <span class="s1">&#39;monospace_app_font&#39;</span></div>
+    <span class="n">Monospace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;font&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Monospace font, used for code, output and ``literal/verbatim text``.</span>
+
+<span class="sd">    Used in, for example, the :guilabel:`Editor`, :guilabel:`IPython Console`</span>
+<span class="sd">    and :guilabel:`History` panes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Interface</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;app_font&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface font, used throughout the Spyder application.&quot;&quot;&quot;</span>
+
+    <span class="n">MonospaceInterface</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;monospace_app_font&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;:attr:`Monospace` font resized to work with the :attr:`Interface` font.</span>
+
+<span class="sd">    Used, for instance, by the :guilabel:`Variable Explorer` and corresponds</span>
+<span class="sd">    to the :attr:`Monospace` font resized to look good when used together with</span>
+<span class="sd">    the :attr:`Interface` font.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 
@@ -423,16 +435,15 @@ document.write(`
         <span class="n">font_size_delta</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QFont</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a font type as a QFont object.</span>
+<span class="sd">        Get a font type as a :class:`QFont` object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        font_type: str</span>
-<span class="sd">            A Spyder font type. This must be one of the `SpyderFontType` enum</span>
-<span class="sd">            values.</span>
+<span class="sd">            A Spyder font type, one of the :class:`SpyderFontType` enum values.</span>
 <span class="sd">        font_size_delta: int, optional</span>
-<span class="sd">            Small increase or decrease over the default font size. The default</span>
-<span class="sd">            is 0.</span>
+<span class="sd">            Increase or decrease the default font size by this amount.</span>
+<span class="sd">            The default is 0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">get_font</span><span class="p">(</span><span class="n">option</span><span class="o">=</span><span class="n">font_type</span><span class="p">,</span> <span class="n">font_size_delta</span><span class="o">=</span><span class="n">font_size_delta</span><span class="p">)</span></div>
 </div>

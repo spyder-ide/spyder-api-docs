@@ -176,7 +176,6 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -405,7 +400,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -421,6 +418,27 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.CornerWidget</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.MainToolbar</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.OptionsToolButton</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.Spinner"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.Spinner</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.ClosePane"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.ClosePane</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.DockPane"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.DockPane</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.UndockPane"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.UndockPane</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.LockUnlockPosition</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -436,15 +454,77 @@ document.write(`
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginMainWidgetActions</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.PluginMainWidgetActions" title="spyder.api.widgets.PluginMainWidgetActions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginMainWidgetActions</span></code></a>()</p></td>
+<td><p>Common menu actions for all <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>s.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.PluginMainWidgetWidgets" title="spyder.api.widgets.PluginMainWidgetWidgets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets</span></code></a>()</p></td>
+<td><p>Basic widgets that any <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a> has.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.</span></span><span class="sig-name descname"><span class="pre">PluginMainWidgetWidgets</span></span><a class="reference internal" href="../_modules/spyder/api/widgets.html#PluginMainWidgetWidgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Basic widgets that any <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a> has.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget">
+<span class="sig-name descname"><span class="pre">CornerWidget</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'corner_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget" title="Link to this definition">#</a></dt>
+<dd><p>Right-corner pane toolbar buttons, just left of the options button.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar">
+<span class="sig-name descname"><span class="pre">MainToolbar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'main_toolbar_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar" title="Link to this definition">#</a></dt>
+<dd><p>The primary pane toolbar, left-aligned.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton">
+<span class="sig-name descname"><span class="pre">OptionsToolButton</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'options_button_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton" title="Link to this definition">#</a></dt>
+<dd><p>The pane’s “hamburger menu”, on the very right of the toolbar area.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.Spinner">
+<span class="sig-name descname"><span class="pre">Spinner</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spinner_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.Spinner" title="Link to this definition">#</a></dt>
+<dd><p>An optional progress spinner widget in the toolbar.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.</span></span><span class="sig-name descname"><span class="pre">PluginMainWidgetActions</span></span><a class="reference internal" href="../_modules/spyder/api/widgets.html#PluginMainWidgetActions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Common menu actions for all <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>s.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.ClosePane">
+<span class="sig-name descname"><span class="pre">ClosePane</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'close_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.ClosePane" title="Link to this definition">#</a></dt>
+<dd><p>Close the plugin’s pane.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.DockPane">
+<span class="sig-name descname"><span class="pre">DockPane</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dock_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.DockPane" title="Link to this definition">#</a></dt>
+<dd><p>Re-dock a popped-out pane to the Spyder main window.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.UndockPane">
+<span class="sig-name descname"><span class="pre">UndockPane</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'undock_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.UndockPane" title="Link to this definition">#</a></dt>
+<dd><p>Pop out a plugin’s pane into a separate floating window.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition">
+<span class="sig-name descname"><span class="pre">LockUnlockPosition</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lock_unlock_position'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition" title="Link to this definition">#</a></dt>
+<dd><p>Toggle whether a pane can be freely moved around the Spyder window.</p>
+</dd></dl>
+
+</dd></dl>
+
 <p class="rubric">Modules</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
@@ -515,6 +595,34 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.CornerWidget</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.MainToolbar</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.OptionsToolButton</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetWidgets.Spinner"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets.Spinner</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.ClosePane"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.ClosePane</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.DockPane"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.DockPane</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.UndockPane"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.UndockPane</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition"><code class="docutils literal notranslate"><span class="pre">PluginMainWidgetActions.LockUnlockPosition</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

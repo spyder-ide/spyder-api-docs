@@ -176,7 +176,6 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -446,6 +441,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_update_ancestor_requested"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.sig_update_ancestor_requested</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_unmaximize_plugin_requested"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.sig_unmaximize_plugin_requested</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_focus_status_changed"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.sig_focus_status_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.__init__"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.setLayout"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.setLayout()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.closeEvent"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.closeEvent()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.focusInEvent()</span></code></a></li>
@@ -530,7 +526,7 @@ subclass of PluginMainWidget.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.main_widget.</span></span><span class="sig-name descname"><span class="pre">PluginMainWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>, <a class="reference internal" href="spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin" title="spyder.api.widgets.mixins.SpyderWidgetMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderWidgetMixin</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QWidget</span></code></a>, <a class="reference internal" href="spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin" title="spyder.api.widgets.mixins.SpyderWidgetMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderWidgetMixin</span></code></a></p>
 <p>Spyder plugin main widget class.</p>
 <p>This class handles both a dockwidget pane and a floating window widget
 (undocked pane).</p>
@@ -658,7 +654,7 @@ collect deleted objects.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.sig_redirect_stdio_requested">
-<span class="sig-name descname"><span class="pre">sig_redirect_stdio_requested</span></span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_redirect_stdio_requested" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">sig_redirect_stdio_requested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_redirect_stdio_requested" title="Link to this definition">#</a></dt>
 <dd><p>This signal can be emitted to request the main application to redirect
 standard output/error when using Open/Save/Browse dialogs within widgets.</p>
 <dl class="field-list simple">
@@ -670,7 +666,7 @@ standard output/error when using Open/Save/Browse dialogs within widgets.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.sig_exception_occurred">
-<span class="sig-name descname"><span class="pre">sig_exception_occurred</span></span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_exception_occurred" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">sig_exception_occurred</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_exception_occurred" title="Link to this definition">#</a></dt>
 <dd><p>This signal can be emitted to report an exception handled by this widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -702,7 +698,7 @@ error dialog.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.sig_toggle_view_changed">
-<span class="sig-name descname"><span class="pre">sig_toggle_view_changed</span></span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_toggle_view_changed" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">sig_toggle_view_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_toggle_view_changed" title="Link to this definition">#</a></dt>
 <dd><p>This signal is emitted to inform the visibility of a dockable plugin
 has changed.</p>
 <p>This is triggered by checking/unchecking the entry for a pane in the
@@ -723,7 +719,7 @@ needs its ancestor to be updated.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.sig_unmaximize_plugin_requested">
-<span class="sig-name descname"><span class="pre">sig_unmaximize_plugin_requested</span></span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_unmaximize_plugin_requested" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">sig_unmaximize_plugin_requested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_unmaximize_plugin_requested" title="Link to this definition">#</a></dt>
 <dd><p>This signal is emitted to inform the main window that it needs to
 unmaximize the currently maximized plugin, if any.</p>
 <dl class="field-list simple">
@@ -735,7 +731,7 @@ unmaximize the currently maximized plugin, if any.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.sig_focus_status_changed">
-<span class="sig-name descname"><span class="pre">sig_focus_status_changed</span></span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_focus_status_changed" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">sig_focus_status_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_focus_status_changed" title="Link to this definition">#</a></dt>
 <dd><p>This signal is emitted to inform the focus status of the widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -745,6 +741,11 @@ unmaximize the currently maximized plugin, if any.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.setLayout">
 <span class="sig-name descname"><span class="pre">setLayout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.setLayout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.setLayout" title="Link to this definition">#</a></dt>
 <dd><p>Set layout of the main widget of this plugin.</p>
@@ -752,17 +753,17 @@ unmaximize the currently maximized plugin, if any.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.closeEvent">
-<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QCloseEvent</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.closeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.closeEvent" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qcloseevent.html" title="(in Qt5 v5.15)"><span class="pre">QCloseEvent</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.closeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.closeEvent" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent">
-<span class="sig-name descname"><span class="pre">focusInEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QFocusEvent</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.focusInEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">focusInEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qfocusevent.html" title="(in Qt5 v5.15)"><span class="pre">QFocusEvent</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.focusInEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.main_widget.PluginMainWidget.focusOutEvent">
-<span class="sig-name descname"><span class="pre">focusOutEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QFocusEvent</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.focusOutEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.focusOutEvent" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">focusOutEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qfocusevent.html" title="(in Qt5 v5.15)"><span class="pre">QFocusEvent</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/main_widget.html#PluginMainWidget.focusOutEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.main_widget.PluginMainWidget.focusOutEvent" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -784,8 +785,8 @@ unmaximize the currently maximized plugin, if any.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>action_or_widget</strong> (<em>QAction</em><em> or </em><em>QWidget</em>) – Any action or widget to add to the corner widget.</p></li>
-<li><p><strong>before</strong> (<em>QAction</em><em> or </em><em>QWidget</em>) – Insert action_or_widget before this one.</p></li>
+<li><p><strong>action_or_widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qaction.html" title="(in Qt5 v5.15)"><em>QAction</em></a><em> or </em><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – Any action or widget to add to the corner widget.</p></li>
+<li><p><strong>before</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qaction.html" title="(in Qt5 v5.15)"><em>QAction</em></a><em> or </em><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – Insert action_or_widget before this one.</p></li>
 </ul>
 </dd>
 </dl>
@@ -858,7 +859,7 @@ interface.</p>
 <dd class="field-odd"><p>The main toolbar of the widget that contains the options button.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>QToolBar</p>
+<dd class="field-even"><p><a class="reference external" href="https://doc.qt.io/qt-5/qtoolbar.html" title="(in Qt5 v5.15)">QToolBar</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -905,7 +906,7 @@ of the plugin’s toolbars need to be set.</p>
 <dd class="field-odd"><p>QWidget to give focus to.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>QWidget</p>
+<dd class="field-even"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -964,7 +965,7 @@ message.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>widget</strong> (<em>QWidget</em>) – Widget to set as the widget with content.</p></li>
+<li><p><strong>widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – Widget to set as the widget with content.</p></li>
 <li><p><strong>add_to_stack</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether to add this widget to stacked widget that holds the empty
 message.</p></li>
 </ul>
@@ -1183,6 +1184,7 @@ sig_toggle_view_changed. For an example, please see
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_update_ancestor_requested"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.sig_update_ancestor_requested</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_unmaximize_plugin_requested"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.sig_unmaximize_plugin_requested</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.sig_focus_status_changed"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.sig_focus_status_changed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.__init__"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.setLayout"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.setLayout()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.closeEvent"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.closeEvent()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.main_widget.PluginMainWidget.focusInEvent"><code class="docutils literal notranslate"><span class="pre">PluginMainWidget.focusInEvent()</span></code></a></li>

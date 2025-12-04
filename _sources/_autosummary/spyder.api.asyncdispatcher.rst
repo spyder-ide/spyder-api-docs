@@ -4,6 +4,12 @@ spyder.api.asyncdispatcher
 .. automodule:: spyder.api.asyncdispatcher
 
    
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+   
+      LoopID
+   
    .. rubric:: Functions
 
    .. autosummary::

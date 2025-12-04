@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -417,7 +412,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderPluginV2</span><span class="p">(</span><span class="n">QObject</span><span class="p">,</span> <span class="n">SpyderActionMixin</span><span class="p">,</span> <span class="n">SpyderConfigurationObserver</span><span class="p">,</span>
                      <span class="n">SpyderPluginObserver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -686,6 +681,8 @@ document.write(`
     <span class="c1"># among several files. See spyder/config/main.py</span>
     <span class="n">_CONF_NAME_MAP</span> <span class="o">=</span> <span class="kc">None</span>
 
+<div class="viewcode-block" id="SpyderPluginV2.__init__">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
@@ -741,7 +738,8 @@ document.write(`
         <span class="c1"># Load the custom images of the plugin</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">IMG_PATH</span><span class="p">:</span>
             <span class="n">plugin_path</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">IMG_PATH</span><span class="p">)</span>
-            <span class="n">IMAGE_PATH_MANAGER</span><span class="o">.</span><span class="n">add_image_path</span><span class="p">(</span><span class="n">plugin_path</span><span class="p">)</span>
+            <span class="n">IMAGE_PATH_MANAGER</span><span class="o">.</span><span class="n">add_image_path</span><span class="p">(</span><span class="n">plugin_path</span><span class="p">)</span></div>
+
 
     <span class="c1"># ---- Private methods</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
@@ -782,7 +780,7 @@ document.write(`
     <span class="c1"># ---- API: available methods</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SpyderPluginV2.get_path">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_path">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_path">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the plugin&#39;s system path.</span>
@@ -791,7 +789,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_container">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_container">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_container">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the plugin main container.</span>
@@ -800,7 +798,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_configuration">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_configuration">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_configuration">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the Spyder configuration object.</span>
@@ -809,7 +807,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_main">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_main">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_main">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the Spyder main window..</span>
@@ -818,7 +816,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_plugin">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_plugin">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderPluginV2</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a plugin instance by providing its name.</span>
@@ -853,21 +851,21 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.is_plugin_enabled">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.is_plugin_enabled">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.is_plugin_enabled">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_plugin_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if a given plugin is going to be loaded.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">is_plugin_enabled</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderPluginV2.is_plugin_available">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.is_plugin_available">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.is_plugin_available">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_plugin_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine if a given plugin is available.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="o">.</span><span class="n">is_plugin_available</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_dockable_plugins">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_dockable_plugins">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_dockable_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_dockable_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a list of the required plugin instances.</span>
@@ -885,7 +883,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_conf">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_conf">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_conf">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">NoDefault</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get an option from Spyder configuration system.</span>
@@ -919,7 +917,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.set_conf">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.set_conf">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.set_conf">[docs]</a>
     <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">)</span>
     <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_conf</span><span class="p">(</span>
@@ -972,7 +970,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.remove_conf">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.remove_conf">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.remove_conf">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete an option in the Spyder configuration system.</span>
@@ -1000,7 +998,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.apply_conf">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.apply_conf">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.apply_conf">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options_set</span><span class="p">,</span> <span class="n">notify</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Apply `options_set` to this plugin&#39;s widget.</span>
@@ -1011,7 +1009,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.disable_conf">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.disable_conf">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.disable_conf">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">disable_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Disable notifications for an option in the Spyder configuration system.</span>
@@ -1034,7 +1032,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.restore_conf">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.restore_conf">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.restore_conf">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">restore_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Restore notifications for an option in the Spyder configuration system.</span>
@@ -1057,7 +1055,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.show_status_message">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.show_status_message">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.show_status_message">[docs]</a>
     <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">show_status_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -1075,7 +1073,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.before_long_process">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.before_long_process">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.before_long_process">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">before_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show a message in main window&#39;s status bar and change the mouse</span>
@@ -1094,7 +1092,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.after_long_process">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.after_long_process">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.after_long_process">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">after_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clear main window&#39;s status bar after a long process and restore</span>
@@ -1111,7 +1109,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_color_scheme">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_color_scheme">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_color_scheme">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_color_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the current color scheme.</span>
@@ -1132,7 +1130,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.initialize">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.initialize">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.initialize">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a plugin instance.</span>
@@ -1148,7 +1146,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.create_icon">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.create_icon">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.create_icon">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_icon</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1158,7 +1156,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_font">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_font">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_font">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_font</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">font_type</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1197,7 +1195,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_command_line_options">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_command_line_options">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_command_line_options">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_command_line_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get command line options passed by the user when they started</span>
@@ -1216,7 +1214,7 @@ document.write(`
     <span class="c1"># ---- API: Mandatory methods to define</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SpyderPluginV2.get_name">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_name">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_name">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1235,7 +1233,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_description">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_description">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_description">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_description</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1254,7 +1252,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.get_icon">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.get_icon">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.get_icon">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1273,7 +1271,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.on_initialize">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.on_initialize">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.on_initialize">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">on_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Setup the plugin.</span>
@@ -1295,7 +1293,7 @@ document.write(`
     <span class="c1"># ---- API: Optional methods to override</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SpyderPluginV2.check_compatibility">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.check_compatibility">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.check_compatibility">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">check_compatibility</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1317,7 +1315,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.on_first_registration">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.on_first_registration">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.on_first_registration">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">on_first_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Actions to be performed the first time the plugin is started.</span>
@@ -1331,7 +1329,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.before_mainwindow_visible">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.before_mainwindow_visible">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.before_mainwindow_visible">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">before_mainwindow_visible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Actions to be performed after setup but before the main window&#39;s has</span>
@@ -1341,7 +1339,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.on_mainwindow_visible">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.on_mainwindow_visible">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.on_mainwindow_visible">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">on_mainwindow_visible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Actions to be performed after the main window&#39;s has been shown.</span>
@@ -1350,7 +1348,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.on_close">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.on_close">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.on_close">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cancelable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform actions before the plugin is closed.</span>
@@ -1366,7 +1364,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.can_close">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.can_close">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.can_close">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">can_close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determine if a plugin can be closed.</span>
@@ -1380,7 +1378,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.update_font">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.update_font">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.update_font">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_font</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This must be reimplemented by plugins that need to adjust their fonts.</span>
@@ -1393,7 +1391,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.update_style">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.update_style">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.update_style">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This must be reimplemented by plugins that need to adjust their style.</span>
@@ -1407,7 +1405,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.after_container_creation">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.after_container_creation">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.after_container_creation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">after_container_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform necessary operations before setting up the container.</span>
@@ -1420,7 +1418,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderPluginV2.after_configuration_update">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderPluginV2.after_configuration_update">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.after_configuration_update">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">after_configuration_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform additional operations after updating the plugin configuration</span>
@@ -1440,7 +1438,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderDockablePlugin</span><span class="p">(</span><span class="n">SpyderPluginV2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Spyder plugin to enhance functionality with a dockable widget.</span>
@@ -1533,6 +1531,8 @@ document.write(`
 
     <span class="c1"># ---- Private methods</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="SpyderDockablePlugin.__init__">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">WIDGET_CLASS</span><span class="p">,</span> <span class="n">PluginMainWidget</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
@@ -1572,12 +1572,13 @@ document.write(`
         <span class="c1"># --------------------------------------------------------------------</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">sig_toggle_view_changed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig_toggle_view_changed</span><span class="p">)</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">sig_update_ancestor_requested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">sig_update_ancestor_requested</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sig_update_ancestor_requested</span><span class="p">)</span></div>
+
 
     <span class="c1"># ---- API: Optional methods to override</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SpyderDockablePlugin.create_new_file">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.create_new_file">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.create_new_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_new_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new file inside the plugin.</span>
@@ -1590,7 +1591,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.open_file">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.open_file">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.open_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">open_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open file inside plugin.</span>
@@ -1608,7 +1609,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.get_current_filename">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.get_current_filename">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.get_current_filename">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_current_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return file name of the file that is currently displayed.</span>
@@ -1624,7 +1625,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.current_file_is_temporary">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.current_file_is_temporary">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.current_file_is_temporary">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">current_file_is_temporary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return whether the currently displayed file is a temporary file.</span>
@@ -1636,7 +1637,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.open_last_closed_file">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.open_last_closed_file">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.open_last_closed_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">open_last_closed_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open the last closed file again.</span>
@@ -1649,7 +1650,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.save_file">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.save_file">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.save_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">save_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the current file.</span>
@@ -1663,7 +1664,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.save_file_as">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.save_file_as">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.save_file_as">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">save_file_as</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the current file under a different name.</span>
@@ -1676,7 +1677,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.save_copy_as">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.save_copy_as">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.save_copy_as">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">save_copy_as</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save a copy of the current file under a different name.</span>
@@ -1689,7 +1690,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.save_all">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.save_all">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.save_all">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">save_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save all files that are opened in the plugin.</span>
@@ -1703,7 +1704,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.revert_file">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.revert_file">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.revert_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">revert_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Revert the current file to the version stored on disk.</span>
@@ -1716,7 +1717,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.close_file">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.close_file">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.close_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">close_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Close the current file.</span>
@@ -1729,7 +1730,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.close_all">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.close_all">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.close_all">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">close_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Close all opened files.</span>
@@ -1742,7 +1743,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.undo">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.undo">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.undo">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">undo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Undo last edition.</span>
@@ -1755,7 +1756,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.redo">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.redo">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.redo">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">redo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Redo last edition.</span>
@@ -1768,7 +1769,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.cut">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.cut">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.cut">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cut selection.</span>
@@ -1781,7 +1782,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.copy">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.copy">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.copy">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Copy selection.</span>
@@ -1794,7 +1795,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.paste">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.paste">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.paste">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Paste clipboard.</span>
@@ -1807,7 +1808,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.select_all">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.select_all">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.select_all">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">select_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Select all text in the plugin.</span>
@@ -1820,7 +1821,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.find">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.find">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.find">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Find text in the plugin.</span>
@@ -1833,7 +1834,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.find_next">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.find_next">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.find_next">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move to next find text occurrence in the plugin.</span>
@@ -1846,7 +1847,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.find_previous">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.find_previous">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.find_previous">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_previous</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move to previous find text occurrence in the plugin.</span>
@@ -1859,7 +1860,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.replace">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.replace">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.replace">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Replace text occurrence in the plugin.</span>
@@ -1874,7 +1875,7 @@ document.write(`
     <span class="c1"># ---- API: available methods</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SpyderDockablePlugin.before_long_process">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.before_long_process">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.before_long_process">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">before_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show a message in main window&#39;s status bar, change the mouse pointer</span>
@@ -1890,7 +1891,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.after_long_process">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.after_long_process">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.after_long_process">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">after_long_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clear main window&#39;s status bar after a long process, restore mouse</span>
@@ -1906,7 +1907,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.get_widget">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.get_widget">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.get_widget">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PluginMainWidget</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the plugin main widget.</span>
@@ -1918,7 +1919,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.update_title">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.update_title">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.update_title">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update plugin title, i.e. dockwidget or window title.</span>
@@ -1927,7 +1928,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.update_margins">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.update_margins">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.update_margins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_margins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">margin</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update margins of main widget inside dockable plugin.</span>
@@ -1936,7 +1937,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.switch_to_plugin">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.switch_to_plugin">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.switch_to_plugin">[docs]</a>
     <span class="nd">@Slot</span><span class="p">()</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">switch_to_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force_focus</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1947,7 +1948,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="SpyderDockablePlugin.set_ancestor">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.new_api.html#spyder.api.plugins.SpyderDockablePlugin.set_ancestor">[docs]</a>
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin.set_ancestor">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ancestor_widget</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the ancestor/parent of child widgets when undocking.</span>

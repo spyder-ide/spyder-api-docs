@@ -176,7 +176,6 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -429,6 +424,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.get_shortcut"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.get_shortcut()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.set_shortcut"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.set_shortcut()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.register_shortcut_for_widget"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.register_shortcut_for_widget()</span></code></a></li>
@@ -447,7 +443,7 @@ document.write(`
                   
   <section id="module-spyder.api.shortcuts">
 <span id="spyder-api-shortcuts"></span><h1>spyder.api.shortcuts<a class="headerlink" href="#module-spyder.api.shortcuts" title="Link to this heading">#</a></h1>
-<p>Helper classes to get and set shortcuts in Spyder.</p>
+<p>Helper classes to get and set keyboard shortcuts in Spyder.</p>
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
@@ -463,23 +459,30 @@ document.write(`
 <dd><p>Bases: <a class="reference internal" href="spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationObserver" title="spyder.api.config.mixins.SpyderConfigurationObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a></p>
 <p>Provide methods to get, set and register shortcuts for widgets.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.shortcuts.SpyderShortcutsMixin.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shortcuts.html#SpyderShortcutsMixin.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shortcuts.SpyderShortcutsMixin.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Helper to get, set and register shortcuts for widgets.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shortcuts.SpyderShortcutsMixin.get_shortcut">
 <span class="sig-name descname"><span class="pre">get_shortcut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shortcuts.html#SpyderShortcutsMixin.get_shortcut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shortcuts.SpyderShortcutsMixin.get_shortcut" title="Link to this definition">#</a></dt>
 <dd><p>Get a shortcut sequence stored under the given name and context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The shortcut name (e.g. “run cell”).</p></li>
-<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the shortcut context, e.g. “editor” for shortcuts that have
-effect when the Editor is focused or “_” for global shortcuts. If
-not set, the widget’s CONF_SECTION will be used as context.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The shortcut name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;run</span> <span class="pre">cell&quot;</span></code>).</p></li>
+<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the shortcut context, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;editor&quot;</span></code> for shortcuts
+that have effect when the <span class="guilabel">Editor</span> is focused or
+<code class="docutils literal notranslate"><span class="pre">&quot;_&quot;</span></code> for global shortcuts. If not set, the widget’s
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code> will be used as context.</p></li>
 <li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the plugin where the shortcut is defined. This is necessary
 for third-party plugins that have shortcuts with a context
 different from the plugin name.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>shortcut</strong> – Key sequence of the shortcut.</p>
+<dd class="field-even"><p><strong>shortcut</strong> – Key sequence of the shortcut, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Ctrl+Enter&quot;</span></code>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
@@ -497,41 +500,48 @@ different from the plugin name.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>shortcut</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Key sequence of the shortcut.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The shortcut name (e.g. “run cell”).</p></li>
-<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the shortcut context, e.g. “editor” for shortcuts that have
-effect when the Editor is focused or “_” for global shortcuts. If
-not set, the widget’s CONF_SECTION will be used as context.</p></li>
+<li><p><strong>shortcut</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Key sequence of the shortcut, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Ctrl+Enter&quot;</span></code>.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The shortcut name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;run</span> <span class="pre">cell&quot;</span></code>).</p></li>
+<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the shortcut context, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;editor&quot;</span></code> for shortcuts
+that have effect when the <span class="guilabel">Editor</span> is focused or
+<code class="docutils literal notranslate"><span class="pre">&quot;_&quot;</span></code> for global shortcuts. If not set, the widget’s
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code> will be used as context.</p></li>
 <li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the plugin where the shortcut is defined. This is necessary
 for third-party plugins that have shortcuts with a context
 different from the plugin name.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/configparser.html#configparser.NoOptionError" title="(in Python v3.14)"><strong>configparser.NoOptionError</strong></a> – If the shortcut does not exist in the configuration.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/configparser.html#configparser.NoOptionError" title="(in Python v3.14)"><strong>configparser.NoOptionError</strong></a> – If the shortcut does not exist in the configuration.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shortcuts.SpyderShortcutsMixin.register_shortcut_for_widget">
-<span class="sig-name descname"><span class="pre">register_shortcut_for_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">triggered</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QWidget</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shortcuts.html#SpyderShortcutsMixin.register_shortcut_for_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shortcuts.SpyderShortcutsMixin.register_shortcut_for_widget" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">register_shortcut_for_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">triggered</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shortcuts.html#SpyderShortcutsMixin.register_shortcut_for_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shortcuts.SpyderShortcutsMixin.register_shortcut_for_widget" title="Link to this definition">#</a></dt>
 <dd><p>Register a shortcut for a widget that inherits this mixin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The shortcut name (e.g. “run cell”).</p></li>
-<li><p><strong>triggered</strong> (<em>Callable</em>) – Callable (i.e. function or method) that will be triggered by the
-shortcut.</p></li>
-<li><p><strong>widget</strong> (<em>QWidget</em><em>, </em><em>optional</em>) – Widget to which this shortcut will be registered. If not set, the
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The shortcut name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;run</span> <span class="pre">cell&quot;</span></code>).</p></li>
+<li><p><strong>triggered</strong> (<em>Callable</em>) – Callable (i.e. function or method) to be triggered by the shortcut.</p></li>
+<li><p><strong>widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em>, </em><em>optional</em>) – Widget to which this shortcut will be registered. If not set, the
 widget that calls this method will be used.</p></li>
-<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the shortcut context, e.g. “editor” for shortcuts that have
-effect when the Editor is focused or “_” for global shortcuts. If
-not set, the widget’s CONF_SECTION will be used as context.</p></li>
+<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the shortcut context, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;editor&quot;</span></code> for shortcuts
+that have effect when the <span class="guilabel">Editor</span> is focused or
+<code class="docutils literal notranslate"><span class="pre">&quot;_&quot;</span></code> for global shortcuts. If not set, the widget’s
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code> will be used as context.</p></li>
 <li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name of the plugin where the shortcut is defined. This is necessary
 for third-party plugins that have shortcuts with a context
 different from the plugin name.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -586,6 +596,7 @@ different from the plugin name.</p></li>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.get_shortcut"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.get_shortcut()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.set_shortcut"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.set_shortcut()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shortcuts.SpyderShortcutsMixin.register_shortcut_for_widget"><code class="docutils literal notranslate"><span class="pre">SpyderShortcutsMixin.register_shortcut_for_widget()</span></code></a></li>

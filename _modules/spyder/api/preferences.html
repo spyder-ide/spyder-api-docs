@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -375,18 +370,30 @@ document.write(`
 <span class="sd">API to create an entry in Spyder Preferences associated to a given plugin.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">types</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Set</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Local imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrefixedTuple</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONF</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigurationKey</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrefixedTuple</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.widgets.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderConfigPage</span><span class="p">,</span> <span class="n">BaseConfigTab</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIcon</span>
 
-<span class="n">OptionSet</span> <span class="o">=</span> <span class="n">Set</span><span class="p">[</span><span class="n">ConfigurationKey</span><span class="p">]</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderPluginV2</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.plugins.preferences.widget</span>
+
+
+<span class="n">OptionSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">[</span><span class="n">ConfigurationKey</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias for a set of keys mapping to valid Spyder configuration values.</span>
+
+<span class="sd">A :class:`set` of :class:`spyder.config.types.ConfigurationKey`\\s.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="SpyderPreferencesTab">
@@ -395,29 +402,57 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Widget that represents a tab on a preference page.</span>
 
-<span class="sd">    All calls to :class:`SpyderConfigPage` attributes are resolved</span>
-<span class="sd">    via delegation.</span>
+<span class="sd">    All calls to :class:`spyder.widgets.config.SpyderConfigPage` attributes</span>
+<span class="sd">    are resolved via delegation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Name of the tab to display on the configuration page.</span>
-    <span class="n">TITLE</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">TITLE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the tab to display; must be set on the child implementations.&quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="SpyderPreferencesTab.__init__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">SpyderConfigPage</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new tab on the given ``parent`` config page.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : spyder.widgets.config.SpyderConfigPage</span>
+<span class="sd">            The config page the tab will live on, to be this widget&#39;s parent.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If :attr:`TITLE` has not been set on the child implementation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TITLE</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TITLE</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;TITLE must be a str&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;TITLE must be a str&quot;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="SpyderPreferencesTab.apply_settings">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.apply_settings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptionSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Hook called to manually apply settings that cannot be automatically</span>
-<span class="sd">        applied.</span>
+<span class="sd">        Hook to manually apply settings that cannot be applied automatically.</span>
 
 <span class="sd">        Reimplement this if the configuration tab has complex widgets that</span>
-<span class="sd">        cannot be created with any of the `self.create_*` calls.</span>
+<span class="sd">        cannot be created with any of the ``self.create_*`` calls.</span>
+<span class="sd">        This call should return a :class:`set` containing the configuration</span>
+<span class="sd">        options that changed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        OptionSet</span>
+<span class="sd">            The :class:`set` of Spyder</span>
+<span class="sd">            :class:`~spyder.config.types.ConfigurationKey`\\s that were</span>
+<span class="sd">            manually applied.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">({})</span></div>
 
@@ -426,24 +461,32 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.is_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return True if the tab contents are valid.</span>
+<span class="sd">        Return ``False`` if the tab contents are invalid, ``True`` otherwise.</span>
 
 <span class="sd">        This method can be overriden to perform complex checks.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            Whether the tab contents are valid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
 
+<div class="viewcode-block" id="SpyderPreferencesTab.__getattr__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.__getattr__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">this_class_dir</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">this_class_dir</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="SpyderPreferencesTab.setLayout">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.setLayout">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove default margins by default.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove default margins around the layout by default.&quot;&quot;&quot;</span>
         <span class="n">layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span></div>
 </div>
@@ -454,8 +497,10 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PluginConfigPage</span><span class="p">(</span><span class="n">SpyderConfigPage</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Widget to expose the options a plugin offers for configuration as</span>
-<span class="sd">    an entry in Spyder&#39;s Preferences dialog.</span>
+<span class="sd">    A Spyder :guilabel:`Preferences` page for a single plugin.</span>
+
+<span class="sd">    This widget exposes the options a plugin offers for configuration as</span>
+<span class="sd">    an entry in Spyder&#39;s :guilabel:`Preferences` dialog.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># TODO: Temporal attribute to handle which appy_settings method to use</span>
@@ -463,7 +508,28 @@ document.write(`
     <span class="c1"># dialog system is updated.</span>
     <span class="n">APPLY_CONF_PAGE_SETTINGS</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginConfigPage.__init__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="n">SpyderPluginV2</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">ConfigDialog</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Spyder :guilabel:`Preferences` page for a plugin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        plugin : SpyderPluginV2</span>
+<span class="sd">            The plugin to create the configuration page for.</span>
+<span class="sd">        parent : spyder.plugins.preferences.widgets.configdialog.ConfigDialog</span>
+<span class="sd">            The main Spyder :guilabel:`Preferences` dialog, parent widget</span>
+<span class="sd">            to this one.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin</span> <span class="o">=</span> <span class="n">plugin</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">main</span>
 
@@ -476,7 +542,8 @@ document.write(`
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">APPLY_CONF_PAGE_SETTINGS</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_patch_apply_settings</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
 
-        <span class="n">SpyderConfigPage</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="n">SpyderConfigPage</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_wrap_apply_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -500,8 +567,19 @@ document.write(`
 
 <div class="viewcode-block" id="PluginConfigPage.aggregate_sections_partials">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate_sections_partials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Aggregate options by sections in order to notify observers.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate_sections_partials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span> <span class="n">OptionSet</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aggregate options by sections in order to notify observers.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        opts : OptionSet</span>
+<span class="sd">            The options to aggregate by section.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">to_update</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
@@ -538,27 +616,34 @@ document.write(`
 
 <div class="viewcode-block" id="PluginConfigPage.get_name">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.get_name">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return plugin name to use in preferences page title, and</span>
-<span class="sd">        message boxes.</span>
+<span class="sd">        Return plugin name to use in preferences page title and message boxes.</span>
 
-<span class="sd">        Normally you do not have to reimplement it, as soon as the</span>
-<span class="sd">        plugin name in preferences page will be the same as the plugin</span>
-<span class="sd">        title.</span>
+<span class="sd">        Normally you do not have to reimplement it, as the plugin name</span>
+<span class="sd">        in the preferences page will be the same as the plugin title.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The plugin this preference page corresponds to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="PluginConfigPage.get_icon">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.get_icon">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QIcon</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return plugin icon to use in preferences page.</span>
+<span class="sd">        Return the plugin icon to use in the preferences page.</span>
 
-<span class="sd">        Normally you do not have to reimplement it, as soon as the</span>
-<span class="sd">        plugin icon in preferences page will be the same as the plugin</span>
-<span class="sd">        icon.</span>
+<span class="sd">        Normally you do not have to reimplement it, as the plugin icon</span>
+<span class="sd">        in the preferences page will be the same as the main plugin icon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QIcon</span>
+<span class="sd">            The plugin&#39;s icon.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">get_icon</span><span class="p">()</span></div>
 
@@ -567,15 +652,23 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.setup_page">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setup_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Setup configuration page widget</span>
+<span class="sd">        Set up the configuration page widget.</span>
 
-<span class="sd">        You should implement this method and set the layout of the</span>
+<span class="sd">        You need to implement this method to set the layout of the</span>
 <span class="sd">        preferences page.</span>
 
-<span class="sd">        layout = QVBoxLayout()</span>
-<span class="sd">        layout.addWidget(...)</span>
-<span class="sd">        ...</span>
-<span class="sd">        self.setLayout(layout)</span>
+<span class="sd">        For example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            layout = QVBoxLayout()</span>
+<span class="sd">            layout.addWidget(...)</span>
+<span class="sd">            ...</span>
+<span class="sd">            self.setLayout(layout)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
@@ -584,14 +677,19 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.apply_settings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptionSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Hook called to manually apply settings that cannot be automatically</span>
-<span class="sd">        applied.</span>
+<span class="sd">        Hook to manually apply settings that cannot be applied automatically.</span>
 
-<span class="sd">        Reimplement this if the configuration page has complex widgets that</span>
-<span class="sd">        cannot be created with any of the `self.create_*` calls.</span>
+<span class="sd">        Reimplement this if the configuration tab has complex widgets that</span>
+<span class="sd">        cannot be created with any of the ``self.create_*`` calls.</span>
+<span class="sd">        This call should return a :class:`set` containing the configuration</span>
+<span class="sd">        options that changed.</span>
 
-<span class="sd">        This call should return a set containing the configuration options that</span>
-<span class="sd">        changed.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        OptionSet</span>
+<span class="sd">            The :class:`set` of Spyder</span>
+<span class="sd">            :class:`~spyder.config.types.ConfigurationKey`\\s that were</span>
+<span class="sd">            manually applied.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">({})</span></div>
 </div>

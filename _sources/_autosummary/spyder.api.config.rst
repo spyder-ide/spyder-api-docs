@@ -11,7 +11,5 @@ spyder.api.config
    :template: custom-module-template.rst
    :recursive:
 
-   
        decorators
-   
        mixins

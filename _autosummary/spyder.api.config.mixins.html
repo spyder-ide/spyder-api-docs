@@ -44,7 +44,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="spyder.api.editor" href="spyder.api.editor.html" />
+    <link rel="next" title="spyder.api.exceptions" href="spyder.api.exceptions.html" />
     <link rel="prev" title="spyder.api.config.decorators" href="spyder.api.config.decorators.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,7 +176,6 @@
 <li class="toctree-l4 current active"><a class="current reference internal" href="#">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -439,6 +434,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.on_configuration_change()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.add_configuration_observer()</span></code></a></li>
 </ul>
@@ -606,6 +602,11 @@ receives a configuration section and option to observe.</p>
 <p>When a change occurs on any of the registered configuration options,
 the corresponding registered method is called with the new value.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change">
 <span class="sig-name descname"><span class="pre">on_configuration_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.on_configuration_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change" title="Link to this definition">#</a></dt>
 <dd><p>Handle configuration updates for the option <cite>option</cite> on the section
@@ -668,11 +669,11 @@ decorate your method with
       </div>
     </a>
     <a class="right-next"
-       href="spyder.api.editor.html"
+       href="spyder.api.exceptions.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">spyder.api.editor</p>
+        <p class="prev-next-title">spyder.api.exceptions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -703,6 +704,7 @@ decorate your method with
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.on_configuration_change()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.add_configuration_observer()</span></code></a></li>
 </ul>

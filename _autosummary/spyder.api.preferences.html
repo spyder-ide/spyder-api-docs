@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="spyder.api.shellconnect" href="spyder.api.shellconnect.html" />
-    <link rel="prev" title="spyder.api.plugins.new_api" href="spyder.api.plugins.new_api.html" />
+    <link rel="prev" title="spyder.api.plugins" href="spyder.api.plugins.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,7 +176,6 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -428,13 +423,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.OptionSet"><code class="docutils literal notranslate"><span class="pre">OptionSet</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.TITLE"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.TITLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.apply_settings"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.apply_settings()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.is_valid"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.is_valid()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.__getattr__"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.__getattr__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.setLayout"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.setLayout()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.__init__"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.aggregate_sections_partials()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.get_name"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.get_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.get_icon"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.get_icon()</span></code></a></li>
@@ -456,11 +456,20 @@ document.write(`
   <section id="module-spyder.api.preferences">
 <span id="spyder-api-preferences"></span><h1>spyder.api.preferences<a class="headerlink" href="#module-spyder.api.preferences" title="Link to this heading">#</a></h1>
 <p>API to create an entry in Spyder Preferences associated to a given plugin.</p>
+<p class="rubric">Module Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.preferences.OptionSet" title="spyder.api.preferences.OptionSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionSet</span></code></a></p></td>
+<td><p>Type alias for a set of keys mapping to valid Spyder configuration values.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.preferences.PluginConfigPage" title="spyder.api.preferences.PluginConfigPage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginConfigPage</span></code></a>(plugin, parent)</p></td>
-<td><p>Widget to expose the options a plugin offers for configuration as an entry in Spyder's Preferences dialog.</p></td>
+<td><p>A Spyder <span class="guilabel">Preferences</span> page for a single plugin.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.preferences.SpyderPreferencesTab" title="spyder.api.preferences.SpyderPreferencesTab"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderPreferencesTab</span></code></a>(parent)</p></td>
 <td><p>Widget that represents a tab on a preference page.</p></td>
@@ -468,89 +477,201 @@ document.write(`
 </tbody>
 </table>
 </div>
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.preferences.OptionSet">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.preferences.</span></span><span class="sig-name descname"><span class="pre">OptionSet</span></span><a class="headerlink" href="#spyder.api.preferences.OptionSet" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for a set of keys mapping to valid Spyder configuration values.</p>
+<p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> of <code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.config.types.ConfigurationKey</span></code>s.</p>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, …]]</p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.preferences.</span></span><span class="sig-name descname"><span class="pre">SpyderPreferencesTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SpyderConfigPage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseConfigTab</span></code></p>
 <p>Widget that represents a tab on a preference page.</p>
-<p>All calls to <code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigPage</span></code> attributes are resolved
-via delegation.</p>
+<p>All calls to <code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.widgets.config.SpyderConfigPage</span></code> attributes
+are resolved via delegation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab.TITLE">
+<span class="sig-name descname"><span class="pre">TITLE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.TITLE" title="Link to this definition">#</a></dt>
+<dd><p>Name of the tab to display; must be set on the child implementations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SpyderConfigPage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new tab on the given <code class="docutils literal notranslate"><span class="pre">parent</span></code> config page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>spyder.widgets.config.SpyderConfigPage</em>) – The config page the tab will live on, to be this widget’s parent.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <a class="reference internal" href="#spyder.api.preferences.SpyderPreferencesTab.TITLE" title="spyder.api.preferences.SpyderPreferencesTab.TITLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TITLE</span></code></a> has not been set on the child implementation.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab.apply_settings">
-<span class="sig-name descname"><span class="pre">apply_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab.apply_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.apply_settings" title="Link to this definition">#</a></dt>
-<dd><p>Hook called to manually apply settings that cannot be automatically
-applied.</p>
+<span class="sig-name descname"><span class="pre">apply_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">spyder.api.preferences.OptionSet</span></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab.apply_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.apply_settings" title="Link to this definition">#</a></dt>
+<dd><p>Hook to manually apply settings that cannot be applied automatically.</p>
 <p>Reimplement this if the configuration tab has complex widgets that
-cannot be created with any of the <cite>self.create_*</cite> calls.</p>
+cannot be created with any of the <code class="docutils literal notranslate"><span class="pre">self.create_*</span></code> calls.
+This call should return a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> containing the configuration
+options that changed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> of Spyder
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationKey</span></code>s that were
+manually applied.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>OptionSet</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab.is_valid">
 <span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab.is_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.is_valid" title="Link to this definition">#</a></dt>
-<dd><p>Return True if the tab contents are valid.</p>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">False</span></code> if the tab contents are invalid, <code class="docutils literal notranslate"><span class="pre">True</span></code> otherwise.</p>
 <p>This method can be overriden to perform complex checks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the tab contents are valid.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab.__getattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.__getattr__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.SpyderPreferencesTab.setLayout">
 <span class="sig-name descname"><span class="pre">setLayout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layout</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#SpyderPreferencesTab.setLayout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.SpyderPreferencesTab.setLayout" title="Link to this definition">#</a></dt>
-<dd><p>Remove default margins by default.</p>
+<dd><p>Remove default margins around the layout by default.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.preferences.</span></span><span class="sig-name descname"><span class="pre">PluginConfigPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.preferences.</span></span><span class="sig-name descname"><span class="pre">PluginConfigPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><span class="pre">SpyderPluginV2</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.preferences.widget.ConfigDialog</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigPage</span></code></p>
-<p>Widget to expose the options a plugin offers for configuration as
-an entry in Spyder’s Preferences dialog.</p>
+<p>A Spyder <span class="guilabel">Preferences</span> page for a single plugin.</p>
+<p>This widget exposes the options a plugin offers for configuration as
+an entry in Spyder’s <span class="guilabel">Preferences</span> dialog.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><span class="pre">SpyderPluginV2</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.preferences.widget.ConfigDialog</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a Spyder <span class="guilabel">Preferences</span> page for a plugin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plugin</strong> (<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><em>SpyderPluginV2</em></a>) – The plugin to create the configuration page for.</p></li>
+<li><p><strong>parent</strong> (<em>spyder.plugins.preferences.widgets.configdialog.ConfigDialog</em>) – The main Spyder <span class="guilabel">Preferences</span> dialog, parent widget
+to this one.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage.aggregate_sections_partials">
-<span class="sig-name descname"><span class="pre">aggregate_sections_partials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.aggregate_sections_partials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">aggregate_sections_partials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.api.preferences.OptionSet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.aggregate_sections_partials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials" title="Link to this definition">#</a></dt>
 <dd><p>Aggregate options by sections in order to notify observers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>opts</strong> (<em>OptionSet</em>) – The options to aggregate by section.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage.get_name">
-<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.get_name" title="Link to this definition">#</a></dt>
-<dd><p>Return plugin name to use in preferences page title, and
-message boxes.</p>
-<p>Normally you do not have to reimplement it, as soon as the
-plugin name in preferences page will be the same as the plugin
-title.</p>
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.get_name" title="Link to this definition">#</a></dt>
+<dd><p>Return plugin name to use in preferences page title and message boxes.</p>
+<p>Normally you do not have to reimplement it, as the plugin name
+in the preferences page will be the same as the plugin title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The plugin this preference page corresponds to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage.get_icon">
-<span class="sig-name descname"><span class="pre">get_icon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.get_icon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.get_icon" title="Link to this definition">#</a></dt>
-<dd><p>Return plugin icon to use in preferences page.</p>
-<p>Normally you do not have to reimplement it, as soon as the
-plugin icon in preferences page will be the same as the plugin
-icon.</p>
+<span class="sig-name descname"><span class="pre">get_icon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qicon.html" title="(in Qt5 v5.15)"><span class="pre">QIcon</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.get_icon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.get_icon" title="Link to this definition">#</a></dt>
+<dd><p>Return the plugin icon to use in the preferences page.</p>
+<p>Normally you do not have to reimplement it, as the plugin icon
+in the preferences page will be the same as the main plugin icon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The plugin’s icon.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://doc.qt.io/qt-5/qicon.html" title="(in Qt5 v5.15)">QIcon</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage.setup_page">
 <span class="sig-name descname"><span class="pre">setup_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.setup_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.setup_page" title="Link to this definition">#</a></dt>
-<dd><p>Setup configuration page widget</p>
-<p>You should implement this method and set the layout of the
+<dd><p>Set up the configuration page widget.</p>
+<p>You need to implement this method to set the layout of the
 preferences page.</p>
-<p>layout = QVBoxLayout()
-layout.addWidget(…)
-…
-self.setLayout(layout)</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+<span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.preferences.PluginConfigPage.apply_settings">
-<span class="sig-name descname"><span class="pre">apply_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.apply_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.apply_settings" title="Link to this definition">#</a></dt>
-<dd><p>Hook called to manually apply settings that cannot be automatically
-applied.</p>
-<p>Reimplement this if the configuration page has complex widgets that
-cannot be created with any of the <cite>self.create_*</cite> calls.</p>
-<p>This call should return a set containing the configuration options that
-changed.</p>
+<span class="sig-name descname"><span class="pre">apply_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">spyder.api.preferences.OptionSet</span></span></span><a class="reference internal" href="../_modules/spyder/api/preferences.html#PluginConfigPage.apply_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.preferences.PluginConfigPage.apply_settings" title="Link to this definition">#</a></dt>
+<dd><p>Hook to manually apply settings that cannot be applied automatically.</p>
+<p>Reimplement this if the configuration tab has complex widgets that
+cannot be created with any of the <code class="docutils literal notranslate"><span class="pre">self.create_*</span></code> calls.
+This call should return a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> containing the configuration
+options that changed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> of Spyder
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationKey</span></code>s that were
+manually applied.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>OptionSet</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -569,12 +690,12 @@ changed.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="spyder.api.plugins.new_api.html"
+       href="spyder.api.plugins.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">spyder.api.plugins.new_api</p>
+        <p class="prev-next-title">spyder.api.plugins</p>
       </div>
     </a>
     <a class="right-next"
@@ -602,13 +723,18 @@ changed.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.OptionSet"><code class="docutils literal notranslate"><span class="pre">OptionSet</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.TITLE"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.TITLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.apply_settings"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.apply_settings()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.is_valid"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.is_valid()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.__getattr__"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.__getattr__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.SpyderPreferencesTab.setLayout"><code class="docutils literal notranslate"><span class="pre">SpyderPreferencesTab.setLayout()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.__init__"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.aggregate_sections_partials()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.get_name"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.get_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.preferences.PluginConfigPage.get_icon"><code class="docutils literal notranslate"><span class="pre">PluginConfigPage.get_icon()</span></code></a></li>

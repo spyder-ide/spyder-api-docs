@@ -11,9 +11,6 @@ spyder.api.plugin\_registration
    :template: custom-module-template.rst
    :recursive:
 
-   
        decorators
-   
        mixins
-   
        registry

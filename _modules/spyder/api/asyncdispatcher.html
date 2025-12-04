@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -371,11 +366,12 @@ document.write(`
 <span class="c1"># (see spyder/__init__.py for details)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Spyder AsyncDispatcher API.</span>
+<span class="sd">Class decorator and helpers for running code in async loops within Spyder.</span>
 
-<span class="sd">This module provides an class decorator `AsyncDispatcher` to run coroutines on</span>
-<span class="sd">dedicated async loops, including utilities for patching loops, managing</span>
-<span class="sd">concurrency tasks, and executing callbacks safely within Qt applications.</span>
+<span class="sd">This module provides a class decorator :class:`AsyncDispatcher` to run</span>
+<span class="sd">coroutines in dedicated async loops, as well as including utilities for</span>
+<span class="sd">patching loops, managing concurrency tasks, and executing callbacks safely</span>
+<span class="sd">within Qt applications.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -409,10 +405,20 @@ document.write(`
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="n">LoopID</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias, the union of a loop itself or the ID of one.</span>
+
+<span class="sd">Either an existing :class:`asyncio.AbstractEventLoop` or a</span>
+<span class="sd">:class:`typing.Hashable` to identify an existing or new one.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P&quot;</span><span class="p">)</span>
-<span class="n">_T</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;The parameter types of a given async callable.&quot;&quot;&quot;</span>
+
 <span class="n">_RT</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_RT&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;The return type of a given async callable.&quot;&quot;&quot;</span>
+
+<span class="n">_T</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;An arbirary type parameter.&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="AsyncDispatcher">
@@ -462,6 +468,8 @@ document.write(`
         <span class="n">return_awaitable</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="p">):</span> <span class="o">...</span>
 
+<div class="viewcode-block" id="AsyncDispatcher.__init__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -472,61 +480,71 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Decorate a coroutine to run in a specific event loop.</span>
 
-<span class="sd">        The `loop` parameter can be an existing loop or a hashable to identify</span>
-<span class="sd">        an existing/new one (to be) created by the AsyncDispatcher. If the</span>
-<span class="sd">        loop is not running, it will be started in a new thread and managed by</span>
-<span class="sd">        the AsyncDispatcher.</span>
+<span class="sd">        The ``loop`` parameter can be an existing</span>
+<span class="sd">        :class:`~asyncio.AbstractEventLoop` or a :class:`~typing.Hashable` to</span>
+<span class="sd">        identify an existing or new one created by the</span>
+<span class="sd">        :class:`!AsyncDispatcher`. If the loop is not running, it will be</span>
+<span class="sd">        started in a new thread and managed by the :class:`!AsyncDispatcher`.</span>
 
 <span class="sd">        This instance can be called with the same arguments as the coroutine it</span>
-<span class="sd">        wraps and will return a concurrent Future object, or an awaitable</span>
-<span class="sd">        Future for the current running event loop or the result of the</span>
-<span class="sd">        coroutine depending on the `early_return` and `return_awaitable`</span>
-<span class="sd">        parameters.</span>
-
-<span class="sd">        Usage</span>
-<span class="sd">        -----</span>
-<span class="sd">        Non-Blocking usage (returns a concurrent Future):</span>
-<span class="sd">        ```</span>
-<span class="sd">        @AsyncDispatcher()</span>
-<span class="sd">        async def my_coroutine(...):</span>
-<span class="sd">            ...</span>
-
-<span class="sd">        future = my_coroutine(...)  # Non-blocking call</span>
-
-<span class="sd">        result = future.result()  # Blocking call</span>
-<span class="sd">        ```</span>
-
-<span class="sd">        Blocking usage (returns the result):</span>
-<span class="sd">        ```</span>
-<span class="sd">        @AsyncDispatcher(early_return=False)</span>
-<span class="sd">        async def my_coroutine(...):</span>
-<span class="sd">            ...</span>
-
-<span class="sd">        result = my_coroutine(...)  # Blocking call</span>
-<span class="sd">        ```</span>
-
-<span class="sd">        Coroutine usage (returns an awaitable Future):</span>
-<span class="sd">        ```</span>
-<span class="sd">        @AsyncDispatcher(return_awaitable=True)</span>
-<span class="sd">        async def my_coroutine(...):</span>
-<span class="sd">            ...</span>
-
-<span class="sd">        result = await my_coroutine(...)  # Wait for the result to be ready</span>
-<span class="sd">        ```</span>
+<span class="sd">        wraps and will return a :class:`concurrent.futures.Future` object,</span>
+<span class="sd">        or an awaitable :class:`asyncio.Future` for the current running event</span>
+<span class="sd">        loop or the result of the coroutine depending on the ``early_return``</span>
+<span class="sd">        and ``return_awaitable`` parameters.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        loop : LoopID, optional (default: None)</span>
-<span class="sd">            The event loop to be used, by default get the current event loop.</span>
-<span class="sd">        early_return : bool, optional (default: True)</span>
-<span class="sd">            Return the coroutine as a concurrent Future before it is done.</span>
-<span class="sd">        return_awaitable : bool, optional (default: False)</span>
-<span class="sd">            Return the coroutine as an awaitable (asyncio) Future instead of a</span>
-<span class="sd">            concurrent Future. Idenpendently of the value of `early_return`.</span>
+<span class="sd">        loop : LoopID, optional</span>
+<span class="sd">            The event loop to be used, by default the current event loop.</span>
+<span class="sd">        early_return : bool, optional</span>
+<span class="sd">            Return the coroutine as a :class:`concurrent.futures.Future`</span>
+<span class="sd">            before it is done.</span>
+<span class="sd">        return_awaitable : bool, optional</span>
+<span class="sd">            Return the coroutine as an awaitable :class:`asyncio.Future`</span>
+<span class="sd">            instead of a :class:`concurrent.futures.Future`, independent of</span>
+<span class="sd">            the value of ``early_return``.</span>
+
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        Non-blocking usage (returns a :class:`concurrent.futures.Future`):</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            @AsyncDispatcher()</span>
+<span class="sd">            async def my_coroutine(...):</span>
+<span class="sd">                ...</span>
+
+<span class="sd">            future = my_coroutine(...)  # Non-blocking call</span>
+
+<span class="sd">            result = future.result()  # Blocking call</span>
+
+
+<span class="sd">        Blocking usage (returns the result):</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            @AsyncDispatcher(early_return=False)</span>
+<span class="sd">            async def my_coroutine(...):</span>
+<span class="sd">                ...</span>
+
+<span class="sd">            result = my_coroutine(...)  # Blocking call</span>
+
+<span class="sd">        Coroutine usage (returns an awaitable :class:`asyncio.Future`):</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            @AsyncDispatcher(return_awaitable=True)</span>
+<span class="sd">            async def my_coroutine(...):</span>
+<span class="sd">                ...</span>
+
+<span class="sd">            result = await my_coroutine(...)  # Wait for the result to be ready</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">(</span><span class="n">loop</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_early_return</span> <span class="o">=</span> <span class="n">early_return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_return_awaitable</span> <span class="o">=</span> <span class="n">return_awaitable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_return_awaitable</span> <span class="o">=</span> <span class="n">return_awaitable</span></div>
+
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
@@ -546,6 +564,8 @@ document.write(`
         <span class="n">async_func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">]:</span> <span class="o">...</span>
 
+<div class="viewcode-block" id="AsyncDispatcher.__call__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.__call__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">async_func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
@@ -565,12 +585,12 @@ document.write(`
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        concurrent.Future or asyncio.Future or result of the coroutine</span>
+<span class="sd">        concurrent.futures.Future or asyncio.Future or _T</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        TypeError</span>
-<span class="sd">            If the function is not a coroutine function.</span>
+<span class="sd">            If ``async_func`` is not a coroutine function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">async_func</span><span class="p">):</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">async_func</span><span class="si">}</span><span class="s2"> is not a coroutine function&quot;</span>
@@ -595,7 +615,8 @@ document.write(`
                 <span class="k">return</span> <span class="n">task</span>
             <span class="k">return</span> <span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">wrapper</span>
+        <span class="k">return</span> <span class="n">wrapper</span></div>
+
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_callback_task_done</span><span class="p">(</span><span class="n">future</span><span class="p">:</span> <span class="n">Future</span><span class="p">):</span>
@@ -614,24 +635,23 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the event loop to run the coroutine.</span>
 
 <span class="sd">        If the loop is not running, it will be started in a new thread and</span>
-<span class="sd">        managed by the AsyncDispatcher.</span>
+<span class="sd">        managed by the :class:`!AsyncDispatcher`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        loop_id : LoopID, optional (default: None)</span>
-<span class="sd">            The event loop to be used, by default gets the current thread event</span>
-<span class="sd">            loop.</span>
+<span class="sd">        loop_id : LoopID, optional</span>
+<span class="sd">            The event loop to use, by default the current thread event loop.</span>
 
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        * If a hashable is provided, it will be used to identify the loop in</span>
-<span class="sd">          the AsyncDispatcher.</span>
-<span class="sd">        * If an event loop is provided, it will be used as the event loop in</span>
-<span class="sd">          the AsyncDispatcher.</span>
+<span class="sd">            .. note::</span>
+
+<span class="sd">                * If a :class:`~typing.Hashable` is provided, it will be used</span>
+<span class="sd">                  to identify the loop in the :class:`!AsyncDispatcher`.</span>
+<span class="sd">                * If an event loop is provided, it will be used as the event</span>
+<span class="sd">                  loop in the :class:`!AsyncDispatcher`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        AbstractEventLoop</span>
+<span class="sd">        asyncio.AbstractEventLoop</span>
 <span class="sd">            The event loop to be used.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">loop</span><span class="p">,</span> <span class="n">loop_id</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_fetch_event_loop</span><span class="p">(</span><span class="n">loop_id</span><span class="p">)</span>
@@ -690,7 +710,12 @@ document.write(`
     <span class="nd">@staticmethod</span>
     <span class="nd">@atexit</span><span class="o">.</span><span class="n">register</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">():</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the thread pool.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the thread pool.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">AsyncDispatcher</span><span class="o">.</span><span class="n">__closed</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="n">AsyncDispatcher</span><span class="o">.</span><span class="n">cancel_all</span><span class="p">()</span>
@@ -702,7 +727,11 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.cancel_all">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cancel_all</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel all running tasks.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel all running tasks.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_running_tasks</span><span class="p">:</span>
             <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span></div>
 
@@ -711,7 +740,11 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.join">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close all running loops and join the threads.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close all running loops and join the threads.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">loop_id</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__running_threads</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_stop_running_loop</span><span class="p">(</span><span class="n">loop_id</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
 
@@ -729,10 +762,10 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.QtSlot">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">QtSlot</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>  <span class="c1"># noqa: N802</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a function to be executed inside the main qt loop.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a function to be executed inside the main Qt loop.</span>
 
-<span class="sd">        Set the `DispatcherFuture.QT_SLOT_ATTRIBUTE` attribute to the function</span>
-<span class="sd">        to mark it as a slot to be executed in the main Qt loop.</span>
+<span class="sd">        Sets the :attr:`DispatcherFuture.QT_SLOT_ATTRIBUTE` attribute on the</span>
+<span class="sd">        function to mark it as a slot to be executed in the main Qt loop.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -792,7 +825,7 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    loop : AbstractEventLoop</span>
+<span class="sd">    loop : asyncio.AbstractEventLoop</span>
 <span class="sd">        The event loop to be patched.</span>
 
 <span class="sd">    Raises</span>
@@ -955,11 +988,16 @@ document.write(`
 <span class="k">class</span><span class="w"> </span><span class="nc">DispatcherFuture</span><span class="p">(</span><span class="n">Future</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Generic</span><span class="p">[</span><span class="n">_T</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the result of an asynchronous computation.</span>
 
-<span class="sd">    This class is a subclass of `concurrent.Future` that adds a `connect`</span>
-<span class="sd">    method to allow attaching callbacks to be executed in the main Qt loop.</span>
+<span class="sd">    This class is a subclass of :class:`concurrent.futures.Future` that adds</span>
+<span class="sd">    a :meth:`connect` method to allow attaching callbacks to be executed</span>
+<span class="sd">    in the main Qt loop.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">QT_SLOT_ATTRIBUTE</span> <span class="o">=</span> <span class="s2">&quot;__dispatch_qt_slot__&quot;</span>
+    <span class="n">QT_SLOT_ATTRIBUTE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;__dispatch_qt_slot__&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attribute set on functions to be used as slots in the event loop.</span>
+
+<span class="sd">    Normally set by by the :meth:`AsyncDispatcher.QtSlot` decorator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_callback_executor</span> <span class="o">=</span> <span class="n">_QCallbackExecutor</span><span class="p">()</span>
 
@@ -982,7 +1020,7 @@ document.write(`
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
-<span class="sd">        CancelledError</span>
+<span class="sd">        asyncio.CancelledError</span>
 <span class="sd">            If the future was cancelled.</span>
 
 <span class="sd">        TimeoutError</span>
@@ -1001,18 +1039,21 @@ document.write(`
 
 <span class="sd">        The callable will be called by a thread in the same process in which</span>
 <span class="sd">        it was added if the it was not marked with</span>
-<span class="sd">        `DispatherFuture.QT_SLOT_ATTRIBUTE`.</span>
+<span class="sd">        :attr:`DispatcherFuture.QT_SLOT_ATTRIBUTE`.</span>
 
-<span class="sd">        If the future has already completed or been</span>
-<span class="sd">        cancelled then the callable will be called immediately. These</span>
-<span class="sd">        callables are called in the order that they were added.</span>
+<span class="sd">        If the future has already been cancelld or completed then the callable</span>
+<span class="sd">        will be executed immediately. These callables are called in the order</span>
+<span class="sd">        that they were added.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        fn: Callable</span>
-<span class="sd">            A callable that will be called with this future&#39;s as its only</span>
-<span class="sd">            argument when the future completes.</span>
+<span class="sd">            A callable that will be executed with this future as its argument</span>
+<span class="sd">            once the future completes or is cancelled.</span>
 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">QT_SLOT_ATTRIBUTE</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
 
@@ -1032,14 +1073,14 @@ document.write(`
 <span class="k">def</span><span class="w"> </span><span class="nf">run_coroutine_threadsafe</span><span class="p">(</span>
     <span class="n">coro</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Coroutine</span><span class="p">[</span><span class="n">_T</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_RT</span><span class="p">],</span> <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_RT</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Submit a coroutine object to a given event loop.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Submit a coroutine object to run in the given event loop.</span>
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
 <span class="sd">    coro: Coroutine</span>
 <span class="sd">        The coroutine object to be submitted.</span>
-<span class="sd">    loop: AbstractEventLoop</span>
-<span class="sd">        The event loop to run the coroutine.</span>
+<span class="sd">    loop: asyncio.AbstractEventLoop</span>
+<span class="sd">        The event loop in which to run the coroutine.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>

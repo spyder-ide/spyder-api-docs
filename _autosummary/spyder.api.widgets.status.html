@@ -176,7 +176,6 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -185,11 +184,7 @@
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -433,6 +428,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.CUSTOM_WIDGET_CLASS"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.CUSTOM_WIDGET_CLASS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.INTERACT_ON_CLICK"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.INTERACT_ON_CLICK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.sig_clicked"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.sig_clicked</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.__init__"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.get_icon"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.get_icon()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.set_icon"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.set_icon()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.set_value"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.set_value()</span></code></a></li>
@@ -445,6 +441,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.__init__"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.closeEvent"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.closeEvent()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.setVisible"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.setVisible()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.update_status"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.update_status()</span></code></a></li>
@@ -481,7 +478,7 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.status.StatusBarWidget">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.status.</span></span><span class="sig-name descname"><span class="pre">StatusBarWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_spinner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/status.html#StatusBarWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.status.StatusBarWidget" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>, <a class="reference internal" href="spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin" title="spyder.api.widgets.mixins.SpyderWidgetMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderWidgetMixin</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QWidget</span></code></a>, <a class="reference internal" href="spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin" title="spyder.api.widgets.mixins.SpyderWidgetMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderWidgetMixin</span></code></a></p>
 <p>Base class for status bar widgets.</p>
 <p>These widgets consist by default of an icon, a label and a spinner,
 which are organized from left to right on that order.</p>
@@ -511,6 +508,34 @@ menu)</p>
 <dt class="sig sig-object py" id="spyder.api.widgets.status.StatusBarWidget.sig_clicked">
 <span class="sig-name descname"><span class="pre">sig_clicked</span></span><a class="headerlink" href="#spyder.api.widgets.status.StatusBarWidget.sig_clicked" title="Link to this definition">#</a></dt>
 <dd><p>This signal is emmitted when the widget is clicked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.widgets.status.StatusBarWidget.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_spinner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/status.html#StatusBarWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.status.StatusBarWidget.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Base class for status bar widgets.</p>
+<p>These are composed of the following widgets, which are arranged
+in a QHBoxLayout from left to right:</p>
+<ul class="simple">
+<li><p>Icon</p></li>
+<li><p>Label</p></li>
+<li><p>Custom QWidget</p></li>
+<li><p>Spinner</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>show_icon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Show an icon in the widget.</p></li>
+<li><p><strong>show_label</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Show a label in the widget.</p></li>
+<li><p><strong>show_spinner</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Show a spinner.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><p>To use an icon, you need to redefine the <code class="docutils literal notranslate"><span class="pre">get_icon</span></code> method.</p></li>
+<li><p>To use a label, you need to call <code class="docutils literal notranslate"><span class="pre">set_value</span></code>.</p></li>
+</ol>
 </dd></dl>
 
 <dl class="py method">
@@ -576,8 +601,14 @@ clicked.</p>
 <dd><p>Bases: <a class="reference internal" href="#spyder.api.widgets.status.StatusBarWidget" title="spyder.api.widgets.status.StatusBarWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">StatusBarWidget</span></code></a></p>
 <p>Base class for status bar widgets that update based on timers.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.widgets.status.BaseTimerStatus.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/status.html#BaseTimerStatus.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.status.BaseTimerStatus.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Base class for status bar widgets that update based on timers.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.status.BaseTimerStatus.closeEvent">
-<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QCloseEvent</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/status.html#BaseTimerStatus.closeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.status.BaseTimerStatus.closeEvent" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qcloseevent.html" title="(in Qt5 v5.15)"><span class="pre">QCloseEvent</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/status.html#BaseTimerStatus.closeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.status.BaseTimerStatus.closeEvent" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -658,6 +689,7 @@ clicked.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.CUSTOM_WIDGET_CLASS"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.CUSTOM_WIDGET_CLASS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.INTERACT_ON_CLICK"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.INTERACT_ON_CLICK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.sig_clicked"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.sig_clicked</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.__init__"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.get_icon"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.get_icon()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.set_icon"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.set_icon()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.StatusBarWidget.set_value"><code class="docutils literal notranslate"><span class="pre">StatusBarWidget.set_value()</span></code></a></li>
@@ -670,6 +702,7 @@ clicked.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.__init__"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.closeEvent"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.closeEvent()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.setVisible"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.setVisible()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.status.BaseTimerStatus.update_status"><code class="docutils literal notranslate"><span class="pre">BaseTimerStatus.update_status()</span></code></a></li>

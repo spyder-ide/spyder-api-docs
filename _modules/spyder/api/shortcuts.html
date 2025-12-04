@@ -175,7 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.config.mixins.html">spyder.api.config.mixins</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.editor.html">spyder.api.editor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.exceptions.html">spyder.api.exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.fonts.html">spyder.api.fonts</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.html">spyder.api.plugin_registration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -184,11 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugin_registration.registry.html">spyder.api.plugin_registration.registry</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.enum.html">spyder.api.plugins.enum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.new_api.html">spyder.api.plugins.new_api</a></li>
-</ul>
-</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.plugins.html">spyder.api.plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spyder.api.preferences.html">spyder.api.preferences</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.html">spyder.api.shellconnect</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spyder.api.shellconnect.main_widget.html">spyder.api.shellconnect.main_widget</a></li>
@@ -372,7 +367,7 @@ document.write(`
 <span class="c1"># (see spyder/__init__.py for details)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Helper classes to get and set shortcuts in Spyder.</span>
+<span class="sd">Helper classes to get and set keyboard shortcuts in Spyder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Standard library imports</span>
@@ -398,11 +393,15 @@ document.write(`
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderShortcutsMixin</span><span class="p">(</span><span class="n">SpyderConfigurationObserver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide methods to get, set and register shortcuts for widgets.&quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="SpyderShortcutsMixin.__init__">
+<a class="viewcode-back" href="../../../_autosummary/spyder.api.shortcuts.html#spyder.api.shortcuts.SpyderShortcutsMixin.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper to get, set and register shortcuts for widgets.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="c1"># This is used to keep track of the widget shortcuts</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_shortcuts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="n">QShortcut</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shortcuts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="n">QShortcut</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
 
 <div class="viewcode-block" id="SpyderShortcutsMixin.get_shortcut">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.shortcuts.html#spyder.api.shortcuts.SpyderShortcutsMixin.get_shortcut">[docs]</a>
@@ -418,11 +417,12 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            The shortcut name (e.g. &quot;run cell&quot;).</span>
+<span class="sd">            The shortcut name (e.g. ``&quot;run cell&quot;``).</span>
 <span class="sd">        context: str, optional</span>
-<span class="sd">            Name of the shortcut context, e.g. &quot;editor&quot; for shortcuts that have</span>
-<span class="sd">            effect when the Editor is focused or &quot;_&quot; for global shortcuts. If</span>
-<span class="sd">            not set, the widget&#39;s CONF_SECTION will be used as context.</span>
+<span class="sd">            Name of the shortcut context, e.g. ``&quot;editor&quot;`` for shortcuts</span>
+<span class="sd">            that have effect when the :guilabel:`Editor` is focused or</span>
+<span class="sd">            ``&quot;_&quot;`` for global shortcuts. If not set, the widget&#39;s</span>
+<span class="sd">            :attr:`~SpyderPluginV2.CONF_SECTION` will be used as context.</span>
 <span class="sd">        plugin_name: str, optional</span>
 <span class="sd">            Name of the plugin where the shortcut is defined. This is necessary</span>
 <span class="sd">            for third-party plugins that have shortcuts with a context</span>
@@ -431,7 +431,7 @@ document.write(`
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        shortcut: str</span>
-<span class="sd">            Key sequence of the shortcut.</span>
+<span class="sd">            Key sequence of the shortcut, e.g. ``&quot;Ctrl+Enter&quot;``.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -457,17 +457,22 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        shortcut: str</span>
-<span class="sd">            Key sequence of the shortcut.</span>
+<span class="sd">            Key sequence of the shortcut, e.g. ``&quot;Ctrl+Enter&quot;``.</span>
 <span class="sd">        name: str</span>
-<span class="sd">            The shortcut name (e.g. &quot;run cell&quot;).</span>
+<span class="sd">            The shortcut name (e.g. ``&quot;run cell&quot;``).</span>
 <span class="sd">        context: str, optional</span>
-<span class="sd">            Name of the shortcut context, e.g. &quot;editor&quot; for shortcuts that have</span>
-<span class="sd">            effect when the Editor is focused or &quot;_&quot; for global shortcuts. If</span>
-<span class="sd">            not set, the widget&#39;s CONF_SECTION will be used as context.</span>
+<span class="sd">            Name of the shortcut context, e.g. ``&quot;editor&quot;`` for shortcuts</span>
+<span class="sd">            that have effect when the :guilabel:`Editor` is focused or</span>
+<span class="sd">            ``&quot;_&quot;`` for global shortcuts. If not set, the widget&#39;s</span>
+<span class="sd">            :attr:`~SpyderPluginV2.CONF_SECTION` will be used as context.</span>
 <span class="sd">        plugin_name: str, optional</span>
 <span class="sd">            Name of the plugin where the shortcut is defined. This is necessary</span>
 <span class="sd">            for third-party plugins that have shortcuts with a context</span>
 <span class="sd">            different from the plugin name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -475,7 +480,7 @@ document.write(`
 <span class="sd">            If the shortcut does not exist in the configuration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
-        <span class="k">return</span> <span class="n">CONF</span><span class="o">.</span><span class="n">set_shortcut</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortcut</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">)</span></div>
+        <span class="n">CONF</span><span class="o">.</span><span class="n">set_shortcut</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortcut</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderShortcutsMixin.register_shortcut_for_widget">
@@ -494,21 +499,25 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            The shortcut name (e.g. &quot;run cell&quot;).</span>
+<span class="sd">            The shortcut name (e.g. ``&quot;run cell&quot;``).</span>
 <span class="sd">        triggered: Callable</span>
-<span class="sd">            Callable (i.e. function or method) that will be triggered by the</span>
-<span class="sd">            shortcut.</span>
+<span class="sd">            Callable (i.e. function or method) to be triggered by the shortcut.</span>
 <span class="sd">        widget: QWidget, optional</span>
 <span class="sd">            Widget to which this shortcut will be registered. If not set, the</span>
 <span class="sd">            widget that calls this method will be used.</span>
 <span class="sd">        context: str, optional</span>
-<span class="sd">            Name of the shortcut context, e.g. &quot;editor&quot; for shortcuts that have</span>
-<span class="sd">            effect when the Editor is focused or &quot;_&quot; for global shortcuts. If</span>
-<span class="sd">            not set, the widget&#39;s CONF_SECTION will be used as context.</span>
+<span class="sd">            Name of the shortcut context, e.g. ``&quot;editor&quot;`` for shortcuts</span>
+<span class="sd">            that have effect when the :guilabel:`Editor` is focused or</span>
+<span class="sd">            ``&quot;_&quot;`` for global shortcuts. If not set, the widget&#39;s</span>
+<span class="sd">            :attr:`~SpyderPluginV2.CONF_SECTION` will be used as context.</span>
 <span class="sd">        plugin_name: str, optional</span>
 <span class="sd">            Name of the plugin where the shortcut is defined. This is necessary</span>
 <span class="sd">            for third-party plugins that have shortcuts with a context</span>
 <span class="sd">            different from the plugin name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
         <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">widget</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">widget</span>
@@ -564,22 +573,27 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        keystr: str</span>
-<span class="sd">            Key string for the shortcut (e.g. &quot;Ctrl+Enter&quot;).</span>
+<span class="sd">            Key string for the shortcut, e.g. ``&quot;Ctrl+Enter&quot;``.</span>
 <span class="sd">        name: str</span>
-<span class="sd">            The shortcut name (e.g. &quot;run cell&quot;).</span>
+<span class="sd">            The shortcut name (e.g. ``&quot;run cell&quot;``).</span>
 <span class="sd">        triggered: Callable</span>
-<span class="sd">            Callable (i.e. function or method) that will be triggered by the</span>
-<span class="sd">            shortcut.</span>
+<span class="sd">            Callable (i.e. function or method) to be triggered by the shortcut.</span>
 <span class="sd">        widget: QWidget, optional</span>
 <span class="sd">            Widget to which this shortcut will be registered. If not set, the</span>
 <span class="sd">            widget that calls this method will be used.</span>
 <span class="sd">        context: str, optional</span>
-<span class="sd">            Name of the shortcut context, e.g. &quot;editor&quot; for shortcuts that have</span>
-<span class="sd">            effect when the Editor is focused or &quot;_&quot; for global shortcuts.</span>
+<span class="sd">            Name of the shortcut context, e.g. ``&quot;editor&quot;`` for shortcuts</span>
+<span class="sd">            that have effect when the :guilabel:`Editor` is focused or</span>
+<span class="sd">            ``&quot;_&quot;`` for global shortcuts. If not set, the widget&#39;s</span>
+<span class="sd">            :attr:`~SpyderPluginV2.CONF_SECTION` will be used as context.</span>
 <span class="sd">        plugin_name: str, optional</span>
 <span class="sd">            Name of the plugin where the shortcut is defined. This is necessary</span>
 <span class="sd">            for third-party plugins that have shortcuts with a context</span>
 <span class="sd">            different from the plugin name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Disable current shortcut, if available</span>
         <span class="n">current_shortcut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortcuts</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">))</span>
