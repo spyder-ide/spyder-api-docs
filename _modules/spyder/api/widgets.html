@@ -360,11 +360,12 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2009- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Widgets to extend Spyder through its API.</span>
@@ -374,18 +375,18 @@ document.write(`
 <div class="viewcode-block" id="PluginMainWidgetWidgets">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.widgets.html#spyder.api.widgets.PluginMainWidgetWidgets">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PluginMainWidgetWidgets</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widgets that any :class:`~spyder.api.plugins.SpyderDockablePlugin` has.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic widgets any :class:`~spyder.api.plugins.SpyderDockablePlugin` has.&quot;&quot;&quot;</span>
 
-    <span class="n">CornerWidget</span> <span class="o">=</span> <span class="s1">&#39;corner_widget&#39;</span>
+    <span class="n">CornerWidget</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;corner_widget&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Right-corner pane toolbar buttons, just left of the options button.&quot;&quot;&quot;</span>
 
-    <span class="n">MainToolbar</span> <span class="o">=</span> <span class="s1">&#39;main_toolbar_widget&#39;</span>
+    <span class="n">MainToolbar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;main_toolbar_widget&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The primary pane toolbar, left-aligned.&quot;&quot;&quot;</span>
 
-    <span class="n">OptionsToolButton</span> <span class="o">=</span> <span class="s1">&#39;options_button_widget&#39;</span>
+    <span class="n">OptionsToolButton</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;options_button_widget&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The pane&#39;s &quot;hamburger menu&quot;, on the very right of the toolbar area.&quot;&quot;&quot;</span>
 
-    <span class="n">Spinner</span> <span class="o">=</span> <span class="s1">&#39;spinner_widget&#39;</span>
+    <span class="n">Spinner</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;spinner_widget&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An optional progress spinner widget in the toolbar.&quot;&quot;&quot;</span></div>
 
 
@@ -393,18 +394,18 @@ document.write(`
 <div class="viewcode-block" id="PluginMainWidgetActions">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.widgets.html#spyder.api.widgets.PluginMainWidgetActions">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PluginMainWidgetActions</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Common menu actions for all :class:`~spyder.api.plugins.SpyderDockablePlugin`\\s.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Common menu actions for :class:`~spyder.api.plugins.SpyderDockablePlugin`\\s.&quot;&quot;&quot;</span>
 
-    <span class="n">ClosePane</span> <span class="o">=</span> <span class="s1">&#39;close_pane&#39;</span>
+    <span class="n">ClosePane</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;close_pane&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Close the plugin&#39;s pane.&quot;&quot;&quot;</span>
 
-    <span class="n">DockPane</span> <span class="o">=</span> <span class="s1">&#39;dock_pane&#39;</span>
+    <span class="n">DockPane</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dock_pane&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Re-dock a popped-out pane to the Spyder main window.&quot;&quot;&quot;</span>
 
-    <span class="n">UndockPane</span> <span class="o">=</span> <span class="s1">&#39;undock_pane&#39;</span>
+    <span class="n">UndockPane</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;undock_pane&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pop out a plugin&#39;s pane into a separate floating window.&quot;&quot;&quot;</span>
 
-    <span class="n">LockUnlockPosition</span> <span class="o">=</span> <span class="s1">&#39;lock_unlock_position&#39;</span>
+    <span class="n">LockUnlockPosition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;lock_unlock_position&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Toggle whether a pane can be freely moved around the Spyder window.&quot;&quot;&quot;</span></div>
 
 </pre></div>

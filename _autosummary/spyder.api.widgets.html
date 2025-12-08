@@ -455,10 +455,10 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.PluginMainWidgetActions" title="spyder.api.widgets.PluginMainWidgetActions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginMainWidgetActions</span></code></a>()</p></td>
-<td><p>Common menu actions for all <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>s.</p></td>
+<td><p>Common menu actions for <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>s.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.PluginMainWidgetWidgets" title="spyder.api.widgets.PluginMainWidgetWidgets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginMainWidgetWidgets</span></code></a>()</p></td>
-<td><p>Basic widgets that any <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a> has.</p></td>
+<td><p>Basic widgets any <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a> has.</p></td>
 </tr>
 </tbody>
 </table>
@@ -467,28 +467,28 @@ document.write(`
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.</span></span><span class="sig-name descname"><span class="pre">PluginMainWidgetWidgets</span></span><a class="reference internal" href="../_modules/spyder/api/widgets.html#PluginMainWidgetWidgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Basic widgets that any <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a> has.</p>
+<p>Basic widgets any <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a> has.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget">
-<span class="sig-name descname"><span class="pre">CornerWidget</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'corner_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">CornerWidget</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'corner_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget" title="Link to this definition">#</a></dt>
 <dd><p>Right-corner pane toolbar buttons, just left of the options button.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar">
-<span class="sig-name descname"><span class="pre">MainToolbar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'main_toolbar_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">MainToolbar</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'main_toolbar_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.MainToolbar" title="Link to this definition">#</a></dt>
 <dd><p>The primary pane toolbar, left-aligned.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton">
-<span class="sig-name descname"><span class="pre">OptionsToolButton</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'options_button_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">OptionsToolButton</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'options_button_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.OptionsToolButton" title="Link to this definition">#</a></dt>
 <dd><p>The pane’s “hamburger menu”, on the very right of the toolbar area.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetWidgets.Spinner">
-<span class="sig-name descname"><span class="pre">Spinner</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spinner_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.Spinner" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">Spinner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spinner_widget'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetWidgets.Spinner" title="Link to this definition">#</a></dt>
 <dd><p>An optional progress spinner widget in the toolbar.</p>
 </dd></dl>
 
@@ -498,28 +498,28 @@ document.write(`
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.</span></span><span class="sig-name descname"><span class="pre">PluginMainWidgetActions</span></span><a class="reference internal" href="../_modules/spyder/api/widgets.html#PluginMainWidgetActions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Common menu actions for all <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>s.</p>
+<p>Common menu actions for <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>s.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.ClosePane">
-<span class="sig-name descname"><span class="pre">ClosePane</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'close_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.ClosePane" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">ClosePane</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'close_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.ClosePane" title="Link to this definition">#</a></dt>
 <dd><p>Close the plugin’s pane.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.DockPane">
-<span class="sig-name descname"><span class="pre">DockPane</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dock_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.DockPane" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">DockPane</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dock_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.DockPane" title="Link to this definition">#</a></dt>
 <dd><p>Re-dock a popped-out pane to the Spyder main window.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.UndockPane">
-<span class="sig-name descname"><span class="pre">UndockPane</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'undock_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.UndockPane" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">UndockPane</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'undock_pane'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.UndockPane" title="Link to this definition">#</a></dt>
 <dd><p>Pop out a plugin’s pane into a separate floating window.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition">
-<span class="sig-name descname"><span class="pre">LockUnlockPosition</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lock_unlock_position'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">LockUnlockPosition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lock_unlock_position'</span></em><a class="headerlink" href="#spyder.api.widgets.PluginMainWidgetActions.LockUnlockPosition" title="Link to this definition">#</a></dt>
 <dd><p>Toggle whether a pane can be freely moved around the Spyder window.</p>
 </dd></dl>
 

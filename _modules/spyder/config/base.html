@@ -374,6 +374,8 @@ document.write(`
 <span class="sd">sip API incompatibility issue in spyder&#39;s non-gui modules)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">locale</span>
@@ -878,7 +880,9 @@ document.write(`
 
 <div class="viewcode-block" id="get_translation">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.translations.html#spyder.api.translations.get_translation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_translation</span><span class="p">(</span><span class="n">modname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dirname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_translation</span><span class="p">(</span>
+    <span class="n">modname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dirname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the translation callback for module ``modname``.</span>
 
@@ -886,7 +890,7 @@ document.write(`
 <span class="sd">    ----------</span>
 <span class="sd">    modname : str</span>
 <span class="sd">        The module to get the translation callback for.</span>
-<span class="sd">    dirname : str, optional</span>
+<span class="sd">    dirname : str | None, optional</span>
 <span class="sd">        The directory name of the module, same as the module name by default.</span>
 
 <span class="sd">    Returns</span>
@@ -902,6 +906,7 @@ document.write(`
         <span class="k">return</span> <span class="n">x</span>
 
     <span class="k">if</span> <span class="n">building_autodoc</span><span class="p">():</span>
+
         <span class="k">def</span><span class="w"> </span><span class="nf">translate_gettext</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Translate a text string to the current language for a module.</span>
@@ -917,20 +922,22 @@ document.write(`
 <span class="sd">                The translated string.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="n">x</span>
+
         <span class="k">return</span> <span class="n">translate_gettext</span>
 
-    <span class="n">locale_path</span> <span class="o">=</span> <span class="n">get_module_data_path</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="s2">&quot;locale&quot;</span><span class="p">,</span>
-                                       <span class="n">attr_name</span><span class="o">=</span><span class="s1">&#39;LOCALEPATH&#39;</span><span class="p">)</span>
+    <span class="n">locale_path</span> <span class="o">=</span> <span class="n">get_module_data_path</span><span class="p">(</span>
+        <span class="n">dirname</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="s2">&quot;locale&quot;</span><span class="p">,</span> <span class="n">attr_name</span><span class="o">=</span><span class="s2">&quot;LOCALEPATH&quot;</span>
+    <span class="p">)</span>
 
     <span class="c1"># If LANG is defined in Ubuntu, a warning message is displayed,</span>
     <span class="c1"># so in Unix systems we define the LANGUAGE variable.</span>
     <span class="n">language</span> <span class="o">=</span> <span class="n">load_lang_conf</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
         <span class="c1"># Trying to set LANG on Windows can fail when Spyder is</span>
         <span class="c1"># run with admin privileges.</span>
         <span class="c1"># Fixes spyder-ide/spyder#6886.</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language</span>      <span class="c1"># Works on Windows</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">language</span>  <span class="c1"># Works on Windows</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">translate_dumb</span>
     <span class="k">else</span><span class="p">:</span>
@@ -940,6 +947,7 @@ document.write(`
         <span class="k">return</span> <span class="n">translate_dumb</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">gettext</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="n">_trans</span> <span class="o">=</span> <span class="n">gettext</span><span class="o">.</span><span class="n">translation</span><span class="p">(</span><span class="n">modname</span><span class="p">,</span> <span class="n">locale_path</span><span class="p">)</span>
 
@@ -958,13 +966,14 @@ document.write(`
 <span class="sd">                The translated string.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="n">_trans</span><span class="o">.</span><span class="n">gettext</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="n">translate_gettext</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
         <span class="c1"># logging module is not yet initialised at this point</span>
         <span class="nb">print</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Could not load translations for </span><span class="si">{</span><span class="n">language</span><span class="si">}</span><span class="s2"> due to: &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exc</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">translate_dumb</span></div>
 

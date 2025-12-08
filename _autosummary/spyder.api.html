@@ -423,6 +423,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.VERSION_INFO"><code class="docutils literal notranslate"><span class="pre">VERSION_INFO</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.__version__"><code class="docutils literal notranslate"><span class="pre">__version__</span></code></a></li>
 </ul>
             </nav>
@@ -450,9 +451,24 @@ inform developers of breaking-compatibility changes in a future API release
 In such cases, the minor version will be increased and once the deprecated
 APIs are removed then the major version will be updated.</p></li>
 </ul>
+<p class="rubric">Module Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.VERSION_INFO" title="spyder.api.VERSION_INFO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VERSION_INFO</span></code></a></p></td>
+<td><p>Tuple form of API version, broken down into <code class="docutils literal notranslate"><span class="pre">(major,</span> <span class="pre">minor,</span> <span class="pre">micro)</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.VERSION_INFO">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.</span></span><span class="sig-name descname"><span class="pre">VERSION_INFO</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(2,</span> <span class="pre">0,</span> <span class="pre">0)</span></em><a class="headerlink" href="#spyder.api.VERSION_INFO" title="Link to this definition">#</a></dt>
+<dd><p>Tuple form of API version, broken down into <code class="docutils literal notranslate"><span class="pre">(major,</span> <span class="pre">minor,</span> <span class="pre">micro)</span></code>.</p>
+</dd></dl>
+
 <dl class="py data">
 <dt class="sig sig-object py" id="spyder.api.__version__">
-<span class="sig-prename descclassname"><span class="pre">spyder.api.</span></span><span class="sig-name descname"><span class="pre">__version__</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1.4.0'</span></em><a class="headerlink" href="#spyder.api.__version__" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">spyder.api.</span></span><span class="sig-name descname"><span class="pre">__version__</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'2.0.0'</span></em><a class="headerlink" href="#spyder.api.__version__" title="Link to this definition">#</a></dt>
 <dd><p>Spyder API version; minor bumped for additions/deprecations, major for breaks.</p>
 <p>The minor version will be incremented when adding or deprecating an API,
 (for example, a module, class, method, function, signal, constant, or similar)
@@ -549,6 +565,7 @@ such as removing, renaming or changing the signature of an API.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.VERSION_INFO"><code class="docutils literal notranslate"><span class="pre">VERSION_INFO</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.__version__"><code class="docutils literal notranslate"><span class="pre">__version__</span></code></a></li>
 </ul>
   </nav></div>

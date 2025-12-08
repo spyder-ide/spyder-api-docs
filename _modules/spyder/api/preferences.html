@@ -360,11 +360,12 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.preferences</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2016- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">API to create an entry in Spyder Preferences associated to a given plugin.</span>
@@ -374,7 +375,13 @@ document.write(`
 
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">types</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>  <span class="c1"># noqa: ICN003</span>
 
 <span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrefixedTuple</span>
@@ -389,7 +396,7 @@ document.write(`
     <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.plugins.preferences.widget</span>
 
 
-<span class="n">OptionSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">[</span><span class="n">ConfigurationKey</span><span class="p">]</span>
+<span class="n">OptionSet</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">set</span><span class="p">[</span><span class="n">ConfigurationKey</span><span class="p">]</span>
 <span class="sd">&quot;&quot;&quot;Type alias for a set of keys mapping to valid Spyder configuration values.</span>
 
 <span class="sd">A :class:`set` of :class:`spyder.config.types.ConfigurationKey`\\s.</span>
@@ -411,7 +418,7 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderPreferencesTab.__init__">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.SpyderPreferencesTab.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">SpyderConfigPage</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">SpyderConfigPage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new tab on the given ``parent`` config page.</span>
 
@@ -514,7 +521,7 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">plugin</span><span class="p">:</span> <span class="n">SpyderPluginV2</span><span class="p">,</span>
         <span class="n">parent</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">ConfigDialog</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Spyder :guilabel:`Preferences` page for a plugin.</span>
 
@@ -533,10 +540,10 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin</span> <span class="o">=</span> <span class="n">plugin</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">main</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="s1">&#39;CONF_SECTION&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="s2">&quot;CONF_SECTION&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">CONF_SECTION</span> <span class="o">=</span> <span class="n">plugin</span><span class="o">.</span><span class="n">CONF_SECTION</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="s1">&#39;get_font&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="s2">&quot;get_font&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_font</span> <span class="o">=</span> <span class="n">plugin</span><span class="o">.</span><span class="n">get_font</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">APPLY_CONF_PAGE_SETTINGS</span><span class="p">:</span>
@@ -551,11 +558,13 @@ document.write(`
 <span class="sd">        is called alongside the Spyder Plugin API configuration propagation</span>
 <span class="sd">        call.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
             <span class="n">opts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_apply_settings</span><span class="p">()</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">({})</span>
             <span class="n">opts</span> <span class="o">|=</span> <span class="n">options</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_sections_partials</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
             <span class="n">func</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_patch_apply_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">):</span>
@@ -567,7 +576,7 @@ document.write(`
 
 <div class="viewcode-block" id="PluginConfigPage.aggregate_sections_partials">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.aggregate_sections_partials">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate_sections_partials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span> <span class="n">OptionSet</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate_sections_partials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span> <span class="n">OptionSet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Aggregate options by sections in order to notify observers.</span>
 
@@ -598,8 +607,9 @@ document.write(`
         <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">to_update</span><span class="p">:</span>
             <span class="n">section_prefix</span> <span class="o">=</span> <span class="n">PrefixedTuple</span><span class="p">()</span>
             <span class="c1"># Notify section observers</span>
-            <span class="n">CONF</span><span class="o">.</span><span class="n">notify_observers</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s1">&#39;__section&#39;</span><span class="p">,</span>
-                                  <span class="n">recursive_notification</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">CONF</span><span class="o">.</span><span class="n">notify_observers</span><span class="p">(</span>
+                <span class="n">section</span><span class="p">,</span> <span class="s2">&quot;__section&quot;</span><span class="p">,</span> <span class="n">recursive_notification</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
             <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">to_update</span><span class="p">[</span><span class="n">section</span><span class="p">]:</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
                     <span class="n">opt</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -607,8 +617,9 @@ document.write(`
             <span class="c1"># Notify prefixed observers</span>
             <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">section_prefix</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">CONF</span><span class="o">.</span><span class="n">notify_observers</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span>
-                                          <span class="n">recursive_notification</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="n">CONF</span><span class="o">.</span><span class="n">notify_observers</span><span class="p">(</span>
+                        <span class="n">section</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">recursive_notification</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="c1"># Prevent unexpected failures on tests</span>
                     <span class="k">pass</span></div>
@@ -650,7 +661,7 @@ document.write(`
 
 <div class="viewcode-block" id="PluginConfigPage.setup_page">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.preferences.html#spyder.api.preferences.PluginConfigPage.setup_page">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set up the configuration page widget.</span>
 

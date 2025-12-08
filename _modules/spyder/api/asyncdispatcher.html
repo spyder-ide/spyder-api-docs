@@ -360,10 +360,12 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.asyncdispatcher</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="c1"># Copyright © 2025 Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2024- Spyder Project Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Class decorator and helpers for running code in async loops within Spyder.</span>
@@ -376,9 +378,11 @@ document.write(`
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio.events</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">atexit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">collections.abc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">contextlib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
@@ -395,20 +399,24 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">CancelledError</span><span class="p">,</span> <span class="n">Future</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">heapq</span><span class="w"> </span><span class="kn">import</span> <span class="n">heappop</span>
 
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParamSpec</span>  <span class="c1"># noqa: ICN003</span>
-<span class="k">else</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParamSpec</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParamSpec</span>  <span class="c1"># noqa: ICN003</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>  <span class="c1"># noqa: ICN003</span>
 
+<span class="c1"># Third party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCoreApplication</span><span class="p">,</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QObject</span>
+
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="n">LoopID</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span>
+<span class="n">LoopID</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span>
 <span class="sd">&quot;&quot;&quot;Type alias, the union of a loop itself or the ID of one.</span>
 
 <span class="sd">Either an existing :class:`asyncio.AbstractEventLoop` or a</span>
-<span class="sd">:class:`typing.Hashable` to identify an existing or new one.</span>
+<span class="sd">:class:`~collections.abc.Hashable` to identify an existing or new one.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P&quot;</span><span class="p">)</span>
@@ -439,7 +447,7 @@ document.write(`
         <span class="n">loop</span><span class="p">:</span> <span class="n">LoopID</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">early_return</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">return_awaitable</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="p">):</span> <span class="o">...</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -448,7 +456,7 @@ document.write(`
         <span class="n">loop</span><span class="p">:</span> <span class="n">LoopID</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">early_return</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">return_awaitable</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="p">):</span> <span class="o">...</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -457,16 +465,16 @@ document.write(`
         <span class="n">loop</span><span class="p">:</span> <span class="n">LoopID</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">early_return</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">return_awaitable</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="p">):</span> <span class="o">...</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">AsyncDispatcher</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">AsyncDispatcher</span><span class="p">[</span><span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">loop</span><span class="p">:</span> <span class="n">LoopID</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">early_return</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
         <span class="n">return_awaitable</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="p">):</span> <span class="o">...</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
 <div class="viewcode-block" id="AsyncDispatcher.__init__">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.__init__">[docs]</a>
@@ -476,15 +484,16 @@ document.write(`
         <span class="n">loop</span><span class="p">:</span> <span class="n">LoopID</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">early_return</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">return_awaitable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Decorate a coroutine to run in a specific event loop.</span>
 
 <span class="sd">        The ``loop`` parameter can be an existing</span>
-<span class="sd">        :class:`~asyncio.AbstractEventLoop` or a :class:`~typing.Hashable` to</span>
-<span class="sd">        identify an existing or new one created by the</span>
-<span class="sd">        :class:`!AsyncDispatcher`. If the loop is not running, it will be</span>
-<span class="sd">        started in a new thread and managed by the :class:`!AsyncDispatcher`.</span>
+<span class="sd">        :class:`asyncio.AbstractEventLoop` or a</span>
+<span class="sd">        :class:`~collections.abc.Hashable` to identify an existing or new one</span>
+<span class="sd">        created by the :class:`!AsyncDispatcher`. If the loop is not running,</span>
+<span class="sd">        it will be started in a new thread and managed by the</span>
+<span class="sd">        :class:`!AsyncDispatcher`.</span>
 
 <span class="sd">        This instance can be called with the same arguments as the coroutine it</span>
 <span class="sd">        wraps and will return a :class:`concurrent.futures.Future` object,</span>
@@ -494,15 +503,15 @@ document.write(`
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        loop : LoopID, optional</span>
+<span class="sd">        loop : LoopID | None, optional</span>
 <span class="sd">            The event loop to be used, by default the current event loop.</span>
 <span class="sd">        early_return : bool, optional</span>
 <span class="sd">            Return the coroutine as a :class:`concurrent.futures.Future`</span>
-<span class="sd">            before it is done.</span>
+<span class="sd">            before it is done. ``True`` by default.</span>
 <span class="sd">        return_awaitable : bool, optional</span>
 <span class="sd">            Return the coroutine as an awaitable :class:`asyncio.Future`</span>
 <span class="sd">            instead of a :class:`concurrent.futures.Future`, independent of</span>
-<span class="sd">            the value of ``early_return``.</span>
+<span class="sd">            the value of ``early_return``. ``False`` by default.</span>
 
 
 <span class="sd">        Examples</span>
@@ -548,30 +557,38 @@ document.write(`
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">AsyncDispatcher</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
-        <span class="n">async_func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]]:</span> <span class="o">...</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">AsyncDispatcher</span><span class="p">[</span><span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
+        <span class="n">async_func</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="n">_P</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]]:</span> <span class="o">...</span>
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">AsyncDispatcher</span><span class="p">[</span><span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
-        <span class="n">async_func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]]:</span> <span class="o">...</span>
+        <span class="n">async_func</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="n">_P</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]]:</span> <span class="o">...</span>
 
     <span class="nd">@typing</span><span class="o">.</span><span class="n">overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">AsyncDispatcher</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span>
-        <span class="n">async_func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">]:</span> <span class="o">...</span>
+        <span class="n">async_func</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="n">_P</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">]:</span> <span class="o">...</span>
 
 <div class="viewcode-block" id="AsyncDispatcher.__call__">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.__call__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">async_func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+        <span class="n">async_func</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+            <span class="n">_P</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
         <span class="n">_P</span><span class="p">,</span>
-        <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">_T</span><span class="p">,</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span>  <span class="c1"># noqa: UP007</span>
+        <span class="n">_T</span> <span class="o">|</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]</span> <span class="o">|</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span>
     <span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run the coroutine in the event loop.</span>
@@ -598,15 +615,17 @@ document.write(`
 
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">async_func</span><span class="p">)</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span>
-            <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">_T</span><span class="p">,</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]]:</span>  <span class="c1"># noqa: UP007</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T</span> <span class="o">|</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]</span> <span class="o">|</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">_T</span><span class="p">]:</span>
             <span class="n">task</span> <span class="o">=</span> <span class="n">run_coroutine_threadsafe</span><span class="p">(</span>
                 <span class="n">async_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
                 <span class="n">loop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_return_awaitable</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wrap_future</span><span class="p">(</span>
-                    <span class="n">task</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">(),</span>
+                    <span class="n">task</span><span class="p">,</span>
+                    <span class="n">loop</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">(),</span>
                 <span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_early_return</span><span class="p">:</span>
@@ -639,13 +658,14 @@ document.write(`
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        loop_id : LoopID, optional</span>
+<span class="sd">        loop_id : LoopID | None, optional</span>
 <span class="sd">            The event loop to use, by default the current thread event loop.</span>
 
 <span class="sd">            .. note::</span>
 
-<span class="sd">                * If a :class:`~typing.Hashable` is provided, it will be used</span>
-<span class="sd">                  to identify the loop in the :class:`!AsyncDispatcher`.</span>
+<span class="sd">                * If a :class:`~collections.abc.Hashable` is provided, it will</span>
+<span class="sd">                  be used to identify the loop in the</span>
+<span class="sd">                  :class:`!AsyncDispatcher`.</span>
 <span class="sd">                * If an event loop is provided, it will be used as the event</span>
 <span class="sd">                  loop in the :class:`!AsyncDispatcher`.</span>
 
@@ -696,8 +716,10 @@ document.write(`
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__run_loop</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">loop_id</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">loop_id</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span>
+        <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">loop_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__running_threads</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__rlock</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">loop_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__running_threads</span><span class="p">:</span>
@@ -709,7 +731,7 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.close">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@atexit</span><span class="o">.</span><span class="n">register</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the thread pool.</span>
 
 <span class="sd">        Returns</span>
@@ -726,12 +748,13 @@ document.write(`
 <div class="viewcode-block" id="AsyncDispatcher.cancel_all">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.cancel_all">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">cancel_all</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cancel_all</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel all running tasks.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None&quot;&quot;&quot;</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_running_tasks</span><span class="p">:</span>
             <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span></div>
 
@@ -739,12 +762,19 @@ document.write(`
 <div class="viewcode-block" id="AsyncDispatcher.join">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.join">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close all running loops and join the threads.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        timeout : float | None, optional</span>
+<span class="sd">            Seconds to wait for loops to exit and their threads to be joined.</span>
+<span class="sd">            By default, waits indefinitely.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None&quot;&quot;&quot;</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">loop_id</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__running_threads</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_stop_running_loop</span><span class="p">(</span><span class="n">loop_id</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
 
@@ -761,7 +791,9 @@ document.write(`
 <div class="viewcode-block" id="AsyncDispatcher.QtSlot">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.AsyncDispatcher.QtSlot">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">QtSlot</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>  <span class="c1"># noqa: N802</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">QtSlot</span><span class="p">(</span>
+        <span class="n">func</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>  <span class="c1"># noqa: N802</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a function to be executed inside the main Qt loop.</span>
 
 <span class="sd">        Sets the :attr:`DispatcherFuture.QT_SLOT_ATTRIBUTE` attribute on the</span>
@@ -787,7 +819,9 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A task runner that runs an asyncio event loop on a background thread.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">loop_id</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">loop_id</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Hashable</span><span class="p">,</span>
+        <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;AsyncDispatcher-</span><span class="si">{</span><span class="n">loop_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__loop</span> <span class="o">=</span> <span class="n">loop</span>
@@ -872,9 +906,11 @@ document.write(`
         <span class="n">timeout</span> <span class="o">=</span> <span class="p">(</span>
             <span class="mi">0</span>
             <span class="k">if</span> <span class="n">ready</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stopping</span>
-            <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">scheduled</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_when</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">86400</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">scheduled</span>
-            <span class="k">else</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="p">(</span>
+                <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">scheduled</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_when</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">86400</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">scheduled</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_events</span><span class="p">(</span><span class="n">event_list</span><span class="p">)</span>
@@ -963,7 +999,7 @@ document.write(`
     <span class="bp">cls</span><span class="o">.</span><span class="n">_check_running</span> <span class="o">=</span> <span class="n">_check_running</span>
     <span class="bp">cls</span><span class="o">.</span><span class="n">_num_runs_pending</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">loop</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span>
     <span class="bp">cls</span><span class="o">.</span><span class="n">_is_proactorloop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ProactorEventLoop</span><span class="p">,</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ProactorEventLoop</span>
     <span class="p">)</span>
     <span class="bp">cls</span><span class="o">.</span><span class="n">_nest_patched</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -971,7 +1007,7 @@ document.write(`
 <span class="k">class</span><span class="w"> </span><span class="nc">_QCallbackEvent</span><span class="p">(</span><span class="n">QEvent</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Event to execute a callback in the main Qt loop.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">QEvent</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">User</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
 
@@ -1003,13 +1039,13 @@ document.write(`
 
 <div class="viewcode-block" id="DispatcherFuture.result">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.DispatcherFuture.result">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>  <span class="c1"># noqa: UP045</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the result of the call that the future represents.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        timeout: float | None</span>
+<span class="sd">        timeout: float | None, optional</span>
 <span class="sd">            The number of seconds to wait for the result. If None, then wait</span>
 <span class="sd">            indefinitely.</span>
 
@@ -1034,7 +1070,9 @@ document.write(`
 
 <div class="viewcode-block" id="DispatcherFuture.connect">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.DispatcherFuture.connect">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_T</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Attaches a callable that will be called when the future finishes.</span>
 
 <span class="sd">        The callable will be called by a thread in the same process in which</span>
@@ -1071,7 +1109,8 @@ document.write(`
 <div class="viewcode-block" id="run_coroutine_threadsafe">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.asyncdispatcher.html#spyder.api.asyncdispatcher.run_coroutine_threadsafe">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">run_coroutine_threadsafe</span><span class="p">(</span>
-    <span class="n">coro</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Coroutine</span><span class="p">[</span><span class="n">_T</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_RT</span><span class="p">],</span> <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
+    <span class="n">coro</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Coroutine</span><span class="p">[</span><span class="n">_T</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_RT</span><span class="p">],</span>
+    <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DispatcherFuture</span><span class="p">[</span><span class="n">_RT</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Submit a coroutine object to run in the given event loop.</span>
 

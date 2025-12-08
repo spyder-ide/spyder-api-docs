@@ -360,18 +360,16 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.fonts</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2023- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Helper classes to get and set the fonts used in Spyder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="c1"># Standard library imports</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="c1"># Third-party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QFont</span>
@@ -401,17 +399,18 @@ document.write(`
 <span class="sd">        The values names in this enum are a result of historical reasons</span>
 <span class="sd">        that date from Spyder 2 and are not easy to change now.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">Monospace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;font&#39;</span>
+
+    <span class="n">Monospace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;font&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Monospace font, used for code, output and ``literal/verbatim text``.</span>
 
 <span class="sd">    Used in, for example, the :guilabel:`Editor`, :guilabel:`IPython Console`</span>
 <span class="sd">    and :guilabel:`History` panes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">Interface</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;app_font&#39;</span>
+    <span class="n">Interface</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;app_font&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface font, used throughout the Spyder application.&quot;&quot;&quot;</span>
 
-    <span class="n">MonospaceInterface</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;monospace_app_font&#39;</span>
+    <span class="n">MonospaceInterface</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;monospace_app_font&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;:attr:`Monospace` font resized to work with the :attr:`Interface` font.</span>
 
 <span class="sd">    Used, for instance, by the :guilabel:`Variable Explorer` and corresponds</span>
@@ -429,11 +428,7 @@ document.write(`
 <div class="viewcode-block" id="SpyderFontsMixin.get_font">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.fonts.html#spyder.api.fonts.SpyderFontsMixin.get_font">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_font</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">font_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">font_size_delta</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QFont</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_font</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">font_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">font_size_delta</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QFont</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a font type as a :class:`QFont` object.</span>
 

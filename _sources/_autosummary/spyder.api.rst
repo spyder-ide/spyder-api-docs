@@ -4,6 +4,12 @@
 .. automodule:: spyder.api
 
    
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+   
+      VERSION_INFO
+   
 .. rubric:: Modules
 
 .. autosummary::

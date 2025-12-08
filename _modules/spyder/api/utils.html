@@ -360,12 +360,12 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.utils</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright (c) 2009- Spyder Project Contributors</span>
-<span class="c1">#</span>
-<span class="c1"># Distributed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Helper functions to work with the Spyder plugin API.</span>
@@ -374,6 +374,7 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span> <span class="k">as</span> <span class="n">BaseABCMeta</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">collections.abc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 
@@ -382,8 +383,8 @@ document.write(`
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParamSpec</span>  <span class="c1"># noqa: ICN003</span>
 
-<span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s1">&#39;_P&#39;</span><span class="p">)</span>
-<span class="n">_T</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_T&#39;</span><span class="p">)</span>
+<span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P&quot;</span><span class="p">)</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="get_class_values">
@@ -404,7 +405,7 @@ document.write(`
 <span class="sd">    list[str]</span>
 <span class="sd">        String attribute values from a Spyder pseudo-&quot;enum&quot; class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">]</span></div>
 
 
 
@@ -415,13 +416,13 @@ document.write(`
 
 <div class="viewcode-block" id="PrefixNode.__init__">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.PrefixNode.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Representation of a prefixed string tuple.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        path : tuple[str, ...], optional</span>
+<span class="sd">        path : tuple[str, ...] | None, optional</span>
 <span class="sd">            Underlying prefixed string tuple. The default is None.</span>
 
 <span class="sd">        Returns</span>
@@ -436,13 +437,15 @@ document.write(`
         <span class="n">prefix</span> <span class="o">=</span> <span class="p">[((</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,),</span> <span class="bp">self</span><span class="p">)]</span>
         <span class="k">while</span> <span class="n">prefix</span> <span class="o">!=</span> <span class="p">[]:</span>
             <span class="n">current_prefix</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">prefix</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">current_prefix</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">,),</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
-                       <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">]</span>
+            <span class="n">prefix</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">current_prefix</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">,),</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span>
+            <span class="p">]</span>
             <span class="k">yield</span> <span class="n">current_prefix</span>
 
 <div class="viewcode-block" id="PrefixNode.add_path">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.PrefixNode.add_path">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a path to the prefix node.</span>
 
@@ -500,6 +503,7 @@ document.write(`
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.DummyAttribute">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DummyAttribute</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dummy class to mark abstract attributes.&quot;&quot;&quot;</span>
+
     <span class="k">pass</span></div>
 
 
@@ -507,9 +511,7 @@ document.write(`
 <div class="viewcode-block" id="abstract_attribute">
 <a class="viewcode-back" href="../../../_autosummary/spyder.api.utils.html#spyder.api.utils.abstract_attribute">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">abstract_attribute</span><span class="p">(</span>
-    <span class="n">obj</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span>
-        <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">],</span> <span class="n">DummyAttribute</span><span class="p">]</span>
-    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">]</span> <span class="o">|</span> <span class="n">DummyAttribute</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Decorator to mark abstract attributes.</span>
@@ -518,8 +520,9 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    obj: typing.Callable[_P, _T] | DummyAttribute | None</span>
-<span class="sd">        The callable attribute to mark as abstract.</span>
+<span class="sd">    obj: collections.abc.Callable[_P, _T] | DummyAttribute | None, optional</span>
+<span class="sd">        The callable attribute to mark as abstract, a new instance of</span>
+<span class="sd">        :class:`DummyAttribute` by default.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -573,19 +576,18 @@ document.write(`
         <span class="n">abstract_attr_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">base</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;__is_abstract_attribute__&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;__is_abstract_attribute__&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
                     <span class="n">abstract_attr_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;__is_abstract_attribute__&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;__is_abstract_attribute__&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
                 <span class="n">abstract_attr_names</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">abstract_attr_names</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
                 <span class="s2">&quot;Can&#39;t instantiate abstract class &quot;</span>
                 <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> with abstract attributes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                    <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">abstract_attr_names</span><span class="p">)</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">abstract_attr_names</span><span class="p">)</span>
                 <span class="p">)</span>
             <span class="p">)</span>
 
