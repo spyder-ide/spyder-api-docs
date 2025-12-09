@@ -135,6 +135,8 @@ nitpick_ignore_regex = {
     ("py:class", "LoopID"),
     ("py:class", "OptionSet"),
     ("py:class", "spyder.api.preferences.OptionSet"),
+    ("py:class", "SpyderPluginClass"),
+    ("py:class", "spyder.api.plugin_registration.registry.SpyderPluginClass"),
 }
 
 
@@ -302,6 +304,9 @@ autodoc_type_aliases = {
     ),
     "LoopID": "spyder.api.asyncdispatcher.LoopID",
     "OptionSet": "spyder.api.preferences.OptionSet",
+    "SpyderPluginClass": (
+        "spyder.api.plugin_registration.registry.SpyderPluginClass"
+    ),
     # Ref name aliases
     "AbstractEventLoop": "asyncio.AbstractEventLoop",
     "asyncio.AbstractEventLoop": "asyncio.AbstractEventLoop",
