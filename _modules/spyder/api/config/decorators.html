@@ -360,68 +360,104 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.config.decorators</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Spyder API helper decorators.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>  <span class="c1"># noqa: ICN003</span>
 
 <span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.config.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigurationKey</span>
 
 
-<span class="n">ConfigurationKeyList</span> <span class="o">=</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfigurationKey</span><span class="p">]</span>
-<span class="n">ConfigurationKeyOrList</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">ConfigurationKeyList</span><span class="p">,</span> <span class="n">ConfigurationKey</span><span class="p">]</span>
+<span class="n">ConfigurationKeyList</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">ConfigurationKey</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias for a list of string/string tuple keys of Spyder config options.</span>
+
+<span class="sd">A :class:`list` of :class:`spyder.config.types.ConfigurationKey`\\s.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">ConfigurationKeyOrList</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
+    <span class="n">ConfigurationKeyList</span><span class="p">,</span> <span class="n">ConfigurationKey</span>
+<span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias for either a list of config keys or a single key.</span>
+
+<span class="sd">Union of types :class:`ConfigurationKeyList` and</span>
+<span class="sd">:class:`spyder.config.types.ConfigurationKey`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="on_conf_change">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.config.decorators.html#spyder.api.config.decorators.on_conf_change">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">on_conf_change</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                   <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                   <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ConfigurationKeyOrList</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_conf_change</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKeyOrList</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Method decorator used to handle changes on the configuration option</span>
-<span class="sd">    `option` of the section `section`.</span>
+<span class="sd">    Decorator to handle changing a config option in a given section.</span>
 
-<span class="sd">    The methods that use this decorator must have the following signature</span>
-<span class="sd">    `def method(self, value)` when observing a single value or the whole</span>
-<span class="sd">    section and `def method(self, option, value): ...` when observing</span>
-<span class="sd">    multiple values.</span>
+<span class="sd">    The methods that use this decorator must have the signature</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        def method(self, value: Any):</span>
+<span class="sd">            ...</span>
+
+<span class="sd">    when observing a single value or the whole section, and</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        def method(self, option: ConfigurationKeyOrList | None, value: Any):</span>
+<span class="sd">            ...</span>
+
+<span class="sd">    when observing multiple values.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    func: Callable</span>
-<span class="sd">        Method to decorate. Given by default when applying the decorator.</span>
-<span class="sd">    section: Optional[str]</span>
-<span class="sd">        Name of the configuration whose option is going to be observed for</span>
-<span class="sd">        changes. If None, then the `CONF_SECTION` attribute of the class</span>
-<span class="sd">        where the method is defined is used.</span>
-<span class="sd">    option: Optional[ConfigurationKeyOrList]</span>
-<span class="sd">        Name/tuple of the option to observe or a list of name/tuples if the</span>
-<span class="sd">        method expects updates from multiple keys. If None, then all changes</span>
-<span class="sd">        on the specified section are observed.</span>
+<span class="sd">    func: Callable | None, optional</span>
+<span class="sd">        Method to decorate, passed automatically when applying the decorator.</span>
+<span class="sd">    section: str | None, optional</span>
+<span class="sd">        Name of the configuration section to observe for changes.</span>
+<span class="sd">        If ``None``, then the ``CONF_SECTION`` attribute of the class</span>
+<span class="sd">        where the method defined is used.</span>
+<span class="sd">    option: ConfigurationKeyOrList | None, optional</span>
+<span class="sd">        Name (:class:`str` / :class:`tuple` of :class:`str`) of the option</span>
+<span class="sd">        to observe, or a list of names if the method expects updates from</span>
+<span class="sd">        multiple keys. If ``None``, then all changes to options in the</span>
+<span class="sd">        specified section are observed.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    func: Callable</span>
-<span class="sd">        The same method that was given as input.</span>
+<span class="sd">        The method passed as ``func`` with the config listener set up.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
-            <span class="n">on_conf_change</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+            <span class="n">on_conf_change</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">option</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Use special __section identifier to signal that the function</span>
         <span class="c1"># observes any change on the section options.</span>
-        <span class="n">option</span> <span class="o">=</span> <span class="s1">&#39;__section&#39;</span>
+        <span class="n">option</span> <span class="o">=</span> <span class="s2">&quot;__section&quot;</span>
 
     <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>

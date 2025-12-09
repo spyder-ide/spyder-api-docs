@@ -423,6 +423,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.decorators.ConfigurationKeyList"><code class="docutils literal notranslate"><span class="pre">ConfigurationKeyList</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.decorators.ConfigurationKeyOrList"><code class="docutils literal notranslate"><span class="pre">ConfigurationKeyOrList</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.decorators.on_conf_change"><code class="docutils literal notranslate"><span class="pre">on_conf_change()</span></code></a></li>
 </ul>
             </nav>
@@ -438,38 +440,74 @@ document.write(`
   <section id="module-spyder.api.config.decorators">
 <span id="spyder-api-config-decorators"></span><h1>spyder.api.config.decorators<a class="headerlink" href="#module-spyder.api.config.decorators" title="Link to this heading">#</a></h1>
 <p>Spyder API helper decorators.</p>
-<p class="rubric">Functions</p>
+<p class="rubric">Module Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.config.decorators.on_conf_change" title="spyder.api.config.decorators.on_conf_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_conf_change</span></code></a>([func, section, option])</p></td>
-<td><p>Method decorator used to handle changes on the configuration option <cite>option</cite> of the section <cite>section</cite>.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.config.decorators.ConfigurationKeyList" title="spyder.api.config.decorators.ConfigurationKeyList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigurationKeyList</span></code></a></p></td>
+<td><p>Type alias for a list of string/string tuple keys of Spyder config options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.config.decorators.ConfigurationKeyOrList" title="spyder.api.config.decorators.ConfigurationKeyOrList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigurationKeyOrList</span></code></a></p></td>
+<td><p>Type alias for either a list of config keys or a single key.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p class="rubric">Functions</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.config.decorators.on_conf_change" title="spyder.api.config.decorators.on_conf_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_conf_change</span></code></a>([func, section, option])</p></td>
+<td><p>Decorator to handle changing a config option in a given section.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.config.decorators.ConfigurationKeyList">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.config.decorators.</span></span><span class="sig-name descname"><span class="pre">ConfigurationKeyList</span></span><a class="headerlink" href="#spyder.api.config.decorators.ConfigurationKeyList" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for a list of string/string tuple keys of Spyder config options.</p>
+<p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.config.types.ConfigurationKey</span></code>s.</p>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, …]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.config.decorators.ConfigurationKeyOrList">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.config.decorators.</span></span><span class="sig-name descname"><span class="pre">ConfigurationKeyOrList</span></span><a class="headerlink" href="#spyder.api.config.decorators.ConfigurationKeyOrList" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for either a list of config keys or a single key.</p>
+<p>Union of types <a class="reference internal" href="#spyder.api.config.decorators.ConfigurationKeyList" title="spyder.api.config.decorators.ConfigurationKeyList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationKeyList</span></code></a> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.config.types.ConfigurationKey</span></code>.</p>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, …]] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, …]</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="spyder.api.config.decorators.on_conf_change">
-<span class="sig-prename descclassname"><span class="pre">spyder.api.config.decorators.</span></span><span class="sig-name descname"><span class="pre">on_conf_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/decorators.html#on_conf_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.decorators.on_conf_change" title="Link to this definition">#</a></dt>
-<dd><p>Method decorator used to handle changes on the configuration option
-<cite>option</cite> of the section <cite>section</cite>.</p>
-<p>The methods that use this decorator must have the following signature
-<cite>def method(self, value)</cite> when observing a single value or the whole
-section and <cite>def method(self, option, value): …</cite> when observing
-multiple values.</p>
+<span class="sig-prename descclassname"><span class="pre">spyder.api.config.decorators.</span></span><span class="sig-name descname"><span class="pre">on_conf_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ConfigurationKeyOrList</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="reference internal" href="../_modules/spyder/api/config/decorators.html#on_conf_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.decorators.on_conf_change" title="Link to this definition">#</a></dt>
+<dd><p>Decorator to handle changing a config option in a given section.</p>
+<p>The methods that use this decorator must have the signature</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>when observing a single value or the whole section, and</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">:</span> <span class="n">ConfigurationKeyOrList</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>when observing multiple values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> (<em>Callable</em>) – Method to decorate. Given by default when applying the decorator.</p></li>
-<li><p><strong>section</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Name of the configuration whose option is going to be observed for
-changes. If None, then the <cite>CONF_SECTION</cite> attribute of the class
-where the method is defined is used.</p></li>
-<li><p><strong>option</strong> (<em>Optional</em><em>[</em><em>ConfigurationKeyOrList</em><em>]</em>) – Name/tuple of the option to observe or a list of name/tuples if the
-method expects updates from multiple keys. If None, then all changes
-on the specified section are observed.</p></li>
+<li><p><strong>func</strong> (<em>Callable</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – Method to decorate, passed automatically when applying the decorator.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the configuration section to observe for changes.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the <code class="docutils literal notranslate"><span class="pre">CONF_SECTION</span></code> attribute of the class
+where the method defined is used.</p></li>
+<li><p><strong>option</strong> (<em>ConfigurationKeyOrList</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> / <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) of the option
+to observe, or a list of names if the method expects updates from
+multiple keys. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then all changes to options in the
+specified section are observed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>func</strong> – The same method that was given as input.</p>
+<dd class="field-even"><p><strong>func</strong> – The method passed as <code class="docutils literal notranslate"><span class="pre">func</span></code> with the config listener set up.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Callable</p>
@@ -524,6 +562,8 @@ on the specified section are observed.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.decorators.ConfigurationKeyList"><code class="docutils literal notranslate"><span class="pre">ConfigurationKeyList</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.decorators.ConfigurationKeyOrList"><code class="docutils literal notranslate"><span class="pre">ConfigurationKeyOrList</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.decorators.on_conf_change"><code class="docutils literal notranslate"><span class="pre">on_conf_change()</span></code></a></li>
 </ul>
   </nav></div>

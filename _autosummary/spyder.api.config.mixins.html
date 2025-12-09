@@ -423,7 +423,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.BasicTypes"><code class="docutils literal notranslate"><span class="pre">BasicTypes</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.CONF_SECTION</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.get_conf()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.get_conf_options()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.set_conf()</span></code></a></li>
@@ -435,6 +437,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__del__"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.__del__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.on_configuration_change()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.add_configuration_observer()</span></code></a></li>
 </ul>
@@ -452,139 +455,198 @@ document.write(`
                   
   <section id="module-spyder.api.config.mixins">
 <span id="spyder-api-config-mixins"></span><h1>spyder.api.config.mixins<a class="headerlink" href="#module-spyder.api.config.mixins" title="Link to this heading">#</a></h1>
-<p>Spyder API helper mixins.</p>
-<p class="rubric">Classes</p>
+<p>Spyder API configuration helper mixins.</p>
+<p class="rubric">Module Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor" title="spyder.api.config.mixins.SpyderConfigurationAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor</span></code></a>()</p></td>
-<td><p>Mixin used to access options stored in the Spyder configuration system.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationObserver" title="spyder.api.config.mixins.SpyderConfigurationObserver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a>()</p></td>
-<td><p>Concrete implementation of the protocol <code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.config.types.ConfigurationObserver</span></code>.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.config.mixins.BasicTypes" title="spyder.api.config.mixins.BasicTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicTypes</span></code></a></p></td>
+<td><p>Type alias for the set of basic Python types supported as config values.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor" title="spyder.api.config.mixins.SpyderConfigurationAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor</span></code></a>()</p></td>
+<td><p>Mixin to access options stored in the Spyder configuration system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationObserver" title="spyder.api.config.mixins.SpyderConfigurationObserver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a>()</p></td>
+<td><p>Methods to receive and respond to changes in Spyder's configuration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.config.mixins.BasicTypes">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.config.mixins.</span></span><span class="sig-name descname"><span class="pre">BasicTypes</span></span><a class="headerlink" href="#spyder.api.config.mixins.BasicTypes" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for the set of basic Python types supported as config values.</p>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.config.mixins.</span></span><span class="sig-name descname"><span class="pre">SpyderConfigurationAccessor</span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Mixin used to access options stored in the Spyder configuration system.</p>
+<p>Mixin to access options stored in the Spyder configuration system.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION">
+<span class="sig-name descname"><span class="pre">CONF_SECTION</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="Link to this definition">#</a></dt>
+<dd><p>Name of the default configuration section to use for this object.</p>
+<p>Will be used to record its permanent data in Spyder’s config system.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf">
-<span class="sig-name descname"><span class="pre">get_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">option:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.Tuple[str,</span> <span class="pre">...],</span> <span class="pre">default:</span> <span class="pre">~spyder.config.user.NoDefault</span> <span class="pre">|</span> <span class="pre">bool</span> <span class="pre">|</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">tuple</span> <span class="pre">|</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'spyder.config.user.NoDefault'&gt;,</span> <span class="pre">section:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">secure:</span> <span class="pre">bool</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.get_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf" title="Link to this definition">#</a></dt>
-<dd><p>Get an option from the Spyder configuration system.</p>
+<span class="sig-name descname"><span class="pre">get_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option:</span> <span class="pre">ConfigurationKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default:</span> <span class="pre">NoDefault</span> <span class="pre">|</span> <span class="pre">BasicTypes</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'spyder.config.user.NoDefault'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BasicTypes</span></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.get_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve an option’s value from the Spyder configuration system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>option</strong> (<em>ConfigurationKey</em>) – Name/Tuple path of the option to get its value from.</p></li>
-<li><p><strong>default</strong> (<em>Union</em><em>[</em><em>NoDefault</em><em>, </em><em>BasicTypes</em><em>]</em>) – Fallback value to return if the option is not found on the
-configuration system.</p></li>
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Section in the configuration system, e.g. <cite>shortcuts</cite>. If None,
-then the value of <cite>CONF_SECTION</cite> is used.</p></li>
-<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, the option will be retrieved securely using the <cite>keyring</cite>
-Python package.</p></li>
+<li><p><strong>option</strong> (<em>spyder.config.types.ConfigurationKey</em>) – Name/tuple path of the configuration option value to get.</p></li>
+<li><p><strong>default</strong> (<em>spyder.config.user.NoDefault</em><em> | </em><em>BasicTypes</em><em>, </em><em>optional</em>) – Fallback value to return if the option is not found on the
+configuration system. No default value if not passed.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the configuration section to use, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the value of <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> is used.</p></li>
+<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the option will be retrieved from secure storage
+using the <code class="xref py py-mod docutils literal notranslate"><span class="pre">keyring</span></code> Python package. Otherwise, will be
+retrieved from Spyder’s normal configuration (the default).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>value</strong> – Value of the option in the configuration section.</p>
+<dd class="field-even"><p><strong>value</strong> – Value of <code class="docutils literal notranslate"><span class="pre">option</span></code> in the configuration <code class="docutils literal notranslate"><span class="pre">section</span></code>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>BasicTypes</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/configparser.html#configparser.NoOptionError" title="(in Python v3.14)"><strong>configparser.NoOptionError</strong></a> – If the section does not exist in the configuration.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/configparser.html#configparser.NoOptionError" title="(in Python v3.14)"><strong>configparser.NoOptionError</strong></a> – If the <code class="docutils literal notranslate"><span class="pre">section</span></code> does not exist in Spyder’s configuration.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options">
-<span class="sig-name descname"><span class="pre">get_conf_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.get_conf_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options" title="Link to this definition">#</a></dt>
-<dd><p>Get all options from the given section.</p>
+<span class="sig-name descname"><span class="pre">get_conf_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.get_conf_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options" title="Link to this definition">#</a></dt>
+<dd><p>Get all option names from the given section.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>section</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Section in the configuration system, e.g. <cite>shortcuts</cite>. If None,
-then the value of <cite>CONF_SECTION</cite> is used.</p>
+<dd class="field-odd"><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the configuration section to use, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the value of <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> is used.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>values</strong> – Values of the option in the configuration section.</p>
+<dd class="field-even"><p><strong>values</strong> – List of option names (keys) in the configuration <code class="docutils literal notranslate"><span class="pre">section</span></code>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>BasicTypes</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/configparser.html#configparser.NoOptionError" title="(in Python v3.14)"><strong>configparser.NoOptionError</strong></a> – If the section does not exist in the configuration.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/configparser.html#configparser.NoOptionError" title="(in Python v3.14)"><strong>configparser.NoOptionError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">section</span></code> does not exist in the configuration.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf">
-<span class="sig-name descname"><span class="pre">set_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive_notification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.set_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf" title="Link to this definition">#</a></dt>
-<dd><p>Set an option in the Spyder configuration system.</p>
+<span class="sig-name descname"><span class="pre">set_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.config.types.ConfigurationKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.api.config.mixins.BasicTypes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive_notification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.set_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf" title="Link to this definition">#</a></dt>
+<dd><p>Set an option’s value in the Spyder configuration system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>option</strong> (<em>ConfigurationKey</em>) – Name/Tuple path of the option to set its value.</p></li>
-<li><p><strong>value</strong> (<em>BasicTypes</em>) – Value to set on the configuration system.</p></li>
-<li><p><strong>section</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Section in the configuration system, e.g. <cite>shortcuts</cite>. If None,
-then the value of <cite>CONF_SECTION</cite> is used.</p></li>
-<li><p><strong>recursive_notification</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, all objects that observe all changes on the
-configuration section and objects that observe partial tuple paths
-are notified. For example if the option <cite>opt</cite> of section <cite>sec</cite>
-changes, then the observers for section <cite>sec</cite> are notified.
-Likewise, if the option <cite>(a, b, c)</cite> changes, then observers for
-<cite>(a, b, c)</cite>, <cite>(a, b)</cite> and a are notified as well.</p></li>
-<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, the option will be saved securely using the <cite>keyring</cite>
-Python package.</p></li>
+<li><p><strong>option</strong> (<em>spyder.config.types.ConfigurationKey</em>) – Name/tuple path of the configuration option to set.</p></li>
+<li><p><strong>value</strong> (<em>BasicTypes</em>) – Value to set for the given configuration option.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the configuration section to use, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the value of <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> is used.</p></li>
+<li><p><strong>recursive_notification</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, all objects that observe all changes on the
+configuration <code class="docutils literal notranslate"><span class="pre">section</span></code> as well as objects that observe
+partial tuple paths are notified. For example, if the
+<code class="docutils literal notranslate"><span class="pre">option</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;opt&quot;</span></code> of <code class="docutils literal notranslate"><span class="pre">section</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;sec&quot;</span></code> changes, then
+all observers for section <code class="docutils literal notranslate"><span class="pre">sec</span></code> are notified. Likewise,
+if the option <code class="docutils literal notranslate"><span class="pre">(&quot;a&quot;,</span> <span class="pre">&quot;b&quot;,</span> <span class="pre">&quot;c&quot;)</span></code> changes, then observers for
+<code class="docutils literal notranslate"><span class="pre">(&quot;a&quot;,</span> <span class="pre">&quot;b&quot;,</span> <span class="pre">&quot;c&quot;)</span></code>, <code class="docutils literal notranslate"><span class="pre">(&quot;a&quot;,</span> <span class="pre">&quot;b&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> are all notified.</p></li>
+<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the option will be saved in secure storage
+using the <code class="xref py py-mod docutils literal notranslate"><span class="pre">keyring</span></code> Python package. Otherwise, will be
+saved in Spyder’s normal configuration (the default).</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.remove_conf">
-<span class="sig-name descname"><span class="pre">remove_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.remove_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.remove_conf" title="Link to this definition">#</a></dt>
-<dd><p>Remove an option in the Spyder configuration system.</p>
+<span class="sig-name descname"><span class="pre">remove_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.config.types.ConfigurationKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.remove_conf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.remove_conf" title="Link to this definition">#</a></dt>
+<dd><p>Remove an option from the Spyder configuration system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>option</strong> (<em>ConfigurationKey</em>) – Name/Tuple path of the option to remove its value.</p></li>
-<li><p><strong>section</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Section in the configuration system, e.g. <cite>shortcuts</cite>. If None,
-then the value of <cite>CONF_SECTION</cite> is used.</p></li>
-<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, the option will be removed securely using the <cite>keyring</cite>
-Python package.</p></li>
+<li><p><strong>option</strong> (<em>spyder.config.types.ConfigurationKey</em>) – Name/tuple path of the configuration option to remove.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the configuration section to use, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the value of <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> is used.</p></li>
+<li><p><strong>secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the option will be removed from secure storage
+using the <code class="xref py py-mod docutils literal notranslate"><span class="pre">keyring</span></code> Python package. Otherwise, will be
+removed from Spyder’s normal configuration (the default).</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_default">
-<span class="sig-name descname"><span class="pre">get_conf_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.get_conf_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_default" title="Link to this definition">#</a></dt>
-<dd><p>Get an option default value in the Spyder configuration system.</p>
+<span class="sig-name descname"><span class="pre">get_conf_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.config.types.ConfigurationKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NoDefault</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">spyder.api.config.mixins.BasicTypes</span></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationAccessor.get_conf_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_default" title="Link to this definition">#</a></dt>
+<dd><p>Get an option’s default value from the Spyder configuration system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>option</strong> (<em>ConfigurationKey</em>) – Name/Tuple path of the option to remove its value.</p></li>
-<li><p><strong>section</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Section in the configuration system, e.g. <cite>shortcuts</cite>. If None,
-then the value of <cite>CONF_SECTION</cite> is used.</p></li>
+<li><p><strong>option</strong> (<em>spyder.config.types.ConfigurationKey</em>) – Name/tuple path of the config option to get the default value of.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the configuration section to use, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the value of <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> is used.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <code class="docutils literal notranslate"><span class="pre">option</span></code>’s default value, or
+<code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.config.user.NoDefault</span></code> if one is not set.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>spyder.config.user.NoDefault | BasicTypes</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.spyder_conf_version">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spyder_conf_version</span></span><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.spyder_conf_version" title="Link to this definition">#</a></dt>
-<dd><p>Get current version for the Spyder configuration system.</p>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spyder_conf_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.spyder_conf_version" title="Link to this definition">#</a></dt>
+<dd><p>Get current version of the Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current Spyder <code class="xref py py-const docutils literal notranslate"><span class="pre">spyder.config.manager.CONF_VERSION</span></code>,
+as a string of <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.MICRO</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationAccessor.old_spyder_conf_version">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">old_spyder_conf_version</span></span><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.old_spyder_conf_version" title="Link to this definition">#</a></dt>
-<dd><p>Get old version for the Spyder configuration system.</p>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">old_spyder_conf_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.old_spyder_conf_version" title="Link to this definition">#</a></dt>
+<dd><p>Get previous version of the Spyder configuration system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The previous Spyder <code class="xref py py-const docutils literal notranslate"><span class="pre">spyder.config.manager.CONF_VERSION</span></code>
+prior to the most recent Spyder update, as a string of
+<code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.MICRO</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -593,54 +655,78 @@ then the value of <cite>CONF_SECTION</cite> is used.</p></li>
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.config.mixins.</span></span><span class="sig-name descname"><span class="pre">SpyderConfigurationObserver</span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor" title="spyder.api.config.mixins.SpyderConfigurationAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor</span></code></a></p>
-<p>Concrete implementation of the protocol
-<code class="xref py py-class docutils literal notranslate"><span class="pre">spyder.config.types.ConfigurationObserver</span></code>.</p>
+<p>Methods to receive and respond to changes in Spyder’s configuration.</p>
 <p>This mixin enables a class to receive configuration updates seamlessly,
 by registering methods using the
-<a class="reference internal" href="spyder.api.config.decorators.html#spyder.api.config.decorators.on_conf_change" title="spyder.api.config.decorators.on_conf_change"><code class="xref py py-func docutils literal notranslate"><span class="pre">spyder.api.config.decorators.on_conf_change()</span></code></a> decorator, which
-receives a configuration section and option to observe.</p>
+<a class="reference internal" href="spyder.api.config.decorators.html#spyder.api.config.decorators.on_conf_change" title="spyder.api.config.decorators.on_conf_change"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_conf_change()</span></code></a> decorator,
+which takes a configuration section and option to observe.</p>
 <p>When a change occurs on any of the registered configuration options,
-the corresponding registered method is called with the new value.</p>
+the corresponding registered method is called with the new config value.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new <code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Classes or their parents implementing this mixin must define
+a <a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> class attribute
+with the name of their default configuration section.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver.__del__">
+<span class="sig-name descname"><span class="pre">__del__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.__del__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__del__" title="Link to this definition">#</a></dt>
+<dd><p>Remove an object from the configuration observer.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change">
-<span class="sig-name descname"><span class="pre">on_configuration_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.on_configuration_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change" title="Link to this definition">#</a></dt>
-<dd><p>Handle configuration updates for the option <cite>option</cite> on the section
-<cite>section</cite>, whose new value corresponds to <cite>value</cite>.</p>
+<span class="sig-name descname"><span class="pre">on_configuration_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.config.types.ConfigurationKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.api.config.mixins.BasicTypes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.on_configuration_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change" title="Link to this definition">#</a></dt>
+<dd><p>Handle configuration value updates for a config option.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>option</strong> (<em>ConfigurationKey</em>) – Configuration option that did change.</p></li>
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the section where <cite>option</cite> is contained.</p></li>
-<li><p><strong>value</strong> (<em>Any</em>) – New value of the configuration option that produced the event.</p></li>
+<li><p><strong>option</strong> (<em>spyder.config.types.ConfigurationKey</em>) – Name/tuple path of the configuration option that changed.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the section containing <code class="docutils literal notranslate"><span class="pre">option</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.</p></li>
+<li><p><strong>value</strong> (<em>BasicTypes</em>) – New value of the configuration option that produced the event.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer">
-<span class="sig-name descname"><span class="pre">add_configuration_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.add_configuration_observer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer" title="Link to this definition">#</a></dt>
-<dd><p>Add a callable to observe the option <cite>option</cite> on section <cite>section</cite>.</p>
+<span class="sig-name descname"><span class="pre">add_configuration_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.config.types.ConfigurationKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/config/mixins.html#SpyderConfigurationObserver.add_configuration_observer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer" title="Link to this definition">#</a></dt>
+<dd><p>Add a callable to observe changes to a specific configuration option.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> (<em>Callable</em>) – Function that will be called when <cite>option</cite> changes.</p></li>
-<li><p><strong>option</strong> (<em>ConfigurationKey</em>) – Configuration option to observe.</p></li>
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the section where <cite>option</cite> is contained.</p></li>
+<li><p><strong>func</strong> (<em>Callable</em>) – Function/method that will be called when <code class="docutils literal notranslate"><span class="pre">option</span></code> changes.</p></li>
+<li><p><strong>option</strong> (<em>spyder.config.types.ConfigurationKey</em>) – Name/tuple path of the configuration option to observe.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the section containing <code class="docutils literal notranslate"><span class="pre">option</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;shortcuts&quot;</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the value of
+<a class="reference internal" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION" title="spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CONF_SECTION</span></code></a> is used.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
 <li><p>This is only necessary if you need to add a callable that is not a
-class method to observe an option. Otherwise, you simply need to
+class method to observe an option. Otherwise, you only need to
 decorate your method with
-<a class="reference internal" href="spyder.api.config.decorators.html#spyder.api.config.decorators.on_conf_change" title="spyder.api.config.decorators.on_conf_change"><code class="xref py py-func docutils literal notranslate"><span class="pre">spyder.api.config.decorators.on_conf_change()</span></code></a>.</p></li>
+<a class="reference internal" href="spyder.api.config.decorators.html#spyder.api.config.decorators.on_conf_change" title="spyder.api.config.decorators.on_conf_change"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_conf_change()</span></code></a>.</p></li>
 </ul>
 </dd></dl>
 
@@ -693,7 +779,9 @@ decorate your method with
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.BasicTypes"><code class="docutils literal notranslate"><span class="pre">BasicTypes</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.CONF_SECTION"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.CONF_SECTION</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.get_conf()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.get_conf_options"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.get_conf_options()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationAccessor.set_conf"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor.set_conf()</span></code></a></li>
@@ -705,6 +793,7 @@ decorate your method with
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.__del__"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.__del__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.on_configuration_change"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.on_configuration_change()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.config.mixins.SpyderConfigurationObserver.add_configuration_observer"><code class="docutils literal notranslate"><span class="pre">SpyderConfigurationObserver.add_configuration_observer()</span></code></a></li>
 </ul>
