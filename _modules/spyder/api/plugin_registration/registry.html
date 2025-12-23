@@ -360,17 +360,26 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.plugin_registration.registry</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
-<span class="sd">&quot;&quot;&quot;Global plugin registry.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Global registry for internal and external Spyder plugins.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>  <span class="c1"># noqa: ICN003</span>
 
 <span class="c1"># Third-party library imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">Signal</span>
@@ -386,12 +395,21 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Plugins</span><span class="p">,</span> <span class="n">SpyderDockablePlugin</span><span class="p">,</span> <span class="n">SpyderPluginV2</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.icon_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ima</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIcon</span>
 
-<span class="n">SpyderPluginClass</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">SpyderPluginV2</span><span class="p">,</span> <span class="n">SpyderDockablePlugin</span><span class="p">]</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.app.mainwindow</span>
 
 
-<span class="n">ALL_PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">Plugins</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">Plugins</span><span class="p">)</span>
-               <span class="k">if</span> <span class="ow">not</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;All&#39;</span><span class="p">]</span>
+<span class="n">SpyderPluginClass</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">SpyderPluginV2</span><span class="p">,</span> <span class="n">SpyderDockablePlugin</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias for the set of supported classes for Spyder plugin objects.&quot;&quot;&quot;</span>
+
+<span class="n">ALL_PLUGINS</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">getattr</span><span class="p">(</span><span class="n">Plugins</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">Plugins</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s2">&quot;All&quot;</span>
+<span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;List of all Spyder internal plugins.&quot;&quot;&quot;</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -399,13 +417,17 @@ document.write(`
 <div class="viewcode-block" id="PreferencesAdapter">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.PreferencesAdapter">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PreferencesAdapter</span><span class="p">(</span><span class="n">SpyderConfigurationAccessor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class with constants for the plugin manager preferences page.&quot;&quot;&quot;</span>
+
     <span class="c1"># Fake class constants used to register the configuration page</span>
     <span class="n">CONF_WIDGET_CLASS</span> <span class="o">=</span> <span class="n">PluginsConfigPage</span>
-    <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;plugin_registry&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;:meta private:&quot;&quot;&quot;</span>
+    <span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;plugin_registry&quot;</span>
     <span class="n">CONF_VERSION</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">ADDITIONAL_CONF_OPTIONS</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">ADDITIONAL_CONF_TABS</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">CONF_SECTION</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;:meta private:&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_plugin_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_unused</span><span class="p">):</span>
         <span class="k">pass</span>
@@ -419,74 +441,102 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderPluginRegistry</span><span class="p">(</span><span class="n">QObject</span><span class="p">,</span> <span class="n">PreferencesAdapter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Global plugin registry.</span>
+<span class="sd">    Global Spyder plugin registry.</span>
 
-<span class="sd">    This class handles a plugin initialization/teardown lifetime, including</span>
-<span class="sd">    notifications when a plugin is available or not.</span>
+<span class="sd">    This class handles a plugin&#39;s initialization/teardown lifetime, including</span>
+<span class="sd">    notifications when a plugin is available or about to be torn down.</span>
 
 <span class="sd">    This registry alleviates the limitations of a topological sort-based</span>
 <span class="sd">    plugin initialization by enabling plugins to have bidirectional</span>
 <span class="sd">    dependencies instead of unidirectional ones.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    1. This class should be instantiated as a singleton.</span>
-<span class="sd">    2. A plugin should not depend on other plugin to perform its</span>
-<span class="sd">       initialization since it could cause deadlocks.</span>
+<span class="sd">    .. caution::</span>
+
+<span class="sd">        A plugin should not depend on other plugin to perform its</span>
+<span class="sd">        initialization, since this could cause deadlocks.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        This class should be instantiated as a singleton.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_plugin_ready</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">sig_plugin_ready</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal is used to let the main window know that a plugin is ready.</span>
+<span class="sd">    Signal used to let the main window know that a plugin is ready for use.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    plugin_name: str</span>
-<span class="sd">        Name of the plugin that is available.</span>
+<span class="sd">        Name of the plugin that has become available.</span>
 <span class="sd">    omit_conf: bool</span>
-<span class="sd">        True if the plugin configuration does not need to be written.</span>
+<span class="sd">        ``True`` if the plugin configuration does not need to be written;</span>
+<span class="sd">        ``False`` otherwise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderPluginRegistry.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a global registry for internal and external Spyder plugins.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">PreferencesAdapter</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-        <span class="c1"># Reference to the main window</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">mainwindow</span><span class="o">.</span><span class="n">MainWindow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reference to the Spyder main window.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Dictionary that maps a plugin name to a list of the plugin names</span>
-        <span class="c1"># that depend on it.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Dict[str, List[str]]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mapping of plugin names to the names of plugins depending on them.</span>
 
-        <span class="c1"># Dictionary that maps a plugin name to a list of the plugin names</span>
-        <span class="c1"># that the plugin depends on.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Dict[str, List[str]]]</span>
+<span class="sd">        The second-level dictionary holds lists of dependencies for the plugin</span>
+<span class="sd">        by category, under the keys ``&quot;requires&quot;`` and ``&quot;optional&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Plugin dictionary mapped by their names</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, SpyderPluginClass]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mapping of plugin names to the names of plugins they depend on.</span>
 
-        <span class="c1"># Dictionary that maps a plugin name to its availability.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, bool]</span>
+<span class="sd">        The second-level dictionary holds lists of dependencies for the plugin</span>
+<span class="sd">        by category, under the keys ``&quot;requires&quot;`` and ``&quot;optional&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Set that stores the plugin names of all Spyder 4 plugins.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>  <span class="c1"># type: set[str]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SpyderPluginClass</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mapping of plugin names to plugin objects.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Set that stores the names of the plugins that are enabled</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>  <span class="c1"># type: set[str]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mapping of plugin name to whether it is ready for use.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Set that stores the names of the internal plugins</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>  <span class="c1"># type: set[str]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set of the names of all enabled plugins.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Set that stores the names of the external plugins</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>  <span class="c1"># type: set[str]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set of the names of all internal plugins (part of Spyder itself).&quot;&quot;&quot;</span>
 
-        <span class="c1"># Dictionary that contains all the internal plugins (enabled or not)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">all_internal_plugins</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Tuple[str, Type[SpyderPluginClass]]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set of the names of all external plugins (installed separately).&quot;&quot;&quot;</span>
 
-        <span class="c1"># Dictionary that contains all the external plugins (enabled or not)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">all_external_plugins</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Tuple[str, Type[SpyderPluginClass]]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_internal_plugins</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">]]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mapping of internal plugins to their name and plugin class.</span>
+
+<span class="sd">        Includes all internal plugins that are part of Spyder&#39;s source tree,</span>
+<span class="sd">        enabled or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_external_plugins</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">]]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mapping of external plugins to their name and plugin class.</span>
+
+<span class="sd">        Includes all externals plugins installed separately from Spyder,</span>
+<span class="sd">        enabled or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># This is used to allow disabling external plugins through Preferences</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_external_plugins_conf_section</span> <span class="o">=</span> <span class="s2">&quot;external_plugins&quot;</span></div>
@@ -501,8 +551,9 @@ document.write(`
         <span class="n">plugin_dependents</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin_strict_dependents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin_dependents</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">required_plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                             <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_dependencies</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">required_plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add `required_plugin` to the list of dependencies of `plugin`.&quot;&quot;&quot;</span>
         <span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="p">{})</span>
         <span class="n">plugin_strict_dependencies</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span>
@@ -510,30 +561,33 @@ document.write(`
         <span class="n">plugin_dependencies</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin_strict_dependencies</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin_dependencies</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_plugin_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                            <span class="n">required_plugins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-                            <span class="n">optional_plugins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_plugin_info</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">required_plugins</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">optional_plugins</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the dependencies and dependents of `plugin_name`.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">required_plugins</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependencies</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="s1">&#39;requires&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependents</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="s1">&#39;requires&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependencies</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="s2">&quot;requires&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependents</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="s2">&quot;requires&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">optional_plugins</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependencies</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="s1">&#39;optional&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependents</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="s1">&#39;optional&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependencies</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="s2">&quot;optional&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_dependents</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="s2">&quot;optional&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_instantiate_spyder_plugin</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">main_window</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">PluginClass</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">],</span>
+        <span class="n">PluginClass</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">],</span>
         <span class="n">external</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderPluginClass</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and register a Spyder 5+ plugin.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and register a Spyder plugin.&quot;&quot;&quot;</span>
         <span class="n">required_plugins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">PluginClass</span><span class="o">.</span><span class="n">REQUIRES</span><span class="p">))</span>
         <span class="n">optional_plugins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">PluginClass</span><span class="o">.</span><span class="n">OPTIONAL</span><span class="p">))</span>
         <span class="n">plugin_name</span> <span class="o">=</span> <span class="n">PluginClass</span><span class="o">.</span><span class="n">NAME</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Registering plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">PluginClass</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Registering plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">PluginClass</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">PluginClass</span><span class="o">.</span><span class="n">CONF_FILE</span><span class="p">:</span>
             <span class="n">CONF</span><span class="o">.</span><span class="n">register_plugin</span><span class="p">(</span><span class="n">PluginClass</span><span class="p">)</span>
@@ -547,8 +601,9 @@ document.write(`
                 <span class="n">optional_plugins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">optional_plugins</span> <span class="o">+</span> <span class="n">ALL_PLUGINS</span><span class="p">))</span>
 
         <span class="c1"># Update plugin dependency information</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_update_plugin_info</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">required_plugins</span><span class="p">,</span>
-                                 <span class="n">optional_plugins</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_plugin_info</span><span class="p">(</span>
+            <span class="n">plugin_name</span><span class="p">,</span> <span class="n">required_plugins</span><span class="p">,</span> <span class="n">optional_plugins</span>
+        <span class="p">)</span>
 
         <span class="c1"># Create and store plugin instance</span>
         <span class="n">plugin_instance</span> <span class="o">=</span> <span class="n">PluginClass</span><span class="p">(</span><span class="n">main_window</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">CONF</span><span class="p">)</span>
@@ -557,7 +612,9 @@ document.write(`
         <span class="c1"># Connect plugin availability signal to notification system</span>
         <span class="n">plugin_instance</span><span class="o">.</span><span class="n">sig_plugin_ready</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
             <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">notify_plugin_availability</span><span class="p">(</span>
-                <span class="n">plugin_name</span><span class="p">,</span> <span class="n">omit_conf</span><span class="o">=</span><span class="n">PluginClass</span><span class="o">.</span><span class="n">CONF_FILE</span><span class="p">))</span>
+                <span class="n">plugin_name</span><span class="p">,</span> <span class="n">omit_conf</span><span class="o">=</span><span class="n">PluginClass</span><span class="o">.</span><span class="n">CONF_FILE</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="c1"># Initialize plugin instance</span>
         <span class="n">plugin_instance</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
@@ -578,8 +635,14 @@ document.write(`
             <span class="n">package_name</span> <span class="o">=</span> <span class="n">PluginClass</span><span class="o">.</span><span class="n">_spyder_package_name</span>
             <span class="n">version</span> <span class="o">=</span> <span class="n">PluginClass</span><span class="o">.</span><span class="n">_spyder_version</span>
             <span class="n">description</span> <span class="o">=</span> <span class="n">plugin_instance</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
-            <span class="n">dependencies</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span>
-                                <span class="n">version</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">dependencies</span><span class="o">.</span><span class="n">PLUGIN</span><span class="p">)</span>
+            <span class="n">dependencies</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">module</span><span class="p">,</span>
+                <span class="n">package_name</span><span class="p">,</span>
+                <span class="n">description</span><span class="p">,</span>
+                <span class="n">version</span><span class="p">,</span>
+                <span class="kc">None</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="n">dependencies</span><span class="o">.</span><span class="n">PLUGIN</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">plugin_instance</span>
 
@@ -587,26 +650,28 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Notify a plugin of its available dependencies.&quot;&quot;&quot;</span>
         <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
         <span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;requires&#39;</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optional&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requires&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optional&quot;</span><span class="p">,</span> <span class="p">[])</span>
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">required_plugins</span> <span class="o">+</span> <span class="n">optional_plugins</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Plugin </span><span class="si">{</span><span class="n">plugin</span><span class="si">}</span><span class="s1"> has already loaded&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plugin </span><span class="si">{</span><span class="n">plugin</span><span class="si">}</span><span class="s2"> has already loaded&quot;</span><span class="p">)</span>
                     <span class="n">plugin_instance</span><span class="o">.</span><span class="n">_on_plugin_available</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_notify_plugin_teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Notify dependents of a plugin that is going to be unavailable.&quot;&quot;&quot;</span>
         <span class="n">plugin_dependents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;requires&#39;</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optional&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requires&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optional&quot;</span><span class="p">,</span> <span class="p">[])</span>
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">required_plugins</span> <span class="o">+</span> <span class="n">optional_plugins</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Notifying plugin </span><span class="si">{</span><span class="n">plugin</span><span class="si">}</span><span class="s1"> that &#39;</span>
-                                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s1"> is going to be turned off&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Notifying plugin </span><span class="si">{</span><span class="n">plugin</span><span class="si">}</span><span class="s2"> that &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2"> is going to be turned off&quot;</span>
+                    <span class="p">)</span>
                     <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span>
                     <span class="n">plugin_instance</span><span class="o">.</span><span class="n">_on_plugin_teardown</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
 
@@ -614,25 +679,28 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Disconnect a plugin from its dependencies.&quot;&quot;&quot;</span>
         <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
         <span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;requires&#39;</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optional&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requires&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optional&quot;</span><span class="p">,</span> <span class="p">[])</span>
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">required_plugins</span> <span class="o">+</span> <span class="n">optional_plugins</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Disconnecting </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s1"> from </span><span class="si">{</span><span class="n">plugin</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Disconnecting </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2"> from </span><span class="si">{</span><span class="n">plugin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                     <span class="n">plugin_instance</span><span class="o">.</span><span class="n">_on_plugin_teardown</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
 
     <span class="c1"># -------------------------- PUBLIC API -----------------------------------</span>
 <div class="viewcode-block" id="SpyderPluginRegistry.register_plugin">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">register_plugin</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">main_window</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-            <span class="n">PluginClass</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">],</span>
-            <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">external</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderPluginClass</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">main_window</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">mainwindow</span><span class="o">.</span><span class="n">MainWindow</span><span class="p">,</span>
+        <span class="n">PluginClass</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">],</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">external</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderPluginClass</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Register a plugin into the Spyder registry.</span>
+<span class="sd">        Register a plugin into the Spyder plugin registry.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -640,68 +708,86 @@ document.write(`
 <span class="sd">            Reference to Spyder&#39;s main window.</span>
 <span class="sd">        PluginClass: type[SpyderPluginClass]</span>
 <span class="sd">            The plugin class to register and create. It must be one of</span>
-<span class="sd">            `spyder.app.registry.SpyderPluginClass`.</span>
-<span class="sd">        *args: tuple</span>
-<span class="sd">            Positional arguments used to initialize the plugin</span>
-<span class="sd">            instance.</span>
-<span class="sd">        external: bool</span>
-<span class="sd">            If True, then the plugin is stored as a external plugin. Otherwise</span>
-<span class="sd">            it will be marked as an internal plugin. Default: False</span>
-<span class="sd">        **kwargs: dict</span>
-<span class="sd">            Optional keyword arguments used to initialize the plugin instance.</span>
+<span class="sd">            :data:`SpyderPluginClass`.</span>
+<span class="sd">        *args: Any, optional</span>
+<span class="sd">            Arbitrary positional arguments passed to the plugin instance&#39;s</span>
+<span class="sd">            initializer.</span>
+
+<span class="sd">            .. deprecated:: 6.2</span>
+
+<span class="sd">                No longer needed following completion of the Spyder plugin</span>
+<span class="sd">                API migration in Spyder 6.0. Passing ``*args`` will raise a</span>
+<span class="sd">                :exc:`DeprecationWarning` in Spyder 6.2 and be removed in</span>
+<span class="sd">                Spyder 7.0.</span>
+<span class="sd">        external: bool, optional</span>
+<span class="sd">            If ``True``, then the plugin is stored as an external plugin.</span>
+<span class="sd">            Otherwise, it will be marked as an internal plugin (the default).</span>
+<span class="sd">        **kwargs: Any, optional</span>
+<span class="sd">            Arbitrary positional arguments passed to the plugin instance&#39;s</span>
+<span class="sd">            initializer.</span>
+
+<span class="sd">            .. deprecated:: 6.2</span>
+
+<span class="sd">                No longer needed following completion of the Spyder plugin</span>
+<span class="sd">                API migration in Spyder 6.0. Passing ``**kwargs`` will raise a</span>
+<span class="sd">                :exc:`DeprecationWarning` in Spyder 6.2 and be removed in</span>
+<span class="sd">                Spyder 7.0.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        plugin: SpyderPluginClass</span>
-<span class="sd">            The instance of the registered plugin.</span>
+<span class="sd">            The initialized instance of the registered plugin.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        TypeError</span>
-<span class="sd">            If the `PluginClass` does not inherit from any of</span>
-<span class="sd">            `spyder.app.registry.SpyderPluginClass`</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        The optional `*args` and `**kwargs` will be removed once all</span>
-<span class="sd">        plugins are migrated.</span>
+<span class="sd">            If the ``PluginClass`` does not inherit from any of</span>
+<span class="sd">            :data:`spyder.app.registry.SpyderPluginClass`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">PluginClass</span><span class="p">,</span> <span class="n">SpyderPluginV2</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">PluginClass</span><span class="si">}</span><span class="s2"> does not inherit from SpyderPluginV2&quot;</span>
             <span class="p">)</span>
 
-        <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">PluginClass</span><span class="p">,</span> <span class="n">SpyderPluginV2</span><span class="p">):</span>
-            <span class="c1"># Register a Spyder 5+ plugin</span>
-            <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_spyder_plugin</span><span class="p">(</span>
-                <span class="n">main_window</span><span class="p">,</span> <span class="n">PluginClass</span><span class="p">,</span> <span class="n">external</span>
-            <span class="p">)</span>
+        <span class="c1"># Register a Spyder plugin</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_spyder_plugin</span><span class="p">(</span>
+            <span class="n">main_window</span><span class="p">,</span> <span class="n">PluginClass</span><span class="p">,</span> <span class="n">external</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">instance</span></div>
 
 
 <div class="viewcode-block" id="SpyderPluginRegistry.notify_plugin_availability">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">notify_plugin_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                                   <span class="n">notify_main</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                                   <span class="n">omit_conf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">notify_plugin_availability</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">notify_main</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">omit_conf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Notify dependent plugins of a given plugin of its availability.</span>
+<span class="sd">        Notify a plugin&#39;s dependents that the plugin is ready for use.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
-<span class="sd">            Name of the plugin that is available.</span>
-<span class="sd">        notify_main: bool</span>
-<span class="sd">            If True, then a signal is emitted to the main window to perform</span>
-<span class="sd">            further registration steps.</span>
-<span class="sd">        omit_conf: bool</span>
-<span class="sd">            If True, then the main window is instructed to not write the</span>
+<span class="sd">            Name of the plugin that has become ready for use.</span>
+<span class="sd">        notify_main: bool, optional</span>
+<span class="sd">            If ``True``, then a signal is emitted to the main window to perform</span>
+<span class="sd">            further registration steps (the default). Otherwise, no signal is</span>
+<span class="sd">            emitted.</span>
+<span class="sd">        omit_conf: bool, optional</span>
+<span class="sd">            If ``True``, then the main window is instructed to not write the</span>
 <span class="sd">            plugin configuration into the Spyder configuration file.</span>
+<span class="sd">            Otherwise, configuration will be written as normal (the default).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s1"> has finished loading, &#39;</span>
-                     <span class="s1">&#39;sending notifications&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2"> has finished loading, sending notifications&quot;</span>
+        <span class="p">)</span>
 
         <span class="c1"># Set plugin availability to True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
@@ -712,8 +798,8 @@ document.write(`
 
         <span class="c1"># Notify plugin dependents</span>
         <span class="n">plugin_dependents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="p">{})</span>
-        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;requires&#39;</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optional&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">required_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requires&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">optional_plugins</span> <span class="o">=</span> <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optional&quot;</span><span class="p">,</span> <span class="p">[])</span>
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">required_plugins</span> <span class="o">+</span> <span class="n">optional_plugins</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">:</span>
@@ -729,9 +815,12 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">can_delete_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check if a plugin from the registry can be deleted by its name.</span>
+<span class="sd">        Check if a plugin with the given name can be deleted from the registry.</span>
 
-<span class="sd">        Paremeters</span>
+<span class="sd">        Calls :meth:`spyder.api.plugins.SpyderPluginV2.can_close` to</span>
+<span class="sd">        perform the check.</span>
+
+<span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
 <span class="sd">            Name of the plugin to check for deletion.</span>
@@ -739,7 +828,7 @@ document.write(`
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        can_close: bool</span>
-<span class="sd">            True if the plugin can be closed. False otherwise.</span>
+<span class="sd">            ``True`` if the plugin can be removed; ``False`` otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
         <span class="c1"># Determine if plugin can be closed</span>
@@ -749,20 +838,22 @@ document.write(`
 <div class="viewcode-block" id="SpyderPluginRegistry.dock_undocked_plugin">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_undocked_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">dock_undocked_plugin</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">save_undocked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">save_undocked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Dock plugin if undocked and save undocked state if requested</span>
+<span class="sd">        Dock plugin if undocked and save undocked state if requested.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
-<span class="sd">            Name of the plugin to check for deletion.</span>
+<span class="sd">            Name of the plugin to undock.</span>
 <span class="sd">        save_undocked : bool, optional</span>
-<span class="sd">            True if the undocked state needs to be saved. The default is False.</span>
+<span class="sd">            ``True`` if the undocked state should be saved. If ``False``,</span>
+<span class="sd">            the default, don&#39;t persist the undocked state.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None.</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
 
@@ -773,29 +864,38 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderPluginRegistry.delete_plugin">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_plugin">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">delete_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">teardown</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                      <span class="n">check_can_delete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_plugin</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">teardown</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">check_can_delete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Remove and delete a plugin from the registry by its name.</span>
+<span class="sd">        Remove and delete the plugin with the given name from the registry.</span>
 
-<span class="sd">        Paremeters</span>
+<span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
 <span class="sd">            Name of the plugin to delete.</span>
-<span class="sd">        teardown: bool</span>
-<span class="sd">            True if the teardown notification to other plugins should be sent</span>
-<span class="sd">            when deleting the plugin, False otherwise.</span>
-<span class="sd">        check_can_delete: bool</span>
-<span class="sd">            True if the plugin should validate if it can be closed when this</span>
-<span class="sd">            method is called, False otherwise.</span>
+<span class="sd">        teardown: bool, optional</span>
+<span class="sd">            ``True`` if the teardown notification to other plugins should be</span>
+<span class="sd">            sent when deleting the plugin (the default), ``False`` otherwise.</span>
+<span class="sd">        check_can_delete: bool, optional</span>
+<span class="sd">            ``True`` if the plugin should first check if it can be deleted</span>
+<span class="sd">            (using :meth:`can_delete_plugin`) before closing and removing</span>
+<span class="sd">            itself from the registry (the default). If this check then fails,</span>
+<span class="sd">            the plugin&#39;s removal is aborted and this method returns ``False``.</span>
+<span class="sd">            Otherwise, if this parameter is ``False``, the plugin is deleted</span>
+<span class="sd">            unconditionally without a check.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        plugin_deleted: bool</span>
-<span class="sd">            True if the registry was able to teardown and remove the plugin.</span>
-<span class="sd">            False otherwise.</span>
+<span class="sd">            ``True`` if the registry was able to teardown and remove the</span>
+<span class="sd">            plugin; ``False`` otherwise. Will always return ``True``</span>
+<span class="sd">            if ``check_can_delete`` is ``False``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Deleting plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
 
         <span class="c1"># Determine if plugin can be closed</span>
@@ -805,7 +905,7 @@ document.write(`
                 <span class="k">return</span> <span class="kc">False</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin_instance</span><span class="p">,</span> <span class="n">SpyderPluginV2</span><span class="p">):</span>
-            <span class="c1"># Cleanly delete plugin widgets. This avoids segfautls with</span>
+            <span class="c1"># Cleanly delete plugin widgets. This avoids segfaults with</span>
             <span class="c1"># PyQt 5.15</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin_instance</span><span class="p">,</span> <span class="n">SpyderDockablePlugin</span><span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
@@ -850,20 +950,19 @@ document.write(`
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span><span class="p">:</span>
             <span class="n">all_plugin_dependents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;requires&#39;</span><span class="p">,</span> <span class="s1">&#39;optional&#39;</span><span class="p">}:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;requires&quot;</span><span class="p">,</span> <span class="s2">&quot;optional&quot;</span><span class="p">}:</span>
                 <span class="n">plugin_dependents</span> <span class="o">=</span> <span class="n">all_plugin_dependents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span>
                 <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="n">plugin_dependents</span><span class="p">:</span>
                     <span class="n">plugin_dependents</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="p">:</span>
             <span class="n">all_plugin_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;requires&#39;</span><span class="p">,</span> <span class="s1">&#39;optional&#39;</span><span class="p">}:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;requires&quot;</span><span class="p">,</span> <span class="s2">&quot;optional&quot;</span><span class="p">}:</span>
                 <span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="n">all_plugin_dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span>
                 <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="n">plugin_dependencies</span><span class="p">:</span>
                     <span class="n">plugin_dependencies</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_plugins</span> <span class="o">-=</span> <span class="p">{</span><span class="n">plugin_name</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span> <span class="o">-=</span> <span class="p">{</span><span class="n">plugin_name</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span> <span class="o">-=</span> <span class="p">{</span><span class="n">plugin_name</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span> <span class="o">-=</span> <span class="p">{</span><span class="n">plugin_name</span><span class="p">}</span>
@@ -876,49 +975,57 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderPluginRegistry.dock_all_undocked_plugins">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_all_undocked_plugins">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">dock_all_undocked_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_undocked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dock_all_undocked_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_undocked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Dock undocked plugins and save undocked state if required.</span>
+<span class="sd">        Dock undocked plugins and save the undocked state if requested.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        save_undocked : bool, optional</span>
-<span class="sd">            True if the undocked state needs to be saved. The default is False.</span>
+<span class="sd">        save_undocked: bool, optional</span>
+<span class="sd">            ``True`` if the undocked state should be saved. If ``False``,</span>
+<span class="sd">            the default, don&#39;t persist the undocked state.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None.</span>
-
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="p">(</span>
-                <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span><span class="p">)):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dock_undocked_plugin</span><span class="p">(</span>
-                <span class="n">plugin_name</span><span class="p">,</span> <span class="n">save_undocked</span><span class="o">=</span><span class="n">save_undocked</span><span class="p">)</span></div>
+        <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dock_undocked_plugin</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="n">save_undocked</span><span class="o">=</span><span class="n">save_undocked</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderPluginRegistry.can_delete_all_plugins">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">can_delete_all_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                               <span class="n">excluding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">can_delete_all_plugins</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">excluding</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Determine if all plugins can be deleted except the ones to exclude.</span>
+<span class="sd">        Determine if all plugins can be deleted (except any specified).</span>
+
+<span class="sd">        Calls :meth:`spyder.api.plugins.SpyderPluginV2.can_close` to</span>
+<span class="sd">        perform the check.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        excluding: Optional[Set[str]]</span>
-<span class="sd">            A set that lists plugins (by name) that will not be deleted.</span>
+<span class="sd">        excluding: set[str] | None, optional</span>
+<span class="sd">            A set that lists plugins (by name) that will not be checked for</span>
+<span class="sd">            deletion. If ``None`` (the default) or an empty set, no plugins</span>
+<span class="sd">            are excluded from the check.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        bool</span>
-<span class="sd">            True if all plugins can be closed. False otherwise.</span>
+<span class="sd">            ``True`` if all plugins can be closed. ``False`` otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">excluding</span> <span class="o">=</span> <span class="n">excluding</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">({})</span>
         <span class="n">can_close</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="c1"># Check external plugins</span>
-        <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="p">(</span>
-                <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span>
+        <span class="p">):</span>
             <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluding</span><span class="p">:</span>
                 <span class="n">can_close</span> <span class="o">&amp;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_delete_plugin</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span><span class="p">:</span>
@@ -929,58 +1036,55 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderPluginRegistry.delete_all_plugins">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_all_plugins">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">delete_all_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excluding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                           <span class="n">close_immediately</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_all_plugins</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">excluding</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">close_immediately</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove all plugins from the registry.</span>
 
-<span class="sd">        The teardown mechanism will remove external plugins first and then</span>
-<span class="sd">        internal ones, where the Spyder 4 plugins will be removed first and</span>
-<span class="sd">        then the Spyder 5 ones.</span>
+<span class="sd">        The teardown mechanism will remove external plugins then internal ones.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        excluding: Optional[Set[str]]</span>
+<span class="sd">        excluding: set[str] | None, optional</span>
 <span class="sd">            A set that lists plugins (by name) that will not be deleted.</span>
-<span class="sd">        close_immediately: bool</span>
-<span class="sd">            If true, then the `can_close` status will be ignored.</span>
+<span class="sd">            If ``None`` (the default) or an empty set, no plugins</span>
+<span class="sd">            are excluded from being deleted.</span>
+<span class="sd">        close_immediately: bool, optional</span>
+<span class="sd">            If ``True``, then the</span>
+<span class="sd">            :meth:`~spyder.api.plugins.SpyderPluginV2.can_close` status</span>
+<span class="sd">            will be ignored, and all plugins will be closed unconditionally.</span>
+<span class="sd">            If ``False`` (the default), Spyder will not close any plugins</span>
+<span class="sd">            if they report they cannot be closed, i.e. if</span>
+<span class="sd">            :meth:`can_delete_all_plugins` returns ``False``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        all_deleted: bool</span>
-<span class="sd">            True if all the plugins were closed and deleted. False otherwise.</span>
+<span class="sd">            ``True`` if all the plugins were deleted. ``False`` otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">excluding</span> <span class="o">=</span> <span class="n">excluding</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">({})</span>
-        <span class="n">can_close</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="c1"># Check if all the plugins can be closed</span>
         <span class="n">can_close</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_delete_all_plugins</span><span class="p">(</span><span class="n">excluding</span><span class="o">=</span><span class="n">excluding</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">close_immediately</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Delete external plugins first, then internal plugins</span>
+        <span class="k">for</span> <span class="n">plugins</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">close_immediately</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
 
-        <span class="c1"># Delete Spyder 5+ external plugins</span>
-        <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluding</span><span class="p">:</span>
-                <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin_instance</span><span class="p">,</span> <span class="n">SpyderPluginV2</span><span class="p">):</span>
-                    <span class="n">can_close</span> <span class="o">&amp;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_plugin</span><span class="p">(</span>
-                        <span class="n">plugin_name</span><span class="p">,</span> <span class="n">teardown</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_can_delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">close_immediately</span><span class="p">:</span>
-                        <span class="k">break</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">close_immediately</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-        <span class="c1"># Delete Spyder 5+ internal plugins</span>
-        <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluding</span><span class="p">:</span>
-                <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin_instance</span><span class="p">,</span> <span class="n">SpyderPluginV2</span><span class="p">):</span>
-                    <span class="n">can_close</span> <span class="o">&amp;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_plugin</span><span class="p">(</span>
-                        <span class="n">plugin_name</span><span class="p">,</span> <span class="n">teardown</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_can_delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">close_immediately</span><span class="p">:</span>
-                        <span class="k">break</span>
+            <span class="c1"># Delete Spyder plugins</span>
+            <span class="k">for</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">plugins</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluding</span><span class="p">:</span>
+                    <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin_instance</span><span class="p">,</span> <span class="n">SpyderPluginV2</span><span class="p">):</span>
+                        <span class="n">can_close</span> <span class="o">&amp;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_plugin</span><span class="p">(</span>
+                            <span class="n">plugin_name</span><span class="p">,</span> <span class="n">teardown</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_can_delete</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">can_close</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">close_immediately</span><span class="p">:</span>
+                            <span class="k">break</span>
 
         <span class="k">return</span> <span class="n">can_close</span></div>
 
@@ -994,7 +1098,7 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
-<span class="sd">            Name of the plugin to retrieve.</span>
+<span class="sd">            Name of the plugin to retrieve the plugin object of.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1010,20 +1114,25 @@ document.write(`
             <span class="n">plugin_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">plugin_instance</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s1"> was not found in &#39;</span>
-                                 <span class="s1">&#39;the registry&#39;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2"> was not found in the registry&quot;</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderPluginRegistry.set_plugin_enabled">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_plugin_enabled">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_plugin_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_plugin_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a plugin name to the set of enabled plugins.</span>
+<span class="sd">        Add a plugin by name to the set of enabled plugins.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
 <span class="sd">            Name of the plugin to add.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span> <span class="o">|=</span> <span class="p">{</span><span class="n">plugin_name</span><span class="p">}</span></div>
 
@@ -1032,18 +1141,17 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_enabled">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_plugin_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Determine if a given plugin is enabled and is going to be</span>
-<span class="sd">        loaded.</span>
+<span class="sd">        Determine if a given plugin is enabled and is going to be loaded.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
-<span class="sd">            Name of the plugin to query.</span>
+<span class="sd">            Name of the plugin to check.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        plugin_enabled: bool</span>
-<span class="sd">            True if the plugin is enabled and False if not.</span>
+<span class="sd">            ``True`` if the plugin is enabled and ``False`` if not.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span></div>
 
@@ -1052,50 +1160,40 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_available">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_plugin_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Determine if a given plugin was loaded and is available.</span>
+<span class="sd">        Determine if a given plugin is loaded and ready for use.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
-<span class="sd">            Name of the plugin to query.</span>
+<span class="sd">            Name of the plugin to check.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        plugin_available: bool</span>
-<span class="sd">            True if the plugin is available and False if not.</span>
+<span class="sd">            ``True`` if the plugin is available and ``False`` if not.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderPluginRegistry.reset">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset and empty the plugin registry.&quot;&quot;&quot;</span>
-        <span class="c1"># Dictionary that maps a plugin name to a list of the plugin names</span>
-        <span class="c1"># that depend on it.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Dict[str, List[str]]]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset and empty the plugin registry.</span>
 
-        <span class="c1"># Dictionary that maps a plugin name to a list of the plugin names</span>
-        <span class="c1"># that the plugin depends on.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Dict[str, List[str]]]</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependents</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_dependencies</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># Plugin dictionary mapped by their names</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, SpyderPluginClass]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># Dictionary that maps a plugin name to its availability.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_availability</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, bool]</span>
-
-        <span class="c1"># Set that stores the plugin names of all Spyder 4 plugins.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>  <span class="c1"># type: set[str]</span>
-
-        <span class="c1"># Set that stores the names of the plugins that are enabled</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>
-
-        <span class="c1"># Set that stores the names of the internal plugins</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>
-
-        <span class="c1"># Set that stores the names of the external plugins</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">({})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external_plugins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sig_plugin_ready</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
@@ -1106,39 +1204,111 @@ document.write(`
         <span class="n">dependencies</span><span class="o">.</span><span class="n">DEPENDENCIES</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
+<div class="viewcode-block" id="SpyderPluginRegistry.set_all_internal_plugins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_internal_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_all_internal_plugins</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">all_plugins</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">]]):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">all_internal_plugins</span> <span class="o">=</span> <span class="n">all_plugins</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">all_plugins</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">]]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the :attr:`all_internal_plugins` attribute to the given plugins.</span>
 
+<span class="sd">        .. deprecated:: 6.2</span>
+
+<span class="sd">            Will raise a :exc:`DeprecationWarning` in Spyder 6.2 and be</span>
+<span class="sd">            removed in Spyder 7.0. Set the :attr:`all_internal_plugins`</span>
+<span class="sd">            attribute directly instead.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        all_plugins : dict[str, tuple[str, type[SpyderPluginClass]]]</span>
+<span class="sd">            Mapping of plugin name to plugin class to set the attribute to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_internal_plugins</span> <span class="o">=</span> <span class="n">all_plugins</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginRegistry.set_all_external_plugins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_external_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_all_external_plugins</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">all_plugins</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">]]):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">all_external_plugins</span> <span class="o">=</span> <span class="n">all_plugins</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">all_plugins</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderPluginClass</span><span class="p">]]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the :attr:`all_external_plugins` attribute to the given plugins.</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">main</span>
+<span class="sd">        .. deprecated:: 6.2</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="s1">&#39;plugins&#39;</span><span class="p">)</span>
+<span class="sd">            Will raise a :exc:`DeprecationWarning` in Spyder 6.2 and be</span>
+<span class="sd">            removed in Spyder 7.0. Set the :attr:`all_external_plugins`</span>
+<span class="sd">            attribute directly instead.</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Plugins&#39;</span><span class="p">)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        all_plugins : dict[str, tuple[str, type[SpyderPluginClass]]]</span>
+<span class="sd">            Mapping of plugin name to plugin class to set the attribute to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_external_plugins</span> <span class="o">=</span> <span class="n">all_plugins</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginRegistry.set_main">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_main">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">mainwindow</span><span class="o">.</span><span class="n">MainWindow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the reference to the Spyder main window for the plugin registry.</span>
+
+<span class="sd">        .. deprecated:: 6.2</span>
+
+<span class="sd">            Will raise a :exc:`DeprecationWarning` in Spyder 6.2 and be removed</span>
+<span class="sd">            in Spyder 7.0. Set the :attr:`main` attribute directly instead.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        main : spyder.app.mainwindow.MainWindow</span>
+<span class="sd">            The Spyder main window instance to set the reference to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">main</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginRegistry.get_icon">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_icon">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QIcon</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Icon of the plugin registry, for use in the Spyder interface.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="s2">&quot;plugins&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpyderPluginRegistry.get_name">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of the plugin registry, translated to the locale language.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Plugins&quot;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="SpyderPluginRegistry.__contains__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.registry.html#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__contains__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Determine if a plugin name is contained in the registry.</span>
+<span class="sd">        Determine if a plugin with a given name is contained in the registry.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin_name: str</span>
-<span class="sd">            Name of the plugin to seek.</span>
+<span class="sd">            Name of the plugin to check.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        is_contained: bool</span>
-<span class="sd">            If True, the plugin name is contained on the registry, False</span>
-<span class="sd">            otherwise.</span>
+<span class="sd">            If ``True``, `plugin_name` is contained in the registry;</span>
+<span class="sd">            ``False`` otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_registry</span></div>
 
@@ -1148,7 +1318,8 @@ document.write(`
 
 
 
-<span class="n">PLUGIN_REGISTRY</span> <span class="o">=</span> <span class="n">SpyderPluginRegistry</span><span class="p">()</span>
+<span class="n">PLUGIN_REGISTRY</span><span class="p">:</span> <span class="n">SpyderPluginRegistry</span> <span class="o">=</span> <span class="n">SpyderPluginRegistry</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;The global Spyder plugin registry instance.&quot;&quot;&quot;</span>
 </pre></div>
 
                 </article>

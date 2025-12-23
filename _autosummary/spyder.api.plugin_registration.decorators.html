@@ -443,58 +443,124 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.decorators.on_plugin_available" title="spyder.api.plugin_registration.decorators.on_plugin_available"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_plugin_available</span></code></a>([func, plugin])</p></td>
-<td><p>Method decorator used to handle plugin availability on Spyder.</p></td>
+<td><p>Decorate a method to be called back when a specific plugin becomes ready.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.decorators.on_plugin_teardown" title="spyder.api.plugin_registration.decorators.on_plugin_teardown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_plugin_teardown</span></code></a>([func, plugin])</p></td>
-<td><p>Method decorator used to handle plugin teardown on Spyder.</p></td>
+<td><p>Decorate a method to be called back when tearing down a specific plugin.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.decorators.on_plugin_available">
-<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.decorators.</span></span><span class="sig-name descname"><span class="pre">on_plugin_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/decorators.html#on_plugin_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.decorators.on_plugin_available" title="Link to this definition">#</a></dt>
-<dd><p>Method decorator used to handle plugin availability on Spyder.</p>
-<p>The methods that use this decorator must have the following signature:
-<cite>def method(self)</cite> when observing a single plugin or
-<cite>def method(self, plugin): …</cite> when observing multiple plugins or
-all plugins that were listed as dependencies.</p>
+<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.decorators.</span></span><span class="sig-name descname"><span class="pre">on_plugin_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/decorators.html#on_plugin_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.decorators.on_plugin_available" title="Link to this definition">#</a></dt>
+<dd><p>Decorate a method to be called back when a specific plugin becomes ready.</p>
+<p>The decorated method must be a member of a
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> subclass for the decorator
+to work as intended.</p>
+<p>Methods to be decorated must have the signature</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>when observing a single plugin, or</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>when observing all plugins listed as dependencies.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Any <code class="docutils literal notranslate"><span class="pre">plugin</span></code>(s) specified must be listed under either the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants
+of the plugin’s <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> class.
+If not, a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised
+when the plugin class is initialized.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> (<em>Callable</em>) – Method to decorate. Given by default when applying the decorator.</p></li>
-<li><p><strong>plugin</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Name of the requested plugin whose availability triggers the method.</p></li>
+<li><p><strong>func</strong> (<em>Callable</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – Method to decorate, passed automatically when applying the decorator.</p></li>
+<li><p><strong>plugin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the requested plugin whose availability triggers <code class="docutils literal notranslate"><span class="pre">func</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default), observes all plugins listed as dependencies.
+Must be listed under the class’
+‘<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants,
+or else a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>func</strong> – The same method that was given as input.</p>
+<dd class="field-even"><p><strong>func</strong> – The method passed as <code class="docutils literal notranslate"><span class="pre">func</span></code> with the plugin listener set up.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Callable</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – When initializing a plugin class with decorated methods,
+    if trying to watch a <code class="docutils literal notranslate"><span class="pre">plugin</span></code> that is not listed in the plugin class’
+    <code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
+    <code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.decorators.on_plugin_teardown">
-<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.decorators.</span></span><span class="sig-name descname"><span class="pre">on_plugin_teardown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/decorators.html#on_plugin_teardown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.decorators.on_plugin_teardown" title="Link to this definition">#</a></dt>
-<dd><p>Method decorator used to handle plugin teardown on Spyder.</p>
-<p>This decorator will be called <strong>before</strong> the specified plugin is deleted
+<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.decorators.</span></span><span class="sig-name descname"><span class="pre">on_plugin_teardown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/decorators.html#on_plugin_teardown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.decorators.on_plugin_teardown" title="Link to this definition">#</a></dt>
+<dd><p>Decorate a method to be called back when tearing down a specific plugin.</p>
+<p>The decorated method must be a member of a
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> subclass for the decorator
+to work as intended.</p>
+<p>The decorator will be called <strong>before</strong> the specified <code class="docutils literal notranslate"><span class="pre">plugin</span></code> is deleted
 and also <strong>before</strong> the plugin that uses the decorator is destroyed.</p>
-<p>The methods that use this decorator must have the following signature:
-<cite>def method(self)</cite>.</p>
+<p>Methods that use this decorator must have the signature</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A plugin name must be passed to <code class="docutils literal notranslate"><span class="pre">plugin</span></code>. While a default of <code class="docutils literal notranslate"><span class="pre">None</span></code>
+is accepted due to technical limitations, it will raise a
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> at runtime.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Any <code class="docutils literal notranslate"><span class="pre">plugin</span></code>(s) specified must be listed under either the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants
+of the plugin’s <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> class.
+If not, a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised
+when the plugin class is initialized.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> (<em>Callable</em>) – Method to decorate. Given by default when applying the decorator.</p></li>
-<li><p><strong>plugin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the requested plugin whose teardown triggers the method.</p></li>
+<li><p><strong>func</strong> (<em>Callable</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – Method to decorate, passed automatically when applying the decorator.</p></li>
+<li><p><strong>plugin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the requested plugin whose teardown triggers <code class="docutils literal notranslate"><span class="pre">func</span></code>.
+While <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default, is accepted for technical reasons,
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised if a plugin name is not passed.
+Must be listed under the class’
+‘<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants,
+or else a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>func</strong> – The same method that was given as input.</p>
+<dd class="field-even"><p><strong>func</strong> – The method passed as <code class="docutils literal notranslate"><span class="pre">func</span></code> with the plugin listener set up.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Callable</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If an explicit plugin name is not passed to <code class="docutils literal notranslate"><span class="pre">plugin</span></code>.</p></li>
+<li><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – When initializing a plugin class with decorated methods,
+    if trying to watch a <code class="docutils literal notranslate"><span class="pre">plugin</span></code> that is not listed in the plugin class’
+    <code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
+    <code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

@@ -423,14 +423,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_WIDGET_CLASS"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter.CONF_WIDGET_CLASS</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_SECTION"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter.CONF_SECTION</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginClass"><code class="docutils literal notranslate"><span class="pre">SpyderPluginClass</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.ALL_PLUGINS"><code class="docutils literal notranslate"><span class="pre">ALL_PLUGINS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.sig_plugin_ready"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.sig_plugin_ready</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.main"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.main</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependents"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_dependents</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependencies"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_dependencies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_registry"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_registry</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_availability"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_availability</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.enabled_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.enabled_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.internal_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.internal_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.external_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.external_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.all_internal_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.all_external_plugins</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.register_plugin()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.notify_plugin_availability()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.can_delete_plugin()</span></code></a></li>
@@ -444,9 +452,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_enabled"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.is_plugin_enabled()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_available"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.is_plugin_available()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.reset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_internal_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.set_all_internal_plugins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_external_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.set_all_external_plugins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_main"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.set_main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_icon"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.get_icon()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_name"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.get_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__contains__"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.__contains__()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PLUGIN_REGISTRY"><code class="docutils literal notranslate"><span class="pre">PLUGIN_REGISTRY</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -460,63 +474,83 @@ document.write(`
                   
   <section id="module-spyder.api.plugin_registration.registry">
 <span id="spyder-api-plugin-registration-registry"></span><h1>spyder.api.plugin_registration.registry<a class="headerlink" href="#module-spyder.api.plugin_registration.registry" title="Link to this heading">#</a></h1>
-<p>Global plugin registry.</p>
-<p class="rubric">Classes</p>
+<p>Global registry for internal and external Spyder plugins.</p>
+<p class="rubric">Module Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.PreferencesAdapter" title="spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginClass" title="spyder.api.plugin_registration.registry.SpyderPluginClass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderPluginClass</span></code></a></p></td>
+<td><p>Type alias for the set of supported classes for Spyder plugin objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderPluginRegistry</span></code></a>()</p></td>
-<td><p>Global plugin registry.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.ALL_PLUGINS" title="spyder.api.plugin_registration.registry.ALL_PLUGINS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ALL_PLUGINS</span></code></a></p></td>
+<td><p>List of all Spyder internal plugins.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.PLUGIN_REGISTRY" title="spyder.api.plugin_registration.registry.PLUGIN_REGISTRY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PLUGIN_REGISTRY</span></code></a></p></td>
+<td><p>The global Spyder plugin registry instance.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.PreferencesAdapter" title="spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a>()</p></td>
+<td><p>Class with constants for the plugin manager preferences page.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderPluginRegistry</span></code></a>()</p></td>
+<td><p>Global Spyder plugin registry.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginClass">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.registry.</span></span><span class="sig-name descname"><span class="pre">SpyderPluginClass</span></span><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginClass" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for the set of supported classes for Spyder plugin objects.</p>
+<p>alias of <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> | <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.ALL_PLUGINS">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.registry.</span></span><span class="sig-name descname"><span class="pre">ALL_PLUGINS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['appearance',</span> <span class="pre">'application',</span> <span class="pre">'completions',</span> <span class="pre">'internal_console',</span> <span class="pre">'debugger',</span> <span class="pre">'editor',</span> <span class="pre">'explorer',</span> <span class="pre">'external_terminal',</span> <span class="pre">'find_in_files',</span> <span class="pre">'help',</span> <span class="pre">'historylog',</span> <span class="pre">'ipython_console',</span> <span class="pre">'layout',</span> <span class="pre">'main_interpreter',</span> <span class="pre">'mainmenu',</span> <span class="pre">'onlinehelp',</span> <span class="pre">'outline_explorer',</span> <span class="pre">'plots',</span> <span class="pre">'preferences',</span> <span class="pre">'profiler',</span> <span class="pre">'project_explorer',</span> <span class="pre">'pylint',</span> <span class="pre">'pythonpath_manager',</span> <span class="pre">'remoteclient',</span> <span class="pre">'run',</span> <span class="pre">'shortcuts',</span> <span class="pre">'statusbar',</span> <span class="pre">'switcher',</span> <span class="pre">'toolbar',</span> <span class="pre">'tours',</span> <span class="pre">'update_manager',</span> <span class="pre">'variable_explorer',</span> <span class="pre">'workingdir']</span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.ALL_PLUGINS" title="Link to this definition">#</a></dt>
+<dd><p>List of all Spyder internal plugins.</p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.PreferencesAdapter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.registry.</span></span><span class="sig-name descname"><span class="pre">PreferencesAdapter</span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#PreferencesAdapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.PreferencesAdapter" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="spyder.api.config.mixins.html#spyder.api.config.mixins.SpyderConfigurationAccessor" title="spyder.api.config.mixins.SpyderConfigurationAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderConfigurationAccessor</span></code></a></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_WIDGET_CLASS">
-<span class="sig-name descname"><span class="pre">CONF_WIDGET_CLASS</span></span><a class="headerlink" href="#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_WIDGET_CLASS" title="Link to this definition">#</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">PluginsConfigPage</span></code></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_SECTION">
-<span class="sig-name descname"><span class="pre">CONF_SECTION</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_SECTION" title="Link to this definition">#</a></dt>
-<dd><p>Name of the default configuration section to use for this object.</p>
-<p>Will be used to record its permanent data in Spyder’s config system.</p>
-</dd></dl>
-
+<p>Class with constants for the plugin manager preferences page.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.registry.</span></span><span class="sig-name descname"><span class="pre">SpyderPluginRegistry</span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qobject.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QObject</span></code></a>, <a class="reference internal" href="#spyder.api.plugin_registration.registry.PreferencesAdapter" title="spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a></p>
-<p>Global plugin registry.</p>
-<p>This class handles a plugin initialization/teardown lifetime, including
-notifications when a plugin is available or not.</p>
+<p>Global Spyder plugin registry.</p>
+<p>This class handles a plugin’s initialization/teardown lifetime, including
+notifications when a plugin is available or about to be torn down.</p>
 <p>This registry alleviates the limitations of a topological sort-based
 plugin initialization by enabling plugins to have bidirectional
 dependencies instead of unidirectional ones.</p>
-<p class="rubric">Notes</p>
-<ol class="arabic simple">
-<li><p>This class should be instantiated as a singleton.</p></li>
-<li><p>A plugin should not depend on other plugin to perform its
-initialization since it could cause deadlocks.</p></li>
-</ol>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>A plugin should not depend on other plugin to perform its
+initialization, since this could cause deadlocks.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class should be instantiated as a singleton.</p>
+</div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.sig_plugin_ready">
-<span class="sig-name descname"><span class="pre">sig_plugin_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.sig_plugin_ready" title="Link to this definition">#</a></dt>
-<dd><p>This signal is used to let the main window know that a plugin is ready.</p>
+<span class="sig-name descname"><span class="pre">sig_plugin_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">QString</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/signalsandslots.html" title="(in Qt5 vQT_VERSION)"><span class="pre">Signal</span></a></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.sig_plugin_ready" title="Link to this definition">#</a></dt>
+<dd><p>Signal used to let the main window know that a plugin is ready for use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin that is available.</p></li>
-<li><p><strong>omit_conf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – True if the plugin configuration does not need to be written.</p></li>
+<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin that has become available.</p></li>
+<li><p><strong>omit_conf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the plugin configuration does not need to be written;
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p></li>
 </ul>
 </dd>
 </dl>
@@ -524,55 +558,146 @@ initialization since it could cause deadlocks.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a global registry for internal and external Spyder plugins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.main">
+<span class="sig-name descname"><span class="pre">main</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spyder.app.mainwindow.MainWindow</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.main" title="Link to this definition">#</a></dt>
+<dd><p>Reference to the Spyder main window.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependents">
+<span class="sig-name descname"><span class="pre">plugin_dependents</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependents" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of plugin names to the names of plugins depending on them.</p>
+<p>The second-level dictionary holds lists of dependencies for the plugin
+by category, under the keys <code class="docutils literal notranslate"><span class="pre">&quot;requires&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;optional&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependencies">
+<span class="sig-name descname"><span class="pre">plugin_dependencies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependencies" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of plugin names to the names of plugins they depend on.</p>
+<p>The second-level dictionary holds lists of dependencies for the plugin
+by category, under the keys <code class="docutils literal notranslate"><span class="pre">&quot;requires&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;optional&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_registry">
+<span class="sig-name descname"><span class="pre">plugin_registry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SpyderPluginClass</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_registry" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of plugin names to plugin objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_availability">
+<span class="sig-name descname"><span class="pre">plugin_availability</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_availability" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of plugin name to whether it is ready for use.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.enabled_plugins">
+<span class="sig-name descname"><span class="pre">enabled_plugins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.enabled_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Set of the names of all enabled plugins.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.internal_plugins">
+<span class="sig-name descname"><span class="pre">internal_plugins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.internal_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Set of the names of all internal plugins (part of Spyder itself).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.external_plugins">
+<span class="sig-name descname"><span class="pre">external_plugins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.external_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Set of the names of all external plugins (installed separately).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins">
+<span class="sig-name descname"><span class="pre">all_internal_plugins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">SpyderPluginClass</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of internal plugins to their name and plugin class.</p>
+<p>Includes all internal plugins that are part of Spyder’s source tree,
+enabled or not.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins">
+<span class="sig-name descname"><span class="pre">all_external_plugins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">SpyderPluginClass</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of external plugins to their name and plugin class.</p>
+<p>Includes all externals plugins installed separately from Spyder,
+enabled or not.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin">
-<span class="sig-name descname"><span class="pre">register_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">PluginClass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.14)"><span class="pre">Type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><span class="pre">SpyderPluginV2</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><span class="pre">SpyderDockablePlugin</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">external</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><span class="pre">SpyderPluginV2</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><span class="pre">SpyderDockablePlugin</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.register_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin" title="Link to this definition">#</a></dt>
-<dd><p>Register a plugin into the Spyder registry.</p>
+<span class="sig-name descname"><span class="pre">register_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.app.mainwindow.MainWindow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PluginClass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">SpyderPluginClass</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SpyderPluginClass</span></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.register_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin" title="Link to this definition">#</a></dt>
+<dd><p>Register a plugin into the Spyder plugin registry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>main_window</strong> (<em>spyder.app.mainwindow.MainWindow</em>) – Reference to Spyder’s main window.</p></li>
 <li><p><strong>PluginClass</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>SpyderPluginClass</em><em>]</em>) – The plugin class to register and create. It must be one of
-<cite>spyder.app.registry.SpyderPluginClass</cite>.</p></li>
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a>) – Positional arguments used to initialize the plugin
-instance.</p></li>
-<li><p><strong>external</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, then the plugin is stored as a external plugin. Otherwise
-it will be marked as an internal plugin. Default: False</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Optional keyword arguments used to initialize the plugin instance.</p></li>
+<a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginClass" title="spyder.api.plugin_registration.registry.SpyderPluginClass"><code class="xref py py-data docutils literal notranslate"><span class="pre">SpyderPluginClass</span></code></a>.</p></li>
+<li><p><strong>*args</strong> (<em>Any</em><em>, </em><em>optional</em>) – <p>Arbitrary positional arguments passed to the plugin instance’s
+initializer.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2: </span>No longer needed following completion of the Spyder plugin
+API migration in Spyder 6.0. Passing <code class="docutils literal notranslate"><span class="pre">*args</span></code> will raise a
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> in Spyder 6.2 and be removed in
+Spyder 7.0.</p>
+</div>
+</p></li>
+<li><p><strong>external</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the plugin is stored as an external plugin.
+Otherwise, it will be marked as an internal plugin (the default).</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em><em>, </em><em>optional</em>) – <p>Arbitrary positional arguments passed to the plugin instance’s
+initializer.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2: </span>No longer needed following completion of the Spyder plugin
+API migration in Spyder 6.0. Passing <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> will raise a
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> in Spyder 6.2 and be removed in
+Spyder 7.0.</p>
+</div>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>plugin</strong> – The instance of the registered plugin.</p>
+<dd class="field-even"><p><strong>plugin</strong> – The initialized instance of the registered plugin.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>SpyderPluginClass</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If the <cite>PluginClass</cite> does not inherit from any of
-    <cite>spyder.app.registry.SpyderPluginClass</cite></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If the <code class="docutils literal notranslate"><span class="pre">PluginClass</span></code> does not inherit from any of
+    <code class="xref py py-data docutils literal notranslate"><span class="pre">spyder.app.registry.SpyderPluginClass</span></code>.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The optional <cite>*args</cite> and <cite>**kwargs</cite> will be removed once all
-plugins are migrated.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability">
-<span class="sig-name descname"><span class="pre">notify_plugin_availability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">notify_main</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omit_conf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.notify_plugin_availability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability" title="Link to this definition">#</a></dt>
-<dd><p>Notify dependent plugins of a given plugin of its availability.</p>
+<span class="sig-name descname"><span class="pre">notify_plugin_availability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">notify_main</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omit_conf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.notify_plugin_availability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability" title="Link to this definition">#</a></dt>
+<dd><p>Notify a plugin’s dependents that the plugin is ready for use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin that is available.</p></li>
-<li><p><strong>notify_main</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, then a signal is emitted to the main window to perform
-further registration steps.</p></li>
-<li><p><strong>omit_conf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, then the main window is instructed to not write the
-plugin configuration into the Spyder configuration file.</p></li>
+<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin that has become ready for use.</p></li>
+<li><p><strong>notify_main</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then a signal is emitted to the main window to perform
+further registration steps (the default). Otherwise, no signal is
+emitted.</p></li>
+<li><p><strong>omit_conf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the main window is instructed to not write the
+plugin configuration into the Spyder configuration file.
+Otherwise, configuration will be written as normal (the default).</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -580,37 +705,36 @@ plugin configuration into the Spyder configuration file.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin">
 <span class="sig-name descname"><span class="pre">can_delete_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.can_delete_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin" title="Link to this definition">#</a></dt>
-<dd><p>Check if a plugin from the registry can be deleted by its name.</p>
-<section id="paremeters">
-<h2>Paremeters<a class="headerlink" href="#paremeters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>plugin_name: str</dt><dd><p>Name of the plugin to check for deletion.</p>
-</dd>
-</dl>
+<dd><p>Check if a plugin with the given name can be deleted from the registry.</p>
+<p>Calls <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.can_close" title="spyder.api.plugins.SpyderPluginV2.can_close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.plugins.SpyderPluginV2.can_close()</span></code></a> to
+perform the check.</p>
 <dl class="field-list simple">
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>can_close</strong> – True if the plugin can be closed. False otherwise.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to check for deletion.</p>
 </dd>
-<dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>can_close</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the plugin can be removed; <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_undocked_plugin">
-<span class="sig-name descname"><span class="pre">dock_undocked_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_undocked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.dock_undocked_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_undocked_plugin" title="Link to this definition">#</a></dt>
-<dd><p>Dock plugin if undocked and save undocked state if requested</p>
+<span class="sig-name descname"><span class="pre">dock_undocked_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_undocked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.dock_undocked_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_undocked_plugin" title="Link to this definition">#</a></dt>
+<dd><p>Dock plugin if undocked and save undocked state if requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to check for deletion.</p></li>
-<li><p><strong>save_undocked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – True if the undocked state needs to be saved. The default is False.</p></li>
+<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to undock.</p></li>
+<li><p><strong>save_undocked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the undocked state should be saved. If <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+the default, don’t persist the undocked state.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -618,55 +742,61 @@ plugin configuration into the Spyder configuration file.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_plugin">
 <span class="sig-name descname"><span class="pre">delete_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">teardown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_can_delete</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.delete_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_plugin" title="Link to this definition">#</a></dt>
-<dd><p>Remove and delete a plugin from the registry by its name.</p>
-<section id="id1">
-<h2>Paremeters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>plugin_name: str</dt><dd><p>Name of the plugin to delete.</p>
-</dd>
-<dt>teardown: bool</dt><dd><p>True if the teardown notification to other plugins should be sent
-when deleting the plugin, False otherwise.</p>
-</dd>
-<dt>check_can_delete: bool</dt><dd><p>True if the plugin should validate if it can be closed when this
-method is called, False otherwise.</p>
-</dd>
-</dl>
+<dd><p>Remove and delete the plugin with the given name from the registry.</p>
 <dl class="field-list simple">
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>plugin_deleted</strong> – True if the registry was able to teardown and remove the plugin.
-False otherwise.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to delete.</p></li>
+<li><p><strong>teardown</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the teardown notification to other plugins should be
+sent when deleting the plugin (the default), <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p></li>
+<li><p><strong>check_can_delete</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the plugin should first check if it can be deleted
+(using <a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">can_delete_plugin()</span></code></a>) before closing and removing
+itself from the registry (the default). If this check then fails,
+the plugin’s removal is aborted and this method returns <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+Otherwise, if this parameter is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the plugin is deleted
+unconditionally without a check.</p></li>
+</ul>
 </dd>
-<dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>plugin_deleted</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the registry was able to teardown and remove the
+plugin; <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. Will always return <code class="docutils literal notranslate"><span class="pre">True</span></code>
+if <code class="docutils literal notranslate"><span class="pre">check_can_delete</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_all_undocked_plugins">
-<span class="sig-name descname"><span class="pre">dock_all_undocked_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_undocked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.dock_all_undocked_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_all_undocked_plugins" title="Link to this definition">#</a></dt>
-<dd><p>Dock undocked plugins and save undocked state if required.</p>
+<span class="sig-name descname"><span class="pre">dock_all_undocked_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_undocked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.dock_all_undocked_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.dock_all_undocked_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Dock undocked plugins and save the undocked state if requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>save_undocked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – True if the undocked state needs to be saved. The default is False.</p>
+<dd class="field-odd"><p><strong>save_undocked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the undocked state should be saved. If <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+the default, don’t persist the undocked state.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins">
-<span class="sig-name descname"><span class="pre">can_delete_all_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excluding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.can_delete_all_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins" title="Link to this definition">#</a></dt>
-<dd><p>Determine if all plugins can be deleted except the ones to exclude.</p>
+<span class="sig-name descname"><span class="pre">can_delete_all_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excluding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.can_delete_all_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Determine if all plugins can be deleted (except any specified).</p>
+<p>Calls <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.can_close" title="spyder.api.plugins.SpyderPluginV2.can_close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spyder.api.plugins.SpyderPluginV2.can_close()</span></code></a> to
+perform the check.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>excluding</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>]</em>) – A set that lists plugins (by name) that will not be deleted.</p>
+<dd class="field-odd"><p><strong>excluding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A set that lists plugins (by name) that will not be checked for
+deletion. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default) or an empty set, no plugins
+are excluded from the check.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if all plugins can be closed. False otherwise.</p>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if all plugins can be closed. <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
@@ -676,20 +806,25 @@ False otherwise.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_all_plugins">
-<span class="sig-name descname"><span class="pre">delete_all_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excluding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.14)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close_immediately</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.delete_all_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_all_plugins" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">delete_all_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excluding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close_immediately</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.delete_all_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.delete_all_plugins" title="Link to this definition">#</a></dt>
 <dd><p>Remove all plugins from the registry.</p>
-<p>The teardown mechanism will remove external plugins first and then
-internal ones, where the Spyder 4 plugins will be removed first and
-then the Spyder 5 ones.</p>
+<p>The teardown mechanism will remove external plugins then internal ones.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>excluding</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>]</em>) – A set that lists plugins (by name) that will not be deleted.</p></li>
-<li><p><strong>close_immediately</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If true, then the <cite>can_close</cite> status will be ignored.</p></li>
+<li><p><strong>excluding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – A set that lists plugins (by name) that will not be deleted.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default) or an empty set, no plugins
+are excluded from being deleted.</p></li>
+<li><p><strong>close_immediately</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.can_close" title="spyder.api.plugins.SpyderPluginV2.can_close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">can_close()</span></code></a> status
+will be ignored, and all plugins will be closed unconditionally.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default), Spyder will not close any plugins
+if they report they cannot be closed, i.e. if
+<a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_all_plugins"><code class="xref py py-meth docutils literal notranslate"><span class="pre">can_delete_all_plugins()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>all_deleted</strong> – True if all the plugins were closed and deleted. False otherwise.</p>
+<dd class="field-even"><p><strong>all_deleted</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if all the plugins were deleted. <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
@@ -699,11 +834,11 @@ then the Spyder 5 ones.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_plugin">
-<span class="sig-name descname"><span class="pre">get_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.new_api.SpyderPluginV2"><span class="pre">SpyderPluginV2</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.new_api.SpyderDockablePlugin"><span class="pre">SpyderDockablePlugin</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.get_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_plugin" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">spyder.api.plugin_registration.registry.SpyderPluginClass</span></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.get_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_plugin" title="Link to this definition">#</a></dt>
 <dd><p>Get a reference to a plugin instance by its name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to retrieve.</p>
+<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to retrieve the plugin object of.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>plugin</strong> – The instance of the requested plugin.</p>
@@ -719,11 +854,14 @@ then the Spyder 5 ones.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_plugin_enabled">
-<span class="sig-name descname"><span class="pre">set_plugin_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.set_plugin_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_plugin_enabled" title="Link to this definition">#</a></dt>
-<dd><p>Add a plugin name to the set of enabled plugins.</p>
+<span class="sig-name descname"><span class="pre">set_plugin_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.set_plugin_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_plugin_enabled" title="Link to this definition">#</a></dt>
+<dd><p>Add a plugin by name to the set of enabled plugins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to add.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -731,14 +869,13 @@ then the Spyder 5 ones.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_enabled">
 <span class="sig-name descname"><span class="pre">is_plugin_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.is_plugin_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_enabled" title="Link to this definition">#</a></dt>
-<dd><p>Determine if a given plugin is enabled and is going to be
-loaded.</p>
+<dd><p>Determine if a given plugin is enabled and is going to be loaded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to query.</p>
+<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to check.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>plugin_enabled</strong> – True if the plugin is enabled and False if not.</p>
+<dd class="field-even"><p><strong>plugin_enabled</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the plugin is enabled and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
@@ -749,13 +886,13 @@ loaded.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_available">
 <span class="sig-name descname"><span class="pre">is_plugin_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.is_plugin_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_available" title="Link to this definition">#</a></dt>
-<dd><p>Determine if a given plugin was loaded and is available.</p>
+<dd><p>Determine if a given plugin is loaded and ready for use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to query.</p>
+<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to check.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>plugin_available</strong> – True if the plugin is available and False if not.</p>
+<dd class="field-even"><p><strong>plugin_available</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the plugin is available and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
@@ -765,21 +902,94 @@ loaded.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset" title="Link to this definition">#</a></dt>
 <dd><p>Reset and empty the plugin registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_internal_plugins">
+<span class="sig-name descname"><span class="pre">set_all_internal_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_plugins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">spyder.api.plugin_registration.registry.SpyderPluginClass</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.set_all_internal_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_internal_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Set the <a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins"><code class="xref py py-attr docutils literal notranslate"><span class="pre">all_internal_plugins</span></code></a> attribute to the given plugins.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2: </span>Will raise a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> in Spyder 6.2 and be
+removed in Spyder 7.0. Set the <a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins"><code class="xref py py-attr docutils literal notranslate"><span class="pre">all_internal_plugins</span></code></a>
+attribute directly instead.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>all_plugins</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>SpyderPluginClass</em><em>]</em><em>]</em><em>]</em>) – Mapping of plugin name to plugin class to set the attribute to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_external_plugins">
+<span class="sig-name descname"><span class="pre">set_all_external_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_plugins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">spyder.api.plugin_registration.registry.SpyderPluginClass</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.set_all_external_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_external_plugins" title="Link to this definition">#</a></dt>
+<dd><p>Set the <a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins"><code class="xref py py-attr docutils literal notranslate"><span class="pre">all_external_plugins</span></code></a> attribute to the given plugins.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2: </span>Will raise a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> in Spyder 6.2 and be
+removed in Spyder 7.0. Set the <a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins"><code class="xref py py-attr docutils literal notranslate"><span class="pre">all_external_plugins</span></code></a>
+attribute directly instead.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>all_plugins</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><em>type</em></a><em>[</em><em>SpyderPluginClass</em><em>]</em><em>]</em><em>]</em>) – Mapping of plugin name to plugin class to set the attribute to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_main">
+<span class="sig-name descname"><span class="pre">set_main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.app.mainwindow.MainWindow</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.set_main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_main" title="Link to this definition">#</a></dt>
+<dd><p>Set the reference to the Spyder main window for the plugin registry.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2: </span>Will raise a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> in Spyder 6.2 and be removed
+in Spyder 7.0. Set the <a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.main" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry.main"><code class="xref py py-attr docutils literal notranslate"><span class="pre">main</span></code></a> attribute directly instead.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>main</strong> (<em>spyder.app.mainwindow.MainWindow</em>) – The Spyder main window instance to set the reference to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_icon">
+<span class="sig-name descname"><span class="pre">get_icon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qicon.html" title="(in Qt5 v5.15)"><span class="pre">QIcon</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.get_icon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_icon" title="Link to this definition">#</a></dt>
+<dd><p>Icon of the plugin registry, for use in the Spyder interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_name" title="Link to this definition">#</a></dt>
+<dd><p>Name of the plugin registry, translated to the locale language.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.SpyderPluginRegistry.__contains__">
 <span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/plugin_registration/registry.html#SpyderPluginRegistry.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__contains__" title="Link to this definition">#</a></dt>
-<dd><p>Determine if a plugin name is contained in the registry.</p>
+<dd><p>Determine if a plugin with a given name is contained in the registry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to seek.</p>
+<dd class="field-odd"><p><strong>plugin_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the plugin to check.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>is_contained</strong> – If True, the plugin name is contained on the registry, False
-otherwise.</p>
+<dd class="field-even"><p><strong>is_contained</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, <cite>plugin_name</cite> is contained in the registry;
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
@@ -787,6 +997,12 @@ otherwise.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.plugin_registration.registry.PLUGIN_REGISTRY">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.plugin_registration.registry.</span></span><span class="sig-name descname"><span class="pre">PLUGIN_REGISTRY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry" title="spyder.api.plugin_registration.registry.SpyderPluginRegistry"><span class="pre">SpyderPluginRegistry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spyder.api.plugin_registration.registry.SpyderPluginRegistry</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spyder.api.plugin_registration.registry.PLUGIN_REGISTRY" title="Link to this definition">#</a></dt>
+<dd><p>The global Spyder plugin registry instance.</p>
 </dd></dl>
 
 </section>
@@ -836,14 +1052,22 @@ otherwise.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_WIDGET_CLASS"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter.CONF_WIDGET_CLASS</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter.CONF_SECTION"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter.CONF_SECTION</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginClass"><code class="docutils literal notranslate"><span class="pre">SpyderPluginClass</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.ALL_PLUGINS"><code class="docutils literal notranslate"><span class="pre">ALL_PLUGINS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PreferencesAdapter"><code class="docutils literal notranslate"><span class="pre">PreferencesAdapter</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.sig_plugin_ready"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.sig_plugin_ready</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.main"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.main</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependents"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_dependents</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_dependencies"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_dependencies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_registry"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_registry</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.plugin_availability"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.plugin_availability</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.enabled_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.enabled_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.internal_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.internal_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.external_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.external_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_internal_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.all_internal_plugins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.all_external_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.all_external_plugins</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.register_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.register_plugin()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.notify_plugin_availability"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.notify_plugin_availability()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.can_delete_plugin"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.can_delete_plugin()</span></code></a></li>
@@ -857,9 +1081,15 @@ otherwise.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_enabled"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.is_plugin_enabled()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.is_plugin_available"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.is_plugin_available()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.reset"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.reset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_internal_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.set_all_internal_plugins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_all_external_plugins"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.set_all_external_plugins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.set_main"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.set_main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_icon"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.get_icon()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.get_name"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.get_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.SpyderPluginRegistry.__contains__"><code class="docutils literal notranslate"><span class="pre">SpyderPluginRegistry.__contains__()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.plugin_registration.registry.PLUGIN_REGISTRY"><code class="docutils literal notranslate"><span class="pre">PLUGIN_REGISTRY</span></code></a></li>
 </ul>
   </nav></div>
 

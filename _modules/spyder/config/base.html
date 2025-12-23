@@ -1002,7 +1002,7 @@ document.write(`
 <span class="k">def</span><span class="w"> </span><span class="nf">is_conda_based_app</span><span class="p">(</span><span class="n">pyexec</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Check if Spyder is running from the conda-based installer by looking for</span>
-<span class="sd">    the `spyder-menu.json` file.</span>
+<span class="sd">    the `conda_based_app` file.</span>
 
 <span class="sd">    If a Python executable is provided, checks if it is in a conda-based</span>
 <span class="sd">    installer environment or the root environment thereof.</span>
@@ -1021,6 +1021,20 @@ document.write(`
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_installed_all_users</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if conda-based installer is installed for all users.</span>
+<span class="sd">    Only for conda-based installers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">real_pyexec</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>  <span class="c1"># may be symlink</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_conda_based_app</span><span class="p">(</span><span class="n">real_pyexec</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">root</span> <span class="o">=</span> <span class="n">real_pyexec</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;envs&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="n">osp</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s2">&quot;.nonadmin&quot;</span><span class="p">)</span>
 
 
 <span class="c1">#==============================================================================</span>

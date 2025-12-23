@@ -360,15 +360,30 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.plugin_registration.mixins</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Spyder API plugin registration mixins.</span>
+
+<span class="sd">.. deprecated:: 6.2</span>
+
+<span class="sd">    This module will be moved to a private :mod:`!spyder.api._mixins` module</span>
+<span class="sd">    and become a deprecated alias, raising a :exc:`DeprecationWarning`,</span>
+<span class="sd">    that will be removed in Spyder 7.0.</span>
+
+<span class="sd">    It is a private implementation detail of the plugin decorators in</span>
+<span class="sd">    :mod:`spyder.api.plugin_registration.decorators`, and wasn&#39;t designed</span>
+<span class="sd">    or intended to be used directly by external code. Plugins access its</span>
+<span class="sd">    functionality through the :class:`~spyder.api.plugins.SpyderPluginV2`</span>
+<span class="sd">    class instead.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
@@ -383,37 +398,58 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html#spyder.api.plugin_registration.mixins.SpyderPluginObserver">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderPluginObserver</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mixin to receive and respond to changes in Spyder plugin availability.</span>
+
 <span class="sd">    This mixin enables a class to receive notifications when a plugin</span>
 <span class="sd">    is available, by registering methods using the</span>
-<span class="sd">    :func:`spyder.api.plugin_registration.decorators.on_plugin_available`</span>
-<span class="sd">    decorator.</span>
+<span class="sd">    :func:`~spyder.api.plugin_registration.decorators.on_plugin_available`</span>
+<span class="sd">    decorator. When any of the requested plugins is ready, the corresponding</span>
+<span class="sd">    registered method is called.</span>
 
-<span class="sd">    When any of the requested plugins is ready, the corresponding registered</span>
-<span class="sd">    method is called.</span>
+<span class="sd">    Normally inherited and initialized automatically through</span>
+<span class="sd">    :class:`~spyder.api.plugins.SpyderPluginV2` rather than used directly.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    This mixin will only operate over the plugin requirements listed under</span>
-<span class="sd">    `REQUIRES` and `OPTIONAL` class constants.</span>
+<span class="sd">    .. caution::</span>
+
+<span class="sd">        This mixin will only operate over the plugins listed under the</span>
+<span class="sd">        :attr:`~spyder.api.plugins.SpyderPluginV2.REQUIRES` or</span>
+<span class="sd">        :attr:`~spyder.api.plugins.SpyderPluginV2.OPTIONAL` class constants</span>
+<span class="sd">        of the class inheriting the mixin.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderPluginObserver.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugin_registration.mixins.html#spyder.api.plugin_registration.mixins.SpyderPluginObserver.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up the plugin listeners for any decorated methods of the class.</span>
+
+<span class="sd">        Called automatically by</span>
+<span class="sd">        :meth:`SpyderPluginV2.__init__() &lt;spyder.api.plugins.SpyderPluginV2.__init__&gt;`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        SpyderAPIError</span>
+<span class="sd">            If trying to watch a plugin that is not listed in the plugin class&#39;</span>
+<span class="sd">            :attr:`~spyder.api.plugins.SpyderPluginV2.REQUIRES`</span>
+<span class="sd">            or :attr:`~spyder.api.plugins.SpyderPluginV2.OPTIONAL` class constants.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_teardown_listeners</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s1">&#39;_plugin_listen&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s2">&quot;_plugin_listen&quot;</span><span class="p">):</span>
                 <span class="n">plugin_listen</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">_plugin_listen</span>
 
                 <span class="c1"># Check if plugin is listed among REQUIRES and OPTIONAL.</span>
                 <span class="c1"># Note: We can&#39;t do this validation for the Layout plugin</span>
                 <span class="c1"># because it depends on all plugins through the Plugins.All</span>
                 <span class="c1"># wildcard.</span>
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="n">Plugins</span><span class="o">.</span><span class="n">Layout</span> <span class="ow">and</span>
-                    <span class="p">(</span><span class="n">plugin_listen</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">REQUIRES</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPTIONAL</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="n">Plugins</span><span class="o">.</span><span class="n">Layout</span> <span class="ow">and</span> <span class="p">(</span>
+                    <span class="n">plugin_listen</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">REQUIRES</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPTIONAL</span>
                 <span class="p">):</span>
                     <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> is trying to watch &quot;</span>
@@ -422,20 +458,19 @@ document.write(`
                     <span class="p">)</span>
 
                 <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s1">&#39;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s1"> is watching plugin </span><span class="si">{</span><span class="n">plugin_listen</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> is watching plugin </span><span class="si">{</span><span class="n">plugin_listen</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">[</span><span class="n">plugin_listen</span><span class="p">]</span> <span class="o">=</span> <span class="n">method_name</span>
 
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s1">&#39;_plugin_teardown&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s2">&quot;_plugin_teardown&quot;</span><span class="p">):</span>
                 <span class="n">plugin_teardown</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">_plugin_teardown</span>
 
                 <span class="c1"># Check if plugin is listed among REQUIRES and OPTIONAL.</span>
                 <span class="c1"># Note: We can&#39;t do this validation for the Layout plugin</span>
                 <span class="c1"># because it depends on all plugins through the Plugins.All</span>
                 <span class="c1"># wildcard.</span>
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="n">Plugins</span><span class="o">.</span><span class="n">Layout</span> <span class="ow">and</span>
-                    <span class="p">(</span><span class="n">plugin_teardown</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">REQUIRES</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPTIONAL</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="n">Plugins</span><span class="o">.</span><span class="n">Layout</span> <span class="ow">and</span> <span class="p">(</span>
+                    <span class="n">plugin_teardown</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">REQUIRES</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPTIONAL</span>
                 <span class="p">):</span>
                     <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> is trying to watch &quot;</span>
@@ -443,49 +478,57 @@ document.write(`
                         <span class="sa">f</span><span class="s2">&quot;listed in REQUIRES nor OPTIONAL.&quot;</span>
                     <span class="p">)</span>
 
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s1"> will handle plugin &#39;</span>
-                             <span class="sa">f</span><span class="s1">&#39;teardown for </span><span class="si">{</span><span class="n">plugin_teardown</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> will handle plugin &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;teardown for </span><span class="si">{</span><span class="n">plugin_teardown</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_teardown_listeners</span><span class="p">[</span><span class="n">plugin_teardown</span><span class="p">]</span> <span class="o">=</span> <span class="n">method_name</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_plugin_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_plugin_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Handle plugin availability and redirect it to plugin-specific</span>
-<span class="sd">        startup handlers.</span>
+<span class="sd">        Handle plugin availability and redirect it to plugin-specific handlers.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin: str</span>
 <span class="sd">            Name of the plugin that was notified as available.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Call plugin specific handler</span>
         <span class="k">if</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">:</span>
             <span class="n">method_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span>
             <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Calling </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">method</span><span class="p">()</span>
 
         <span class="c1"># Call global plugin handler</span>
-        <span class="k">if</span> <span class="s1">&#39;__all&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">:</span>
-            <span class="n">method_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">[</span><span class="s1">&#39;__all&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;__all&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">:</span>
+            <span class="n">method_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_listeners</span><span class="p">[</span><span class="s2">&quot;__all&quot;</span><span class="p">]</span>
             <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
             <span class="n">method</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_plugin_teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_plugin_teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Handle plugin teardown and redirect it to plugin-specific teardown</span>
-<span class="sd">        handlers.</span>
+<span class="sd">        Handle plugin teardown and redirect it to plugin-specific handlers.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        plugin: str</span>
 <span class="sd">            Name of the plugin that is going through its teardown process.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Call plugin specific handler</span>
         <span class="k">if</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_teardown_listeners</span><span class="p">:</span>
             <span class="n">method_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin_teardown_listeners</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span>
             <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Calling </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">method</span><span class="p">()</span></div>
 
 </pre></div>
