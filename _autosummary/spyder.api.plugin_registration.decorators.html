@@ -472,8 +472,8 @@ to work as intended.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Any <code class="docutils literal notranslate"><span class="pre">plugin</span></code>(s) specified must be listed under either the
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.REQUIRES" title="spyder.api.plugins.SpyderPluginV2.REQUIRES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code></a> or
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.OPTIONAL" title="spyder.api.plugins.SpyderPluginV2.OPTIONAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code></a> class constants
 of the plugin’s <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> class.
 If not, a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised
 when the plugin class is initialized.</p>
@@ -485,8 +485,8 @@ when the plugin class is initialized.</p>
 <li><p><strong>plugin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Name of the requested plugin whose availability triggers <code class="docutils literal notranslate"><span class="pre">func</span></code>.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default), observes all plugins listed as dependencies.
 Must be listed under the class’
-‘<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants,
+‘<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.REQUIRES" title="spyder.api.plugins.SpyderPluginV2.REQUIRES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code></a> or
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.OPTIONAL" title="spyder.api.plugins.SpyderPluginV2.OPTIONAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code></a> class constants,
 or else a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised.</p></li>
 </ul>
 </dd>
@@ -499,8 +499,8 @@ or else a <a class="reference internal" href="spyder.api.exceptions.html#spyder.
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – When initializing a plugin class with decorated methods,
     if trying to watch a <code class="docutils literal notranslate"><span class="pre">plugin</span></code> that is not listed in the plugin class’
-    <code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
-    <code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants.</p>
+    <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.REQUIRES" title="spyder.api.plugins.SpyderPluginV2.REQUIRES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code></a> or
+    <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.OPTIONAL" title="spyder.api.plugins.SpyderPluginV2.OPTIONAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code></a> class constants.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -528,8 +528,8 @@ is accepted due to technical limitations, it will raise a
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Any <code class="docutils literal notranslate"><span class="pre">plugin</span></code>(s) specified must be listed under either the
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.REQUIRES" title="spyder.api.plugins.SpyderPluginV2.REQUIRES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code></a> or
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.OPTIONAL" title="spyder.api.plugins.SpyderPluginV2.OPTIONAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code></a> class constants
 of the plugin’s <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2" title="spyder.api.plugins.SpyderPluginV2"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderPluginV2</span></code></a> class.
 If not, a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised
 when the plugin class is initialized.</p>
@@ -542,8 +542,8 @@ when the plugin class is initialized.</p>
 While <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default, is accepted for technical reasons,
 <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> is raised if a plugin name is not passed.
 Must be listed under the class’
-‘<code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants,
+‘<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.REQUIRES" title="spyder.api.plugins.SpyderPluginV2.REQUIRES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code></a> or
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.OPTIONAL" title="spyder.api.plugins.SpyderPluginV2.OPTIONAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code></a> class constants,
 or else a <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> will be raised.</p></li>
 </ul>
 </dd>
@@ -558,8 +558,8 @@ or else a <a class="reference internal" href="spyder.api.exceptions.html#spyder.
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If an explicit plugin name is not passed to <code class="docutils literal notranslate"><span class="pre">plugin</span></code>.</p></li>
 <li><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – When initializing a plugin class with decorated methods,
     if trying to watch a <code class="docutils literal notranslate"><span class="pre">plugin</span></code> that is not listed in the plugin class’
-    <code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code> or
-    <code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code> class constants.</p></li>
+    <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.REQUIRES" title="spyder.api.plugins.SpyderPluginV2.REQUIRES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">REQUIRES</span></code></a> or
+    <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderPluginV2.OPTIONAL" title="spyder.api.plugins.SpyderPluginV2.OPTIONAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">OPTIONAL</span></code></a> class constants.</p></li>
 </ul>
 </dd>
 </dl>

@@ -360,78 +360,175 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.plugins.enum</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
-<span class="sd">&quot;&quot;&quot;Enum of Spyder internal plugins.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Enums listing Spyder internal plugins.</span>
+
+<span class="sd">.. deprecated:: 6.2</span>
+
+<span class="sd">    This module will be renamed to the private :mod:`!_enum` in Spyder 6.2,</span>
+<span class="sd">    while the current public name will become an alias raising a</span>
+<span class="sd">    :exc:`DeprecationWarning` on import and be removed in 7.0.</span>
+
+<span class="sd">    Use the canonical location, the top-level :mod:`spyder.api.plugins` instead</span>
+<span class="sd">    which already exports all the public objects of this module.</span>
+
+<span class="sd">    For example, ``import spyder.api.plugins`` instead of</span>
+<span class="sd">    ``import spyder.api.plugins.enums``, or</span>
+<span class="sd">    ``from spyder.api.plugins import Plugins`` instead of</span>
+<span class="sd">    ``from spyder.api.plugins.enums import Plugins``.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="DockablePlugins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.DockablePlugins">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DockablePlugins</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pseudo-enum class listing the names of Spyder internal dockable plugins.</span>
+
+<span class="sd">    Values correspond to the plugin&#39;s</span>
+<span class="sd">    :attr:`~spyder.api.plugins.SpyderPluginV2.NAME`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Console</span> <span class="o">=</span> <span class="s2">&quot;internal_console&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Internal Console plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Debugger</span> <span class="o">=</span> <span class="s2">&quot;debugger&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Debugger plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Editor</span> <span class="o">=</span> <span class="s2">&quot;editor&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Editor plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Explorer</span> <span class="o">=</span> <span class="s2">&quot;explorer&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Files plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Find</span> <span class="o">=</span> <span class="s2">&quot;find_in_files&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Find plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Help</span> <span class="o">=</span> <span class="s2">&quot;help&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Help plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">History</span> <span class="o">=</span> <span class="s2">&quot;historylog&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder History plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">IPythonConsole</span> <span class="o">=</span> <span class="s2">&quot;ipython_console&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder IPython Console plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">OnlineHelp</span> <span class="o">=</span> <span class="s2">&quot;onlinehelp&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Online Help plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">OutlineExplorer</span> <span class="o">=</span> <span class="s2">&quot;outline_explorer&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Outline plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Plots</span> <span class="o">=</span> <span class="s2">&quot;plots&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Plots plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Profiler</span> <span class="o">=</span> <span class="s2">&quot;profiler&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Profiler plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Projects</span> <span class="o">=</span> <span class="s2">&quot;project_explorer&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Projects plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Pylint</span> <span class="o">=</span> <span class="s2">&quot;pylint&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Code Analysis plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">VariableExplorer</span> <span class="o">=</span> <span class="s2">&quot;variable_explorer&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Variable Explorer plugin.&quot;&quot;&quot;</span></div>
+
 
 
 <div class="viewcode-block" id="Plugins">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.Plugins">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">Plugins</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convenience class for accessing Spyder internal plugins.</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Plugins</span><span class="p">(</span><span class="n">DockablePlugins</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pseudo-enum class listing the names of all Spyder internal plugins.</span>
+
+<span class="sd">    Values correspond to the plugin&#39;s</span>
+<span class="sd">    :attr:`~spyder.api.plugins.SpyderPluginV2.NAME`.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        This &quot;enum&quot; also includes all the members from :class:`DockablePlugins`</span>
+<span class="sd">        via inheritance from that class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">All</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>   <span class="c1"># Wildcard to populate REQUIRES with all available plugins</span>
-    <span class="n">Appearance</span> <span class="o">=</span> <span class="s1">&#39;appearance&#39;</span>
-    <span class="n">Application</span> <span class="o">=</span> <span class="s1">&#39;application&#39;</span>
-    <span class="n">Completions</span> <span class="o">=</span> <span class="s1">&#39;completions&#39;</span>
-    <span class="n">Console</span> <span class="o">=</span> <span class="s1">&#39;internal_console&#39;</span>
-    <span class="n">Debugger</span> <span class="o">=</span> <span class="s1">&#39;debugger&#39;</span>
-    <span class="n">Editor</span> <span class="o">=</span> <span class="s1">&#39;editor&#39;</span>
-    <span class="n">Explorer</span> <span class="o">=</span> <span class="s1">&#39;explorer&#39;</span>
-    <span class="n">ExternalTerminal</span> <span class="o">=</span> <span class="s1">&#39;external_terminal&#39;</span>
-    <span class="n">Find</span> <span class="o">=</span> <span class="s1">&#39;find_in_files&#39;</span>
-    <span class="n">Help</span> <span class="o">=</span> <span class="s1">&#39;help&#39;</span>
-    <span class="n">History</span> <span class="o">=</span> <span class="s1">&#39;historylog&#39;</span>
-    <span class="n">IPythonConsole</span> <span class="o">=</span> <span class="s1">&#39;ipython_console&#39;</span>
-    <span class="n">Layout</span> <span class="o">=</span> <span class="s1">&#39;layout&#39;</span>
-    <span class="n">MainInterpreter</span> <span class="o">=</span> <span class="s1">&#39;main_interpreter&#39;</span>
-    <span class="n">MainMenu</span> <span class="o">=</span> <span class="s1">&#39;mainmenu&#39;</span>
-    <span class="n">OnlineHelp</span> <span class="o">=</span> <span class="s1">&#39;onlinehelp&#39;</span>
-    <span class="n">OutlineExplorer</span> <span class="o">=</span> <span class="s1">&#39;outline_explorer&#39;</span>
-    <span class="n">Plots</span> <span class="o">=</span> <span class="s1">&#39;plots&#39;</span>
-    <span class="n">Preferences</span> <span class="o">=</span> <span class="s1">&#39;preferences&#39;</span>
-    <span class="n">Profiler</span> <span class="o">=</span> <span class="s1">&#39;profiler&#39;</span>
-    <span class="n">Projects</span> <span class="o">=</span> <span class="s1">&#39;project_explorer&#39;</span>
-    <span class="n">Pylint</span> <span class="o">=</span> <span class="s1">&#39;pylint&#39;</span>
-    <span class="n">PythonpathManager</span> <span class="o">=</span> <span class="s1">&#39;pythonpath_manager&#39;</span>
-    <span class="n">RemoteClient</span> <span class="o">=</span> <span class="s1">&#39;remoteclient&#39;</span>
-    <span class="n">Run</span> <span class="o">=</span> <span class="s1">&#39;run&#39;</span>
-    <span class="n">Shortcuts</span> <span class="o">=</span> <span class="s1">&#39;shortcuts&#39;</span>
-    <span class="n">StatusBar</span> <span class="o">=</span> <span class="s1">&#39;statusbar&#39;</span>
-    <span class="n">Switcher</span> <span class="o">=</span> <span class="s1">&#39;switcher&#39;</span>
+
+    <span class="n">All</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wildcard to populate :attr:`~spyder.api.plugins.SpyderPluginV2.REQUIRES`</span>
+<span class="sd">    with all available plugins.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Appearance</span> <span class="o">=</span> <span class="s2">&quot;appearance&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Appearance plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Application</span> <span class="o">=</span> <span class="s2">&quot;application&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Application plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Completions</span> <span class="o">=</span> <span class="s2">&quot;completions&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Completions plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">ExternalTerminal</span> <span class="o">=</span> <span class="s2">&quot;external_terminal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder External Terminal plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Layout</span> <span class="o">=</span> <span class="s2">&quot;layout&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Layout plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">MainInterpreter</span> <span class="o">=</span> <span class="s2">&quot;main_interpreter&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Main Interpreter plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">MainMenu</span> <span class="o">=</span> <span class="s2">&quot;mainmenu&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Main Menu plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Preferences</span> <span class="o">=</span> <span class="s2">&quot;preferences&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Preferences plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">PythonpathManager</span> <span class="o">=</span> <span class="s2">&quot;pythonpath_manager&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder PYTHONPATH Manager plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">RemoteClient</span> <span class="o">=</span> <span class="s2">&quot;remoteclient&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Remote Client plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Run</span> <span class="o">=</span> <span class="s2">&quot;run&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Run plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Shortcuts</span> <span class="o">=</span> <span class="s2">&quot;shortcuts&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Shortcuts plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">StatusBar</span> <span class="o">=</span> <span class="s2">&quot;statusbar&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Status Bar plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Switcher</span> <span class="o">=</span> <span class="s2">&quot;switcher&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Switcher plugin.&quot;&quot;&quot;</span>
+
     <span class="n">Toolbar</span> <span class="o">=</span> <span class="s2">&quot;toolbar&quot;</span>
-    <span class="n">Tours</span> <span class="o">=</span> <span class="s1">&#39;tours&#39;</span>
-    <span class="n">UpdateManager</span> <span class="o">=</span> <span class="s1">&#39;update_manager&#39;</span>
-    <span class="n">VariableExplorer</span> <span class="o">=</span> <span class="s1">&#39;variable_explorer&#39;</span>
-    <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="s1">&#39;workingdir&#39;</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Toolbar plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">Tours</span> <span class="o">=</span> <span class="s2">&quot;tours&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Tours plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">UpdateManager</span> <span class="o">=</span> <span class="s2">&quot;update_manager&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Update Manager plugin.&quot;&quot;&quot;</span>
+
+    <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="s2">&quot;workingdir&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Working Directory plugin.&quot;&quot;&quot;</span></div>
 
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">DockablePlugins</span><span class="p">:</span>
-    <span class="n">Console</span> <span class="o">=</span> <span class="s1">&#39;internal_console&#39;</span>
-    <span class="n">Debugger</span> <span class="o">=</span> <span class="s1">&#39;debugger&#39;</span>
-    <span class="n">Editor</span> <span class="o">=</span> <span class="s1">&#39;editor&#39;</span>
-    <span class="n">Explorer</span> <span class="o">=</span> <span class="s1">&#39;explorer&#39;</span>
-    <span class="n">Find</span> <span class="o">=</span> <span class="s1">&#39;find_in_files&#39;</span>
-    <span class="n">Help</span> <span class="o">=</span> <span class="s1">&#39;help&#39;</span>
-    <span class="n">History</span> <span class="o">=</span> <span class="s1">&#39;historylog&#39;</span>
-    <span class="n">IPythonConsole</span> <span class="o">=</span> <span class="s1">&#39;ipython_console&#39;</span>
-    <span class="n">OnlineHelp</span> <span class="o">=</span> <span class="s1">&#39;onlinehelp&#39;</span>
-    <span class="n">OutlineExplorer</span> <span class="o">=</span> <span class="s1">&#39;outline_explorer&#39;</span>
-    <span class="n">Plots</span> <span class="o">=</span> <span class="s1">&#39;plots&#39;</span>
-    <span class="n">Profiler</span> <span class="o">=</span> <span class="s1">&#39;profiler&#39;</span>
-    <span class="n">Projects</span> <span class="o">=</span> <span class="s1">&#39;project_explorer&#39;</span>
-    <span class="n">Pylint</span> <span class="o">=</span> <span class="s1">&#39;pylint&#39;</span>
-    <span class="n">VariableExplorer</span> <span class="o">=</span> <span class="s1">&#39;variable_explorer&#39;</span>
-
-
+<div class="viewcode-block" id="OptionalPlugins">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.plugins.html#spyder.api.plugins.OptionalPlugins">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OptionalPlugins</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pseudo-enum class listing the names of Spyder optional plugins.</span>
+
+<span class="sd">    Values correspond to the plugin&#39;s</span>
+<span class="sd">    :attr:`~spyder.api.plugins.SpyderPluginV2.NAME`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">EnvManager</span> <span class="o">=</span> <span class="s2">&quot;spyder_env_manager&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Spyder Environment Manager plugin.&quot;&quot;&quot;</span></div>
+
 </pre></div>
 
                 </article>
