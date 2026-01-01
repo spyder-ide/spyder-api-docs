@@ -360,82 +360,186 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.shellconnect.mixins</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Mixins for plugins/widgets that are connected to the IPython console.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="c1"># Third party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">Signal</span>
 
+<span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.plugin_registration.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">on_plugin_available</span><span class="p">,</span> <span class="n">on_plugin_teardown</span><span class="p">)</span>
+    <span class="n">on_plugin_available</span><span class="p">,</span>
+    <span class="n">on_plugin_teardown</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Plugins</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QWidget</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.plugins.ipythonconsole.plugin</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.plugins.ipythonconsole.widgets</span>
 
 
 <div class="viewcode-block" id="ShellConnectMixin">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ShellConnectMixin</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Mixin to connect any widget or object to the shell widgets in the IPython</span>
-<span class="sd">    console.</span>
+<span class="sd">    Mixin to connect any widget or object to an IPython Console shell widget.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ---- Connection to the IPython console</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectMixin.register_ipythonconsole">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.register_ipythonconsole">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">register_ipythonconsole</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipyconsole</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register signals from the console.&quot;&quot;&quot;</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_changed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_shellwidget</span><span class="p">)</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_created</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_shellwidget</span><span class="p">)</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_deleted</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_shellwidget</span><span class="p">)</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_errored</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_errored_shellwidget</span><span class="p">)</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_ipythonconsole</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ipythonconsole</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect this object to the relevant signals of the IPython Console.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ipythonconsole : spyder.plugins.ipythonconsole.plugin.IPythonConsole</span>
+<span class="sd">            The IPython Console to connect this object to the signals of.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_changed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_shellwidget</span><span class="p">)</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_created</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_shellwidget</span><span class="p">)</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_deleted</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_shellwidget</span><span class="p">)</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_errored</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_errored_shellwidget</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMixin.unregister_ipythonconsole">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.unregister_ipythonconsole">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">unregister_ipythonconsole</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ipyconsole</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Unregister signals from the console.&quot;&quot;&quot;</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_changed</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_shellwidget</span><span class="p">)</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_created</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_shellwidget</span><span class="p">)</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_deleted</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_shellwidget</span><span class="p">)</span>
-        <span class="n">ipyconsole</span><span class="o">.</span><span class="n">sig_shellwidget_errored</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_errored_shellwidget</span><span class="p">)</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unregister_ipythonconsole</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ipythonconsole</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disconnect this object from the relevant signals of the IPython Console.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ipythonconsole : spyder.plugins.ipythonconsole.plugin.IPythonConsole</span>
+<span class="sd">            The IPython Console to disconnect this object from the signals of.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_changed</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_shellwidget</span><span class="p">)</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_created</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_shellwidget</span><span class="p">)</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_deleted</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove_shellwidget</span>
+        <span class="p">)</span>
+        <span class="n">ipythonconsole</span><span class="o">.</span><span class="n">sig_shellwidget_errored</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_errored_shellwidget</span>
+        <span class="p">)</span></div>
 
 
     <span class="c1"># ---- Public API</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectMixin.set_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.set_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the current shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set as active the stack widget associated to the given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that corresponds to the stacked widget to set</span>
+<span class="sd">            as currently active.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMixin.add_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.add_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new shellwidget to be registered.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new object associated with the given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to associate the new widget to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMixin.remove_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.remove_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a registered shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove the object associated to a given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to remove the associated object of.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMixin.add_errored_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin.add_errored_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a new shellwidget whose kernel failed to start.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register an error widget if the shell widget&#39;s kernel failed to start.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to associate with a new error widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 </div>
 
@@ -445,26 +549,40 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ShellConnectWidgetForStackMixin</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Mixin for widgets that will be added to the stacked widget part of</span>
-<span class="sd">    ShellConnectMainWidget.</span>
+<span class="sd">    Mixin for widgets added to a stack of those connected to different shells.</span>
+
+<span class="sd">    Used for the stacked widgets of</span>
+<span class="sd">    :class:`~spyder.api.shellconnect.main_widget.ShellConnectMainWidget`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_show_empty_message_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">sig_show_empty_message_requested</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Signal to request that the empty message will be shown/hidden.</span>
+<span class="sd">    Request that the empty message be shown/hidden.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    show_empty_message: bool</span>
-<span class="sd">        Whether show the empty message or this widget must be shown.</span>
+<span class="sd">        ``True`` to show the empty message; ``False`` for the normal widget.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ShellConnectWidgetForStackMixin.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># This attribute is necessary to track if this widget has content to</span>
-        <span class="c1"># display or not.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span> <span class="o">=</span> <span class="kc">True</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up attributes on the mixin.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the current widget has content to show.</span>
+
+<span class="sd">        This attribute is necessary to track whether this widget has content</span>
+<span class="sd">        to display.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
 </div>
 
 
@@ -485,111 +603,161 @@ document.write(`
 <div class="viewcode-block" id="ShellConnectPluginMixin.on_ipython_console_available">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_available">[docs]</a>
     <span class="nd">@on_plugin_available</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="n">Plugins</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">on_ipython_console_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to the IPython console.&quot;&quot;&quot;</span>
-        <span class="n">ipyconsole</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_ipythonconsole</span><span class="p">(</span><span class="n">ipyconsole</span><span class="p">)</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_ipython_console_available</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect this object to the relevant signals of the IPython Console.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ipythonconsole</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_ipythonconsole</span><span class="p">(</span><span class="n">ipythonconsole</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectPluginMixin.on_ipython_console_teardown">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_teardown">[docs]</a>
     <span class="nd">@on_plugin_teardown</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="n">Plugins</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">on_ipython_console_teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disconnect from the IPython console.&quot;&quot;&quot;</span>
-        <span class="n">ipyconsole</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unregister_ipythonconsole</span><span class="p">(</span><span class="n">ipyconsole</span><span class="p">)</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_ipython_console_teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disconnect this object from the relevant signals of the IPython Console.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ipythonconsole</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="n">Plugins</span><span class="o">.</span><span class="n">IPythonConsole</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unregister_ipythonconsole</span><span class="p">(</span><span class="n">ipythonconsole</span><span class="p">)</span></div>
 
 
     <span class="c1"># ---- Public API</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectPluginMixin.set_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.set_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update the current shellwidget.</span>
+<span class="sd">        Set as active the stack widget associated to the given shell widget.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        shellwidget: spyder.plugins.ipyconsole.widgets.shell.ShellWidget</span>
-<span class="sd">            The shell widget.</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that corresponds to the stacked widget to set</span>
+<span class="sd">            as currently active.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">set_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectPluginMixin.add_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a new shellwidget to be registered.</span>
+<span class="sd">        Create a new widget in the stack associated to a given shell widget.</span>
 
-<span class="sd">        This function registers a new widget to display content that</span>
-<span class="sd">        comes from shellwidget.</span>
+<span class="sd">        This method registers a new widget to display the content that</span>
+<span class="sd">        is associated with the given shell widget.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        shellwidget: spyder.plugins.ipyconsole.widgets.shell.ShellWidget</span>
-<span class="sd">            The shell widget.</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to associate the new widget to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">add_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectPluginMixin.remove_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.remove_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Remove a registered shellwidget.</span>
+<span class="sd">        Remove the widget associated to a given shell widget.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        shellwidget: spyder.plugins.ipyconsole.widgets.shell.ShellWidget</span>
-<span class="sd">            The shell widget.</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to remove the associated widget of.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">remove_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectPluginMixin.add_errored_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_errored_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a new shellwidget whose kernel failed to start.</span>
+<span class="sd">        Add an error widget for a shell widget whose kernel failed to start.</span>
+
+<span class="sd">        This is necessary to show a meaningful message when switching to</span>
+<span class="sd">        consoles with dead kernels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        shellwidget: spyder.plugins.ipyconsole.widgets.shell.ShellWidget</span>
-<span class="sd">            The shell widget.</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to associate with a new error widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">add_errored_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectPluginMixin.current_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.current_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">current_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">current_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the current widget displayed at the moment.</span>
+<span class="sd">        Get the widget corresponding to the currently active console tab.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        current_widget: QWidget</span>
-<span class="sd">            The widget displayed in the current tab.</span>
+<span class="sd">        QWidget</span>
+<span class="sd">            The current widget in the stack, associated with the active</span>
+<span class="sd">            :class:`~spyder.plugins.ipythonconsole.widgets.ShellWidget`</span>
+<span class="sd">            (i.e. :guilabel:`IPython Console` tab).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">current_widget</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectPluginMixin.get_widget_for_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.get_widget_for_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget_for_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget_for_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the widget registered with the given shellwidget.</span>
+<span class="sd">        Retrieve the stacked widget corresponding to the given shell widget.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        shellwidget: spyder.plugins.ipyconsole.widgets.shell.ShellWidget</span>
-<span class="sd">            The shell widget.</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to return the associated widget of.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        current_widget: QWidget</span>
-<span class="sd">            The widget corresponding to the shellwidget, or None if not found.</span>
+<span class="sd">        QWidget | None</span>
+<span class="sd">            The widget in the stack associated with ``shellwidget``,</span>
+<span class="sd">            or ``None`` if not found.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget</span><span class="p">()</span><span class="o">.</span><span class="n">get_widget_for_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 </div>
@@ -632,7 +800,7 @@ By Spyder-API-Docs Contributors
 
   <p class="copyright">
     
-      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      © Copyright  2020-2026 Spyder-API-Docs Contributors; MIT License.
       <br/>
     
   </p>

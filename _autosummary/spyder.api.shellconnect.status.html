@@ -425,6 +425,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.__init__"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.shellwidget_to_status"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.shellwidget_to_status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.current_shellwidget"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.current_shellwidget</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.update_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.on_kernel_start()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.config_spyder_kernel()</span></code></a></li>
@@ -447,7 +449,7 @@ document.write(`
                   
   <section id="module-spyder.api.shellconnect.status">
 <span id="spyder-api-shellconnect-status"></span><h1>spyder.api.shellconnect.status<a class="headerlink" href="#module-spyder.api.shellconnect.status" title="Link to this heading">#</a></h1>
-<p>Status bar widget that shows content that comes from the IPython console.</p>
+<p>Status bar widget to show content from the IPython console.</p>
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
@@ -459,77 +461,131 @@ document.write(`
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.shellconnect.status.</span></span><span class="sig-name descname"><span class="pre">ShellConnectStatusBarWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.shellconnect.status.</span></span><span class="sig-name descname"><span class="pre">ShellConnectStatusBarWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget" title="spyder.api.widgets.status.StatusBarWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">StatusBarWidget</span></code></a>, <a class="reference internal" href="spyder.api.shellconnect.mixins.html#spyder.api.shellconnect.mixins.ShellConnectMixin" title="spyder.api.shellconnect.mixins.ShellConnectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShellConnectMixin</span></code></a></p>
 <p>Base class for status bar widgets whose info depends on the current shell.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Base class for status bar widgets.</p>
-<p>These are composed of the following widgets, which are arranged
-in a QHBoxLayout from left to right:</p>
-<ul class="simple">
-<li><p>Icon</p></li>
-<li><p>Label</p></li>
-<li><p>Custom QWidget</p></li>
-<li><p>Spinner</p></li>
-</ul>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new status bar widget to display content from a shell widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>show_icon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Show an icon in the widget.</p></li>
-<li><p><strong>show_label</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Show a label in the widget.</p></li>
-<li><p><strong>show_spinner</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Show a spinner.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>parent</strong> (<a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><em>PluginMainWidget</em></a>) – The parent widget to this one.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<ol class="arabic simple">
-<li><p>To use an icon, you need to redefine the <code class="docutils literal notranslate"><span class="pre">get_icon</span></code> method.</p></li>
-<li><p>To use a label, you need to call <code class="docutils literal notranslate"><span class="pre">set_value</span></code>.</p></li>
-</ol>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.shellwidget_to_status">
+<span class="sig-name descname"><span class="pre">shellwidget_to_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.shellwidget_to_status" title="Link to this definition">#</a></dt>
+<dd><p>Mapping from shell widgets to their corresponding statuses.</p>
+<p>The specific type of status information stored will depend on
+what the implementing class needs to display.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.current_shellwidget">
+<span class="sig-name descname"><span class="pre">current_shellwidget</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.current_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Currently active associated shell widget.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status">
-<span class="sig-name descname"><span class="pre">update_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.update_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">update_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.update_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status" title="Link to this definition">#</a></dt>
 <dd><p>Actions to take to update the widget status after switching consoles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>status</strong> (<em>Any</em>) – The shell widget status information needed by the status widget.
+To be defined by the implementing class.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start">
-<span class="sig-name descname"><span class="pre">on_kernel_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.on_kernel_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start" title="Link to this definition">#</a></dt>
-<dd><p>Actions to take when the kernel starts.</p>
+<span class="sig-name descname"><span class="pre">on_kernel_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.on_kernel_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start" title="Link to this definition">#</a></dt>
+<dd><p>Actions to take after the kernel starts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget whose kernel was started.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel">
-<span class="sig-name descname"><span class="pre">config_spyder_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.config_spyder_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">config_spyder_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.config_spyder_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel" title="Link to this definition">#</a></dt>
 <dd><p>Actions to take to configure the kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget whose kernel will be configured.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.set_shellwidget">
-<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.set_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Actions to take when setting (i.e. giving focus to) a shellwidget.</p>
+<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.set_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Actions to take when setting (i.e. giving focus to) a shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that will be given focus.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_shellwidget">
-<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Actions to take when adding a shellwidget.</p>
+<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Actions to take when adding a shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that will be added.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.remove_shellwidget">
-<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.remove_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Actions to take when removing a shellwidget.</p>
+<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.remove_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Actions to take when removing a shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that will have its associated widget removed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_errored_shellwidget">
-<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_errored_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Actions to take when a shellwidget errored.</p>
+<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/status.html#ShellConnectStatusBarWidget.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_errored_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Actions to take when a shell widget has failed with an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that failed with an error.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -583,6 +639,8 @@ in a QHBoxLayout from left to right:</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.__init__"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.shellwidget_to_status"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.shellwidget_to_status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.current_shellwidget"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.current_shellwidget</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.update_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.on_kernel_start()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel"><code class="docutils literal notranslate"><span class="pre">ShellConnectStatusBarWidget.config_spyder_kernel()</span></code></a></li>
@@ -616,7 +674,7 @@ By Spyder-API-Docs Contributors
 
   <p class="copyright">
     
-      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      © Copyright  2020-2026 Spyder-API-Docs Contributors; MIT License.
       <br/>
     
   </p>

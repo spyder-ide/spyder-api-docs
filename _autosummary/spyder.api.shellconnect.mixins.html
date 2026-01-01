@@ -435,6 +435,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.sig_show_empty_message_requested"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin.sig_show_empty_message_requested</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.__init__"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.is_empty"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin.is_empty</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin"><code class="docutils literal notranslate"><span class="pre">ShellConnectPluginMixin</span></code></a><ul class="nav section-nav flex-column">
@@ -466,13 +467,13 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.shellconnect.mixins.ShellConnectMixin" title="spyder.api.shellconnect.mixins.ShellConnectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellConnectMixin</span></code></a>()</p></td>
-<td><p>Mixin to connect any widget or object to the shell widgets in the IPython console.</p></td>
+<td><p>Mixin to connect any widget or object to an IPython Console shell widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin" title="spyder.api.shellconnect.mixins.ShellConnectPluginMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellConnectPluginMixin</span></code></a>()</p></td>
 <td><p>Mixin to connect a plugin composed of stacked widgets to the shell widgets in the IPython console.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin" title="spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin</span></code></a>()</p></td>
-<td><p>Mixin for widgets that will be added to the stacked widget part of ShellConnectMainWidget.</p></td>
+<td><p>Mixin for widgets added to a stack of those connected to different shells.</p></td>
 </tr>
 </tbody>
 </table>
@@ -481,42 +482,90 @@ document.write(`
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.shellconnect.mixins.</span></span><span class="sig-name descname"><span class="pre">ShellConnectMixin</span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Mixin to connect any widget or object to the shell widgets in the IPython
-console.</p>
+<p>Mixin to connect any widget or object to an IPython Console shell widget.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin.register_ipythonconsole">
-<span class="sig-name descname"><span class="pre">register_ipythonconsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ipyconsole</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.register_ipythonconsole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.register_ipythonconsole" title="Link to this definition">#</a></dt>
-<dd><p>Register signals from the console.</p>
+<span class="sig-name descname"><span class="pre">register_ipythonconsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ipythonconsole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.plugin.IPythonConsole</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.register_ipythonconsole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.register_ipythonconsole" title="Link to this definition">#</a></dt>
+<dd><p>Connect this object to the relevant signals of the IPython Console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ipythonconsole</strong> (<em>spyder.plugins.ipythonconsole.plugin.IPythonConsole</em>) – The IPython Console to connect this object to the signals of.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin.unregister_ipythonconsole">
-<span class="sig-name descname"><span class="pre">unregister_ipythonconsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ipyconsole</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.unregister_ipythonconsole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.unregister_ipythonconsole" title="Link to this definition">#</a></dt>
-<dd><p>Unregister signals from the console.</p>
+<span class="sig-name descname"><span class="pre">unregister_ipythonconsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ipythonconsole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.plugin.IPythonConsole</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.unregister_ipythonconsole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.unregister_ipythonconsole" title="Link to this definition">#</a></dt>
+<dd><p>Disconnect this object from the relevant signals of the IPython Console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ipythonconsole</strong> (<em>spyder.plugins.ipythonconsole.plugin.IPythonConsole</em>) – The IPython Console to disconnect this object from the signals of.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin.set_shellwidget">
-<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.set_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Update the current shellwidget.</p>
+<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.set_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Set as active the stack widget associated to the given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that corresponds to the stacked widget to set
+as currently active.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin.add_shellwidget">
-<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.add_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Add a new shellwidget to be registered.</p>
+<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.add_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Create a new object associated with the given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to associate the new widget to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin.remove_shellwidget">
-<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.remove_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Remove a registered shellwidget.</p>
+<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.remove_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Remove the object associated to a given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to remove the associated object of.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectMixin.add_errored_shellwidget">
-<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.add_errored_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Register a new shellwidget whose kernel failed to start.</p>
+<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectMixin.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectMixin.add_errored_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Register an error widget if the shell widget’s kernel failed to start.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to associate with a new error widget.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -525,23 +574,38 @@ console.</p>
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.shellconnect.mixins.</span></span><span class="sig-name descname"><span class="pre">ShellConnectWidgetForStackMixin</span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectWidgetForStackMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Mixin for widgets that will be added to the stacked widget part of
-ShellConnectMainWidget.</p>
+<p>Mixin for widgets added to a stack of those connected to different shells.</p>
+<p>Used for the stacked widgets of
+<a class="reference internal" href="spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget" title="spyder.api.shellconnect.main_widget.ShellConnectMainWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShellConnectMainWidget</span></code></a>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.sig_show_empty_message_requested">
-<span class="sig-name descname"><span class="pre">sig_show_empty_message_requested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.sig_show_empty_message_requested" title="Link to this definition">#</a></dt>
-<dd><p>Signal to request that the empty message will be shown/hidden.</p>
+<span class="sig-name descname"><span class="pre">sig_show_empty_message_requested</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/signalsandslots.html" title="(in Qt5 vQT_VERSION)"><span class="pre">Signal</span></a></em><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.sig_show_empty_message_requested" title="Link to this definition">#</a></dt>
+<dd><p>Request that the empty message be shown/hidden.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>show_empty_message</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether show the empty message or this widget must be shown.</p>
+<dd class="field-odd"><p><strong>show_empty_message</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> to show the empty message; <code class="docutils literal notranslate"><span class="pre">False</span></code> for the normal widget.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectWidgetForStackMixin.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectWidgetForStackMixin.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Set up attributes on the mixin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.is_empty" title="Link to this definition">#</a></dt>
+<dd><p>If the current widget has content to show.</p>
+<p>This attribute is necessary to track whether this widget has content
+to display.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -555,69 +619,96 @@ in the IPython console.</p>
 ShellConnectMainWidget.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_available">
-<span class="sig-name descname"><span class="pre">on_ipython_console_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.on_ipython_console_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_available" title="Link to this definition">#</a></dt>
-<dd><p>Connect to the IPython console.</p>
+<span class="sig-name descname"><span class="pre">on_ipython_console_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.on_ipython_console_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_available" title="Link to this definition">#</a></dt>
+<dd><p>Connect this object to the relevant signals of the IPython Console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_teardown">
-<span class="sig-name descname"><span class="pre">on_ipython_console_teardown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.on_ipython_console_teardown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_teardown" title="Link to this definition">#</a></dt>
-<dd><p>Disconnect from the IPython console.</p>
+<span class="sig-name descname"><span class="pre">on_ipython_console_teardown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.on_ipython_console_teardown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.on_ipython_console_teardown" title="Link to this definition">#</a></dt>
+<dd><p>Disconnect this object from the relevant signals of the IPython Console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.set_shellwidget">
-<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.set_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Update the current shellwidget.</p>
+<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.set_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Set as active the stack widget associated to the given shell widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipyconsole.widgets.shell.ShellWidget</em>) – The shell widget.</p>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that corresponds to the stacked widget to set
+as currently active.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_shellwidget">
-<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Add a new shellwidget to be registered.</p>
-<p>This function registers a new widget to display content that
-comes from shellwidget.</p>
+<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Create a new widget in the stack associated to a given shell widget.</p>
+<p>This method registers a new widget to display the content that
+is associated with the given shell widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipyconsole.widgets.shell.ShellWidget</em>) – The shell widget.</p>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to associate the new widget to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.remove_shellwidget">
-<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.remove_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Remove a registered shellwidget.</p>
+<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.remove_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Remove the widget associated to a given shell widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipyconsole.widgets.shell.ShellWidget</em>) – The shell widget.</p>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to remove the associated widget of.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_errored_shellwidget">
-<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_errored_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Add a new shellwidget whose kernel failed to start.</p>
+<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.add_errored_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Add an error widget for a shell widget whose kernel failed to start.</p>
+<p>This is necessary to show a meaningful message when switching to
+consoles with dead kernels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipyconsole.widgets.shell.ShellWidget</em>) – The shell widget.</p>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to associate with a new error widget.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.current_widget">
-<span class="sig-name descname"><span class="pre">current_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.current_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.current_widget" title="Link to this definition">#</a></dt>
-<dd><p>Return the current widget displayed at the moment.</p>
+<span class="sig-name descname"><span class="pre">current_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.current_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.current_widget" title="Link to this definition">#</a></dt>
+<dd><p>Get the widget corresponding to the currently active console tab.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>current_widget</strong> – The widget displayed in the current tab.</p>
+<dd class="field-odd"><p>The current widget in the stack, associated with the active
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ShellWidget</span></code>
+(i.e. <span class="guilabel">IPython Console</span> tab).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a></p>
@@ -627,17 +718,18 @@ comes from shellwidget.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.mixins.ShellConnectPluginMixin.get_widget_for_shellwidget">
-<span class="sig-name descname"><span class="pre">get_widget_for_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.get_widget_for_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.get_widget_for_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Return the widget registered with the given shellwidget.</p>
+<span class="sig-name descname"><span class="pre">get_widget_for_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/mixins.html#ShellConnectPluginMixin.get_widget_for_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin.get_widget_for_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the stacked widget corresponding to the given shell widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipyconsole.widgets.shell.ShellWidget</em>) – The shell widget.</p>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to return the associated widget of.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>current_widget</strong> – The widget corresponding to the shellwidget, or None if not found.</p>
+<dd class="field-even"><p>The widget in the stack associated with <code class="docutils literal notranslate"><span class="pre">shellwidget</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not found.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a> | None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -703,6 +795,7 @@ comes from shellwidget.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.sig_show_empty_message_requested"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin.sig_show_empty_message_requested</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.__init__"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectWidgetForStackMixin.is_empty"><code class="docutils literal notranslate"><span class="pre">ShellConnectWidgetForStackMixin.is_empty</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.shellconnect.mixins.ShellConnectPluginMixin"><code class="docutils literal notranslate"><span class="pre">ShellConnectPluginMixin</span></code></a><ul class="nav section-nav flex-column">
@@ -740,7 +833,7 @@ By Spyder-API-Docs Contributors
 
   <p class="copyright">
     
-      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      © Copyright  2020-2026 Spyder-API-Docs Contributors; MIT License.
       <br/>
     
   </p>

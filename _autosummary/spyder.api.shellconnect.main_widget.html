@@ -455,41 +455,60 @@ document.write(`
                   
   <section id="module-spyder.api.shellconnect.main_widget">
 <span id="spyder-api-shellconnect-main-widget"></span><h1>spyder.api.shellconnect.main_widget<a class="headerlink" href="#module-spyder.api.shellconnect.main_widget" title="Link to this heading">#</a></h1>
-<p>Main widget to use in plugins that show content that comes from the IPython
-console, such as the Variable Explorer or Plots.</p>
+<p>Main widget for plugins showing content from the IPython Console.</p>
+<p>Used in, for example, the <span class="guilabel">Variable Explorer</span>, <span class="guilabel">Plots</span>,
+<span class="guilabel">Debugger</span> and <span class="guilabel">Profiler</span> plugins.</p>
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget" title="spyder.api.shellconnect.main_widget.ShellConnectMainWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellConnectMainWidget</span></code></a>(*args[, set_layout])</p></td>
-<td><p>Main widget to use in a plugin that shows console-specific content.</p></td>
+<td><p>Main widget to use in a plugin that shows different content per-console.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.shellconnect.main_widget.</span></span><span class="sig-name descname"><span class="pre">ShellConnectMainWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.shellconnect.main_widget.</span></span><span class="sig-name descname"><span class="pre">ShellConnectMainWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">PluginMainWidget</span></code></a></p>
-<p>Main widget to use in a plugin that shows console-specific content.</p>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>This is composed of a QStackedWidget to stack widgets associated to each
-shell widget in the console and only show one of them at a time.</p></li>
-<li><p>The current widget in the stack will display the content associated to
-the console with focus.</p></li>
-</ul>
+<p>Main widget to use in a plugin that shows different content per-console.</p>
+<p>It is composed of a <a class="reference external" href="https://doc.qt.io/qt-5/qstackedwidget.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QStackedWidget</span></code></a> to stack the widget associated
+to each console shell widget, and only show one of them at a time.
+The current widget in the stack displays the content corresponding to
+the console with focus.</p>
+<p>Used in the <span class="guilabel">Variable Explorer</span> and <span class="guilabel">Plots</span> plugins,
+for example, to show the variables and plots of the current console.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new main widget to show console-specific content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> (<em>Any</em>) – Positional arguments to pass to
+<a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.__init__" title="spyder.api.widgets.main_widget.PluginMainWidget.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PluginMainWidget.__init__()</span></code></a>.</p></li>
+<li><p><strong>set_layout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to add the created widget to a layout, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – Keyword arguments to pass to
+<a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.__init__" title="spyder.api.widgets.main_widget.PluginMainWidget.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PluginMainWidget.__init__()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.current_widget">
-<span class="sig-name descname"><span class="pre">current_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.current_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.current_widget" title="Link to this definition">#</a></dt>
-<dd><p>Return the current widget in the stack.</p>
+<span class="sig-name descname"><span class="pre">current_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.current_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.current_widget" title="Link to this definition">#</a></dt>
+<dd><p>Get the currently displayed widget (either the stack or error widget).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The current widget.</p>
+<dd class="field-odd"><p>The currently displayed widget, either the active widget in the
+stack associated with the current
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ShellWidget</span></code>
+(i.e. <span class="guilabel">IPython Console</span> tab),
+or if that kernel failed with an error, the error message widget.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a></p>
@@ -499,31 +518,43 @@ the console with focus.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_focus_widget">
-<span class="sig-name descname"><span class="pre">get_focus_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.get_focus_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_focus_widget" title="Link to this definition">#</a></dt>
-<dd><p>Get the widget to give focus to.</p>
+<span class="sig-name descname"><span class="pre">get_focus_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.get_focus_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_focus_widget" title="Link to this definition">#</a></dt>
+<dd><p>Get the stack widget associated to the currently active shell widget.</p>
+<p>Used by
+<a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget.change_visibility" title="spyder.api.widgets.main_widget.PluginMainWidget.change_visibility"><code class="xref py py-meth docutils literal notranslate"><span class="pre">change_visibility()</span></code></a>
+when switching to the plugin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>QWidget to give focus to.</p>
+<dd class="field-odd"><p>The current widget in the stack, associated with the active
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ShellWidget</span></code>
+(i.e. <span class="guilabel">IPython Console</span> tab), to give focus to.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a></p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>This is applied when the plugin’s dockwidget is raised to the top.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.update_style">
-<span class="sig-name descname"><span class="pre">update_style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.update_style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.update_style" title="Link to this definition">#</a></dt>
-<dd><p>Update stylesheet and style of the widget.</p>
-<p>This method will be called recursively on all widgets on theme change.</p>
+<span class="sig-name descname"><span class="pre">update_style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.update_style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.update_style" title="Link to this definition">#</a></dt>
+<dd><p>Update the stylesheet and style of the stack widget.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If overriding this method, <a class="reference external" href="https://docs.python.org/3/library/functions.html#super" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">super</span></code></a> must be called
+for this widget to display correctly in the Spyder UI.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.count">
-<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.count" title="Link to this definition">#</a></dt>
-<dd><p>Return the number of widgets in the stack.</p>
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.count" title="Link to this definition">#</a></dt>
+<dd><p>Get the number of widgets in the stack.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The number of widgets in the stack.</p>
@@ -536,71 +567,170 @@ the console with focus.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_widget_for_shellwidget">
-<span class="sig-name descname"><span class="pre">get_widget_for_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.get_widget_for_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_widget_for_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>return widget corresponding to shellwidget.</p>
+<span class="sig-name descname"><span class="pre">get_widget_for_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.get_widget_for_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_widget_for_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the stacked widget corresponding to the given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to return the associated widget of.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The widget in the stack associated with <code class="docutils literal notranslate"><span class="pre">shellwidget</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a> | None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_shellwidget">
-<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Create a new widget in the stack and associate it to shellwidget.</p>
+<span class="sig-name descname"><span class="pre">add_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.add_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Create a new widget in the stack associated to a given shell widget.</p>
+<p>This method registers a new widget to display the content that
+is associated with the given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to associate the new widget to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.remove_shellwidget">
-<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.remove_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Remove widget associated to shellwidget.</p>
+<span class="sig-name descname"><span class="pre">remove_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.remove_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.remove_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Remove the stacked widget associated to a given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to remove the associated widget of.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.set_shellwidget">
-<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.set_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Set widget associated with shellwidget as the current widget.</p>
+<span class="sig-name descname"><span class="pre">set_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.set_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.set_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Set as active the stack widget associated with the given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget that corresponds to the stacked widget to set
+as currently active.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_errored_shellwidget">
-<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_errored_shellwidget" title="Link to this definition">#</a></dt>
-<dd><p>Create a new _ErroredMessageWidget in the stack and associate it to
-shellwidget.</p>
+<span class="sig-name descname"><span class="pre">add_errored_shellwidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.add_errored_shellwidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_errored_shellwidget" title="Link to this definition">#</a></dt>
+<dd><p>Add an error widget for a shell widget whose kernel failed to start.</p>
 <p>This is necessary to show a meaningful message when switching to
 consoles with dead kernels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to associate with a new error widget.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.create_new_widget">
-<span class="sig-name descname"><span class="pre">create_new_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.create_new_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.create_new_widget" title="Link to this definition">#</a></dt>
-<dd><p>Create a widget to communicate with shellwidget.</p>
+<span class="sig-name descname"><span class="pre">create_new_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shellwidget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.plugins.ipythonconsole.widgets.ShellWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.create_new_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.create_new_widget" title="Link to this definition">#</a></dt>
+<dd><p>Create a new widget to communicate with the given shell widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shellwidget</strong> (<em>spyder.plugins.ipythonconsole.widgets.ShellWidget</em>) – The shell widget to create a new associated widget for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The newly-created widget associated with <code class="docutils literal notranslate"><span class="pre">shellwidget</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.close_widget">
-<span class="sig-name descname"><span class="pre">close_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.close_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.close_widget" title="Link to this definition">#</a></dt>
-<dd><p>Close the widget.</p>
+<span class="sig-name descname"><span class="pre">close_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.close_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.close_widget" title="Link to this definition">#</a></dt>
+<dd><p>Close the given stacked widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – The widget to close.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_widget">
-<span class="sig-name descname"><span class="pre">switch_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.switch_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_widget" title="Link to this definition">#</a></dt>
-<dd><p>Switch the current widget.</p>
+<span class="sig-name descname"><span class="pre">switch_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.switch_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_widget" title="Link to this definition">#</a></dt>
+<dd><p>Switch the given stacked widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – The widget to switch to.</p></li>
+<li><p><strong>old_widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – The previously-active widget.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.refresh">
-<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.refresh" title="Link to this definition">#</a></dt>
-<dd><p>Refresh widgets.</p>
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.refresh" title="Link to this definition">#</a></dt>
+<dd><p>Refresh the current stacked widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.is_current_widget_error_message">
-<span class="sig-name descname"><span class="pre">is_current_widget_error_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.is_current_widget_error_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.is_current_widget_error_message" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">is_current_widget_error_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.is_current_widget_error_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.is_current_widget_error_message" title="Link to this definition">#</a></dt>
 <dd><p>Check if the current widget is showing an error message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the current widget is showing an error message,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_empty_message">
-<span class="sig-name descname"><span class="pre">switch_empty_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.switch_empty_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_empty_message" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">switch_empty_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/shellconnect/main_widget.html#ShellConnectMainWidget.switch_empty_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_empty_message" title="Link to this definition">#</a></dt>
 <dd><p>Switch between the empty message widget or the one with content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, switch to the empty widget; if <code class="docutils literal notranslate"><span class="pre">False</span></code>, switch
+to the content widget.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -695,7 +825,7 @@ By Spyder-API-Docs Contributors
 
   <p class="copyright">
     
-      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      © Copyright  2020-2026 Spyder-API-Docs Contributors; MIT License.
       <br/>
     
   </p>

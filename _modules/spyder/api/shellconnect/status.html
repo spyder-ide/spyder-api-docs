@@ -360,22 +360,30 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.shellconnect.status</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2024- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Status bar widget that shows content that comes from the IPython console.</span>
+<span class="sd">Status bar widget to show content from the IPython console.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.shellconnect.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">ShellConnectMixin</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.status</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatusBarWidget</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.plugins.ipythonconsole.widgets</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.main_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginMainWidget</span>
 
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget">
@@ -387,38 +395,91 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">PluginMainWidget</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new status bar widget to display content from a shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : PluginMainWidget</span>
+<span class="sd">            The parent widget to this one.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-        <span class="c1"># Mapping from shellwidgets to their corresponding statuses</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shellwidget_to_status</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shellwidget_to_status</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span>
+            <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span> <span class="n">Any</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mapping from shell widgets to their corresponding statuses.</span>
 
-        <span class="c1"># Current associated shellwidget</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_shellwidget</span> <span class="o">=</span> <span class="kc">None</span></div>
+<span class="sd">        The specific type of status information stored will depend on</span>
+<span class="sd">        what the implementing class needs to display.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_shellwidget</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Currently active associated shell widget.&quot;&quot;&quot;</span></div>
 
 
     <span class="c1"># ---- Public API</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.update_status">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.update_status">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Actions to take to update the widget status after switching consoles.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        status : Any</span>
+<span class="sd">            The shell widget status information needed by the status widget.</span>
+<span class="sd">            To be defined by the implementing class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.on_kernel_start">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.on_kernel_start">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">on_kernel_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when the kernel starts.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_kernel_start</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take after the kernel starts.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget whose kernel was started.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.config_spyder_kernel">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.config_spyder_kernel">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">config_spyder_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take to configure the kernel.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">config_spyder_kernel</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take to configure the kernel.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget whose kernel will be configured.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 
@@ -426,9 +487,21 @@ document.write(`
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.set_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.set_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Actions to take when setting (i.e. giving focus to) a shellwidget.</span>
+<span class="sd">        Actions to take when setting (i.e. giving focus to) a shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that will be given focus.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_shellwidget</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">shellwidget</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shellwidget_to_status</span><span class="p">:</span>
@@ -446,8 +519,21 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.add_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when adding a shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when adding a shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that will be added.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">shellwidget</span><span class="o">.</span><span class="n">sig_config_spyder_kernel</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
             <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_spyder_kernel</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">)</span>
         <span class="p">)</span>
@@ -463,16 +549,42 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.remove_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.remove_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when removing a shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when removing a shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that will have its associated widget removed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">shellwidget</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shellwidget_to_status</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">shellwidget_to_status</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectStatusBarWidget.add_errored_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.status.html#spyder.api.shellconnect.status.ShellConnectStatusBarWidget.add_errored_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when a shellwidget errored.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to take when a shell widget has failed with an error.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that failed with an error.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shellwidget_to_status</span><span class="p">[</span><span class="n">shellwidget</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span></div>
 </div>
@@ -515,7 +627,7 @@ By Spyder-API-Docs Contributors
 
   <p class="copyright">
     
-      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      © Copyright  2020-2026 Spyder-API-Docs Contributors; MIT License.
       <br/>
     
   </p>

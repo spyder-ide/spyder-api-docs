@@ -360,16 +360,24 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.shellconnect.main_widget</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Main widget to use in plugins that show content that comes from the IPython</span>
-<span class="sd">console, such as the Variable Explorer or Plots.</span>
+<span class="sd">Main widget for plugins showing content from the IPython Console.</span>
+
+<span class="sd">Used in, for example, the :guilabel:`Variable Explorer`, :guilabel:`Plots`,</span>
+<span class="sd">:guilabel:`Debugger` and :guilabel:`Profiler` plugins.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="c1"># Third party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QStackedWidget</span><span class="p">,</span> <span class="n">QVBoxLayout</span>
@@ -379,13 +387,34 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.main_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginMainWidget</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.widgets.emptymessage</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmptyMessageWidget</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QWidget</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.plugins.ipythonconsole.widgets</span>
+
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_ErroredMessageWidget</span><span class="p">(</span><span class="n">EmptyMessageWidget</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Widget to show when the kernel&#39;s shell failed to start.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-        <span class="c1"># Initialize EmptyMessageWidget with the content we want to show for</span>
-        <span class="c1"># errors</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">ShellConnectMainWidget</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize :class:`EmptyMessageWidget` with content to show for errors.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : ShellConnectMainWidget</span>
+<span class="sd">            The parent widget of this one.</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that failed to launch.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">parent</span><span class="p">,</span>
             <span class="n">icon_filename</span><span class="o">=</span><span class="p">(</span>
@@ -401,27 +430,53 @@ document.write(`
             <span class="n">adjust_on_resize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="c1"># This is necessary to show this widget in case ShellConnectMainWidget</span>
-        <span class="c1"># shows an empty message.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the current widget has no content to show.</span>
+
+<span class="sd">        Used to show this widget if :class:`ShellConnectMainWidget` has an</span>
+<span class="sd">        empty message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="ShellConnectMainWidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ShellConnectMainWidget</span><span class="p">(</span><span class="n">PluginMainWidget</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Main widget to use in a plugin that shows console-specific content.</span>
+<span class="sd">    Main widget to use in a plugin that shows different content per-console.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    * This is composed of a QStackedWidget to stack widgets associated to each</span>
-<span class="sd">      shell widget in the console and only show one of them at a time.</span>
-<span class="sd">    * The current widget in the stack will display the content associated to</span>
-<span class="sd">      the console with focus.</span>
+<span class="sd">    It is composed of a :class:`QStackedWidget` to stack the widget associated</span>
+<span class="sd">    to each console shell widget, and only show one of them at a time.</span>
+<span class="sd">    The current widget in the stack displays the content corresponding to</span>
+<span class="sd">    the console with focus.</span>
+
+<span class="sd">    Used in the :guilabel:`Variable Explorer` and :guilabel:`Plots` plugins,</span>
+<span class="sd">    for example, to show the variables and plots of the current console.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="ShellConnectMainWidget.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">set_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">set_layout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new main widget to show console-specific content.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *args : Any</span>
+<span class="sd">            Positional arguments to pass to</span>
+<span class="sd">            :meth:`PluginMainWidget.__init__() &lt;spyder.api.widgets.main_widget.PluginMainWidget.__init__&gt;`.</span>
+<span class="sd">        set_layout : bool, optional</span>
+<span class="sd">            Whether to add the created widget to a layout, ``True`` by default.</span>
+<span class="sd">        **kwargs : Any</span>
+<span class="sd">            Keyword arguments to pass to</span>
+<span class="sd">            :meth:`PluginMainWidget.__init__() &lt;spyder.api.widgets.main_widget.PluginMainWidget.__init__&gt;`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Widgets</span>
@@ -445,21 +500,39 @@ document.write(`
     <span class="c1"># ------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectMainWidget.current_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.current_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">current_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">current_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the current widget in the stack.</span>
+<span class="sd">        Get the currently displayed widget (either the stack or error widget).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        QWidget</span>
-<span class="sd">            The current widget.</span>
+<span class="sd">            The currently displayed widget, either the active widget in the</span>
+<span class="sd">            stack associated with the current</span>
+<span class="sd">            :class:`~spyder.plugins.ipythonconsole.widgets.ShellWidget`</span>
+<span class="sd">            (i.e. :guilabel:`IPython Console` tab),</span>
+<span class="sd">            or if that kernel failed with an error, the error message widget.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_content_widget</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMainWidget.get_focus_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_focus_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_focus_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_focus_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the stack widget associated to the currently active shell widget.</span>
+
+<span class="sd">        Used by</span>
+<span class="sd">        :meth:`~spyder.api.widgets.main_widget.PluginMainWidget.change_visibility`</span>
+<span class="sd">        when switching to the plugin.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QWidget</span>
+<span class="sd">            The current widget in the stack, associated with the active</span>
+<span class="sd">            :class:`~spyder.plugins.ipythonconsole.widgets.ShellWidget`</span>
+<span class="sd">            (i.e. :guilabel:`IPython Console` tab), to give focus to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">currentWidget</span><span class="p">()</span></div>
 
 
@@ -467,7 +540,19 @@ document.write(`
     <span class="c1"># ------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectMainWidget.update_style">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.update_style">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the stylesheet and style of the stack widget.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            If overriding this method, :class:`super` must be called</span>
+<span class="sd">            for this widget to display correctly in the Spyder UI.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QStackedWidget {padding: 0px; border: 0px}&quot;</span><span class="p">)</span></div>
 
 
@@ -475,9 +560,9 @@ document.write(`
     <span class="c1"># ------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectMainWidget.count">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.count">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the number of widgets in the stack.</span>
+<span class="sd">        Get the number of widgets in the stack.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -489,8 +574,24 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectMainWidget.get_widget_for_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.get_widget_for_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget_for_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;return widget corresponding to shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget_for_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the stacked widget corresponding to the given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to return the associated widget of.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QWidget | None</span>
+<span class="sd">            The widget in the stack associated with ``shellwidget``,</span>
+<span class="sd">            or ``None`` if not found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">shellwidget_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">shellwidget_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shellwidgets</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shellwidgets</span><span class="p">[</span><span class="n">shellwidget_id</span><span class="p">]</span>
@@ -501,8 +602,25 @@ document.write(`
     <span class="c1"># ------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="ShellConnectMainWidget.add_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new widget in the stack and associate it to shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new widget in the stack associated to a given shell widget.</span>
+
+<span class="sd">        This method registers a new widget to display the content that</span>
+<span class="sd">        is associated with the given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to associate the new widget to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">shellwidget_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">shellwidget_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shellwidgets</span><span class="p">:</span>
             <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_new_widget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span>
@@ -521,8 +639,22 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectMainWidget.remove_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.remove_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove widget associated to shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove the stacked widget associated to a given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to remove the associated widget of.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">shellwidget_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">shellwidget_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shellwidgets</span><span class="p">:</span>
             <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shellwidgets</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">shellwidget_id</span><span class="p">)</span>
@@ -540,8 +672,23 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectMainWidget.set_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.set_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set widget associated with shellwidget as the current widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set as active the stack widget associated with the given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget that corresponds to the stacked widget to set</span>
+<span class="sd">            as currently active.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">old_widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_widget</span><span class="p">()</span>
         <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_widget_for_shellwidget</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">widget</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -565,13 +712,24 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectMainWidget.add_errored_shellwidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.add_errored_shellwidget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_errored_shellwidget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a new _ErroredMessageWidget in the stack and associate it to</span>
-<span class="sd">        shellwidget.</span>
+<span class="sd">        Add an error widget for a shell widget whose kernel failed to start.</span>
 
 <span class="sd">        This is necessary to show a meaningful message when switching to</span>
 <span class="sd">        consoles with dead kernels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to associate with a new error widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">shellwidget_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">shellwidget</span><span class="p">)</span>
 
@@ -594,29 +752,74 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectMainWidget.create_new_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.create_new_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_new_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shellwidget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a widget to communicate with shellwidget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_new_widget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shellwidget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">ipythonconsole</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ShellWidget</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new widget to communicate with the given shell widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shellwidget : spyder.plugins.ipythonconsole.widgets.ShellWidget</span>
+<span class="sd">            The shell widget to create a new associated widget for.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QWidget</span>
+<span class="sd">            The newly-created widget associated with ``shellwidget``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMainWidget.close_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.close_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">close_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">QWidget</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close the given stacked widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget : QWidget</span>
+<span class="sd">            The widget to close.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMainWidget.switch_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">switch_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">old_widget</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Switch the current widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">switch_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">old_widget</span><span class="p">:</span> <span class="n">QWidget</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Switch the given stacked widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget : QWidget</span>
+<span class="sd">            The widget to switch to.</span>
+<span class="sd">        old_widget : QWidget</span>
+<span class="sd">            The previously-active widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMainWidget.refresh">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.refresh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Refresh widgets.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Refresh the current stacked widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">():</span>
             <span class="n">widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_widget</span><span class="p">()</span>
             <span class="n">widget</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span></div>
@@ -624,15 +827,35 @@ document.write(`
 
 <div class="viewcode-block" id="ShellConnectMainWidget.is_current_widget_error_message">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.is_current_widget_error_message">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">is_current_widget_error_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if the current widget is showing an error message.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_current_widget_error_message</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if the current widget is showing an error message.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            ``True`` if the current widget is showing an error message,</span>
+<span class="sd">            ``False`` if not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_widget</span><span class="p">(),</span> <span class="n">_ErroredMessageWidget</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShellConnectMainWidget.switch_empty_message">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.shellconnect.main_widget.html#spyder.api.shellconnect.main_widget.ShellConnectMainWidget.switch_empty_message">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">switch_empty_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Switch between the empty message widget or the one with content.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">switch_empty_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Switch between the empty message widget or the one with content.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : bool</span>
+<span class="sd">            If ``True``, switch to the empty widget; if ``False``, switch</span>
+<span class="sd">            to the content widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show_empty_message</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -677,7 +900,7 @@ By Spyder-API-Docs Contributors
 
   <p class="copyright">
     
-      © Copyright  2020-2025 Spyder-API-Docs Contributors; MIT License.
+      © Copyright  2020-2026 Spyder-API-Docs Contributors; MIT License.
       <br/>
     
   </p>
