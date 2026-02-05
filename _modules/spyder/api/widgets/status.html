@@ -360,14 +360,19 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.status</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2020- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1">#</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
-<span class="sd">&quot;&quot;&quot;Status bar widgets.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Status bar widgets API.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library import</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Third party imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">qstylizer.parser</span>
@@ -383,6 +388,10 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_waitspinner</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">MAC</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">qstylizer.style.StyleSheet</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCloseEvent</span><span class="p">,</span> <span class="n">QEnterEvent</span><span class="p">,</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QMouseEvent</span>
+
 
 <div class="viewcode-block" id="StatusBarWidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget">[docs]</a>
@@ -391,62 +400,74 @@ document.write(`
 <span class="sd">    Base class for status bar widgets.</span>
 
 <span class="sd">    These widgets consist by default of an icon, a label and a spinner,</span>
-<span class="sd">    which are organized from left to right on that order.</span>
+<span class="sd">    which are organized from left to right in that order.</span>
 
-<span class="sd">    You can also add any other QWidget to this layout by setting the</span>
-<span class="sd">    CUSTOM_WIDGET_CLASS class attribute. It&#39;ll be put between the label</span>
+<span class="sd">    You can also add any other :class:`QWidget` to this layout by setting the</span>
+<span class="sd">    :attr:`CUSTOM_WIDGET_CLASS` class attribute. It&#39;ll be put between the label</span>
 <span class="sd">    and the spinner.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">ID</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Unique string widget identifier.</span>
+<span class="sd">    Unique string identifier name for this widget.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">CUSTOM_WIDGET_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">CUSTOM_WIDGET_CLASS</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Custom widget class to add to the default layout.</span>
+<span class="sd">    A custom widget class object to add to the default layout, or</span>
+<span class="sd">    ``None`` to not add one.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">INTERACT_ON_CLICK</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">INTERACT_ON_CLICK</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Whether the user can interact with widget when clicked (e.g. to show a</span>
-<span class="sd">    menu)</span>
+<span class="sd">    If ``True``, the user can interact with widget when clicking it</span>
+<span class="sd">    (for example, to show a menu). If ``False``, the default, the widget</span>
+<span class="sd">    is not interactive.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_clicked</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">sig_clicked</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal is emmitted when the widget is clicked.</span>
+<span class="sd">    Signal emitted when the widget is clicked.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="StatusBarWidget.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_icon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">show_spinner</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">show_icon</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">show_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">show_spinner</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Base class for status bar widgets.</span>
 
 <span class="sd">        These are composed of the following widgets, which are arranged</span>
-<span class="sd">        in a QHBoxLayout from left to right:</span>
+<span class="sd">        in a :class:`QHBoxLayout` from left to right:</span>
 
 <span class="sd">        * Icon</span>
 <span class="sd">        * Label</span>
-<span class="sd">        * Custom QWidget</span>
+<span class="sd">        * Custom :class:`QWidget`</span>
 <span class="sd">        * Spinner</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        show_icon: bool</span>
-<span class="sd">            Show an icon in the widget.</span>
-<span class="sd">        show_label: bool</span>
-<span class="sd">            Show a label in the widget.</span>
-<span class="sd">        show_spinner: bool</span>
-<span class="sd">            Show a spinner.</span>
+<span class="sd">        parent: QWidget | None, optional</span>
+<span class="sd">            The parent widget of this one, or ``None`` (default).</span>
+<span class="sd">        show_icon: bool, optional</span>
+<span class="sd">            If ``True`` (default), show an icon in the widget. If ``False``,</span>
+<span class="sd">            don&#39;t show an icon.</span>
+<span class="sd">        show_label: bool, optional</span>
+<span class="sd">            If ``True`` (default), show a label in the widget. If ``False``,</span>
+<span class="sd">            don&#39;t show a label.</span>
+<span class="sd">        show_spinner: bool, optional</span>
+<span class="sd">            If ``True``, show a progress spinner in the widget. If ``False``</span>
+<span class="sd">            (default), don&#39;t show a spinner.</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        1. To use an icon, you need to redefine the ``get_icon`` method.</span>
-<span class="sd">        2. To use a label, you need to call ``set_value``.</span>
+<span class="sd">        * To use an icon, you need to redefine the :meth:`get_icon` method.</span>
+<span class="sd">        * To use a label, you need to call :meth:`set_value`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">PYSIDE2</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">class_parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span>
@@ -476,7 +497,7 @@ document.write(`
 
     <span class="c1"># ---- Private API</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set layout for default widgets.&quot;&quot;&quot;</span>
         <span class="c1"># Icon</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_icon</span><span class="p">:</span>
@@ -489,14 +510,14 @@ document.write(`
         <span class="c1"># Label</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_label</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignRight</span> <span class="o">|</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
 
         <span class="c1"># Custom widget</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CUSTOM_WIDGET_CLASS</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CUSTOM_WIDGET_CLASS</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
-                    <span class="s1">&#39;Any custom status widget must subclass QWidget!&#39;</span>
+                    <span class="s2">&quot;Any custom status widget must subclass QWidget!&quot;</span>
                 <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">custom_widget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CUSTOM_WIDGET_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
 
@@ -524,7 +545,7 @@ document.write(`
         <span class="c1"># Setup</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_tooltip</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_stylesheet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_stylesheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">qstylizer</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">StyleSheet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate the widget&#39;s stylesheet.&quot;&quot;&quot;</span>
         <span class="c1"># Remove opacity that comes from QDarkstyle.</span>
         <span class="c1"># This work around is necessary because qstylizer doesn&#39;t have support</span>
@@ -546,15 +567,28 @@ document.write(`
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="StatusBarWidget.get_icon">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.get_icon">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the widget&#39;s icon.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QIcon</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the widget&#39;s icon.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QIcon | None</span>
+<span class="sd">            The widget&#39;s icon object, or ``None`` if it doesn&#39;t have one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="StatusBarWidget.set_icon">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.set_icon">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the icon for the status bar widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the icon for the status bar widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_icon</span><span class="p">:</span>
             <span class="n">icon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_icon</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_icon</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="n">icon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
@@ -565,8 +599,19 @@ document.write(`
 
 <div class="viewcode-block" id="StatusBarWidget.set_value">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.set_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set formatted text value.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set formatted text value for the widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : str</span>
+<span class="sd">            The formatted text value to set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
@@ -574,15 +619,29 @@ document.write(`
 
 <div class="viewcode-block" id="StatusBarWidget.get_tooltip">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.get_tooltip">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the widget&#39;s tooltip text.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s1">&#39;&#39;</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the widget&#39;s tooltip text.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The widget&#39;s tooltip text.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="StatusBarWidget.update_tooltip">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.update_tooltip">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update tooltip for widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the tooltip for the widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The updated tooltip text.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tooltip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tooltip</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">tooltip</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="p">:</span>
@@ -596,8 +655,19 @@ document.write(`
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="StatusBarWidget.mousePressEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.mousePressEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mousePressEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change background color when the widget is clicked.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mousePressEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QMouseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Change the widget&#39;s background color when it&#39;s clicked.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QMouseEvent</span>
+<span class="sd">            The mouse event that was triggered.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">INTERACT_ON_CLICK</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">QWidget</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
                 <span class="n">backgroundColor</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_6</span>
@@ -609,10 +679,18 @@ document.write(`
 
 <div class="viewcode-block" id="StatusBarWidget.mouseReleaseEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.mouseReleaseEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mouseReleaseEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mouseReleaseEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QMouseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Change background color and emit signal to inform the widget was</span>
-<span class="sd">        clicked.</span>
+<span class="sd">        Change the widget&#39;s background color &amp; emit a signal when it&#39;s clicked.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QMouseEvent</span>
+<span class="sd">            The mouse release event.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">mouseReleaseEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
@@ -620,9 +698,11 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">QWidget</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
                 <span class="c1"># Mac doesn&#39;t correctly restore the background color after</span>
                 <span class="c1"># clicking on a widget that shows a menu</span>
-                <span class="n">backgroundColor</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_4</span>
-                <span class="k">if</span> <span class="n">MAC</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">menu</span>
-                <span class="k">else</span> <span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_5</span>
+                <span class="n">backgroundColor</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_4</span>
+                    <span class="k">if</span> <span class="n">MAC</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">menu</span>
+                    <span class="k">else</span> <span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_5</span>
+                <span class="p">)</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span>
 
@@ -631,8 +711,19 @@ document.write(`
 
 <div class="viewcode-block" id="StatusBarWidget.enterEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.enterEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">enterEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change background color and cursor shape on hover.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enterEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEnterEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Change the widget&#39;s background color and cursor shape on hover.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QEnterEvent</span>
+<span class="sd">            The mouse hover event.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">INTERACT_ON_CLICK</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">QWidget</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
                 <span class="n">backgroundColor</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_5</span>
@@ -647,8 +738,19 @@ document.write(`
 
 <div class="viewcode-block" id="StatusBarWidget.leaveEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.StatusBarWidget.leaveEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">leaveEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Restore background color when not hovering.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">leaveEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restore the widget&#39;s background color when not hovering.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QEvent</span>
+<span class="sd">            The mouse leave event.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">INTERACT_ON_CLICK</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">QWidget</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
                 <span class="n">backgroundColor</span><span class="o">=</span><span class="n">SpyderPalette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_4</span>
@@ -669,15 +771,26 @@ document.write(`
 
 <div class="viewcode-block" id="BaseTimerStatus.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Base class for status bar widgets that update based on timers.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Base class for status bar widgets that update based on timers.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : QWidget | None, optional</span>
+<span class="sd">            The parent widget of this one, or ``None`` (default).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Needs to come before parent call</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_interval</span> <span class="o">=</span> <span class="mi">2000</span>
 
         <span class="c1"># Widget setup</span>
         <span class="n">fm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="o">.</span><span class="n">fontMetrics</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="o">.</span><span class="n">setMinimumWidth</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">width</span><span class="p">(</span><span class="s1">&#39;000%&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="o">.</span><span class="n">setMinimumWidth</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">width</span><span class="p">(</span><span class="s2">&quot;000%&quot;</span><span class="p">))</span>
 
         <span class="c1"># Setup</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -689,15 +802,38 @@ document.write(`
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="BaseTimerStatus.closeEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.closeEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QCloseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle the widget close event by stopping the timer.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QCloseEvent</span>
+<span class="sd">            The widget close event.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BaseTimerStatus.setVisible">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.setVisible">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setVisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop timer if widget is not visible.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setVisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop the timer if the widget is not visible.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : bool</span>
+<span class="sd">            ``True`` if the timer should be started, ``False`` to stop it.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_interval</span><span class="p">)</span>
@@ -710,16 +846,33 @@ document.write(`
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="BaseTimerStatus.update_status">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.update_status">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update status label widget, if widget is visible.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the status label widget, if the widget is visible.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isVisible</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_value</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="BaseTimerStatus.set_interval">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.set_interval">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set timer interval (ms).&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the timer interval.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interval : int</span>
+<span class="sd">            The timer interval, in integer milliseconds.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_interval</span> <span class="o">=</span> <span class="n">interval</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">setInterval</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></div>
@@ -727,8 +880,20 @@ document.write(`
 
 <div class="viewcode-block" id="BaseTimerStatus.get_value">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.status.html#spyder.api.widgets.status.BaseTimerStatus.get_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return formatted text value.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the formatted text value shown in the widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The formatted text value.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            Must be implemented by subclasses to work.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 </div>
 

@@ -360,15 +360,21 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.dialogs</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2024- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Spyder dialog widgets.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Third-party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">QT6</span>
@@ -379,9 +385,12 @@ document.write(`
 <span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppStyle</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QWidget</span>
+
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_SpyderButtonsProxyStyle</span><span class="p">(</span><span class="n">QProxyStyle</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Style adjustments for SpyderDialogButtonBox.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Style adjustments for :class:`SpyderDialogButtonBox`.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">styleHint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hint</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">hint</span> <span class="o">==</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">SH_DialogButtonLayout</span><span class="p">:</span>
@@ -394,18 +403,44 @@ document.write(`
             <span class="k">else</span><span class="p">:</span>  <span class="c1"># PySide2/PyQt5</span>
                 <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">ButtonLayout</span><span class="o">.</span><span class="n">WinLayout</span><span class="p">)</span>
 
-
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">styleHint</span><span class="p">(</span><span class="n">hint</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">return_data</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="SpyderDialogButtonBox">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.dialogs.html#spyder.api.widgets.dialogs.SpyderDialogButtonBox">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderDialogButtonBox</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;QDialogButtonBox widget for Spyder.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Action button section (OK, Cancel, etc) widget for dialog boxes.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderDialogButtonBox.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.dialogs.html#spyder.api.widgets.dialogs.SpyderDialogButtonBox.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buttons</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">buttons</span><span class="p">:</span> <span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">StandardButton</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">orientation</span><span class="p">:</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Orientation</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new group of dialog box buttons.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        buttons : QDialogButtonBox.StandardButton | None, optional</span>
+<span class="sd">            The standard buttons to include in the dialog box button group,</span>
+<span class="sd">            such as &quot;OK&quot;, &quot;Cancel&quot; or &quot;Apply&quot;, passed as a single argument</span>
+<span class="sd">            composed of Qt enum members bitwise or-ed (``|``) together.</span>
+<span class="sd">            For example, ``QDialogButtonBox.Ok | QDialogButtonBox.Cancel``.</span>
+<span class="sd">            If ``None``, the default, is an empty button box with no buttons.</span>
+<span class="sd">        orientation : Qt.Orientation, optional</span>
+<span class="sd">            Whether the button box is laid out horizontally, with buttons</span>
+<span class="sd">            side by side, or vertically, with buttons on top of one another.</span>
+<span class="sd">            By default, horizontal (``Qt.Horizontal``).</span>
+<span class="sd">        parent : QWidget | None, optional</span>
+<span class="sd">            The parent widget of this button box, ``None`` by default.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">buttons</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">buttons</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">orientation</span><span class="p">:</span>

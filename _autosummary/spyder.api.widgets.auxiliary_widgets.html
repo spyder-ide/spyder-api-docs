@@ -427,6 +427,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.sig_closed</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.sig_window_state_changed</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.widget"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.widget</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.is_window_widget"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.is_window_widget</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.closeEvent()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.changeEvent()</span></code></a></li>
 </ul>
@@ -456,83 +458,184 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget" title="spyder.api.widgets.auxiliary_widgets.MainCornerWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MainCornerWidget</span></code></a>(parent, name)</p></td>
-<td><p>Corner widget to hold options menu, spinner and additional options.</p></td>
+<td><p>Toolbar widget displayed in the top right hand corner of dockable plugins.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget" title="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderWindowWidget</span></code></a>(widget)</p></td>
-<td><p>MainWindow subclass that contains a SpyderDockablePlugin.</p></td>
+<td><p>An undocked window for a <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.auxiliary_widgets.</span></span><span class="sig-name descname"><span class="pre">SpyderWindowWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.auxiliary_widgets.</span></span><span class="sig-name descname"><span class="pre">SpyderWindowWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qmainwindow.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QMainWindow</span></code></a>, <a class="reference internal" href="spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin" title="spyder.api.widgets.mixins.SpyderMainWindowMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderMainWindowMixin</span></code></a></p>
-<p>MainWindow subclass that contains a SpyderDockablePlugin.</p>
+<p>An undocked window for a <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed">
-<span class="sig-name descname"><span class="pre">sig_closed</span></span><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed" title="Link to this definition">#</a></dt>
-<dd><p>This signal is emitted when the close event is fired.</p>
+<span class="sig-name descname"><span class="pre">sig_closed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/signalsandslots.html" title="(in Qt5 vQT_VERSION)"><span class="pre">Signal</span></a></em><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed" title="Link to this definition">#</a></dt>
+<dd><p>Signal emitted when the close event is fired.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed">
-<span class="sig-name descname"><span class="pre">sig_window_state_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed" title="Link to this definition">#</a></dt>
-<dd><p>This signal is emitted when the window state has changed (for instance,
-between maximized and minimized states).</p>
+<span class="sig-name descname"><span class="pre">sig_window_state_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PyQt_PyObject</span></span></em><span class="sig-paren">)</span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/signalsandslots.html" title="(in Qt5 vQT_VERSION)"><span class="pre">Signal</span></a></em><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed" title="Link to this definition">#</a></dt>
+<dd><p>Signal is emitted when this window’s state has changed.</p>
+<p>For instance, if the window changed between maximized and minimized state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>window_state</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt-windowstates.html" title="(in Qt5 v5.15)"><em>WindowStates</em></a>) – The window state.</p>
+<dd class="field-odd"><p><strong>window_state</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt-windowstates.html" title="(in Qt5 v5.15)"><em>WindowStates</em></a>) – The new window state that was changed to.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a window for a <a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget</strong> (<a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><em>PluginMainWidget</em></a>) – The main widget of this window’s corresponding
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.widget">
+<span class="sig-name descname"><span class="pre">widget</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></em><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.widget" title="Link to this definition">#</a></dt>
+<dd><p>The main widget of this window’s corresponding dockable plugin.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.is_window_widget">
+<span class="sig-name descname"><span class="pre">is_window_widget</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.is_window_widget" title="Link to this definition">#</a></dt>
+<dd><p>Distinguish these windows from the main Spyder one.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent">
-<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget.closeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent" title="Link to this definition">#</a></dt>
-<dd><p>Override Qt method to emit a custom <cite>sig_close</cite> signal.</p>
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qcloseevent.html" title="(in Qt5 v5.15)"><span class="pre">QCloseEvent</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget.closeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent" title="Link to this definition">#</a></dt>
+<dd><p>Event handler for when the window is closed.</p>
+<p>Overrides the default <a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html#closeEvent" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">closeEvent</span></code></a> method to emit
+a custom <a class="reference internal" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed" title="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sig_closed</span></code></a> signal.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent">
-<span class="sig-name descname"><span class="pre">changeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget.changeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent" title="Link to this definition">#</a></dt>
-<dd><p>Override Qt method to emit a custom <cite>sig_windowstate_changed</cite> signal
-when there’s a change in the window state.</p>
+<span class="sig-name descname"><span class="pre">changeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qevent.html" title="(in Qt5 v5.15)"><span class="pre">QEvent</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#SpyderWindowWidget.changeEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent" title="Link to this definition">#</a></dt>
+<dd><p>Event handler for when the window state is changed (e.g. minimized).</p>
+<p>Overrides the default <a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html#changeEvent" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">changeEvent</span></code></a> method to emit
+a custom <a class="reference internal" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed" title="spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sig_window_state_changed</span></code></a> signal.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.MainCornerWidget">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.auxiliary_widgets.</span></span><span class="sig-name descname"><span class="pre">MainCornerWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.auxiliary_widgets.</span></span><span class="sig-name descname"><span class="pre">MainCornerWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qtoolbar.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QToolBar</span></code></a></p>
-<p>Corner widget to hold options menu, spinner and additional options.</p>
+<p>Toolbar widget displayed in the top right hand corner of dockable plugins.</p>
+<p>It is used to display the options (hamburger) menu, progress spinner
+and additional toolbar items to the right of the main toolbar.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.MainCornerWidget.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><span class="pre">PluginMainWidget</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new corner widget for a plugin’s toolbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>widget</strong> (<a class="reference internal" href="spyder.api.widgets.main_widget.html#spyder.api.widgets.main_widget.PluginMainWidget" title="spyder.api.widgets.main_widget.PluginMainWidget"><em>PluginMainWidget</em></a>) – The main widget of this window’s corresponding
+<a class="reference internal" href="spyder.api.plugins.html#spyder.api.plugins.SpyderDockablePlugin" title="spyder.api.plugins.SpyderDockablePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderDockablePlugin</span></code></a>.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of this corner widget, nominally
+<a class="reference internal" href="spyder.api.widgets.html#spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget" title="spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget"><code class="xref py py-attr docutils literal notranslate"><span class="pre">spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.MainCornerWidget.add_widget">
-<span class="sig-name descname"><span class="pre">add_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.add_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.add_widget" title="Link to this definition">#</a></dt>
-<dd><p>Add a widget to the left of the last widget added to the corner.</p>
+<span class="sig-name descname"><span class="pre">add_widget</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.utils.qthelpers.SpyderAction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.utils.qthelpers.SpyderAction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.add_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.add_widget" title="Link to this definition">#</a></dt>
+<dd><p>Add a widget to the corner toolbar.</p>
+<p>By default, widgets are added to the left of the last toolbar item.
+Corner widgets provide an options menu button and a spinner so any
+additional widgets will be placed the left of the spinner, if visible
+(unless <code class="docutils literal notranslate"><span class="pre">before</span></code> is set).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>widget</strong> (<em>spyder.utils.qthelpers.SpyderAction</em><em> | </em><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – The action or widget to add to the toolbar.</p></li>
+<li><p><strong>before</strong> (<em>spyder.utils.qthelpers.SpyderAction</em><em> | </em><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The action or widget to add <code class="docutils literal notranslate"><span class="pre">widget</span></code> before (to the right of).
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default), the widget will be added to the left
+of the left-most widget.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – If either <code class="docutils literal notranslate"><span class="pre">widget</span></code> or <code class="docutils literal notranslate"><span class="pre">before</span></code> lacks a <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute;
+    a widget with the same <code class="docutils literal notranslate"><span class="pre">name</span></code> as <code class="docutils literal notranslate"><span class="pre">widget</span></code> was already added;
+    a widget with <code class="docutils literal notranslate"><span class="pre">before.name</span></code> has not been added previously; or
+    the first widget added is not the options (hamburger) menu widget.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_widget">
-<span class="sig-name descname"><span class="pre">get_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.get_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_widget" title="Link to this definition">#</a></dt>
-<dd><p>Return a widget by unique id.</p>
+<span class="sig-name descname"><span class="pre">get_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.get_widget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_widget" title="Link to this definition">#</a></dt>
+<dd><p>Return a widget by its unique ID (i.e. its <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute of the widget to return.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The widget object corresponding to <code class="docutils literal notranslate"><span class="pre">widget_id</span></code>, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if a widget with that <code class="docutils literal notranslate"><span class="pre">name</span></code> does not exist.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)">QWidget</a> | None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_action">
-<span class="sig-name descname"><span class="pre">get_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.get_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_action" title="Link to this definition">#</a></dt>
-<dd><p>Return action corresponding to <cite>widget_id</cite>.</p>
+<span class="sig-name descname"><span class="pre">get_action</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">widget_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">spyder.utils.qthelpers.SpyderAction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/auxiliary_widgets.html#MainCornerWidget.get_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_action" title="Link to this definition">#</a></dt>
+<dd><p>Return an action by its unique ID (i.e. its <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute of the action to return.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The action object corresponding to <code class="docutils literal notranslate"><span class="pre">widget_id</span></code>, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if an action with that <code class="docutils literal notranslate"><span class="pre">name</span></code> does not exist.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>spyder.utils.qthelpers.SpyderAction | None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -588,6 +691,8 @@ when there’s a change in the window state.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_closed"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.sig_closed</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.sig_window_state_changed"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.sig_window_state_changed</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.__init__"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.widget"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.widget</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.is_window_widget"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.is_window_widget</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.closeEvent()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent"><code class="docutils literal notranslate"><span class="pre">SpyderWindowWidget.changeEvent()</span></code></a></li>
 </ul>

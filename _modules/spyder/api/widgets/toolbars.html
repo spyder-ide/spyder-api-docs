@@ -360,71 +360,113 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.toolbars</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2020- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Spyder API toolbar widgets.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="c1"># Standard library imports</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>  <span class="c1"># noqa: ICN003</span>
 
 <span class="c1"># Third part imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">QSize</span><span class="p">,</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">Signal</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">QAction</span><span class="p">,</span> <span class="n">QProxyStyle</span><span class="p">,</span> <span class="n">QStyle</span><span class="p">,</span> <span class="n">QToolBar</span><span class="p">,</span> <span class="n">QToolButton</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">)</span>
+    <span class="n">QAction</span><span class="p">,</span>
+    <span class="n">QProxyStyle</span><span class="p">,</span>
+    <span class="n">QStyle</span><span class="p">,</span>
+    <span class="n">QToolBar</span><span class="p">,</span>
+    <span class="n">QToolButton</span><span class="p">,</span>
+    <span class="n">QWidget</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Local imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span>  <span class="c1"># For fully-qualified SpyderAction in type alias</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderAPIError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.translations</span><span class="w"> </span><span class="kn">import</span> <span class="n">_</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.menus</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderMenu</span><span class="p">,</span> <span class="n">SpyderMenuProxyStyle</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.icon_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ima</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderAction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">APP_TOOLBAR_STYLESHEET</span><span class="p">,</span> <span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">)</span>
+    <span class="n">APP_TOOLBAR_STYLESHEET</span><span class="p">,</span>
+    <span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QStyleOption</span>
 
 
-<span class="c1"># Generic type annotations</span>
-<span class="n">ToolbarItem</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">SpyderAction</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">]</span>
-<span class="n">ToolbarItemEntry</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ToolbarItem</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-                         <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+<span class="c1"># Generic type aliases</span>
+<span class="n">ToolbarItem</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias for the set of supported objects that can be toolbar items.&quot;&quot;&quot;</span>
+
+<span class="n">ToolbarItemEntry</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span>
+    <span class="n">ToolbarItem</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Type alias for the full tuple entry in the list of toolbar items.&quot;&quot;&quot;</span>
+
 
 <span class="c1"># ---- Constants</span>
 <span class="c1"># ----------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="ToolbarLocation">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolbarLocation">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ToolbarLocation</span><span class="p">:</span>
-    <span class="n">Top</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">TopToolBarArea</span>
-    <span class="n">Bottom</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">BottomToolBarArea</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pseudo-enum listing possible locations for a toolbar.&quot;&quot;&quot;</span>
+
+    <span class="n">Top</span><span class="p">:</span> <span class="n">Qt</span><span class="o">.</span><span class="n">ToolBarArea</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">TopToolBarArea</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Toolbar at the top of the layout.&quot;&quot;&quot;</span>
+
+    <span class="n">Bottom</span><span class="p">:</span> <span class="n">Qt</span><span class="o">.</span><span class="n">ToolBarArea</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">BottomToolBarArea</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Toolbar at the bottom of the layout.&quot;&quot;&quot;</span></div>
+
 
 
 <span class="c1"># ---- Event filters</span>
 <span class="c1"># ----------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ToolTipFilter">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolTipFilter">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">ToolTipFilter</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_ToolTipFilter</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Filter tool tip events on toolbuttons.</span>
+<span class="sd">    Filter tooltip events on toolbar buttons.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ToolTipFilter.eventFilter">
-<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolTipFilter.eventFilter">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">eventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filter tooltip events on toolbar buttons.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        obj : QObject</span>
+<span class="sd">            The object receiving the event.</span>
+<span class="sd">        event : QEvent</span>
+<span class="sd">            The event object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            ``True`` the event should be filtered out, ``False`` otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">event_type</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
         <span class="n">action</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">defaultAction</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">QToolButton</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">event_type</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">.</span><span class="n">ToolTip</span> <span class="ow">and</span> <span class="n">action</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">tip</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">action</span><span class="o">.</span><span class="n">text_beside_icon</span>
 
-        <span class="k">return</span> <span class="n">QObject</span><span class="o">.</span><span class="n">eventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span></div>
-</div>
-
+        <span class="k">return</span> <span class="n">QObject</span><span class="o">.</span><span class="n">eventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
 
 
 <span class="c1"># ---- Styles</span>
@@ -432,38 +474,80 @@ document.write(`
 <div class="viewcode-block" id="ToolbarStyle">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolbarStyle">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ToolbarStyle</span><span class="p">(</span><span class="n">QProxyStyle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy style class to control the style of Spyder toolbars.</span>
 
-    <span class="c1"># The toolbar type. This can be &#39;Application&#39; or &#39;MainWidget&#39;</span>
-    <span class="n">TYPE</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="sd">    .. deprecated:: 6.2</span>
+
+<span class="sd">        This class will be renamed to the private :class:`!_ToolbarStyle`</span>
+<span class="sd">        in Spyder 6.2, while the current public name will become an alias</span>
+<span class="sd">        raising a :exc:`DeprecationWarning` on use, and removed in 7.0.</span>
+
+<span class="sd">        It was never intended to be used directly by plugins, and its</span>
+<span class="sd">        functionality is automatically inherited by using the appropriate</span>
+<span class="sd">        :class:`ApplicationToolbar` and :class:`MainWidgetToolbar` classes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TYPE</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Application&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;MainWidget&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The toolbar type; must be either &quot;Application&quot; or &quot;MainWidget&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ToolbarStyle.pixelMetric">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">pixelMetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pm</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">widget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pixelMetric</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">pm</span><span class="p">:</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">PixelMetric</span><span class="p">,</span> <span class="n">option</span><span class="p">:</span> <span class="n">QStyleOption</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">QWidget</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adjust size of toolbar extension button (in pixels).</span>
 
-<span class="sd">        From https://stackoverflow.com/a/27042352/438386</span>
+<span class="sd">        From `Stack Overflow &lt;https://stackoverflow.com/a/27042352/438386&gt;`__.</span>
+
+<span class="sd">        This is a callback intended to be called internally by Qt.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pm : QStyle.PixelMetric</span>
+<span class="sd">            The pixel metric to calculate.</span>
+<span class="sd">        option : QStyleOption | None, optional</span>
+<span class="sd">            The current style options, or ``None`` (default).</span>
+<span class="sd">        widget : QWidget | None, optional</span>
+<span class="sd">            The widget the pixel metric will be used for,</span>
+<span class="sd">            or ``None`` (default).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            The resulting pixel metric value, used internally by Qt.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        SpyderAPIError</span>
+<span class="sd">            If :attr:`TYPE` is not ``&quot;Application&quot;`` or ``&quot;MainWidget&quot;``,</span>
+<span class="sd">            as then this style would do nothing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Important: These values need to be updated in case we change the size</span>
         <span class="c1"># of our toolbar buttons in utils/stylesheet.py. That&#39;s because Qt only</span>
         <span class="c1"># allow to set them in pixels here, not em&#39;s.</span>
         <span class="k">if</span> <span class="n">pm</span> <span class="o">==</span> <span class="n">QStyle</span><span class="o">.</span><span class="n">PM_ToolBarExtensionExtent</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s1">&#39;Application&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s2">&quot;Application&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="mi">40</span>
-                <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+                <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="mi">54</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">return</span> <span class="mi">57</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s1">&#39;MainWidget&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s2">&quot;MainWidget&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="mi">36</span>
-                <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+                <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="mi">42</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">return</span> <span class="mi">44</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unknown toolbar style type&quot;</span><span class="p">)</span>  <span class="c1"># spyder: test-skip</span>
+                <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
+                    <span class="s2">&quot;Toolbar style must be &#39;Application&#39; or &#39;MainWidget&#39;, not&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">TYPE</span><span class="si">!r}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">pixelMetric</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">widget</span><span class="p">)</span></div>
 </div>
 
@@ -475,27 +559,43 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderToolbar</span><span class="p">(</span><span class="n">QToolBar</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Spyder Toolbar.</span>
-
 <span class="sd">    This class provides toolbars with some predefined functionality.</span>
+
+<span class="sd">    .. caution::</span>
+
+<span class="sd">        This class isn&#39;t intended to be used directly; use its subclasses</span>
+<span class="sd">        :class:`ApplicationToolbar` and :class:`MainWidgetToolbar` instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_is_rendered</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">sig_is_rendered</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal is emitted to let other objects know that the toolbar is now</span>
-<span class="sd">    rendered.</span>
+<span class="sd">    Signal to let other objects know that the toolbar is now rendered.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderToolbar.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new toolbar object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : QWidget | None</span>
+<span class="sd">            The parent widget of this one, or ``None``.</span>
+<span class="sd">        title : str</span>
+<span class="sd">            The localized title of this toolbar, to display in the UI.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span>
 
         <span class="c1"># Attributes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">title</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_item_map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ToolbarItem</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pending_items</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ToolbarItemEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_item_map</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ToolbarItem</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pending_items</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolbarItemEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_section</span> <span class="o">=</span> <span class="s2">&quot;default_section&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -504,7 +604,7 @@ document.write(`
         <span class="c1"># Set attributes for extension button.</span>
         <span class="c1"># From https://stackoverflow.com/a/55412455/438386</span>
         <span class="n">ext_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">findChild</span><span class="p">(</span><span class="n">QToolButton</span><span class="p">,</span> <span class="s2">&quot;qt_toolbar_ext_button&quot;</span><span class="p">)</span>
-        <span class="n">ext_button</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="s1">&#39;toolbar_ext_button&#39;</span><span class="p">))</span>
+        <span class="n">ext_button</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="s2">&quot;toolbar_ext_button&quot;</span><span class="p">))</span>
         <span class="n">ext_button</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;More&quot;</span><span class="p">))</span>
 
         <span class="c1"># Set style for extension button menu (not all extension buttons have</span>
@@ -524,50 +624,67 @@ document.write(`
     <span class="k">def</span><span class="w"> </span><span class="nf">add_item</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">action_or_widget</span><span class="p">:</span> <span class="n">ToolbarItem</span><span class="p">,</span>
-        <span class="n">section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">before</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">before_section</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">omit_id</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="p">):</span>
+        <span class="n">section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">before</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">before_section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">omit_id</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add action or widget item to given toolbar `section`.</span>
+<span class="sd">        Add action or widget item to the given toolbar ``section``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        item: SpyderAction or QWidget</span>
-<span class="sd">            The item to add to the `toolbar`.</span>
-<span class="sd">        toolbar_id: str or None</span>
-<span class="sd">            The application toolbar unique string identifier.</span>
-<span class="sd">        section: str or None</span>
-<span class="sd">            The section id in which to insert the `item` on the `toolbar`.</span>
-<span class="sd">        before: str or None</span>
-<span class="sd">            Make the item appear before another given item.</span>
-<span class="sd">        before_section: str or None</span>
-<span class="sd">            Make the item defined section appear before another given section</span>
-<span class="sd">            (must be already defined).</span>
-<span class="sd">        omit_id: bool</span>
-<span class="sd">            If True, then the toolbar will check if the item to add declares an</span>
-<span class="sd">            id, False otherwise. This flag exists only for items added on</span>
-<span class="sd">            Spyder 4 plugins. Default: False</span>
+<span class="sd">        action_or_widget: ToolbarItem</span>
+<span class="sd">            The item to add to the toolbar.</span>
+<span class="sd">        section: str | None, optional</span>
+<span class="sd">            The section id in which to insert the ``action_or_widget``,</span>
+<span class="sd">            or ``None`` (default) for no section.</span>
+<span class="sd">        before: str | None, optional</span>
+<span class="sd">            Make the ``action_or_widget`` appear before the action with the</span>
+<span class="sd">            identifier ``before``. If ``None`` (default), add it to the end.</span>
+<span class="sd">            If ``before`` is not ``None``, ``before_section`` will be ignored.</span>
+<span class="sd">        before_section : str | None, optional</span>
+<span class="sd">            Make the ``section`` appear prior to ``before_section``.</span>
+<span class="sd">            If ``None`` (the default), add the section to the end.</span>
+<span class="sd">            If you provide a ``before`` action, the new action will be placed</span>
+<span class="sd">            before this one, so the section option will be ignored, since the</span>
+<span class="sd">            action will now be placed in the same section as the ``before``</span>
+<span class="sd">            action.</span>
+<span class="sd">        omit_id: bool, optional</span>
+<span class="sd">            If ``False``, the default, then the toolbar will check if</span>
+<span class="sd">            ``action.action_id`` exists and is set to a string, and raise</span>
+<span class="sd">            an :exc:`~spyder.api.exceptions.SpyderAPIError` if either is not</span>
+<span class="sd">            the case. If ``True``, it will add the ``action_or_widget`` anyway.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        SpyderAPIError</span>
+<span class="sd">            If ``omit_id`` is ``False`` (the default) and</span>
+<span class="sd">            ``action_or_widget.action_id`` does not exist or is not set to</span>
+<span class="sd">            a string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">item_id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="nb">isinstance</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">SpyderAction</span><span class="p">)</span>
-            <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="s1">&#39;action_id&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">SpyderAction</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span>
+            <span class="n">action_or_widget</span><span class="p">,</span> <span class="s2">&quot;action_id&quot;</span>
         <span class="p">):</span>
             <span class="n">item_id</span> <span class="o">=</span> <span class="n">action_or_widget</span><span class="o">.</span><span class="n">action_id</span>
-        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="s1">&#39;ID&#39;</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="s2">&quot;ID&quot;</span><span class="p">):</span>
             <span class="n">item_id</span> <span class="o">=</span> <span class="n">action_or_widget</span><span class="o">.</span><span class="n">ID</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">omit_id</span> <span class="ow">and</span> <span class="n">item_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">action_or_widget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s1">&#39;Item </span><span class="si">{</span><span class="n">action_or_widget</span><span class="si">}</span><span class="s1"> must declare an ID attribute.&#39;</span>
+                <span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">action_or_widget</span><span class="si">}</span><span class="s2"> must declare an ID attribute.&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">before</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item_map</span><span class="p">:</span>
                 <span class="n">before_pending_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pending_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="p">[])</span>
                 <span class="n">before_pending_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">before</span><span class="p">,</span> <span class="n">before_section</span><span class="p">))</span>
+                    <span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">before</span><span class="p">,</span> <span class="n">before_section</span><span class="p">)</span>
+                <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_pending_items</span><span class="p">[</span><span class="n">before</span><span class="p">]</span> <span class="o">=</span> <span class="n">before_pending_items</span>
                 <span class="k">return</span>
             <span class="k">else</span><span class="p">:</span>
@@ -596,8 +713,10 @@ document.write(`
                 <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_actions_or_widgets</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="p">[</span><span class="n">section</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">before_section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
-                <span class="n">before_section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">before_section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">before_section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span>
+        <span class="p">):</span>
             <span class="n">new_sections_keys</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">sec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">sec</span> <span class="o">==</span> <span class="n">before_section</span><span class="p">:</span>
@@ -606,21 +725,37 @@ document.write(`
                     <span class="n">new_sections_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
                 <span class="p">(</span><span class="n">section_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="p">[</span><span class="n">section_key</span><span class="p">])</span>
-                <span class="k">for</span> <span class="n">section_key</span> <span class="ow">in</span> <span class="n">new_sections_keys</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">section_key</span> <span class="ow">in</span> <span class="n">new_sections_keys</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">item_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_item_map</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_or_widget</span>
             <span class="k">if</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pending_items</span><span class="p">:</span>
                 <span class="n">item_pending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pending_items</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">item_id</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">item</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">before</span><span class="p">,</span> <span class="n">before_section</span> <span class="ow">in</span> <span class="n">item_pending</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
-                                  <span class="n">before_section</span><span class="o">=</span><span class="n">before_section</span><span class="p">)</span></div>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span>
+                        <span class="n">item</span><span class="p">,</span>
+                        <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+                        <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
+                        <span class="n">before_section</span><span class="o">=</span><span class="n">before_section</span><span class="p">,</span>
+                    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderToolbar.remove_item">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.remove_item">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove action or widget from toolbar by id.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove the toolbar item with the given string identifier.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item_id : str</span>
+<span class="sd">            The string identifier of the toolbar item to remove.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_item_map</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">item_id</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
@@ -637,8 +772,14 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderToolbar.render">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.SpyderToolbar.render">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the toolbar taking into account sections and locations.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Render the toolbar taking into account sections and locations.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sec_items</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sec</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_section_items</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
@@ -651,7 +792,7 @@ document.write(`
         <span class="k">if</span> <span class="n">sec_items</span><span class="p">:</span>
             <span class="n">sec_items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="ow">in</span> <span class="n">sec_items</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">sec</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sec_items</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">QAction</span><span class="p">):</span>
                 <span class="n">add_method</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">addAction</span>
             <span class="k">else</span><span class="p">:</span>
@@ -665,7 +806,7 @@ document.write(`
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">widget</span><span class="o">.</span><span class="n">installEventFilter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_filter</span><span class="p">)</span>
 
-                <span class="n">text_beside_icon</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;text_beside_icon&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="n">text_beside_icon</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s2">&quot;text_beside_icon&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">text_beside_icon</span><span class="p">:</span>
                     <span class="n">widget</span><span class="o">.</span><span class="n">setToolButtonStyle</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">ToolButtonTextBesideIcon</span><span class="p">)</span>
 
@@ -681,10 +822,13 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ApplicationToolbar">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ApplicationToolbar</span><span class="p">(</span><span class="n">SpyderToolbar</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Spyder Main application Toolbar.</span>
+<span class="sd">    A Spyder main application toolbar.</span>
+
+<span class="sd">    These toolbars are placed above all Spyder dockable plugins in the</span>
+<span class="sd">    interface.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">ID</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Unique string toolbar identifier.</span>
 
@@ -693,12 +837,30 @@ document.write(`
 
 <div class="viewcode-block" id="ApplicationToolbar.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ApplicationToolbar.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">toolbar_id</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">toolbar_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a main Spyder application toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : QMainWindow</span>
+<span class="sd">            The parent main window of this toolbar.</span>
+<span class="sd">        toolbar_id : str</span>
+<span class="sd">            The unique string identifier of this toolbar.</span>
+<span class="sd">        title : str</span>
+<span class="sd">            The localized name of this toolbar, displayed in the interface.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">toolbar_id</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_style</span> <span class="o">=</span> <span class="n">ToolbarStyle</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">=</span> <span class="s1">&#39;Application&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">=</span> <span class="s2">&quot;Application&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="p">)</span>
 
@@ -707,13 +869,31 @@ document.write(`
 
 <div class="viewcode-block" id="ApplicationToolbar.__str__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ApplicationToolbar.__str__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Output this toolbar&#39;s class name and identifier as a string.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The toolbar&#39;s class name and string identifier, in the format</span>
+<span class="sd">            :file:``ApplicationToolbar({TOOLBAR_ID})``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ApplicationToolbar(&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ID</span><span class="si">}</span><span class="s2">&#39;)&quot;</span></div>
 
 
 <div class="viewcode-block" id="ApplicationToolbar.__repr__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.ApplicationToolbar.__repr__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Output this toolbar&#39;s class name and identifier as a string.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The menu&#39;s class name and string identifier, in the format</span>
+<span class="sd">            :file:``ApplicationToolbar({TOOLBAR_ID})``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ApplicationToolbar(&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ID</span><span class="si">}</span><span class="s2">&#39;)&quot;</span></div>
 </div>
 
@@ -723,44 +903,76 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.MainWidgetToolbar">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MainWidgetToolbar</span><span class="p">(</span><span class="n">SpyderToolbar</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Spyder Widget toolbar class.</span>
+<span class="sd">    A Spyder dockable plugin toolbar.</span>
 
-<span class="sd">    A toolbar used in Spyder dockable plugins to add internal toolbars</span>
-<span class="sd">    to their interface.</span>
+<span class="sd">   This is used by dockable plugins to have their own toolbars.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">ID</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Unique string toolbar identifier.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MainWidgetToolbar.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.MainWidgetToolbar.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : QWidget | None, optional</span>
+<span class="sd">            The parent widget of this one, or ``None`` (default).</span>
+<span class="sd">        title : str | None, optional</span>
+<span class="sd">            The localized title of this toolbar, or ``None`` (default) for</span>
+<span class="sd">            no title.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_icon_size</span> <span class="o">=</span> <span class="n">QSize</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 
         <span class="c1"># Setup</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s2">&quot;main_widget_toolbar_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())[:</span><span class="mi">8</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span>
+            <span class="s2">&quot;main_widget_toolbar_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())[:</span><span class="mi">8</span><span class="p">])</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setFloatable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setMovable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">PreventContextMenu</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setIconSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_icon_size</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_style</span> <span class="o">=</span> <span class="n">ToolbarStyle</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">=</span> <span class="s1">&#39;MainWidget&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="o">.</span><span class="n">TYPE</span> <span class="o">=</span> <span class="s2">&quot;MainWidget&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_filter</span> <span class="o">=</span> <span class="n">ToolTipFilter</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filter</span> <span class="o">=</span> <span class="n">_ToolTipFilter</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_icon_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon_size</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWidgetToolbar.set_icon_size">
+<a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.toolbars.html#spyder.api.widgets.toolbars.MainWidgetToolbar.set_icon_size">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_icon_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon_size</span><span class="p">:</span> <span class="n">QSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the icon size for this toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        icon_size : QSize</span>
+<span class="sd">            The icon size to set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_icon_size</span> <span class="o">=</span> <span class="n">icon_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setIconSize</span><span class="p">(</span><span class="n">icon_size</span><span class="p">)</span></div>
+</div>
 
 </pre></div>
 

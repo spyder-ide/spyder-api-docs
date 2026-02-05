@@ -360,89 +360,111 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.main_container</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2021- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Main container widget.</span>
+<span class="sd">Main container widget for non-dockable Spyder plugins.</span>
 
-<span class="sd">SpyderPluginV2 plugins must provide a CONTAINER_CLASS attribute that is a</span>
-<span class="sd">subclass of PluginMainContainer, if they provide additional widgets like</span>
-<span class="sd">status bar widgets or toolbars.</span>
+<span class="sd">:class:`~spyder.api.plugins.SpyderPluginV2` plugins must provide a</span>
+<span class="sd">:attr:`~spyder.api.plugins.SpyderPluginV2.CONTAINER_CLASS` attribute that is</span>
+<span class="sd">a subclass of :class:`PluginMainContainer`, if they have additional widgets</span>
+<span class="sd">like status bar items or toolbars.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="c1"># Third party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">PYSIDE2</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">Signal</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QWidget</span>
 
+<span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderWidgetMixin</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCloseEvent</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.app.mainwindow</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderPluginV2</span>
 
 
 <div class="viewcode-block" id="PluginMainContainer">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PluginMainContainer</span><span class="p">(</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">SpyderWidgetMixin</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Spyder plugin main container class.</span>
+<span class="sd">    Main container widget class for non-dockable Spyder plugins.</span>
 
-<span class="sd">    This class handles a non-dockable widget to be able to contain, parent and</span>
-<span class="sd">    store references to other widgets, like status bar widgets, toolbars,</span>
+<span class="sd">    This class is used by non-dockable plugins to be able to contain, parent</span>
+<span class="sd">    and store references to other widgets, like status bar widgets, toolbars,</span>
 <span class="sd">    context menus, etc.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    All Spyder non dockable plugins can define a plugin container that must</span>
-<span class="sd">    subclass this.</span>
+<span class="sd">    .. important::</span>
+
+<span class="sd">        If a Spyder non-dockable plugins defines a</span>
+<span class="sd">        :attr:`~spyder.api.plugins.SpyderPluginV2.CONTAINER_CLASS`</span>
+<span class="sd">        it must inherit from this class, :class`PluginMainContainer`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">CONTEXT_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">CONTEXT_NAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The name under which to store actions, toolbars, toolbuttons and menus.</span>
+
 <span class="sd">    This optional attribute defines the context name under which actions,</span>
-<span class="sd">    toolbars, toolbuttons and menus should be registered on the</span>
+<span class="sd">    toolbars, toolbuttons and menus should be registered in the</span>
 <span class="sd">    Spyder global registry.</span>
 
-<span class="sd">    If actions, toolbars, toolbuttons or menus belong to the global scope of</span>
-<span class="sd">    the plugin, then this attribute should have a `None` value.</span>
+<span class="sd">    If those elements belong to the global scope of the plugin, then this</span>
+<span class="sd">    attribute should have a ``None`` value, which will use the plugin&#39;s name as</span>
+<span class="sd">    the context scope.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ---- Signals</span>
     <span class="c1"># ------------------------------------------------------------------------</span>
-    <span class="n">sig_free_memory_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">sig_free_memory_requested</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal can be emitted to request the main application to garbage</span>
-<span class="sd">    collect deleted objects.</span>
+<span class="sd">    Signal to request the main application garbage-collect deleted objects.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_quit_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">sig_quit_requested</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal can be emitted to request the main application to quit.</span>
+<span class="sd">    Signal to request the main Spyder application quit.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_restart_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">sig_restart_requested</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal can be emitted to request the main application to restart.</span>
+<span class="sd">    Signal to request the main Spyder application quit and restart itself.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_redirect_stdio_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">sig_redirect_stdio_requested</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal can be emitted to request the main application to redirect</span>
-<span class="sd">    standard output/error when using Open/Save/Browse dialogs within widgets.</span>
+<span class="sd">    Request the main app redirect standard out/error within file pickers.</span>
+
+<span class="sd">    This will redirect :data:`~sys.stdin`, :data:`~sys.stdout`, and</span>
+<span class="sd">    :data:`~sys.stderr` when using :guilabel:`Open`, :guilabel:`Save`,</span>
+<span class="sd">    and :guilabel:`Browse` dialogs within a plugin&#39;s widgets.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    enable: bool</span>
-<span class="sd">        Enable/Disable standard input/output redirection.</span>
+<span class="sd">        Enable (``True``) or disable (``False``) standard input/output</span>
+<span class="sd">        redirection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_exception_occurred</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">sig_exception_occurred</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal can be emitted to report an exception handled by this widget.</span>
+<span class="sd">    Signal to report an exception from a plugin.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    error_data: dict</span>
+<span class="sd">    error_data: dict[str, str | bool]</span>
 <span class="sd">        The dictionary containing error data. The expected keys are:</span>
 
 <span class="sd">        .. code-block:: python</span>
@@ -456,32 +478,58 @@ document.write(`
 <span class="sd">                &quot;steps&quot;: str,</span>
 <span class="sd">            }</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    The `is_traceback` key indicates if `text` contains plain text or a</span>
-<span class="sd">    Python error traceback.</span>
+<span class="sd">        The ``is_traceback`` key indicates if ``text`` contains plain text or a</span>
+<span class="sd">        Python error traceback.</span>
 
-<span class="sd">    The `title` and `repo` keys indicate how the error data should</span>
-<span class="sd">    customize the report dialog and Github error submission.</span>
+<span class="sd">        The ``title`` and ``repo`` keys indicate how the error data should</span>
+<span class="sd">        customize the report dialog and GitHub error submission.</span>
 
-<span class="sd">    The `label` and `steps` keys allow customizing the content of the</span>
-<span class="sd">    error dialog.</span>
+<span class="sd">        The ``label`` and ``steps`` keys allow customizing the content of the</span>
+<span class="sd">        error dialog.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sig_unmaximize_plugin_requested</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">((),</span> <span class="p">(</span><span class="nb">object</span><span class="p">,))</span>
+    <span class="n">sig_unmaximize_plugin_requested</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">((),</span> <span class="p">(</span><span class="nb">object</span><span class="p">,))</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal is emitted to inform the main window that it needs to</span>
-<span class="sd">    unmaximize the currently maximized plugin, if any.</span>
+<span class="sd">    Request the main window unmaximize the currently maximized plugin, if any.</span>
+
+<span class="sd">    If emitted without arguments, it&#39;ll unmaximize any plugin.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    plugin_instance: spyder.api.plugins.SpyderDockablePlugin</span>
-<span class="sd">        Unmaximize plugin only if it is not `plugin_instance`.</span>
+<span class="sd">    plugin_instance: SpyderDockablePlugin</span>
+<span class="sd">        Unmaximize current plugin only if it is not ``plugin_instance``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PluginMainContainer.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">plugin</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="n">SpyderPluginV2</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">mainwindow</span><span class="o">.</span><span class="n">MainWindow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new container class for a plugin.</span>
+<span class="sd">        </span>
+<span class="sd">        This method is not meant to be overridden by container subclasses.</span>
+<span class="sd">        Use the :meth:`setup` method instead to instantiate the widgets that</span>
+<span class="sd">        this one will contain.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the plugin, i.e. the</span>
+<span class="sd">            :attr:`SpyderPluginV2.NAME &lt;spyder.api.plugins.SpyderPluginV2.NAME&gt;`.</span>
+<span class="sd">        plugin : SpyderPluginV2</span>
+<span class="sd">            The plugin object this is to be the container class of.</span>
+<span class="sd">        parent : spyder.app.mainwindow.MainWindow | None, optional</span>
+<span class="sd">            The container&#39;s parent widget, normally the Spyder main window.</span>
+<span class="sd">            By default (``None``), no parent widget (used for testing).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">PYSIDE2</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">class_parent</span><span class="o">=</span><span class="n">plugin</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -494,9 +542,14 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="o">=</span> <span class="n">plugin</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
 
-        <span class="c1"># Attribute used to access the action, toolbar, toolbutton and menu</span>
-        <span class="c1"># registries</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plugin name in the action, toolbar, toolbutton &amp; menu registries.</span>
+
+<span class="sd">        Usually the same as</span>
+<span class="sd">        :attr:`SpyderPluginV2.NAME &lt;spyder.api.plugins.SpyderPluginV2.NAME&gt;`,</span>
+<span class="sd">        but may be different from :attr:`CONTEXT_NAME`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Widget setup</span>
         <span class="c1"># A PluginMainContainer inherits from QWidget so it can be a parent</span>
@@ -513,7 +566,19 @@ document.write(`
     <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="PluginMainContainer.closeEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.closeEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QCloseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle closing this container widget.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QCloseEvent</span>
+<span class="sd">            The event object closing this widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_close</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
 
@@ -522,34 +587,65 @@ document.write(`
     <span class="c1"># ------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="PluginMainContainer.setup">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.setup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create actions, widgets, add to menu and other setup requirements.</span>
+<span class="sd">        Create widgets, toolbars and menus, and perform other setup steps.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            If the container subclass doesn&#39;t define a ``setup`` method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-            <span class="s1">&#39;A PluginMainContainer subclass must define a `setup` method!&#39;</span><span class="p">)</span></div>
+            <span class="s2">&quot;A PluginMainContainer subclass must define a `setup` method!&quot;</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PluginMainContainer.update_actions">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.update_actions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the state of exposed actions.</span>
 
-<span class="sd">        Exposed actions are actions created by the self.create_action method.</span>
+<span class="sd">        Exposed actions are actions created by the</span>
+<span class="sd">        :meth:`~spyder.api.widgets.mixins.SpyderActionMixin.create_action`</span>
+<span class="sd">        method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            If the subclass doesn&#39;t define an ``update_actions`` method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-            <span class="s1">&#39;A PluginMainContainer subclass must define a `update_actions` &#39;</span>
-            <span class="s1">&#39;method!&#39;</span><span class="p">)</span></div>
+            <span class="s2">&quot;A PluginMainContainer subclass must define a `update_actions` &quot;</span>
+            <span class="s2">&quot;method!&quot;</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PluginMainContainer.on_close">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.main_container.html#spyder.api.widgets.main_container.PluginMainContainer.on_close">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Perform actions before the container is closed.</span>
+<span class="sd">        Perform actions before the container widget is closed.</span>
 
-<span class="sd">        This method **must** only operate on local attributes.</span>
+<span class="sd">        Does nothing by default; intended to be overridden for widgets</span>
+<span class="sd">        that need to perform actions on close.</span>
+
+<span class="sd">        .. warning::</span>
+
+<span class="sd">            This method **must** only operate on local attributes.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>

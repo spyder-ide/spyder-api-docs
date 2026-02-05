@@ -360,11 +360,12 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.comboboxes</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2023- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Spyder combobox widgets.</span>
@@ -372,8 +373,11 @@ document.write(`
 <span class="sd">Use these widgets for any combobox you want to add to Spyder.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="c1"># Standard library imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Third-party imports</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">qstylizer.style</span>
@@ -395,6 +399,10 @@ document.write(`
 <span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.palette</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderPalette</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppStyle</span><span class="p">,</span> <span class="n">WIN</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QShowEvent</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QWidget</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_SpyderComboBoxProxyStyle</span><span class="p">(</span><span class="n">QProxyStyle</span><span class="p">):</span>
@@ -429,7 +437,7 @@ document.write(`
                 <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">left</span><span class="p">()</span> <span class="o">+</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="p">,</span>
                 <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span>
                 <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">right</span><span class="p">()</span> <span class="o">-</span> <span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="p">,</span>
-                <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+                <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span>
             <span class="p">)</span>
             <span class="k">return</span>
 
@@ -466,7 +474,7 @@ document.write(`
             <span class="n">border</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
             <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;0px&quot;</span><span class="p">,</span>
             <span class="c1"># Make text look centered for short comboboxes</span>
-            <span class="n">paddingRight</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;-</span><span class="si">{</span><span class="mi">3</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">WIN</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">px&quot;</span>
+            <span class="n">paddingRight</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;-</span><span class="si">{</span><span class="mi">3</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">WIN</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">css</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span>
@@ -591,21 +599,19 @@ document.write(`
         <span class="n">css</span> <span class="o">=</span> <span class="n">qstylizer</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">StyleSheet</span><span class="p">()</span>
 
         <span class="c1"># Make our comboboxes have a uniform height</span>
-        <span class="n">css</span><span class="o">.</span><span class="n">QComboBox</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
-            <span class="n">minHeight</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">ComboBoxMinHeight</span><span class="si">}</span><span class="s1">em&#39;</span>
-        <span class="p">)</span>
+        <span class="n">css</span><span class="o">.</span><span class="n">QComboBox</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span><span class="n">minHeight</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">ComboBoxMinHeight</span><span class="si">}</span><span class="s2">em&quot;</span><span class="p">)</span>
 
         <span class="c1"># Add top and bottom padding to the inner contents of comboboxes</span>
         <span class="n">css</span><span class="p">[</span><span class="s2">&quot;QComboBox QAbstractItemView&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
             <span class="n">paddingTop</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
-            <span class="n">paddingBottom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">px&quot;</span>
+            <span class="n">paddingBottom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Add margin and padding to combobox items</span>
         <span class="n">css</span><span class="p">[</span><span class="s2">&quot;QComboBox QAbstractItemView::item&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
             <span class="n">marginLeft</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
             <span class="n">marginRight</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
-            <span class="n">padding</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s2">px&quot;</span>
+            <span class="n">padding</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">AppStyle</span><span class="o">.</span><span class="n">MarginSize</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Make color of hovered combobox items match the one used in other</span>
@@ -620,25 +626,41 @@ document.write(`
 <div class="viewcode-block" id="SpyderComboBox">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderComboBox</span><span class="p">(</span><span class="n">_SpyderComboBoxMixin</span><span class="p">,</span> <span class="n">QComboBox</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Default combobox widget for Spyder.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Default combobox widget for Spyder.</span>
+
+<span class="sd">    Used for all comboboxes in Spyder so they have a uniform styling</span>
+<span class="sd">    across operating systems.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderComboBox.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_elide_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">items_elide_mode</span><span class="p">:</span> <span class="n">Qt</span><span class="o">.</span><span class="n">TextElideMode</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Default combobox widget for Spyder.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        parent: QWidget, optional</span>
-<span class="sd">            The combobox parent.</span>
-<span class="sd">        items_elide_mode: Qt.TextElideMode, optional</span>
-<span class="sd">            Elide mode for the combobox items.</span>
+<span class="sd">        parent: QWidget | None, optional</span>
+<span class="sd">            The parent widget of the combobox.</span>
+<span class="sd">        items_elide_mode: Qt.TextElideMode | None, optional</span>
+<span class="sd">            The elide mode for the combobox items, which controls whether</span>
+<span class="sd">            the ellipses (``...``) is placed to the left, center or right</span>
+<span class="sd">            for overly long text. If ``None``, the default, will be</span>
+<span class="sd">            eliding to the right (e.g. ``Very long name...``).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">QComboBox</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="n">_SpyderComboBoxMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_editable</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_editable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_shown</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_popup_shown</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -652,9 +674,19 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderComboBox.showEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.showEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">showEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjustments when the widget is shown.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">showEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QShowEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adjustments when the widget is shown.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event : QShowEvent</span>
+<span class="sd">            The event object showing the widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_shown</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEditable</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">is_editable</span> <span class="o">=</span> <span class="kc">False</span>
@@ -679,8 +711,14 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderComboBox.showPopup">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.showPopup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">showPopup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjustments when the popup is shown.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">showPopup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adjustments when the popup is shown.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">showPopup</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
@@ -706,8 +744,14 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderComboBox.hidePopup">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBox.hidePopup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">hidePopup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjustments when the popup is hidden.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hidePopup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adjustments when the popup is hidden.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">hidePopup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sig_popup_is_hidden</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
 
@@ -727,27 +771,36 @@ document.write(`
 <div class="viewcode-block" id="SpyderComboBoxWithIcons">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderComboBoxWithIcons</span><span class="p">(</span><span class="n">SpyderComboBox</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;Combobox widget for Spyder when its items have icons.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combobox widget for Spyder when its items have icons.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderComboBoxWithIcons.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_elide_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">items_elide_mode</span><span class="p">:</span> <span class="n">Qt</span><span class="o">.</span><span class="n">TextElideMode</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Combobox widget for Spyder when its items have icons.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        parent: QWidget, optional</span>
-<span class="sd">            The combobox parent.</span>
-<span class="sd">        items_elide_mode: Qt.TextElideMode, optional</span>
-<span class="sd">            Elide mode for the combobox items.</span>
+<span class="sd">        parent: QWidget | None, optional</span>
+<span class="sd">            This combobox&#39;s parent widget; by default, no parent (``None``).</span>
+<span class="sd">        items_elide_mode: Qt.TextElideMode | None, optional</span>
+<span class="sd">            The elide mode for the combobox items, which controls whether</span>
+<span class="sd">            the ellipses (``...``) is placed to the left, center or right</span>
+<span class="sd">            for overly long text. If ``None``, the default, will be</span>
+<span class="sd">            eliding to the right (e.g. ``Very long name...``).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">items_elide_mode</span><span class="p">)</span>
 
         <span class="c1"># Padding is not necessary because icons give items enough of it.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="p">[</span><span class="s2">&quot;QComboBox QAbstractItemView::item&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span>
-            <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;0px&quot;</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="p">[</span><span class="s2">&quot;QComboBox QAbstractItemView::item&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">setValues</span><span class="p">(</span><span class="n">padding</span><span class="o">=</span><span class="s2">&quot;0px&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_css</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span></div>
 </div>
@@ -757,10 +810,23 @@ document.write(`
 <div class="viewcode-block" id="SpyderFontComboBox">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderFontComboBox</span><span class="p">(</span><span class="n">_SpyderComboBoxMixin</span><span class="p">,</span> <span class="n">QFontComboBox</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A specialized combobox for showing a list of font choices.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderFontComboBox.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new combobox for displaying font choices.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : QWidget | None, optional</span>
+<span class="sd">            This combobox&#39;s parent widget; by default, no parent (``None``).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">QFontComboBox</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="n">_SpyderComboBoxMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -785,8 +851,14 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderFontComboBox.showPopup">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.showPopup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">showPopup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjustments when the popup is shown.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">showPopup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adjustments for when the font combobox popup is shown.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">showPopup</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
@@ -796,7 +868,14 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderFontComboBox.hidePopup">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.comboboxes.html#spyder.api.widgets.comboboxes.SpyderFontComboBox.hidePopup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">hidePopup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hidePopup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adjustments for when the font combobox popup is hidden.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">hidePopup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sig_popup_is_hidden</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
 </div>

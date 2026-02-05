@@ -360,15 +360,21 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.auxiliary_widgets</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2020- Spyder Project Contributors</span>
 <span class="c1">#</span>
-<span class="c1"># Copyright © Spyder Project Contributors</span>
-<span class="c1"># Licensed under the terms of the MIT License</span>
-<span class="c1"># (see spyder/__init__.py for details)</span>
+<span class="c1"># Released under the terms of the MIT License</span>
+<span class="c1"># (see LICENSE.txt in the project root directory for details)</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Spyder API auxiliary widgets.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Third party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QSize</span><span class="p">,</span> <span class="n">Signal</span>
@@ -380,55 +386,86 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpyderMainWindowMixin</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">APP_STYLESHEET</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCloseEvent</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span>  <span class="c1"># For SpyderAction</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.widgets.main_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginMainWidget</span>
+
 
 <div class="viewcode-block" id="SpyderWindowWidget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderWindowWidget</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">SpyderMainWindowMixin</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;MainWindow subclass that contains a SpyderDockablePlugin.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An undocked window for a :class:`~spyder.api.plugins.SpyderDockablePlugin`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ---- Signals</span>
     <span class="c1"># ------------------------------------------------------------------------</span>
-    <span class="n">sig_closed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This signal is emitted when the close event is fired.&quot;&quot;&quot;</span>
+    <span class="n">sig_closed</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Signal emitted when the close event is fired.&quot;&quot;&quot;</span>
 
-    <span class="n">sig_window_state_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">sig_window_state_changed</span><span class="p">:</span> <span class="n">Signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This signal is emitted when the window state has changed (for instance,</span>
-<span class="sd">    between maximized and minimized states).</span>
+<span class="sd">    Signal is emitted when this window&#39;s state has changed.</span>
+
+<span class="sd">    For instance, if the window changed between maximized and minimized state.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    window_state: Qt.WindowStates</span>
-<span class="sd">        The window state.</span>
+<span class="sd">        The new window state that was changed to.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderWindowWidget.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">PluginMainWidget</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a window for a :class:`~spyder.api.plugins.SpyderDockablePlugin`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget : PluginMainWidget</span>
+<span class="sd">            The main widget of this window&#39;s corresponding</span>
+<span class="sd">            :class:`~spyder.api.plugins.SpyderDockablePlugin`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">widget</span>
 
-        <span class="c1"># To distinguish these windows from the main Spyder one</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_window_widget</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="p">:</span> <span class="n">PluginMainWidget</span> <span class="o">=</span> <span class="n">widget</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The main widget of this window&#39;s corresponding dockable plugin.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Setting interface theme</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_window_widget</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Distinguish these windows from the main Spyder one.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Set interface theme</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">APP_STYLESHEET</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="SpyderWindowWidget.closeEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.closeEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Qt method to emit a custom `sig_close` signal.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QCloseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Event handler for when the window is closed.</span>
+
+<span class="sd">        Overrides the default :meth:`QWidget.closeEvent` method to emit</span>
+<span class="sd">        a custom :attr:`sig_closed` signal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sig_closed</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SpyderWindowWidget.changeEvent">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.SpyderWindowWidget.changeEvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">changeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">changeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Override Qt method to emit a custom `sig_windowstate_changed` signal</span>
-<span class="sd">        when there&#39;s a change in the window state.</span>
+<span class="sd">        Event handler for when the window state is changed (e.g. minimized).</span>
+
+<span class="sd">        Overrides the default :meth:`QWidget.changeEvent` method to emit</span>
+<span class="sd">        a custom :attr:`sig_window_state_changed` signal.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">.</span><span class="n">WindowStateChange</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sig_window_state_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">windowState</span><span class="p">())</span>
@@ -441,12 +478,31 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MainCornerWidget</span><span class="p">(</span><span class="n">QToolBar</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Corner widget to hold options menu, spinner and additional options.</span>
+<span class="sd">    Toolbar widget displayed in the top right hand corner of dockable plugins.</span>
+
+<span class="sd">    It is used to display the options (hamburger) menu, progress spinner</span>
+<span class="sd">    and additional toolbar items to the right of the main toolbar.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MainCornerWidget.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">PluginMainWidget</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new corner widget for a plugin&#39;s toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget : PluginMainWidget</span>
+<span class="sd">            The main widget of this window&#39;s corresponding</span>
+<span class="sd">            :class:`~spyder.api.plugins.SpyderDockablePlugin`.</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Name of this corner widget, nominally</span>
+<span class="sd">            :attr:`spyder.api.widgets.PluginMainWidgetWidgets.CornerWidget`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_icon_size</span> <span class="o">=</span> <span class="n">QSize</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setIconSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_icon_size</span><span class="p">)</span>
@@ -466,9 +522,39 @@ document.write(`
 
 <div class="viewcode-block" id="MainCornerWidget.add_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.add_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_widget</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">widget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span> <span class="o">|</span> <span class="n">QWidget</span><span class="p">,</span>
+        <span class="n">before</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span> <span class="o">|</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a widget to the left of the last widget added to the corner.</span>
+<span class="sd">        Add a widget to the corner toolbar.</span>
+
+<span class="sd">        By default, widgets are added to the left of the last toolbar item.</span>
+<span class="sd">        Corner widgets provide an options menu button and a spinner so any</span>
+<span class="sd">        additional widgets will be placed the left of the spinner, if visible</span>
+<span class="sd">        (unless ``before`` is set).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget : spyder.utils.qthelpers.SpyderAction | QWidget</span>
+<span class="sd">            The action or widget to add to the toolbar.</span>
+<span class="sd">        before : spyder.utils.qthelpers.SpyderAction | QWidget | None, optional</span>
+<span class="sd">            The action or widget to add ``widget`` before (to the right of).</span>
+<span class="sd">            If ``None`` (the default), the widget will be added to the left</span>
+<span class="sd">            of the left-most widget.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        SpyderAPIError</span>
+<span class="sd">            If either ``widget`` or ``before`` lacks a ``name`` attribute;</span>
+<span class="sd">            a widget with the same ``name`` as ``widget`` was already added;</span>
+<span class="sd">            a widget with ``before.name`` has not been added previously; or</span>
+<span class="sd">            the first widget added is not the options (hamburger) menu widget.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
             <span class="n">before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
@@ -480,13 +566,13 @@ document.write(`
 
         <span class="k">if</span> <span class="n">widget</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
-                <span class="s1">&#39;Wigdet with name &quot;</span><span class="si">{}</span><span class="s1">&quot; already added. Current names are: </span><span class="si">{}</span><span class="s1">&#39;</span>
-                <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="s1">&#39;Widget with name &quot;</span><span class="si">{}</span><span class="s1">&quot; already added. Current names are: </span><span class="si">{}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">before</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Wigdet with name &#39;</span><span class="si">{</span><span class="n">before</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not in this corner widget&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Widget with name &#39;</span><span class="si">{</span><span class="n">before</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not in this corner widget&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="p">(</span>
@@ -525,18 +611,48 @@ document.write(`
 
 <div class="viewcode-block" id="MainCornerWidget.get_widget">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_widget">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget_id</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a widget by unique id.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a widget by its unique ID (i.e. its ``name`` attribute).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget_id : str</span>
+<span class="sd">            The ``name`` attribute of the widget to return.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QWidget | None</span>
+<span class="sd">            The widget object corresponding to ``widget_id``, or ``None``</span>
+<span class="sd">            if a widget with that ``name`` does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">widget_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="n">widget_id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="n">widget_id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="MainCornerWidget.get_action">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.auxiliary_widgets.html#spyder.api.widgets.auxiliary_widgets.MainCornerWidget.get_action">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget_id</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return action corresponding to `widget_id`.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">widget_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an action by its unique ID (i.e. its ``name`` attribute).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        widget_id : str</span>
+<span class="sd">            The ``name`` attribute of the action to return.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        spyder.utils.qthelpers.SpyderAction | None</span>
+<span class="sd">            The action object corresponding to ``widget_id``, or ``None``</span>
+<span class="sd">            if an action with that ``name`` does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">widget_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="n">widget_id</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="n">widget_id</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 </div>
 
 </pre></div>

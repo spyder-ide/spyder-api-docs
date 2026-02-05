@@ -462,69 +462,128 @@ document.write(`
 <td><p>Default combobox widget for Spyder.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons" title="spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderComboBoxWithIcons</span></code></a>([parent, ...])</p></td>
-<td><p>&quot;Combobox widget for Spyder when its items have icons.</p></td>
+<td><p>Combobox widget for Spyder when its items have icons.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox" title="spyder.api.widgets.comboboxes.SpyderFontComboBox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderFontComboBox</span></code></a>([parent])</p></td>
-<td><p></p></td>
+<td><p>A specialized combobox for showing a list of font choices.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBox">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.comboboxes.</span></span><span class="sig-name descname"><span class="pre">SpyderComboBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.comboboxes.</span></span><span class="sig-name descname"><span class="pre">SpyderComboBox</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><span class="pre">TextElideMode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_SpyderComboBoxMixin</span></code>, <a class="reference external" href="https://doc.qt.io/qt-5/qcombobox.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QComboBox</span></code></a></p>
 <p>Default combobox widget for Spyder.</p>
+<p>Used for all comboboxes in Spyder so they have a uniform styling
+across operating systems.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBox.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><span class="pre">TextElideMode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.__init__" title="Link to this definition">#</a></dt>
 <dd><p>Default combobox widget for Spyder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em>, </em><em>optional</em>) – The combobox parent.</p></li>
-<li><p><strong>items_elide_mode</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><em>TextElideMode</em></a><em>, </em><em>optional</em>) – Elide mode for the combobox items.</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The parent widget of the combobox.</p></li>
+<li><p><strong>items_elide_mode</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><em>TextElideMode</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The elide mode for the combobox items, which controls whether
+the ellipses (<code class="docutils literal notranslate"><span class="pre">...</span></code>) is placed to the left, center or right
+for overly long text. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default, will be
+eliding to the right (e.g. <code class="docutils literal notranslate"><span class="pre">Very</span> <span class="pre">long</span> <span class="pre">name...</span></code>).</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBox.showEvent">
-<span class="sig-name descname"><span class="pre">showEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.showEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.showEvent" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">showEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qshowevent.html" title="(in Qt5 v5.15)"><span class="pre">QShowEvent</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.showEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.showEvent" title="Link to this definition">#</a></dt>
 <dd><p>Adjustments when the widget is shown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qshowevent.html" title="(in Qt5 v5.15)"><em>QShowEvent</em></a>) – The event object showing the widget.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBox.showPopup">
-<span class="sig-name descname"><span class="pre">showPopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.showPopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.showPopup" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">showPopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.showPopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.showPopup" title="Link to this definition">#</a></dt>
 <dd><p>Adjustments when the popup is shown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBox.hidePopup">
-<span class="sig-name descname"><span class="pre">hidePopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.hidePopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.hidePopup" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">hidePopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBox.hidePopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBox.hidePopup" title="Link to this definition">#</a></dt>
 <dd><p>Adjustments when the popup is hidden.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.comboboxes.</span></span><span class="sig-name descname"><span class="pre">SpyderComboBoxWithIcons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBoxWithIcons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.comboboxes.</span></span><span class="sig-name descname"><span class="pre">SpyderComboBoxWithIcons</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><span class="pre">TextElideMode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBoxWithIcons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#spyder.api.widgets.comboboxes.SpyderComboBox" title="spyder.api.widgets.comboboxes.SpyderComboBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderComboBox</span></code></a></p>
-<p>“Combobox widget for Spyder when its items have icons.</p>
+<p>Combobox widget for Spyder when its items have icons.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBoxWithIcons.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons.__init__" title="Link to this definition">#</a></dt>
-<dd><p>”
-Combobox widget for Spyder when its items have icons.</p>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">items_elide_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><span class="pre">TextElideMode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderComboBoxWithIcons.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderComboBoxWithIcons.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Combobox widget for Spyder when its items have icons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em>, </em><em>optional</em>) – The combobox parent.</p></li>
-<li><p><strong>items_elide_mode</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><em>TextElideMode</em></a><em>, </em><em>optional</em>) – Elide mode for the combobox items.</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – This combobox’s parent widget; by default, no parent (<code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+<li><p><strong>items_elide_mode</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt.html#TextElideMode-enum" title="(in Qt5 v5.15)"><em>TextElideMode</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The elide mode for the combobox items, which controls whether
+the ellipses (<code class="docutils literal notranslate"><span class="pre">...</span></code>) is placed to the left, center or right
+for overly long text. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default, will be
+eliding to the right (e.g. <code class="docutils literal notranslate"><span class="pre">Very</span> <span class="pre">long</span> <span class="pre">name...</span></code>).</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -533,23 +592,44 @@ Combobox widget for Spyder when its items have icons.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderFontComboBox">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.comboboxes.</span></span><span class="sig-name descname"><span class="pre">SpyderFontComboBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.comboboxes.</span></span><span class="sig-name descname"><span class="pre">SpyderFontComboBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_SpyderComboBoxMixin</span></code>, <a class="reference external" href="https://doc.qt.io/qt-5/qfontcombobox.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QFontComboBox</span></code></a></p>
+<p>A specialized combobox for showing a list of font choices.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderFontComboBox.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new combobox for displaying font choices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – This combobox’s parent widget; by default, no parent (<code class="docutils literal notranslate"><span class="pre">None</span></code>).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderFontComboBox.showPopup">
-<span class="sig-name descname"><span class="pre">showPopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox.showPopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox.showPopup" title="Link to this definition">#</a></dt>
-<dd><p>Adjustments when the popup is shown.</p>
+<span class="sig-name descname"><span class="pre">showPopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox.showPopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox.showPopup" title="Link to this definition">#</a></dt>
+<dd><p>Adjustments for when the font combobox popup is shown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.comboboxes.SpyderFontComboBox.hidePopup">
-<span class="sig-name descname"><span class="pre">hidePopup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox.hidePopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox.hidePopup" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">hidePopup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/comboboxes.html#SpyderFontComboBox.hidePopup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.comboboxes.SpyderFontComboBox.hidePopup" title="Link to this definition">#</a></dt>
+<dd><p>Adjustments for when the font combobox popup is hidden.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

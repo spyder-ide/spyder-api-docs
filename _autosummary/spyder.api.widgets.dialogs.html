@@ -445,20 +445,55 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.dialogs.SpyderDialogButtonBox" title="spyder.api.widgets.dialogs.SpyderDialogButtonBox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderDialogButtonBox</span></code></a>([buttons, ...])</p></td>
-<td><p>QDialogButtonBox widget for Spyder.</p></td>
+<td><p>Action button section (OK, Cancel, etc) widget for dialog boxes.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.dialogs.SpyderDialogButtonBox">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.dialogs.</span></span><span class="sig-name descname"><span class="pre">SpyderDialogButtonBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buttons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/dialogs.html#SpyderDialogButtonBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.dialogs.SpyderDialogButtonBox" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.dialogs.</span></span><span class="sig-name descname"><span class="pre">SpyderDialogButtonBox</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">buttons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qdialogbuttonbox.html#StandardButton-enum" title="(in Qt5 v5.15)"><span class="pre">StandardButton</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#Orientation-enum" title="(in Qt5 v5.15)"><span class="pre">Orientation</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/dialogs.html#SpyderDialogButtonBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.dialogs.SpyderDialogButtonBox" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qdialogbuttonbox.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QDialogButtonBox</span></code></a></p>
-<p>QDialogButtonBox widget for Spyder.</p>
+<p>Action button section (OK, Cancel, etc) widget for dialog boxes.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.dialogs.SpyderDialogButtonBox.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buttons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/dialogs.html#SpyderDialogButtonBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.dialogs.SpyderDialogButtonBox.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">buttons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qdialogbuttonbox.html#StandardButton-enum" title="(in Qt5 v5.15)"><span class="pre">StandardButton</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#Orientation-enum" title="(in Qt5 v5.15)"><span class="pre">Orientation</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/dialogs.html#SpyderDialogButtonBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.dialogs.SpyderDialogButtonBox.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new group of dialog box buttons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buttons</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qdialogbuttonbox.html#StandardButton-enum" title="(in Qt5 v5.15)"><em>StandardButton</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The standard buttons to include in the dialog box button group,
+such as “OK”, “Cancel” or “Apply”, passed as a single argument
+composed of Qt enum members bitwise or-ed (<code class="docutils literal notranslate"><span class="pre">|</span></code>) together.
+For example, <code class="docutils literal notranslate"><span class="pre">QDialogButtonBox.Ok</span> <span class="pre">|</span> <span class="pre">QDialogButtonBox.Cancel</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default, is an empty button box with no buttons.</p></li>
+<li><p><strong>orientation</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qt.html#Orientation-enum" title="(in Qt5 v5.15)"><em>Orientation</em></a><em>, </em><em>optional</em>) – Whether the button box is laid out horizontally, with buttons
+side by side, or vertically, with buttons on top of one another.
+By default, horizontal (<code class="docutils literal notranslate"><span class="pre">Qt.Horizontal</span></code>).</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The parent widget of this button box, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

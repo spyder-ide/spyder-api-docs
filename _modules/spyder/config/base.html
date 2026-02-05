@@ -1008,6 +1008,16 @@ document.write(`
 <span class="sd">    installer environment or the root environment thereof.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">real_pyexec</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">pyexec</span><span class="p">)</span>  <span class="c1"># pyexec may be symlink</span>
+
+    <span class="c1"># It seems in some cases the check below detects that a regular conda env</span>
+    <span class="c1"># corresponds to our installer. This makes things a bit more strict by</span>
+    <span class="c1"># also validating the env name where Spyder is installed.</span>
+    <span class="c1"># Fixes spyder-ide/spyder#25549.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;spyder-runtime&quot;</span> <span class="ow">in</span> <span class="n">real_pyexec</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Check the presence of conda-based-app file, which is added when creating</span>
+    <span class="c1"># the installers.</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
         <span class="n">env_path</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">real_pyexec</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>

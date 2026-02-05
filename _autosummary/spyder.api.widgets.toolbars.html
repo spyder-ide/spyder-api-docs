@@ -422,11 +422,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolTipFilter"><code class="docutils literal notranslate"><span class="pre">ToolTipFilter</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolTipFilter.eventFilter"><code class="docutils literal notranslate"><span class="pre">ToolTipFilter.eventFilter()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarItem"><code class="docutils literal notranslate"><span class="pre">ToolbarItem</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarItemEntry"><code class="docutils literal notranslate"><span class="pre">ToolbarItemEntry</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarLocation"><code class="docutils literal notranslate"><span class="pre">ToolbarLocation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarLocation.Top"><code class="docutils literal notranslate"><span class="pre">ToolbarLocation.Top</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarLocation.Bottom"><code class="docutils literal notranslate"><span class="pre">ToolbarLocation.Bottom</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarStyle"><code class="docutils literal notranslate"><span class="pre">ToolbarStyle</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarStyle.TYPE"><code class="docutils literal notranslate"><span class="pre">ToolbarStyle.TYPE</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric"><code class="docutils literal notranslate"><span class="pre">ToolbarStyle.pixelMetric()</span></code></a></li>
 </ul>
 </li>
@@ -448,6 +452,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.ID"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar.ID</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.__init__"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.set_icon_size"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar.set_icon_size()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -464,39 +469,69 @@ document.write(`
   <section id="module-spyder.api.widgets.toolbars">
 <span id="spyder-api-widgets-toolbars"></span><h1>spyder.api.widgets.toolbars<a class="headerlink" href="#module-spyder.api.widgets.toolbars" title="Link to this heading">#</a></h1>
 <p>Spyder API toolbar widgets.</p>
-<p class="rubric">Classes</p>
+<p class="rubric">Module Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ApplicationToolbar" title="spyder.api.widgets.toolbars.ApplicationToolbar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ApplicationToolbar</span></code></a>(parent, toolbar_id, title)</p></td>
-<td><p>Spyder Main application Toolbar.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ToolbarItem" title="spyder.api.widgets.toolbars.ToolbarItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolbarItem</span></code></a></p></td>
+<td><p>Type alias for the set of supported objects that can be toolbar items.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.MainWidgetToolbar" title="spyder.api.widgets.toolbars.MainWidgetToolbar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MainWidgetToolbar</span></code></a>([parent, title])</p></td>
-<td><p>Spyder Widget toolbar class.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.SpyderToolbar" title="spyder.api.widgets.toolbars.SpyderToolbar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderToolbar</span></code></a>(parent, title)</p></td>
-<td><p>Spyder Toolbar.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ToolTipFilter" title="spyder.api.widgets.toolbars.ToolTipFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolTipFilter</span></code></a></p></td>
-<td><p>Filter tool tip events on toolbuttons.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolbarLocation</span></code>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ToolbarStyle" title="spyder.api.widgets.toolbars.ToolbarStyle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolbarStyle</span></code></a></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ToolbarItemEntry" title="spyder.api.widgets.toolbars.ToolbarItemEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolbarItemEntry</span></code></a></p></td>
+<td><p>Type alias for the full tuple entry in the list of toolbar items.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ApplicationToolbar" title="spyder.api.widgets.toolbars.ApplicationToolbar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ApplicationToolbar</span></code></a>(parent, toolbar_id, title)</p></td>
+<td><p>A Spyder main application toolbar.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.MainWidgetToolbar" title="spyder.api.widgets.toolbars.MainWidgetToolbar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MainWidgetToolbar</span></code></a>([parent, title])</p></td>
+<td><p>A Spyder dockable plugin toolbar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.SpyderToolbar" title="spyder.api.widgets.toolbars.SpyderToolbar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpyderToolbar</span></code></a>(parent, title)</p></td>
+<td><p>This class provides toolbars with some predefined functionality.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ToolbarLocation" title="spyder.api.widgets.toolbars.ToolbarLocation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolbarLocation</span></code></a>()</p></td>
+<td><p>Pseudo-enum listing possible locations for a toolbar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spyder.api.widgets.toolbars.ToolbarStyle" title="spyder.api.widgets.toolbars.ToolbarStyle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolbarStyle</span></code></a></p></td>
+<td><p>Proxy style class to control the style of Spyder toolbars.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarItem">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ToolbarItem</span></span><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarItem" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for the set of supported objects that can be toolbar items.</p>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderAction</span></code> | <a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QWidget</span></code></a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarItemEntry">
+<span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ToolbarItemEntry</span></span><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarItemEntry" title="Link to this definition">#</a></dt>
+<dd><p>Type alias for the full tuple entry in the list of toolbar items.</p>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderAction</span></code> | <a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QWidget</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</p>
+</dd></dl>
+
 <dl class="py class">
-<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolTipFilter">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ToolTipFilter</span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ToolTipFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolTipFilter" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qobject.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QObject</span></code></a></p>
-<p>Filter tool tip events on toolbuttons.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolTipFilter.eventFilter">
-<span class="sig-name descname"><span class="pre">eventFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qobject.html" title="(in Qt5 v5.15)"><span class="pre">QObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qevent.html" title="(in Qt5 v5.15)"><span class="pre">QEvent</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ToolTipFilter.eventFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolTipFilter.eventFilter" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarLocation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ToolbarLocation</span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ToolbarLocation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarLocation" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Pseudo-enum listing possible locations for a toolbar.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarLocation.Top">
+<span class="sig-name descname"><span class="pre">Top</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#ToolBarArea-enum" title="(in Qt5 v5.15)"><span class="pre">ToolBarArea</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarLocation.Top" title="Link to this definition">#</a></dt>
+<dd><p>Toolbar at the top of the layout.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarLocation.Bottom">
+<span class="sig-name descname"><span class="pre">Bottom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/qt.html#ToolBarArea-enum" title="(in Qt5 v5.15)"><span class="pre">ToolBarArea</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarLocation.Bottom" title="Link to this definition">#</a></dt>
+<dd><p>Toolbar at the bottom of the layout.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -504,116 +539,303 @@ document.write(`
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarStyle">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ToolbarStyle</span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ToolbarStyle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarStyle" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qproxystyle.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QProxyStyle</span></code></a></p>
+<p>Proxy style class to control the style of Spyder toolbars.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2: </span>This class will be renamed to the private <code class="xref py py-class docutils literal notranslate"><span class="pre">_ToolbarStyle</span></code>
+in Spyder 6.2, while the current public name will become an alias
+raising a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> on use, and removed in 7.0.</p>
+<p>It was never intended to be used directly by plugins, and its
+functionality is automatically inherited by using the appropriate
+<a class="reference internal" href="#spyder.api.widgets.toolbars.ApplicationToolbar" title="spyder.api.widgets.toolbars.ApplicationToolbar"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplicationToolbar</span></code></a> and <a class="reference internal" href="#spyder.api.widgets.toolbars.MainWidgetToolbar" title="spyder.api.widgets.toolbars.MainWidgetToolbar"><code class="xref py py-class docutils literal notranslate"><span class="pre">MainWidgetToolbar</span></code></a> classes.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarStyle.TYPE">
+<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Application'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'MainWidget'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarStyle.TYPE" title="Link to this definition">#</a></dt>
+<dd><p>The toolbar type; must be either “Application” or “MainWidget”.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric">
-<span class="sig-name descname"><span class="pre">pixelMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ToolbarStyle.pixelMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">pixelMetric</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">pm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qstyle.html#PixelMetric-enum" title="(in Qt5 v5.15)"><span class="pre">PixelMetric</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qstyleoption.html" title="(in Qt5 v5.15)"><span class="pre">QStyleOption</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ToolbarStyle.pixelMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric" title="Link to this definition">#</a></dt>
 <dd><p>Adjust size of toolbar extension button (in pixels).</p>
-<p>From <a class="reference external" href="https://stackoverflow.com/a/27042352/438386">https://stackoverflow.com/a/27042352/438386</a></p>
+<p>From <a class="reference external" href="https://stackoverflow.com/a/27042352/438386">Stack Overflow</a>.</p>
+<p>This is a callback intended to be called internally by Qt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pm</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qstyle.html#PixelMetric-enum" title="(in Qt5 v5.15)"><em>PixelMetric</em></a>) – The pixel metric to calculate.</p></li>
+<li><p><strong>option</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qstyleoption.html" title="(in Qt5 v5.15)"><em>QStyleOption</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The current style options, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (default).</p></li>
+<li><p><strong>widget</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The widget the pixel metric will be used for,
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting pixel metric value, used internally by Qt.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – If <a class="reference internal" href="#spyder.api.widgets.toolbars.ToolbarStyle.TYPE" title="spyder.api.widgets.toolbars.ToolbarStyle.TYPE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TYPE</span></code></a> is not <code class="docutils literal notranslate"><span class="pre">&quot;Application&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;MainWidget&quot;</span></code>,
+    as then this style would do nothing.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">SpyderToolbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">SpyderToolbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://doc.qt.io/qt-5/qtoolbar.html" title="(in Qt5 v5.15)"><code class="docutils literal notranslate"><span class="pre">QToolBar</span></code></a></p>
-<p>Spyder Toolbar.</p>
 <p>This class provides toolbars with some predefined functionality.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This class isn’t intended to be used directly; use its subclasses
+<a class="reference internal" href="#spyder.api.widgets.toolbars.ApplicationToolbar" title="spyder.api.widgets.toolbars.ApplicationToolbar"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplicationToolbar</span></code></a> and <a class="reference internal" href="#spyder.api.widgets.toolbars.MainWidgetToolbar" title="spyder.api.widgets.toolbars.MainWidgetToolbar"><code class="xref py py-class docutils literal notranslate"><span class="pre">MainWidgetToolbar</span></code></a> instead.</p>
+</div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar.sig_is_rendered">
-<span class="sig-name descname"><span class="pre">sig_is_rendered</span></span><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.sig_is_rendered" title="Link to this definition">#</a></dt>
-<dd><p>This signal is emitted to let other objects know that the toolbar is now
-rendered.</p>
+<span class="sig-name descname"><span class="pre">sig_is_rendered</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/signalsandslots.html" title="(in Qt5 vQT_VERSION)"><span class="pre">Signal</span></a></em><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.sig_is_rendered" title="Link to this definition">#</a></dt>
+<dd><p>Signal to let other objects know that the toolbar is now rendered.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar.add_item">
-<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_or_widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SpyderAction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">before_section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omit_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.add_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.add_item" title="Link to this definition">#</a></dt>
-<dd><p>Add action or widget item to given toolbar <cite>section</cite>.</p>
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new toolbar object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>item</strong> (<em>SpyderAction</em><em> or </em><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a>) – The item to add to the <cite>toolbar</cite>.</p></li>
-<li><p><strong>toolbar_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – The application toolbar unique string identifier.</p></li>
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – The section id in which to insert the <cite>item</cite> on the <cite>toolbar</cite>.</p></li>
-<li><p><strong>before</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – Make the item appear before another given item.</p></li>
-<li><p><strong>before_section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – Make the item defined section appear before another given section
-(must be already defined).</p></li>
-<li><p><strong>omit_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, then the toolbar will check if the item to add declares an
-id, False otherwise. This flag exists only for items added on
-Spyder 4 plugins. Default: False</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em>) – The parent widget of this one, or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The localized title of this toolbar, to display in the UI.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar.add_item">
+<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">action_or_widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spyder.api.widgets.toolbars.ToolbarItem</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">before_section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">omit_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.add_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.add_item" title="Link to this definition">#</a></dt>
+<dd><p>Add action or widget item to the given toolbar <code class="docutils literal notranslate"><span class="pre">section</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action_or_widget</strong> (<em>ToolbarItem</em>) – The item to add to the toolbar.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The section id in which to insert the <code class="docutils literal notranslate"><span class="pre">action_or_widget</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> (default) for no section.</p></li>
+<li><p><strong>before</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Make the <code class="docutils literal notranslate"><span class="pre">action_or_widget</span></code> appear before the action with the
+identifier <code class="docutils literal notranslate"><span class="pre">before</span></code>. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), add it to the end.
+If <code class="docutils literal notranslate"><span class="pre">before</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">before_section</span></code> will be ignored.</p></li>
+<li><p><strong>before_section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – Make the <code class="docutils literal notranslate"><span class="pre">section</span></code> appear prior to <code class="docutils literal notranslate"><span class="pre">before_section</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default), add the section to the end.
+If you provide a <code class="docutils literal notranslate"><span class="pre">before</span></code> action, the new action will be placed
+before this one, so the section option will be ignored, since the
+action will now be placed in the same section as the <code class="docutils literal notranslate"><span class="pre">before</span></code>
+action.</p></li>
+<li><p><strong>omit_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the default, then the toolbar will check if
+<code class="docutils literal notranslate"><span class="pre">action.action_id</span></code> exists and is set to a string, and raise
+an <a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SpyderAPIError</span></code></a> if either is not
+the case. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, it will add the <code class="docutils literal notranslate"><span class="pre">action_or_widget</span></code> anyway.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="spyder.api.exceptions.html#spyder.api.exceptions.SpyderAPIError" title="spyder.api.exceptions.SpyderAPIError"><strong>SpyderAPIError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">omit_id</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default) and
+    <code class="docutils literal notranslate"><span class="pre">action_or_widget.action_id</span></code> does not exist or is not set to
+    a string.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar.remove_item">
-<span class="sig-name descname"><span class="pre">remove_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.remove_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.remove_item" title="Link to this definition">#</a></dt>
-<dd><p>Remove action or widget from toolbar by id.</p>
+<span class="sig-name descname"><span class="pre">remove_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.remove_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.remove_item" title="Link to this definition">#</a></dt>
+<dd><p>Remove the toolbar item with the given string identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The string identifier of the toolbar item to remove.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.SpyderToolbar.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.render" title="Link to this definition">#</a></dt>
-<dd><p>Create the toolbar taking into account sections and locations.</p>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#SpyderToolbar.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.SpyderToolbar.render" title="Link to this definition">#</a></dt>
+<dd><p>Render the toolbar taking into account sections and locations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ApplicationToolbar">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ApplicationToolbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolbar_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">ApplicationToolbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qmainwindow.html" title="(in Qt5 v5.15)"><span class="pre">QMainWindow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolbar_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#spyder.api.widgets.toolbars.SpyderToolbar" title="spyder.api.widgets.toolbars.SpyderToolbar"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderToolbar</span></code></a></p>
-<p>Spyder Main application Toolbar.</p>
+<p>A Spyder main application toolbar.</p>
+<p>These toolbars are placed above all Spyder dockable plugins in the
+interface.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ApplicationToolbar.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolbar_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qmainwindow.html" title="(in Qt5 v5.15)"><span class="pre">QMainWindow</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">toolbar_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a main Spyder application toolbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qmainwindow.html" title="(in Qt5 v5.15)"><em>QMainWindow</em></a>) – The parent main window of this toolbar.</p></li>
+<li><p><strong>toolbar_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The unique string identifier of this toolbar.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The localized name of this toolbar, displayed in the interface.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ApplicationToolbar.ID">
-<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.ID" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.ID" title="Link to this definition">#</a></dt>
 <dd><p>Unique string toolbar identifier.</p>
 <p>This is used by Qt to be able to save and restore the state of widgets.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ApplicationToolbar.__str__">
-<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.__str__" title="Link to this definition">#</a></dt>
-<dd><p>Return str(self).</p>
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.__str__" title="Link to this definition">#</a></dt>
+<dd><p>Output this toolbar’s class name and identifier as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The toolbar’s class name and string identifier, in the format
+:file:<code class="docutils literal notranslate"><span class="pre">ApplicationToolbar({TOOLBAR_ID})</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.ApplicationToolbar.__repr__">
-<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.__repr__" title="Link to this definition">#</a></dt>
-<dd><p>Return repr(self).</p>
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#ApplicationToolbar.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.ApplicationToolbar.__repr__" title="Link to this definition">#</a></dt>
+<dd><p>Output this toolbar’s class name and identifier as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The menu’s class name and string identifier, in the format
+:file:<code class="docutils literal notranslate"><span class="pre">ApplicationToolbar({TOOLBAR_ID})</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.MainWidgetToolbar">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">MainWidgetToolbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#MainWidgetToolbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spyder.api.widgets.toolbars.</span></span><span class="sig-name descname"><span class="pre">MainWidgetToolbar</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#MainWidgetToolbar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#spyder.api.widgets.toolbars.SpyderToolbar" title="spyder.api.widgets.toolbars.SpyderToolbar"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpyderToolbar</span></code></a></p>
-<p>Spyder Widget toolbar class.</p>
-<p>A toolbar used in Spyder dockable plugins to add internal toolbars
-to their interface.</p>
+<blockquote>
+<div><p>A Spyder dockable plugin toolbar.</p>
+</div></blockquote>
+<p>This is used by dockable plugins to have their own toolbars.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.MainWidgetToolbar.ID">
-<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.ID" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.ID" title="Link to this definition">#</a></dt>
 <dd><p>Unique string toolbar identifier.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="spyder.api.widgets.toolbars.MainWidgetToolbar.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#MainWidgetToolbar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><span class="pre">QWidget</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#MainWidgetToolbar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a new toolbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qwidget.html" title="(in Qt5 v5.15)"><em>QWidget</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The parent widget of this one, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (default).</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em><em>, </em><em>optional</em>) – The localized title of this toolbar, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (default) for
+no title.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spyder.api.widgets.toolbars.MainWidgetToolbar.set_icon_size">
+<span class="sig-name descname"><span class="pre">set_icon_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icon_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://doc.qt.io/qt-5/qsize.html" title="(in Qt5 v5.15)"><span class="pre">QSize</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/spyder/api/widgets/toolbars.html#MainWidgetToolbar.set_icon_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.set_icon_size" title="Link to this definition">#</a></dt>
+<dd><p>Set the icon size for this toolbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>icon_size</strong> (<a class="reference external" href="https://doc.qt.io/qt-5/qsize.html" title="(in Qt5 v5.15)"><em>QSize</em></a>) – The icon size to set.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -655,11 +877,15 @@ to their interface.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolTipFilter"><code class="docutils literal notranslate"><span class="pre">ToolTipFilter</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolTipFilter.eventFilter"><code class="docutils literal notranslate"><span class="pre">ToolTipFilter.eventFilter()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarItem"><code class="docutils literal notranslate"><span class="pre">ToolbarItem</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarItemEntry"><code class="docutils literal notranslate"><span class="pre">ToolbarItemEntry</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarLocation"><code class="docutils literal notranslate"><span class="pre">ToolbarLocation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarLocation.Top"><code class="docutils literal notranslate"><span class="pre">ToolbarLocation.Top</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarLocation.Bottom"><code class="docutils literal notranslate"><span class="pre">ToolbarLocation.Bottom</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarStyle"><code class="docutils literal notranslate"><span class="pre">ToolbarStyle</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarStyle.TYPE"><code class="docutils literal notranslate"><span class="pre">ToolbarStyle.TYPE</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.ToolbarStyle.pixelMetric"><code class="docutils literal notranslate"><span class="pre">ToolbarStyle.pixelMetric()</span></code></a></li>
 </ul>
 </li>
@@ -681,6 +907,7 @@ to their interface.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.ID"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar.ID</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.__init__"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder.api.widgets.toolbars.MainWidgetToolbar.set_icon_size"><code class="docutils literal notranslate"><span class="pre">MainWidgetToolbar.set_icon_size()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -360,30 +360,29 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for spyder.api.widgets.mixins</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="c1"># -----------------------------------------------------------------------------</span>
+<span></span><span class="c1"># -----------------------------------------------------------------------------</span>
 <span class="c1"># Copyright (c) 2013-2016 Colin Duquesnoy and others (see pyqode/AUTHORS.rst)</span>
 <span class="c1"># Copyright (c) 2016- Spyder Project Contributors (see AUTHORS.txt)</span>
 <span class="c1">#</span>
-<span class="c1"># Distributed under the terms of the MIT License</span>
+<span class="c1"># Released under the terms of the MIT License</span>
 <span class="c1"># (see NOTICE.txt in the Spyder root directory for details)</span>
 <span class="c1"># -----------------------------------------------------------------------------</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Spyder API Mixins.</span>
+<span class="sd">Mixin classes for the Spyder widget API.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="c1"># Standard library imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Third party imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QPoint</span><span class="p">,</span> <span class="n">Qt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIcon</span><span class="p">,</span> <span class="n">QImage</span><span class="p">,</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">QPixmap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QImage</span><span class="p">,</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">QPixmap</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtSvg</span><span class="w"> </span><span class="kn">import</span> <span class="n">QSvgRenderer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="p">,</span> <span class="n">QToolBar</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QToolButton</span>
-<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="p">,</span> <span class="n">QWidget</span>
 
 <span class="c1"># Local imports</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.api.config.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -399,25 +398,100 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.image_path_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_image_path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_action</span><span class="p">,</span> <span class="n">create_toolbutton</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.registries</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ACTION_REGISTRY</span><span class="p">,</span> <span class="n">MENU_REGISTRY</span><span class="p">,</span> <span class="n">TOOLBAR_REGISTRY</span><span class="p">,</span> <span class="n">TOOLBUTTON_REGISTRY</span><span class="p">)</span>
+    <span class="n">ACTION_REGISTRY</span><span class="p">,</span>
+    <span class="n">MENU_REGISTRY</span><span class="p">,</span>
+    <span class="n">TOOLBAR_REGISTRY</span><span class="p">,</span>
+    <span class="n">TOOLBUTTON_REGISTRY</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spyder.utils.stylesheet</span><span class="w"> </span><span class="kn">import</span> <span class="n">PANES_TOOLBAR_STYLESHEET</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QObject</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIcon</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAction</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QToolButton</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.utils.qthelpers</span>  <span class="c1"># For SpyderAction</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">spyder.config.types</span>  <span class="c1"># For ConfigurationKey</span>
 
 
 <div class="viewcode-block" id="SpyderToolButtonMixin">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderToolButtonMixin</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Provide methods to create, add and get toolbuttons.</span>
+<span class="sd">    Provide methods to create, add and get toolbar buttons.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderToolButtonMixin.create_toolbutton">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.create_toolbutton">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_toolbutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                          <span class="n">tip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">toggled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">triggered</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                          <span class="n">autoraise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text_beside_icon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                          <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">register</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_toolbutton</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">QIcon</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tip</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">toggled</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">triggered</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">autoraise</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">text_beside_icon</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">ConfigurationKey</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QToolButton</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a Spyder toolbutton.</span>
+<span class="sd">        Create a new Spyder toolbar button.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            Unique identifier for the toolbutton.</span>
+<span class="sd">        text: str | None, optional</span>
+<span class="sd">           Localized text for the toolbutton, displayed in the interface.</span>
+<span class="sd">           If ``None``, the default, no text is shown.</span>
+<span class="sd">        icon: QIcon | str | None, optional</span>
+<span class="sd">            Icon name or object to use in the toolbutton.</span>
+<span class="sd">            If ``None``, the default, no icon is shown.</span>
+<span class="sd">        tip: str | None, optional</span>
+<span class="sd">            Tooltip text for the toolbutton.</span>
+<span class="sd">            If ``None`` (the default), no tooltip is shown.</span>
+<span class="sd">        toggled: Callable[[Any], None] | bool | None, optional</span>
+<span class="sd">            If ``None`` (default) then the button doesn&#39;t act like a checkbox.</span>
+<span class="sd">            If ``True``, then the button modifies the configuration ``option``</span>
+<span class="sd">            on the ``section`` specified (or the default</span>
+<span class="sd">            :attr:`~spyder.api.plugins.SpyderPluginV2.CONF_SECTION` if</span>
+<span class="sd">            ``section`` is not set). Otherwise, must be a callable,</span>
+<span class="sd">            called when toggling this button. One of ``toggled`` and</span>
+<span class="sd">            ``triggered`` must not be ``None``.</span>
+<span class="sd">        triggered: Callable[[], None] | None, optional</span>
+<span class="sd">            If a callable, will be called when triggering this button.</span>
+<span class="sd">            Otherwise, if ``None`` (the default), this will not be a</span>
+<span class="sd">            triggered button and ``toggled`` must be non-``None`` instead.</span>
+<span class="sd">        autoraise : bool, optional</span>
+<span class="sd">            If ``True`` (the default), the button will only draw a 3D frame</span>
+<span class="sd">            when hovered over. If ``False``, will draw the button frame</span>
+<span class="sd">            all the time.</span>
+<span class="sd">        text_beside_icon : bool, optional</span>
+<span class="sd">            If ``True``, the button text will be displayed beside the icon.</span>
+<span class="sd">            If ``False`` (the default), will only show the icon.</span>
+<span class="sd">        section: str | None, optional</span>
+<span class="sd">            Name of the configuration section whose ``option`` is going to be</span>
+<span class="sd">            modified. If ``None`` (the default) and ``option`` is not ``None``,</span>
+<span class="sd">            then it defaults to the class&#39;</span>
+<span class="sd">            :attr:`~spyder.api.plugins.SpyderPluginV2.CONF_SECTION` attribute.</span>
+<span class="sd">        option: spyder.config.types.ConfigurationKey | None, optional</span>
+<span class="sd">            Name of the configuration option whose value is reflected and</span>
+<span class="sd">            affected by the button. If ``None`` (the default), no option</span>
+<span class="sd">            is associated with this button, e.g. for buttons that are</span>
+<span class="sd">            ``triggered`` rather than ``toggled``.</span>
+<span class="sd">        register_action: bool, optional</span>
+<span class="sd">            If ``True`` (default) the action will be registered and searchable.</span>
+<span class="sd">            If ``False``, the action will be created but not registered.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QToolButton</span>
+<span class="sd">            The toolbar button object that was created.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">toggled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">toggled</span><span class="p">):</span>
             <span class="n">toggled</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="kc">None</span>
@@ -441,7 +515,7 @@ document.write(`
             <span class="n">id_</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">plugin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span>
             <span class="n">context_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span><span class="p">,</span>
-            <span class="n">register_toolbutton</span><span class="o">=</span><span class="n">register</span>
+            <span class="n">register_toolbutton</span><span class="o">=</span><span class="n">register</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">toolbutton</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
@@ -455,33 +529,39 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderToolButtonMixin.get_toolbutton">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.get_toolbutton">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                       <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QToolButton</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbutton</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QToolButton</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return toolbutton by name, plugin and context.</span>
+<span class="sd">        Retrieve a toolbar button by name, context and plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            Name of the toolbutton to retrieve.</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the toolbutton was stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the toolbutton was defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">            Identifier of the toolbutton to retrieve.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the toolbutton was stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the toolbutton was defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        toolbutton: QToolButton</span>
-<span class="sd">            The corresponding toolbutton stored under the given `name`,</span>
-<span class="sd">            `context` and `plugin`.</span>
+<span class="sd">        QToolButton</span>
+<span class="sd">            The corresponding toolbutton widget stored under the given</span>
+<span class="sd">            ``name``, ``context`` and ``plugin``.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        KeyError</span>
-<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
-<span class="sd">            toolbutton registry.</span>
+<span class="sd">            If the combination of ``name``, ``context`` and ``plugin`` keys</span>
+<span class="sd">            does not exist in the toolbutton registry.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -490,25 +570,28 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderToolButtonMixin.get_toolbuttons">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolButtonMixin.get_toolbuttons">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbuttons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                        <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QToolButton</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbuttons</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QToolButton</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return all toolbuttons defined by a context on a given plugin.</span>
+<span class="sd">        Return all toolbar buttons defined by a context on a given plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the toolbuttons were</span>
-<span class="sd">            stored. If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the toolbuttons were defined.</span>
-<span class="sd">            If None, then `PLUGIN_NAME` is used.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the toolbuttons were stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the toolbuttons were defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        toolbuttons: Dict[str, QToolButton]</span>
-<span class="sd">            A dictionary that maps string keys to their corresponding</span>
-<span class="sd">            toolbuttons.</span>
+<span class="sd">        dict[str, QToolButton]</span>
+<span class="sd">            A dictionary that maps identifier name keys to their corresponding</span>
+<span class="sd">            toolbutton objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -526,22 +609,66 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderToolbarMixin.add_item_to_toolbar">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.add_item_to_toolbar">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_item_to_toolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_or_widget</span><span class="p">,</span> <span class="n">toolbar</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                            <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">before_section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_item_to_toolbar</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">action_or_widget</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span> <span class="o">|</span> <span class="n">QWidget</span><span class="p">,</span>
+        <span class="n">toolbar</span><span class="p">:</span> <span class="n">SpyderToolbar</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">before</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">before_section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If you provide a `before` action, the action will be placed before this</span>
-<span class="sd">        one, so the section option will be ignored, since the action will now</span>
-<span class="sd">        be placed in the same section as the `before` action.</span>
+<span class="sd">        Add the given action or widget to this toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        action_or_widget : spyder.utils.qthelpers.SpyderAction | QWidget</span>
+<span class="sd">            The action or widget to add to the toolbar.</span>
+<span class="sd">        toolbar : SpyderToolbar</span>
+<span class="sd">            The toolbar object to add ``action_or_widget`` to.</span>
+<span class="sd">        section: str | None, optional</span>
+<span class="sd">            The section id in which to insert the ``action_or_widget``,</span>
+<span class="sd">            or ``None`` (default) for no section.</span>
+<span class="sd">        before: str | None, optional</span>
+<span class="sd">            Make the ``action_or_widget`` appear before the action with the</span>
+<span class="sd">            identifier ``before``. If ``None`` (default), add it to the end.</span>
+<span class="sd">            If ``before`` is not ``None``, ``before_section`` will be ignored.</span>
+<span class="sd">        before_section : str | None, optional</span>
+<span class="sd">            Make the ``section`` appear prior to ``before_section``.</span>
+<span class="sd">            If ``None`` (the default), add the section to the end.</span>
+<span class="sd">            If you provide a ``before`` action, the new action will be placed</span>
+<span class="sd">            before this one, so the section option will be ignored, since the</span>
+<span class="sd">            action will now be placed in the same section as the ``before``</span>
+<span class="sd">            action.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">toolbar</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">action_or_widget</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
-                         <span class="n">before_section</span><span class="o">=</span><span class="n">before_section</span><span class="p">)</span></div>
+        <span class="n">toolbar</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span>
+            <span class="n">action_or_widget</span><span class="p">,</span>
+            <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
+            <span class="n">before</span><span class="o">=</span><span class="n">before</span><span class="p">,</span>
+            <span class="n">before_section</span><span class="o">=</span><span class="n">before_section</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderToolbarMixin.create_stretcher">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.create_stretcher">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_stretcher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_stretcher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QWidget</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a stretcher widget to be used in a Qt toolbar.</span>
+<span class="sd">        Create a stretcher widget to be used in a Spyder toolbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        id_ : str | None, optional</span>
+<span class="sd">            The identifier for the stretcher widget. If ``None`` (the default),</span>
+<span class="sd">            no id will be set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QWidget</span>
+<span class="sd">            The created stretcher widget.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">stretcher</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">stretcher</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Expanding</span><span class="p">)</span>
@@ -554,9 +681,7 @@ document.write(`
 <div class="viewcode-block" id="SpyderToolbarMixin.create_toolbar">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.create_toolbar">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_toolbar</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderToolbar</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Spyder toolbar.</span>
@@ -564,9 +689,15 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            Name of the toolbar to create.</span>
-<span class="sd">        register: bool</span>
-<span class="sd">            Whether to register the toolbar in the global registry.</span>
+<span class="sd">            Unique string identifier name of the toolbar to create.</span>
+<span class="sd">        register: bool, optional</span>
+<span class="sd">            If ``True`` (default), register the toolbar in the global registry.</span>
+<span class="sd">            If ``False``, don&#39;t register it.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        SpyderToolbar</span>
+<span class="sd">            The created toolbar object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">toolbar</span> <span class="o">=</span> <span class="n">SpyderToolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">toolbar</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">PANES_TOOLBAR_STYLESHEET</span><span class="p">))</span>
@@ -579,33 +710,39 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderToolbarMixin.get_toolbar">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.get_toolbar">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QToolBar</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbar</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderToolbar</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return toolbar by name, plugin and context.</span>
+<span class="sd">        Return toolbar by name, context and plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            Name of the toolbar to retrieve.</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the toolbar was stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the toolbar was defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">            Identifier of the toolbar to retrieve.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the toolbar was stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the toolbar was defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        toolbar: QToolBar</span>
-<span class="sd">            The corresponding toolbar stored under the given `name`, `context`</span>
-<span class="sd">            and `plugin`.</span>
+<span class="sd">        SpyderToolbar</span>
+<span class="sd">            The corresponding toolbar widget stored under the given</span>
+<span class="sd">            ``name``, ``context`` and ``plugin``.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        KeyError</span>
-<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
-<span class="sd">            toolbar registry.</span>
+<span class="sd">            If the combination of ``name``, ``context`` and ``plugin`` keys</span>
+<span class="sd">            does not exist in the toolbar registry.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -614,24 +751,28 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderToolbarMixin.get_toolbars">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderToolbarMixin.get_toolbars">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QToolBar</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolbars</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SpyderToolbar</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return all toolbars defined by a context on a given plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the toolbars were stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the toolbars were defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the toolbars were stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the toolbars were defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        toolbars: Dict[str, QToolBar]</span>
-<span class="sd">            A dictionary that maps string keys to their corresponding toolbars.</span>
+<span class="sd">        dict[str, SpyderToolbar]</span>
+<span class="sd">            A dictionary that maps identifier name keys to their corresponding</span>
+<span class="sd">            toolbar objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -652,13 +793,46 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderMenuMixin.add_item_to_menu">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.add_item_to_menu">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_item_to_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_or_menu</span><span class="p">,</span> <span class="n">menu</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                         <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">before_section</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_item_to_menu</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">action_or_menu</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span> <span class="o">|</span> <span class="n">SpyderMenu</span><span class="p">,</span>
+        <span class="n">menu</span><span class="p">:</span> <span class="n">SpyderMenu</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">before</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">before_section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a SpyderAction or a QWidget to the menu.</span>
+<span class="sd">        Add the given action or widget to the menu.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        action_or_menu : spyder.utils.qthelpers.SpyderAction | SpyderMenu</span>
+<span class="sd">            The action or submenu to add to the menu.</span>
+<span class="sd">        menu : SpyderMenu</span>
+<span class="sd">            The menu object to add ``action_or_menu`` to.</span>
+<span class="sd">        section: str | None, optional</span>
+<span class="sd">            The section id in which to insert the ``action_or_menu``,</span>
+<span class="sd">            or ``None`` (default) for no section.</span>
+<span class="sd">        before: str | None, optional</span>
+<span class="sd">            Make the ``action_or_menu`` appear before the action with the</span>
+<span class="sd">            identifier ``before``. If ``None`` (default), add it to the end.</span>
+<span class="sd">            If ``before`` is not ``None``, ``before_section`` will be ignored.</span>
+<span class="sd">        before_section : str | None, optional</span>
+<span class="sd">            Make the ``section`` appear prior to ``before_section``.</span>
+<span class="sd">            If ``None`` (the default), add the section to the end.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        SpyderAPIError</span>
+<span class="sd">            If ``menu`` is not an instance of</span>
+<span class="sd">            :class:`~spyder.api.widgets.menus.SpyderMenu`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">SpyderMenu</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="s1">&#39;Menu must be an instance of SpyderMenu!&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span><span class="s2">&quot;Menu must be an instance of SpyderMenu!&quot;</span><span class="p">)</span>
 
         <span class="n">menu</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span>
             <span class="n">action_or_menu</span><span class="p">,</span>
@@ -671,13 +845,13 @@ document.write(`
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_menu</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">menu_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QWidget</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">icon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QIcon</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">reposition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">QIcon</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reposition</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">min_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">MenuClass</span><span class="o">=</span><span class="n">SpyderMenu</span>
+        <span class="n">min_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">MenuClass</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">SpyderMenu</span><span class="p">]</span> <span class="o">=</span> <span class="n">SpyderMenu</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderMenu</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a SpyderMenu or a subclass of it.</span>
@@ -689,7 +863,7 @@ document.write(`
 <span class="sd">        * Refer to the documentation for `SpyderMenu` to learn about its args.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">register</span><span class="p">:</span>
-            <span class="n">menus</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_menus&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">menus</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_menus&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">menus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
 
@@ -703,7 +877,7 @@ document.write(`
             <span class="n">menu_id</span><span class="o">=</span><span class="n">menu_id</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
             <span class="n">min_width</span><span class="o">=</span><span class="n">min_width</span><span class="p">,</span>
-            <span class="n">reposition</span><span class="o">=</span><span class="n">reposition</span>
+            <span class="n">reposition</span><span class="o">=</span><span class="n">reposition</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">icon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -723,10 +897,10 @@ document.write(`
     <span class="k">def</span><span class="w"> </span><span class="nf">create_menu</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">menu_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">icon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QIcon</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">reposition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">QIcon</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reposition</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">register</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderMenu</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a menu for Spyder.</span>
@@ -734,27 +908,29 @@ document.write(`
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        menu_id: str</span>
-<span class="sd">            Unique str identifier for the menu.</span>
-<span class="sd">        title: str or None</span>
-<span class="sd">            Localized text string for the menu.</span>
-<span class="sd">        icon: QIcon or None</span>
-<span class="sd">            Icon to use for the menu.</span>
-<span class="sd">        reposition: bool, optional (default True)</span>
-<span class="sd">            Whether to vertically reposition the menu due to its padding.</span>
-<span class="sd">        register: bool</span>
-<span class="sd">            Whether to register the menu in the global registry.</span>
+<span class="sd">            Unique string identifier name for the menu to create.</span>
+<span class="sd">        title: str | None, optional</span>
+<span class="sd">            Localized title for the menu.</span>
+<span class="sd">        icon: QIcon | None, optional</span>
+<span class="sd">            Icon object to use for the menu.</span>
+<span class="sd">        reposition: bool, optional</span>
+<span class="sd">            If ``True`` (the default), vertically reposition the menu per</span>
+<span class="sd">            its padding. If ``False``, don&#39;t reposition.</span>
+<span class="sd">        register: bool, optional</span>
+<span class="sd">            If ``True`` (default), register the menu in the global registry.</span>
+<span class="sd">            If ``False``, don&#39;t register it.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        SpyderMenu</span>
-<span class="sd">            The created menu.</span>
+<span class="sd">            The created menu object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_menu</span><span class="p">(</span>
             <span class="n">menu_id</span><span class="o">=</span><span class="n">menu_id</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
             <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span>
             <span class="n">reposition</span><span class="o">=</span><span class="n">reposition</span><span class="p">,</span>
-            <span class="n">register</span><span class="o">=</span><span class="n">register</span>
+            <span class="n">register</span><span class="o">=</span><span class="n">register</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -763,34 +939,36 @@ document.write(`
     <span class="k">def</span><span class="w"> </span><span class="nf">get_menu</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpyderMenu</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return a menu by name, plugin and context.</span>
+<span class="sd">        Return a menu by name, context and plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            Name of the menu to retrieve.</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the menu was stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the menu was defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">            Identifier of the menu to retrieve.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the menu was stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the menu was defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        menu: SpyderMenu</span>
-<span class="sd">            The corresponding menu stored under the given `name`, `context`</span>
-<span class="sd">            and `plugin`.</span>
+<span class="sd">        SpyderMenu</span>
+<span class="sd">            The corresponding menu widget stored under the given</span>
+<span class="sd">            ``name``, ``context`` and ``plugin``.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        KeyError</span>
-<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
-<span class="sd">            menu registry.</span>
+<span class="sd">            If the combination of ``name``, ``context`` and ``plugin`` keys</span>
+<span class="sd">            does not exist in the menu registry.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -799,24 +977,28 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderMenuMixin.get_menus">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMenuMixin.get_menus">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                  <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SpyderMenu</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_menus</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SpyderMenu</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return all menus defined by a context on a given plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the menus were stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the menus were defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the menus were stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the menus were defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        menus: Dict[str, SpyderMenu]</span>
-<span class="sd">            A dictionary that maps string keys to their corresponding menus.</span>
+<span class="sd">        dict[str, SpyderMenu]</span>
+<span class="sd">            A dictionary that maps identifier name keys to their corresponding</span>
+<span class="sd">            menu objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -834,7 +1016,7 @@ document.write(`
 <span class="sd">    This mixin uses a custom action object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_action_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_action_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This allows to update the state of a togglable action without emitting</span>
 <span class="sd">        signals.</span>
@@ -856,82 +1038,141 @@ document.write(`
     <span class="c1"># name where it is applied).</span>
 <div class="viewcode-block" id="SpyderActionMixin.create_action">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.create_action">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">icon_text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">tip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">toggled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">triggered</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">shortcut</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shortcut_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">context</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">WidgetWithChildrenShortcut</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">register_shortcut</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">register_action</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                      <span class="n">context_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">menurole</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_action</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">icon</span><span class="p">:</span> <span class="n">QIcon</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">icon_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">tip</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">toggled</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">triggered</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">shortcut</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">shortcut_context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">context</span><span class="p">:</span> <span class="n">Qt</span><span class="o">.</span><span class="n">ShortcutContext</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">WidgetWithChildrenShortcut</span><span class="p">,</span>
+        <span class="n">initial</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">register_shortcut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">section</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">:</span> <span class="n">spyder</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">ConfigurationKey</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">register_action</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">context_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">menurole</span><span class="p">:</span> <span class="n">QAction</span><span class="o">.</span><span class="n">MenuRole</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new Spyder-specialized :class:`QAction`.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            There is no need to set a shortcut when creating an action,</span>
+<span class="sd">            unless it&#39;s a fixed (non-customizable) one. Otherwise, set the</span>
+<span class="sd">            ``register_shortcut`` argument to ``True``. If the shortcut is</span>
+<span class="sd">            found in the ``shortcuts`` config section of your plugin,</span>
+<span class="sd">            then it&#39;ll be assigned; if not, it&#39;ll be left blank for the</span>
+<span class="sd">            user to define it in Spyder :guilabel:`Preferences`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            unique identifiable name for the action</span>
+<span class="sd">            Unique identifier for the action.</span>
 <span class="sd">        text: str</span>
-<span class="sd">           Localized text for the action</span>
-<span class="sd">        icon: QIcon,</span>
-<span class="sd">            Icon for the action when applied to menu or toolbutton.</span>
-<span class="sd">        icon_text: str</span>
-<span class="sd">            Icon for text in toolbars. If True, this will also disable</span>
-<span class="sd">            the tooltip on this toolbutton if part of a toolbar.</span>
-<span class="sd">        tip: str</span>
-<span class="sd">            Tooltip to define for action on menu or toolbar.</span>
-<span class="sd">        toggled: Optional[Union[Callable, bool]]</span>
-<span class="sd">            If True, then the action modifies the configuration option on the</span>
-<span class="sd">            section specified. Otherwise, it should be a callable to use</span>
-<span class="sd">            when toggling this action. If None, then the action does not</span>
-<span class="sd">            behave like a checkbox.</span>
-<span class="sd">        triggered: callable</span>
-<span class="sd">            The callable to use when triggering this action.</span>
-<span class="sd">        data: Any</span>
-<span class="sd">            Data to be set on the action.</span>
-<span class="sd">        shortcut_context: str</span>
-<span class="sd">            Set the `str` context of the shortcut.</span>
-<span class="sd">        context: Qt.ShortcutContext</span>
-<span class="sd">            Set the context for the shortcut.</span>
-<span class="sd">        initial: object</span>
-<span class="sd">            Sets the initial state of a togglable action. This does not emit</span>
-<span class="sd">            the toggled signal.</span>
-<span class="sd">        section: Optional[str]</span>
-<span class="sd">            Name of the configuration section whose option is going to be</span>
-<span class="sd">            modified. If None, and `option` is not None, then it defaults to</span>
-<span class="sd">            the class `CONF_SECTION` attribute.</span>
-<span class="sd">        option: ConfigurationKey</span>
-<span class="sd">            Name of the configuration option whose value is reflected and</span>
-<span class="sd">            affected by the action.</span>
+<span class="sd">           Localized text for the action, displayed in the interface.</span>
+<span class="sd">        icon: QIcon | str | None, optional</span>
+<span class="sd">            Icon name or object for the action when used in menus/toolbuttons.</span>
+<span class="sd">            If ``None``, the default, no icon is shown.</span>
+<span class="sd">        icon_text: str, optional</span>
+<span class="sd">            Descriptive text for the action&#39;s ``icon``. If a non-empty string</span>
+<span class="sd">            is passed, this will also disable the tooltip on this toolbutton</span>
+<span class="sd">            if part of a toolbar. If the empty string (``&quot;&quot;``) (the default),</span>
+<span class="sd">            no icon text is set and the tooltip will not be disabled.</span>
+<span class="sd">        tip: str | None, optional</span>
+<span class="sd">            Tooltip text for the action when used in menus or toolbars.</span>
+<span class="sd">            If ``None`` (the default), no tooltip is shown.</span>
+<span class="sd">        toggled: Callable[[Any], None] | bool | None, optional</span>
+<span class="sd">            If ``None`` (default) then the action doesn&#39;t act like a checkbox.</span>
+<span class="sd">            If ``True``, then the action modifies the configuration ``option``</span>
+<span class="sd">            on the ``section`` specified (or the default</span>
+<span class="sd">            :attr:`~spyder.api.plugins.SpyderPluginV2.CONF_SECTION` if</span>
+<span class="sd">            ``section`` is not set). Otherwise, must be a callable,</span>
+<span class="sd">            called when toggling this action. One of ``toggled`` and</span>
+<span class="sd">            ``triggered`` must not be ``None``.</span>
+<span class="sd">        triggered: Callable[[], None] | None, optional</span>
+<span class="sd">            If a callable, will be called when triggering this action.</span>
+<span class="sd">            Otherwise, if ``None`` (the default), this will not be a</span>
+<span class="sd">            triggered action and ``toggled`` must be non-``None`` instead.</span>
+<span class="sd">        data: Any | None, optional</span>
+<span class="sd">            Arbitrary user data to be set on the action.</span>
+<span class="sd">            If ``None``, the default, no custom data is set.</span>
+<span class="sd">        shortcut: str | None, optional</span>
+<span class="sd">            A fixed (not configurable) keyboard shortcut to use for the action,</span>
+<span class="sd">            in cases where it is not practical for the user to configure the</span>
+<span class="sd">            shortcut. If ``None`` (the default), no fixed shortcut is set.</span>
+<span class="sd">            For a normal configurable shortcut, you instead need to set</span>
+<span class="sd">            ``register_shortcut`` to ``True`` and list the shortcut</span>
+<span class="sd">            as one of the plugin&#39;s configuration options.</span>
+<span class="sd">            See :mod:`spyder.api.shortcuts` for more details.</span>
+<span class="sd">        shortcut_context: str | None, optional</span>
+<span class="sd">            The context name of the fixed ``shortcut``. ``None`` (the default)</span>
+<span class="sd">            for no context or no shortcut. Use ``&quot;_&quot;`` for global shortcuts (</span>
+<span class="sd">            i.e. that can be used anywhere in the application).</span>
+<span class="sd">        context: Qt.ShortcutContext, optional</span>
+<span class="sd">            Set the context object for the fixed shortcut.</span>
+<span class="sd">            By default, ``Qt.WidgetWithChildrenShortcut``.</span>
+<span class="sd">        initial: bool | None, optional</span>
+<span class="sd">            Set the initial state of a togglable action. This does not emit</span>
+<span class="sd">            the toggled signal. If ``None``, the default, no initial state.</span>
 <span class="sd">        register_shortcut: bool, optional</span>
-<span class="sd">            If True, main window will expose the shortcut in Preferences.</span>
-<span class="sd">            The default value is `False`.</span>
-<span class="sd">        parent: QWidget (None)</span>
-<span class="sd">            Define the parent of the widget. Use `self` if not provided.</span>
+<span class="sd">            If ``True``, the main window will expose the shortcut in the</span>
+<span class="sd">            Spyder :guilabel:`Preferences`. If ``False``, the default,</span>
+<span class="sd">            the shortcut will not be registered.</span>
+<span class="sd">        section: str | None, optional</span>
+<span class="sd">            Name of the configuration section whose ``option`` is going to be</span>
+<span class="sd">            modified. If ``None`` (the default) and ``option`` is not ``None``,</span>
+<span class="sd">            then it defaults to the class&#39;</span>
+<span class="sd">            :attr:`~spyder.api.plugins.SpyderPluginV2.CONF_SECTION` attribute.</span>
+<span class="sd">        option: spyder.config.types.ConfigurationKey | None, optional</span>
+<span class="sd">            Name of the configuration option whose value is reflected and</span>
+<span class="sd">            affected by the action. If ``None`` (the default), no option</span>
+<span class="sd">            is associated with this action, e.g. for actions that are</span>
+<span class="sd">            ``triggered`` rather than ``toggled``.</span>
+<span class="sd">        parent: QWidget | None, optional</span>
+<span class="sd">            The parent of this widget. If ``None``, the default, uses</span>
+<span class="sd">            this instance object itself as the parent.</span>
 <span class="sd">        register_action: bool, optional</span>
-<span class="sd">            If True, the action will be registered and searchable.</span>
-<span class="sd">            The default value is `True`.</span>
+<span class="sd">            If ``True`` (default) the action will be registered and searchable.</span>
+<span class="sd">            If ``False``, the action will be created but not registered.</span>
 <span class="sd">        overwrite: bool, optional</span>
-<span class="sd">            If True, in case of action overwriting no warning will be shown.</span>
-<span class="sd">            The default value is `False`</span>
-<span class="sd">        context_name: Optional[str]</span>
-<span class="sd">            Name of the context that holds the action in case of registration.</span>
-<span class="sd">            The combination of `name` and `context_name` is unique so trying</span>
-<span class="sd">            to register an action with the same `name` and `context_name` will</span>
-<span class="sd">            cause a warning unless `overwrite` is set to `True`.</span>
-<span class="sd">        menurole: QAction.MenuRole, optional</span>
-<span class="sd">            Menu role for the action (it only has effect on macOS).</span>
+<span class="sd">            If ``False`` (the default) and this action overwrites another</span>
+<span class="sd">            with the same ``name`` and ``context_name``, raise a warning.</span>
+<span class="sd">            Set to ``True`` to disable this warning if intentionally</span>
+<span class="sd">            overwriting another action.</span>
+<span class="sd">        context_name: str | None, optional</span>
+<span class="sd">            Name of the context that holds the action when registered.</span>
+<span class="sd">            The combination of ``name`` and ``context_name`` must be unique,</span>
+<span class="sd">            and registering an action with the same ``name`` &amp; `context_name``</span>
+<span class="sd">            will raise a warning by default unless ``overwrite`` is ``True``.</span>
+<span class="sd">        menurole: QAction.MenuRole | None, optional</span>
+<span class="sd">            Menu role for the action. Only has an effect on macOS.</span>
 
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        There is no need to set shortcuts right now. We only create actions</span>
-<span class="sd">        with this (and similar methods) and these are then exposed as possible</span>
-<span class="sd">        shortcuts on plugin registration in the main window with the</span>
-<span class="sd">        register_shortcut argument.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        spyder.utils.qthelpers.SpyderAction</span>
+<span class="sd">            The Spyder action object that was created</span>
+<span class="sd">            (a specialized :class:`QAction`).</span>
 
-<span class="sd">        If icon_text is True, this will also disable the tooltip.</span>
-
-<span class="sd">        If a shortcut is found in the default config then it is assigned,</span>
-<span class="sd">        otherwise it&#39;s left blank for the user to define one for it.</span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        SpyderAPIError</span>
+<span class="sd">            If both ``triggered`` and ``toggled`` are ``None``, as at least one</span>
+<span class="sd">            must be provided; or if both ``initial`` is ``True`` and</span>
+<span class="sd">            ``triggered`` is not ``None``, as initial values can only apply to</span>
+<span class="sd">            ``toggled`` actions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">triggered</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">toggled</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
-                <span class="s1">&#39;Action must provide the toggled or triggered parameters!&#39;</span>
+                <span class="s2">&quot;Action must provide the toggled or triggered parameters!&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -959,10 +1200,11 @@ document.write(`
             <span class="n">id_</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">plugin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span><span class="p">,</span>
             <span class="n">context_name</span><span class="o">=</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context_name</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context_name</span>
+            <span class="p">),</span>
             <span class="n">register_action</span><span class="o">=</span><span class="n">register_action</span><span class="p">,</span>
             <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">,</span>
-            <span class="n">menurole</span><span class="o">=</span><span class="n">menurole</span>
+            <span class="n">menurole</span><span class="o">=</span><span class="n">menurole</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">action</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="k">if</span> <span class="n">icon_text</span><span class="p">:</span>
@@ -978,7 +1220,8 @@ document.write(`
                 <span class="n">action</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">triggered</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">SpyderAPIError</span><span class="p">(</span>
-                    <span class="s1">&#39;Initial values can only apply to togglable actions!&#39;</span><span class="p">)</span>
+                    <span class="s2">&quot;Initial values can only apply to togglable actions!&quot;</span>
+                <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">toggled</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -990,33 +1233,39 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderActionMixin.get_action">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.get_action">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                   <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an action by name, context and plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
-<span class="sd">            Name of the action to retrieve.</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the action was stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the action was defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">            Identifier of the action to retrieve.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the action was stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the action was defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        action: SpyderAction</span>
-<span class="sd">            The corresponding action stored under the given `name`, `context`</span>
-<span class="sd">            and `plugin`.</span>
+<span class="sd">        spyder.utils.qthelpers.SpyderAction</span>
+<span class="sd">            The corresponding action widget stored under the given</span>
+<span class="sd">            ``name``, ``context`` and ``plugin``.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        KeyError</span>
-<span class="sd">            If either of `name`, `context` or `plugin` keys do not exist in the</span>
-<span class="sd">            action registry.</span>
+<span class="sd">            If the combination of ``name``, ``context`` and ``plugin`` keys</span>
+<span class="sd">            does not exist in the action registry.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -1026,40 +1275,43 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderActionMixin.get_actions">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.get_actions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="n">plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_actions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">spyder</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">qthelpers</span><span class="o">.</span><span class="n">SpyderAction</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return all actions defined by a context on a given plugin.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        context: Optional[str]</span>
-<span class="sd">            Widget or context identifier under which the actions were stored.</span>
-<span class="sd">            If None, then `CONTEXT_NAME` is used instead</span>
-<span class="sd">        plugin: Optional[str]</span>
-<span class="sd">            Name of the plugin where the actions were defined. If None, then</span>
-<span class="sd">            `PLUGIN_NAME` is used.</span>
+<span class="sd">        context: str | None, optional</span>
+<span class="sd">            Context identifier under which the actions were stored.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.CONTEXT_NAME` attribute is used instead.</span>
+<span class="sd">        plugin: str | None, optional</span>
+<span class="sd">            Identifier of the plugin in which the actions were defined.</span>
+<span class="sd">            If ``None``, the default, then the</span>
+<span class="sd">            :attr:`~SpyderWidgetMixin.PLUGIN_NAME` attribute is used instead.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        actions: Dict[str, SpyderAction]</span>
-<span class="sd">            A dictionary that maps string keys to their corresponding actions.</span>
+<span class="sd">        dict[str, spyder.utils.qthelpers.SpyderAction]</span>
+<span class="sd">            A dictionary that maps identifier name keys to their corresponding</span>
+<span class="sd">            action objects.</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        1. Actions should be created once. Creating new actions on menu popup</span>
-<span class="sd">           is *highly* discouraged.</span>
-<span class="sd">        2. Actions can be created directly on a PluginMainWidget or</span>
-<span class="sd">           PluginMainContainer subclass. Child widgets can also create</span>
-<span class="sd">           actions, but they need to subclass SpyderWidgetMixin.</span>
-<span class="sd">        3. PluginMainWidget or PluginMainContainer will collect any actions</span>
-<span class="sd">           defined in subwidgets (if defined) and expose them in the</span>
-<span class="sd">           get_actions method at the plugin level.</span>
-<span class="sd">        4. Any action created this way is now exposed as a possible shortcut</span>
-<span class="sd">           automatically without manual shortcut registration.</span>
-<span class="sd">           If an option is found in the config system then it is assigned,</span>
-<span class="sd">           otherwise it&#39;s left with an empty shortcut.</span>
-<span class="sd">        5. There is no need to override this method.</span>
+<span class="sd">        * Actions should only be created once. Creating new actions on menu</span>
+<span class="sd">          popup is *highly* discouraged.</span>
+<span class="sd">        * Actions can be created directly on a</span>
+<span class="sd">          :class:`~spyder.api.widgets.main_widget.PluginMainWidget` or</span>
+<span class="sd">          :class:`~spyder.api.widgets.main_container.PluginMainContainer`</span>
+<span class="sd">          subclass. Child widgets can also create actions, but they need to</span>
+<span class="sd">          subclass this class or :class:`SpyderWidgetMixin`.</span>
+<span class="sd">        * :class:`~spyder.api.widgets.main_widget.PluginMainWidget` or</span>
+<span class="sd">          :class:`~spyder.api.widgets.main_container.PluginMainContainer`</span>
+<span class="sd">          will collect any actions defined in subwidgets (if defined)</span>
+<span class="sd">          and expose them in the ``get_actions`` method at the plugin level.</span>
+<span class="sd">        * There is no need to override this method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_NAME</span> <span class="k">if</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">plugin</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTEXT_NAME</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">context</span>
@@ -1068,13 +1320,23 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderActionMixin.update_actions">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderActionMixin.update_actions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the state of exposed actions.</span>
 
-<span class="sd">        Exposed actions are actions created by the `create_action` method.</span>
+<span class="sd">        Exposed actions are actions created by the :meth:`create_action`</span>
+<span class="sd">        method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            If this method is not implemented by the plugin, as is required.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 </div>
 
 
@@ -1095,17 +1357,51 @@ document.write(`
 <span class="sd">    for defining the actions a widget provides.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Plugin name identifier used to store actions, toolbars, toolbuttons</span>
-    <span class="c1"># and menus</span>
-    <span class="n">PLUGIN_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">PLUGIN_NAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plugin name in the action, toolbar, toolbutton &amp; menu registries.</span>
 
-    <span class="c1"># Context name used to store actions, toolbars, toolbuttons and menus</span>
-    <span class="n">CONTEXT_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="sd">    Usually the same as</span>
+<span class="sd">    :attr:`SpyderPluginV2.NAME &lt;spyder.api.plugins.SpyderPluginV2.NAME&gt;`,</span>
+<span class="sd">    but may be different from :attr:`CONTEXT_NAME`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONTEXT_NAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The name under which to store actions, toolbars, toolbuttons and menus.</span>
+
+<span class="sd">    This optional attribute defines the context name under which actions,</span>
+<span class="sd">    toolbars, toolbuttons and menus should be registered in the</span>
+<span class="sd">    Spyder global registry.</span>
+
+<span class="sd">    If those elements belong to the global scope of the plugin, then this</span>
+<span class="sd">    attribute should have a ``None`` value, which will use the plugin&#39;s name as</span>
+<span class="sd">    the context scope</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SpyderWidgetMixin.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CONF_SECTION&#39;</span><span class="p">,</span> <span class="s1">&#39;PLUGIN_NAME&#39;</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">class_parent</span><span class="p">:</span> <span class="n">QObject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add methods and attributes for most Spyder widgets.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        class_parent : QObject | None, optional</span>
+<span class="sd">            The parent object of this object&#39;s class, or ``None`` (default).</span>
+<span class="sd">            Typically the plugin object.</span>
+<span class="sd">        parent : QWidget | None, optional</span>
+<span class="sd">            The parent widget of this one, or ``None`` (default).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;CONF_SECTION&quot;</span><span class="p">,</span> <span class="s2">&quot;PLUGIN_NAME&quot;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">class_parent</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
                     <span class="c1"># Inherit class_parent CONF_SECTION/PLUGIN_NAME value</span>
@@ -1117,32 +1413,55 @@ document.write(`
 <div class="viewcode-block" id="SpyderWidgetMixin.create_icon">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.create_icon">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_icon</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_icon</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QIcon</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create an icon by name using the spyder Icon manager.</span>
+<span class="sd">        Retrieve an icon from Spyder&#39;s icon manager.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The name of the icon to retrieve.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QIcon</span>
+<span class="sd">            The specified icon, as a :class:`QIcon` instance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ima</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SpyderWidgetMixin.update_style">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.update_style">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_style</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update stylesheet and style of the widget.</span>
+<span class="sd">        Modify the interface styling used by the plugin.</span>
 
-<span class="sd">        This method will be called recursively on all widgets on theme change.</span>
+<span class="sd">        This must be reimplemented by plugins that need to adjust their style.</span>
+
+<span class="sd">        Changing from the dark to the light interface theme might</span>
+<span class="sd">        require specific styles or stylesheets to be applied. When</span>
+<span class="sd">        the theme is changed by the user through our :guilabel:`Preferences`,</span>
+<span class="sd">        this method will be called for all plugins.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="SpyderWidgetMixin.update_translation">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderWidgetMixin.update_translation">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update localization of the widget.</span>
 
 <span class="sd">        This method will be called recursively on all widgets on language</span>
 <span class="sd">        change.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>
@@ -1153,10 +1472,10 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SpyderMainWindowMixin</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Mixin with additional functionality for the QMainWindow&#39;s used in Spyder.</span>
+<span class="sd">    Mixin with additional functionality for Spyder&#39;s :class:`QMainWindow`\\s.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_is_on_visible_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_on_visible_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Detect if the window is placed on a visible screen.&quot;&quot;&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
         <span class="n">qapp</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
@@ -1169,8 +1488,14 @@ document.write(`
 
 <div class="viewcode-block" id="SpyderMainWindowMixin.move_to_primary_screen">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SpyderMainWindowMixin.move_to_primary_screen">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_to_primary_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the window to the primary screen if necessary.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_to_primary_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">QMainWindow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move the window to the primary screen if necessary.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_on_visible_screen</span><span class="p">():</span>
             <span class="k">return</span>
 
@@ -1185,7 +1510,7 @@ document.write(`
 
         <span class="c1"># With this we want to maximize only the Spyder main window and not the</span>
         <span class="c1"># plugin ones, which usually are not maximized.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;is_window_widget&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;is_window_widget&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span></div>
 </div>
 
@@ -1195,33 +1520,49 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SvgToScaledPixmap">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SvgToScaledPixmap</span><span class="p">(</span><span class="n">SpyderConfigurationAccessor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Mixin to transform an SVG to a QPixmap that is scaled according to the</span>
-<span class="sd">    factor set by users in Preferences.</span>
+<span class="sd">    Mixin to transform an SVG to a QPixmap.</span>
+
+<span class="sd">    The resulting :class:`QPixmap` is scaled according to the scale factor</span>
+<span class="sd">    set by users in Spyder&#39;s :guilabel:`Preferences`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SvgToScaledPixmap.svg_to_scaled_pixmap">
 <a class="viewcode-back" href="../../../../_autosummary/spyder.api.widgets.mixins.html#spyder.api.widgets.mixins.SvgToScaledPixmap.svg_to_scaled_pixmap">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">svg_to_scaled_pixmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">svg_file</span><span class="p">,</span> <span class="n">rescale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_package</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">svg_to_scaled_pixmap</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">svg_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rescale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">in_package</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QPixmap</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Transform svg to a QPixmap that is scaled according to the factor set</span>
-<span class="sd">        by users in Preferences.</span>
+<span class="sd">        Transform an SVG to a QPixmap.</span>
+
+<span class="sd">        The resulting :class:`QPixmap` is scaled according to the scale factor</span>
+<span class="sd">        set by users in Spyder&#39;s :guilabel:`Preferences`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        svg_file: str</span>
-<span class="sd">            Name of or path to the svg file.</span>
-<span class="sd">        rescale: float, optional</span>
+<span class="sd">            Name of or path to the SVG file to convert.</span>
+<span class="sd">        rescale: float | None, optional</span>
 <span class="sd">            Rescale pixmap according to a factor between 0 and 1.</span>
+<span class="sd">            If ``None`` (default), will use the default scale factor.</span>
 <span class="sd">        in_package: bool, optional</span>
-<span class="sd">            Get svg from the `images` folder in the Spyder package.</span>
+<span class="sd">            If ``True`` (the default), get the SVG from the</span>
+<span class="sd">            :file:`images` directory in the installed Spyder package.</span>
+<span class="sd">            If ``False``, retrieve it from the specified file on disk.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QPixmap</span>
+<span class="sd">            The converted rasterized image.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">in_package</span><span class="p">:</span>
             <span class="n">image_path</span> <span class="o">=</span> <span class="n">get_image_path</span><span class="p">(</span><span class="n">svg_file</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span><span class="s1">&#39;high_dpi_custom_scale_factor&#39;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span><span class="s2">&quot;high_dpi_custom_scale_factor&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">):</span>
             <span class="n">scale_factors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conf</span><span class="p">(</span>
-                <span class="s1">&#39;high_dpi_custom_scale_factors&#39;</span><span class="p">,</span>
-                <span class="n">section</span><span class="o">=</span><span class="s1">&#39;main&#39;</span>
+                <span class="s2">&quot;high_dpi_custom_scale_factors&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;main&quot;</span>
             <span class="p">)</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">scale_factors</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1240,8 +1581,9 @@ document.write(`
 
         <span class="c1"># Paint image using svg renderer</span>
         <span class="n">image</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span>
-            <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span>
-            <span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">),</span>
+            <span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">painter</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>

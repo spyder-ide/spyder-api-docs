@@ -4,6 +4,13 @@ spyder.api.widgets.toolbars
 .. automodule:: spyder.api.widgets.toolbars
 
    
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+   
+      ToolbarItem
+      ToolbarItemEntry
+   
    .. rubric:: Classes
 
    .. autosummary::
@@ -11,7 +18,6 @@ spyder.api.widgets.toolbars
       ApplicationToolbar
       MainWidgetToolbar
       SpyderToolbar
-      ToolTipFilter
       ToolbarLocation
       ToolbarStyle
    
