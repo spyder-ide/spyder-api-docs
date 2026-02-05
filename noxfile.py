@@ -164,9 +164,6 @@ def construct_sphinx_invocation(
     builder = builders[-1] if builders else builder
     build_dir = BUILD_DIR / builder if build_dir is None else build_dir
 
-    if "autodoc" in cli_options:
-        build_options = [item for item in build_options if item != "-n"]
-
     if CI:
         build_options = list(build_options) + ["--color"]
 
